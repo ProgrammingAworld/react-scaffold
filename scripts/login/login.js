@@ -1,5 +1,6 @@
 import 'noty/js/noty/packaged/jquery.noty.packaged.min';
 import '../plugins/jquery.animateCss';
+import '../plugins/jquery.loadingPage.js';
 
 import Parent from './Parent.jsx';
 
@@ -72,6 +73,15 @@ class Login {
                     }
                 ] // an array of buttons
             })
+        });
+
+        //测试loadingpage
+        $('#btn_loadingpage').click(function () {
+            $(document.body).loadingPage('start');
+
+            $('#loading').click(function () {
+                $(document.body).loadingPage('done');
+            });
         });
     }
 }

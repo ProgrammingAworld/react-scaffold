@@ -5,10 +5,11 @@
 (function ($) {
     var old = $.fn.animateCss;
     
-    function AnimateCss(element,options) {
+    function AnimateCss(element,animationName,callback) {
         this.ver = '1.0';
         this.$element = $(element);
-        this.options = options;
+        this.animationName = animationName;
+        this.callback = callback;
         this.init();
     }
     
@@ -16,16 +17,21 @@
         constructor:AnimateCss,
         init:function () {
             var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-            var animationName = this.options;
+            var animationName = this.animationName;
+            var cb = this.callback;
             this.$element.addClass('animated ' + animationName).one(animationEnd, function() {
                 $(this).removeClass('animated ' + animationName);
+
+                if($.isFunction(cb)){
+                    cb.bind(this)();
+                }
             });
         }
     };
     
-    $.fn.animateCss = function (options) {
+    $.fn.animateCss = function (animationName,fnCb) {
         this.each(function () {
-            new AnimateCss(this,options);
+            new AnimateCss(this,animationName,fnCb);
         })
     };
 
