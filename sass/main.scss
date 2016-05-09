@@ -4,6 +4,8 @@
 //组件
 @import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "plugins/_animate.min";
+//公共
+@import "public";
 //各模块
 @import "login";
 @import "icons";

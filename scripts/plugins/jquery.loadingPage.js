@@ -11,7 +11,7 @@
         this.finish = false;
         this.loadEle = null;
         this.spanTime = 300;
-        this.HTML = '<div id="loading"><div class="progress"><div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;" class="progress-bar progress-bar-success progress-bar-striped active">0%</div></div></div>';
+        this.HTML = '<div id="acloading"><div class="progress"><div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;" class="progress-bar progress-bar-success progress-bar-striped active">0%</div></div></div>';
         this.init();
     }
 
@@ -21,7 +21,7 @@
             if (this.loadEle == null) {
                 var html = this.HTML;
                 $(document.body).prepend(html);
-                this.loadEle = $('#loading');
+                this.loadEle = $('#acloading');
             }
 
             switch (this.actionName) {
@@ -44,7 +44,7 @@
         start: function () {
             this.stop();
             var spanTime = this.spanTime;
-            this.loadEle.data('loadingtimer', setInterval(this.animate.bind(this), spanTime));
+            this.loadEle.removeClass('hide').data('loadingtimer', setInterval(this.animate.bind(this), spanTime));
         },
         stop: function () {
             clearInterval(this.loadEle.data('loadingtimer'));
@@ -56,10 +56,16 @@
 
             //结束画面停顿一下
             setTimeout(function () {
-                this.loadEle.animateCss('fadeOutUp', function () {
-                    $(this).addClass('hide');
+                var that = this;
+                this.loadEle.fadeOut('slow', function () {
+                    $(this).addClass('hide').removeAttr('style');
+                    that.reset();
                 });
             }.bind(this), 1000);
+        },
+        reset:function () {
+            $('.progress-bar',this.loadEle).attr('aria-valuenow', 0).css('width', '').text('0%');
+            this.finish = false;
         },
         animate: function () {
             var $progressbar = this.loadEle.find('.progress-bar');
@@ -87,6 +93,8 @@
             instance.setActionName(actionName);
             instance.init();
         }
+
+        return this;
     };
 
     $.fn.loadingPage.noConflict = function () {
