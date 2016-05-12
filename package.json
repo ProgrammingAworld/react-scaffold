@@ -4,7 +4,7 @@
   "description": "frontEnd template",
   "main": "app.js",
   "scripts": {
-    "test": "no"
+    "dev": "webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist"
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,7 @@
     "jest-cli": "^11.0.2",
     "mocha": "^2.4.5",
     "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1",
     "webpack-stream": "^3.2.0"
   },
   "dependencies": {
