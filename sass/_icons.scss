@@ -1,14 +1,14 @@
 @charset "utf-8";
 
-$icons-spacing: 10px;
-$icons-layout: smart;
-$icons-sprite-dimensions: true;
-$icons-repeat:no-repeat;
-$icons-sprite-sort-by : 'width';
-
-// 加载compass sprites模块
-@import "compass/utilities/sprites";
-// 导入share目录下所有png图片
-@import "icons/*.png";
-// 输出所有的雪碧图css
-@include all-icons-sprites;
+//$icons-spacing: 10px;
+//$icons-layout: smart;
+//$icons-sprite-dimensions: true;
+//$icons-repeat:no-repeat;
+//$icons-sprite-sort-by : 'width';
+//
+//// 加载compass sprites模块
+//@import "compass/utilities/sprites";
+//// 导入share目录下所有png图片
+//@import "icons/*.png";
+//// 输出所有的雪碧图css
+//@include all-icons-sprites;
