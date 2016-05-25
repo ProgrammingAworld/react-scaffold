@@ -6,7 +6,7 @@
 class Tools {
     static routerM(opts, defaultexe) {
         var Workspace = Backbone.Router.extend(opts);
-        new Workspace;
+        router = new Workspace();
         Backbone.history.start();
 
         //默认执行
@@ -17,7 +17,8 @@ class Tools {
     }
 
     static setHash(v) {
-        location.hash = v;
+        router.navigate(v, {trigger: true});
+        // location.hash = v;
     }
 
     static getHash() {

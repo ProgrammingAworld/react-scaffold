@@ -16,3 +16,4 @@ window.Backbone=Backbone;
 window.React=React;
 window.ReactDOM=ReactDOM;
 window.Rx=Rx;
+window.router = null;
