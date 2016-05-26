@@ -78,9 +78,10 @@ gulp.task('styles_build', function () {
 //copy bootstrap服务器端字体
 gulp.task('copyFont',function(){
     var src='node_modules/bootstrap-sass/assets/fonts/bootstrap/*';
+    var src2 = 'sass/fonts/*'
     var dest= config.distCss+'/fonts/';
 
-    return gulp.src(src)
+    return gulp.src([src,src2])
         .pipe(gulp.dest(dest));
 });
 

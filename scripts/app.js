@@ -7,10 +7,12 @@ import './main/global';
 //项目js
 import Main from './main/main';
 import LoginMain from './login/login';
+import ProjectMain from './project/ProjectMain';
 
 window.config={
     pages:{
-        "index":new LoginMain()
+        "login": new LoginMain(),
+        "project":new ProjectMain()
     },
     "errors":{
     },

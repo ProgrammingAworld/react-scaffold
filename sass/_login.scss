@@ -1,8 +1,98 @@
-#scroll{
-  width: 200px;
-  height: 200px;
-  overflow: auto;
-  border: 1px solid red;
-  background: #0000AA;
-  @include single-box-shadow(0,3px,5px,0,rgba(0, 0, 0, 0.5),inset);
+#login {
+  @include size(100%, 100%);
+  background: url("../images/loginbg.png") center center no-repeat $login-bg;
+  position: relative;
+}
+
+#login-box {
+  @include size(500px, 320px);
+  border-radius: 2px;
+  background: url("../images/loginlogo.png") no-repeat center 30px $login-box-bg;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -250px;
+  margin-top: -150px;
+  overflow: hidden;
+
+  .input-group {
+    @include size(420px, 52px);
+    margin: 100px auto 0;
+    position: relative;
+    input {
+      @include size(100%, 34px);
+      border: 1px solid $gray-dd;
+      border-radius: 2px;
+      padding-left: 61px;
+      line-height: 34px;
+      &.login-user {
+        margin-bottom: 20px;
+        background: url("../images/loginicons.png") no-repeat 15px 6px $white;
+      }
+      &.login-pwd {
+        background: url("../images/loginicons.png") no-repeat 15px -67px $white;
+      }
+    }
+    input:-webkit-autofill {
+      @include box-shadow(0 0 0px 1000px $white inset);
+    }
+    input:focus {
+      border: 1px solid $login-box-input-focus;
+      border-radius: 2px;
+      outline-width: 0;
+    }
+    input.error {
+      border: 1px solid $red;
+    }
+    & > div {
+      @include size(20px,20px);
+      background: url("../images/loginicons.png") no-repeat 0 0 $white;
+      position: absolute;
+      left:16px;
+      top:7px;
+    }
+    .adminico{
+
+    }
+    .pwdico{
+      background-position: -3px bottom;
+      top:61px;
+    }
+  }
+  .errors {
+    font-size: 12px;
+    @include size(50%, 32px);
+    line-height: 32px;
+    color: $red;
+    background: url("../images/warning.png") left center no-repeat;
+    background-size: auto 26px;
+    padding-left: 30px;
+  }
+  .errors + div {
+    padding-top: 6px;
+  }
+  .login-btn {
+    @include size(420px, 52px);
+    margin: 12px auto;
+    > div {
+      margin: 0;
+    }
+    .login-remember {
+      & > input {
+        @include size(16px, 16px);
+      }
+      background: url("../images/checkbox.png") no-repeat -90px 0;
+      @include size(20px, 20px);
+      display: block;
+      float: left;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .checked .login-remember {
+      background-position: -60px -30px;
+    }
+    .login-submit{
+      margin-top: 12px;
+    }
+  }
 }

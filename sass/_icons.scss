@@ -1,14 +1,234 @@
 @charset "utf-8";
+@font-face {
+  font-family: 'icomoon';
+  src:url('../css/fonts/whale.eot?wtivdw');
+  src:url('../css/fonts/whale.eot?wtivdw#iefix') format('embedded-opentype'),
+  url('../css/fonts/whale.ttf?wtivdw') format('truetype'),
+  url('../css/fonts/whale.woff?wtivdw') format('woff'),
+  url('../css/fonts/whale.svg?wtivdw#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
-//$icons-spacing: 10px;
-//$icons-layout: smart;
-//$icons-sprite-dimensions: true;
-//$icons-repeat:no-repeat;
-//$icons-sprite-sort-by : 'width';
-//
-//// 加载compass sprites模块
-//@import "compass/utilities/sprites";
-//// 导入share目录下所有png图片
-//@import "icons/*.png";
-//// 输出所有的雪碧图css
-//@include all-icons-sprites;
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-admin:before {
+  content: "\e935";
+}
+.icon-minus:before {
+  content: "\e936";
+}
+.icon-power:before {
+  content: "\e937";
+}
+.icon-watch:before {
+  content: "\e938";
+}
+.icon-administratorsystem:before {
+  content: "\e900";
+}
+.icon-algorithmadministration:before {
+  content: "\e901";
+}
+.icon-cancelbutton:before {
+  content: "\e902";
+}
+.icon-dataadministration:before {
+  content: "\e903";
+}
+.icon-modelapplication:before {
+  content: "\e904";
+}
+.icon-modeldevelopment:before {
+  content: "\e905";
+}
+.icon-resourceadministration:before {
+  content: "\e906";
+}
+.icon-useradministration:before {
+  content: "\e907";
+}
+.icon-usersystem:before {
+  content: "\e908";
+}
+.icon-configure:before {
+  content: "\e909";
+}
+.icon-connection:before {
+  content: "\e90a";
+}
+.icon-copy:before {
+  content: "\e90b";
+}
+.icon-createmirror:before {
+  content: "\e90c";
+}
+.icon-delete:before {
+  content: "\e90d";
+}
+.icon-delete1:before {
+  content: "\e90e";
+}
+.icon-deletemirror:before {
+  content: "\e90f";
+}
+.icon-deployment:before {
+  content: "\e910";
+}
+.icon-down:before {
+  content: "\e911";
+}
+.icon-increase:before {
+  content: "\e912";
+}
+.icon-keyword:before {
+  content: "\e913";
+}
+.icon-keyword2:before {
+  content: "\e914";
+}
+.icon-like:before {
+  content: "\e915";
+}
+.icon-locked:before {
+  content: "\e916";
+}
+.icon-modify:before {
+  content: "\e917";
+}
+.icon-move:before {
+  content: "\e918";
+}
+.icon-move1:before {
+  content: "\e919";
+}
+.icon-new:before {
+  content: "\e91a";
+}
+.icon-pause:before {
+  content: "\e91b";
+}
+.icon-pin:before {
+  content: "\e91c";
+}
+.icon-putin:before {
+  content: "\e91d";
+}
+.icon-putout:before {
+  content: "\e91e";
+}
+.icon-recoverymirror:before {
+  content: "\e91f";
+}
+.icon-save:before {
+  content: "\e920";
+}
+.icon-saveall:before {
+  content: "\e921";
+}
+.icon-saveas:before {
+  content: "\e922";
+}
+.icon-seach:before {
+  content: "\e923";
+}
+.icon-spark:before {
+  content: "\e924";
+}
+.icon-stop:before {
+  content: "\e925";
+}
+.icon-train:before {
+  content: "\e926";
+}
+.icon-unlock:before {
+  content: "\e927";
+}
+.icon-up:before {
+  content: "\e928";
+}
+.icon-user:before {
+  content: "\e929";
+}
+.icon-dairy:before {
+  content: "\e92a";
+}
+.icon-data:before {
+  content: "\e92b";
+}
+.icon-dataset:before {
+  content: "\e92c";
+}
+.icon-environment:before {
+  content: "\e92d";
+}
+.icon-help:before {
+  content: "\e92e";
+}
+.icon-input:before {
+  content: "\e92f";
+}
+.icon-model:before {
+  content: "\e930";
+}
+.icon-output:before {
+  content: "\e931";
+}
+.icon-parameter:before {
+  content: "\e932";
+}
+.icon-report:before {
+  content: "\e933";
+}
+.icon-resource:before {
+  content: "\e934";
+}
+//tab标题 算子|模型|数据前的圆点
+//%icons-tabtitleico{
+//  @include size(8px,8px);
+//  border-radius:50%;
+//  display: inline-block;
+//  margin: 0 10px 10px 0;
+//  overflow: hidden;
+//  +span{
+//    max-width: 90px;
+//    display: inline-block;
+//    white-space:nowrap;
+//    overflow: hidden;
+//    text-overflow: ellipsis;
+//  }
+//}
+//.icons-tabtitle-operator{
+//  @extend %icons-tabtitleico;
+//  background-color: $tab-titleico-bgblue;
+//}
+//.icons-tabtitle-data{
+//  @extend %icons-tabtitleico;
+//  background-color: $tab-titleico-bggreen;
+//}
+//.icons-tabtitle-model{
+//  @extend %icons-tabtitleico;
+//  background-color: $tab-titleico-bgorange;
+//}
+////tabcontent内图标
+//%title-samllicon{
+//  display: inline-block;
+//  margin: 3px 5px 0 0;
+//}
+//.title-overview,.title-parameter,.title-input,.title-output{
+//  @extend %title-samllicon;
+//}
+//.project-icon-config,.project-icon-link,.project-icon-position,.project-icon-info,.project-icon-trash{
+//  @extend %title-samllicon;
+//  margin: 10px 6px 0 6px;
+//  cursor: pointer;
+//}
