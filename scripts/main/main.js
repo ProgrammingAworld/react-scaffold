@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2015/12/7.
  */
-import MenuView from './MenuView';
+import MenuView from '../common/MenuView';
 
 class Main{
     init(){

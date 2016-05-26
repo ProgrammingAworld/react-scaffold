@@ -8,11 +8,13 @@ import './main/global';
 import Main from './main/main';
 import LoginMain from './login/login';
 import ProjectMain from './project/ProjectMain';
+import ApplicationMain from './application/ApplicationMain';
 
 window.config={
     pages:{
         "login": new LoginMain(),
-        "project":new ProjectMain()
+        "project":new ProjectMain(),
+        "application":new ApplicationMain()
     },
     "errors":{
     },
