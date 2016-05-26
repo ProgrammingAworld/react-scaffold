@@ -1,0 +1,68 @@
+.grid {
+  a{
+    color: $gridtotal-b-color;
+    text-decoration: none;
+  }
+  & > thead > tr > th{
+    font-weight: normal;
+    background: $gray-f6;
+  }
+  & > thead>tr>td,
+  & > thead>tr>th,
+  & > tbody>tr>td,
+  & > tbody>tr>th,
+  & > tfoot>tr>td,
+  & > tfoot>tr>th{
+    border-top-width: 0;
+    border-bottom: 1px solid $gray-dd;
+  }
+  .list-title{
+    padding-left: 30px;
+  }
+  .check-all{
+    width: 65px;
+    text-align: left;
+    padding-left: 30px;
+  }
+  .list-datetime, .list-fixed-200{
+    @include size(200px);
+  }
+  .list-datetime2{
+    @include size(160px);
+  }
+  .list-fixed-100{
+    @include size(100px);
+  }
+  .list-text-left{
+    text-align: left;
+  }
+  .ellipsis {
+    display: block;
+    @include size(60%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  & > tbody > tr:hover,& > tbody > tr.trhover {
+    background: $grid-trhover-color;
+  }
+  .isEmpty{
+    text-align: center;
+  }
+  .data-input{
+    @include size(100%);
+  }
+  .data-hide{
+    @include size(100%);
+    cursor: pointer;
+    border: 0px solid $gray-90;
+    padding: 0;
+    text-overflow: ellipsis;
+    background-color: transparent;
+  }
+  .data-hide:focus{
+    color: $black;
+    background-color: $white;
+    border-width: 1px;
+  }
+}

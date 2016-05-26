@@ -1,0 +1,43 @@
+#project-list{
+  @include size(100%,100%);
+  .project-list-table{
+    @include size(100%,calc(100% - 50px));
+    padding: 20px;
+    overflow: hidden;
+    &:hover{
+      overflow-y: auto;
+    }
+    .project-list-content{
+      .whale-project-list-table-action{
+        @include size(150px);
+        position: fixed;
+        left: 0;
+        top: 0;
+        span{
+          display: inline-block;
+          margin-left: 20px;
+          cursor: pointer;
+        }
+        span:first-child{
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  [class^="icon-"],[class*=" icon-"]{
+    font-size: 18px;
+  }
+}
+
+@at-root {
+  .project-name{
+    font-weight: normal;
+    white-space: nowrap;
+  }
+  .project-name-input{
+    @include size(320px!important);
+  }
+  #create-newproject{
+    @include size(520px,auto);
+  }
+}

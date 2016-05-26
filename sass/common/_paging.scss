@@ -1,0 +1,31 @@
+.page-node{
+  label{
+    font-weight: normal;
+  }
+  input,select{
+    background-color: $gray-f3;
+  }
+  .pagecount{
+    @include size(54px,30px);
+    padding: 0;
+  }
+  .pagenumber{
+    @include size(40px,30px);
+    color: $btn-hover-color;
+    padding:0;
+    text-align:center;
+  }
+  .totalpagecount{
+    display: inline-block;
+    margin-right: 20px;
+  }
+  .pre-page,.next-page{
+    padding: {
+      top: 4px;
+      bottom: 4px;
+    };
+  }
+  .pre-page{
+    margin-right: 10px;
+  }
+}

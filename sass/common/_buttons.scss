@@ -1,0 +1,28 @@
+.btn:focus,.btn:active.form-control:focus {
+  //background-color: $white;
+  outline: none!important;
+  box-shadow: none!important;
+}
+
+.btn-whaleDefault{
+  font-weight: normal;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 2px;
+  padding: 0 10px;
+  background-color: $white;
+  border-color: $gray-70;
+  color: $gray-34;
+  overflow: hidden;
+
+  &:hover{
+    color: $btn-hover-color;
+    border-color: $gray-70;
+    background-color: $transparent;
+  }
+  i{
+    display: block;
+    float:left;
+    margin: 6px 5px 0 0;
+  }
+}

@@ -9,8 +9,17 @@ class Main{
         this.event();
     }
 
+    closeLoading(){
+        var loadingInstance = dialog.getCurrent();
+        if(loadingInstance&&loadingInstance.id=="loadingDiv"){
+            loadingInstance.close().remove();
+        }
+    }
+
     event(){
+        let that = this;
         let oMenu = document.getElementById('header');
+
         //窗口尺寸变化时执行reload
         $(window).on('resize', function() {
             //window.location.reload();
@@ -33,29 +42,18 @@ class Main{
                     return;
                 }
 
+                //关闭Loading画面
+                that.closeLoading();
                 dialog.alert(oRes.error.msg);
             }
         }).ajaxError(function(event, request, settings) {
             console.log("Error requesting page " + settings.url);
+            //关闭Loading画面
+            that.closeLoading();
             dialog.alert('当前服务不可用！');
         }).ajaxStop(function () {
             console.log('stop');
-            //一个界面拥有多个动画时递归移除loading
-            function _removeLoad(instance) {
-                if(instance){
-                    instance.close().remove();
-                    _removeLoad(dialog.getCurrent());
-                }else {
-                    console.log('removeload complete');
-                }
-            }
-
-            var loadingInstance = dialog.getCurrent();
-            if(loadingInstance&&loadingInstance.id=="loadingDiv"){
-                loadingInstance.close().remove();
-            }
-
-            // _removeLoad(loadingInstance);
+            that.closeLoading();
         });
 
         if(oMenu){
