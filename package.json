@@ -6,6 +6,10 @@
   "scripts": {
     "dev": "webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist"
   },
+  "author": {
+    "name": "Anchao",
+    "email": "pvfhv@qq.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/pvfhv/example-usegulp-cmd.git"
