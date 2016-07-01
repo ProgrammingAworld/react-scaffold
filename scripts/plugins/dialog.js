@@ -1,5 +1,7 @@
 /* dialog扩展 */
-require('./dialog-plus-min.js');
+var $ = require('jquery');
+var _ = require('underscore');
+require('./dialog-plus.js');
 
 $.extend(dialog, {
     topIndex: function () {
@@ -123,6 +125,4 @@ $.extend(dialog, {
         }
     }
 });
-
 module.exports = dialog;
-//export default dialog;

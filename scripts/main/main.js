@@ -1,70 +1,86 @@
 /**
  * Created by anchao on 2015/12/7.
  */
-import MenuView from '../common/MenuView';
+import {$, Tools, React, ReactDOM} from '../common/Util';
+import HeaderView from '../common/views/HeaderView';
 
-class Main{
-    init(){
+class Main {
+    init() {
         this.gotoPage();
         this.event();
     }
 
-    closeLoading(){
+    closeLoading() {
         var loadingInstance = dialog.getCurrent();
-        if(loadingInstance&&loadingInstance.id=="loadingDiv"){
+        if (loadingInstance && loadingInstance.id == "loadingDiv") {
             loadingInstance.close().remove();
         }
     }
 
-    event(){
-        let that = this;
-        let oMenu = document.getElementById('header');
+    event() {
+        this.globalEvent();
+        this.drawHeader();
+    }
+
+    globalEvent() {
+        //全局控制左右键
+        $(document).on('click', function (e) {
+
+        }).on('contextmenu', function () {
+
+        });
 
         //窗口尺寸变化时执行reload
-        $(window).on('resize', function() {
-            //window.location.reload();
+        $(window).on('resize', function () {
+
         });
 
-        //全局错误处理
-        $(document).ajaxStart(function () {
+        //全局loading画面及错误处理
+        $(document).ajaxSend(() => {
             //如果没有loading画面，一个界面只有一个loading动画时
-            var loadingInstance = dialog.getCurrent();
-            if(loadingInstance&&loadingInstance.id!="loadingDiv"){
-                dialog.loading();
-            }
-        }).ajaxSuccess(function (event, XMLHttpRequest, ajaxOptions) {
-            var oRes = JSON.parse(XMLHttpRequest.responseText);
-
-            //统一处理错误提示
-            if(!oRes.success){
-                //特殊处理登录页
-                if(ajaxOptions.url == '/bus/user/info'&&location.pathname.endsWith('login.html')){
-                    return;
-                }
-
-                //关闭Loading画面
-                that.closeLoading();
-                dialog.alert(oRes.error.msg);
-            }
-        }).ajaxError(function(event, request, settings) {
-            console.log("Error requesting page " + settings.url);
+            // var loadingInstance = dialog.getCurrent();
+            // if(loadingInstance == null || loadingInstance&&loadingInstance.id != "loadingDiv"){
+            //     dialog.loading();
+            // }
+        }).ajaxSuccess((event, XMLHttpRequest, ajaxOptions) => {
+            // var oRes = JSON.parse(XMLHttpRequest.responseText);
+            //
+            // //统一处理错误提示
+            // if(!oRes.success){
+            //     //特殊处理登录页
+            //     if(ajaxOptions.url == '/bus/user/info'&&location.pathname.endsWith('login.html')){
+            //         return;
+            //     }
+            //
+            //     //关闭Loading画面
+            //     this.closeLoading();
+            //
+            //     if(ajaxOptions.url != '/bus/login'){
+            //         dialog.alert(oRes.error.msg,'warning');
+            //     }
+            // }
+        }).ajaxError((event, request, settings) => {
+            // console.log("Error requesting page " + settings.url);
             //关闭Loading画面
-            that.closeLoading();
-            dialog.alert('当前服务不可用！');
-        }).ajaxStop(function () {
-            console.log('stop');
-            that.closeLoading();
+            // this.closeLoading();
+            // dialog.alert('当前服务不可用！','warning');
+        }).ajaxStop(() => {
+            // console.log('stop');
+            // this.closeLoading();
         });
+    }
 
-        if(oMenu){
-            ReactDOM.render(<MenuView active={this.mName} />,document.getElementById('header'));
+    drawHeader(){
+        let oMenu = document.querySelector('#header');
+        if (oMenu) {
+            ReactDOM.render(<HeaderView active={this.sHTMLName} />, oMenu);
         }
     }
 
-    gotoPage(){
-        var pathName=Tools.getPathname().replace('/','').replace(new RegExp(".html$"),'');
-        this.mName=pathName?pathName:'index';
-        config.pages[this.mName].init();
+    gotoPage() {
+        let sPathName = Tools.getPathname().replace('/', '').replace(new RegExp(".html$"), '');
+        this.sHTMLName = sPathName ? sPathName : 'login';
+        config.pages[this.sHTMLName].init();
     }
 }
 

@@ -10,8 +10,9 @@ var changed = require('gulp-changed');
 var jade = require('gulp-jade');
 //css
 var compass = require('gulp-compass');
+var picbase64 = require('gulp-base64');
 //image
-var minimage = require('gulp-image');
+var minimage = require('gulp-imagemin');
 //js
 var webpack= require('webpack');
 var webpackstream = require('webpack-stream');
@@ -22,13 +23,13 @@ var reload = browserSync.reload;
 var config = {
     'dist': 'dist',
     'html': 'dist/*.html',
-    'jade': 'template/*.jade',
-    'sass': 'sass/**/*.scss',
+    'jade': 'html/*.jade',
+    'sass': 'css/**/*.scss',
     'distCss': 'dist/css',
     'simulate':'simulates/*.json',
     'distsimulate':'dist/simulates',
     'distScript': 'dist/scripts',
-    'image':'images/{,*/}*.{gif,jpeg,jpg,png,ico}',
+    'images':'images/{,*/}*.{gif,jpeg,jpg,png,ico}',
     'distImg': 'dist/images',
     'mainJs': 'app.js'
 };
@@ -40,8 +41,8 @@ gulp.task('clean', function () {
     });
 });
 
-//html_template
-gulp.task('templates', function() {
+//html_jade
+gulp.task('jade', function() {
     gulp.src(config.jade)
         .pipe(changed(config.jade))
         .pipe(jade({
@@ -58,7 +59,13 @@ gulp.task('styles', function () {
         .pipe(compass({
             config_file: 'config.rb',
             css: config.distCss,
-            sass: 'sass'
+            sass: 'css'
+        }))
+        .pipe(picbase64({
+            baseDir: 'dist',
+            extensions: ['png'],
+            maxImageSize: 100*1024,
+            debug: false
         }))
         .pipe(gulp.dest(config.distCss))
         .pipe(reload({stream: true}));
@@ -70,27 +77,24 @@ gulp.task('styles_build', function () {
         .pipe(compass({
             config_file: 'config_build.rb',
             css: config.distCss,
-            sass: 'sass'
+            sass: 'css'
+        }))
+        .pipe(picbase64({
+            baseDir: 'dist',
+            extensions: ['png'],
+            maxImageSize: 100*1024,
+            debug: false
         }))
         .pipe(gulp.dest(config.distCss));
 });
 
 //copy bootstrap服务器端字体
 gulp.task('copyFont',function(){
-    var src='node_modules/bootstrap-sass/assets/fonts/bootstrap/*';
-    var src2 = 'sass/fonts/*'
+    var src='node_modules/bootstrap-css/assets/fonts/bootstrap/*';
+    var src2 = 'css/common/fonts/*'
     var dest= config.distCss+'/fonts/';
 
     return gulp.src([src,src2])
-        .pipe(gulp.dest(dest));
-});
-
-//copy zeroclipboard.swf
-gulp.task('copyFlash',function(){
-    var src='node_modules/zeroclipboard/dist/ZeroClipboard.swf';
-    var dest= config.distScript;
-
-    gulp.src(src)
         .pipe(gulp.dest(dest));
 });
 
@@ -101,16 +105,14 @@ gulp.task('copySimulate',function(){
 });
 
 gulp.task('copy',function(){
-    gulp.start(['copyFont','copyFlash','copySimulate']);
+    gulp.start(['copyFont','copySimulate']);
 });
 
 //image
 gulp.task('images', function () {
-    return gulp.src([config.image,'!images/icons/*'])
-        .pipe(changed(config.image))
+    return gulp.src([config.images,'!images/icons/*'])
         .pipe(minimage())
-        .pipe(gulp.dest(config.distImg))
-        .pipe(reload({stream: true}));
+        .pipe(gulp.dest(config.distImg));
 });
 
 gulp.task('webpack',function() {
@@ -187,7 +189,7 @@ gulp.task('browserSync', function () {
     });
 
     //监听模板html变化
-    gulp.watch("template/*.jade",['templates']);
+    gulp.watch("templates/*.jade",['templates']);
     //监听sass变化
     gulp.watch(config.sass,['styles']);
     //监听image变化
@@ -195,11 +197,11 @@ gulp.task('browserSync', function () {
 });
 
 gulp.task('build',['clean'],function () {
-    gulp.start(['webpack_build','templates','styles_build','images','copy']);
+    gulp.start(['webpack_build','jade','styles_build','images','copy']);
 });
 
 gulp.task('watch',['clean'],function () {
-    gulp.start(['browserSync','webpack','templates','styles','images','copy']);
+    gulp.start(['browserSync','webpack','jade','styles','images','copy']);
 });
 
 gulp.task('default',['clean'], function () {

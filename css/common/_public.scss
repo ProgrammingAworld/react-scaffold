@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+//浏览器ie版本小于10提示框样式
+.browsehappy {
+  margin: 0.2em 0;
+  background: $gray-cc;
+  color: $black;
+  padding: 0.2em 0;
+}
+html,body{
+  font-family: $font-family;
+  height: 100%;
+  overflow: hidden;
+}

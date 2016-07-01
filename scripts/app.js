@@ -1,24 +1,31 @@
 /**
- * Created by Anchao on 2015/10/23.
+ * Created by Anchao on 2016/6/29.
  */
 
-import './main/global';
-
-//项目js
-import Main from './main/main';
-import LoginMain from './login/login';
-import ProjectMain from './project/ProjectMain';
-import ApplicationMain from './application/ApplicationMain';
+//模块js
+import Main from './main/Main';
+import LoginMain from './login/Login';
+import CoreMain from './core/Core';
+import GraphMain from './graph/Graph';
+import MapMain from './map/Map';
+import FileMain from './file/File';
+import CooperateMain from './cooperate/Cooperate';
+import AppMain from './app/App';
+import TodoMain from './todos/Todos';
 
 window.config={
     pages:{
         "login": new LoginMain(),
-        "project":new ProjectMain(),
-        "application":new ApplicationMain()
+        "core": new CoreMain(),
+        "graph": new GraphMain(),
+        "map": new MapMain(),
+        "file": new FileMain(),
+        "cooperate": new CooperateMain(),
+        "app": new AppMain(),
+        "todos": new TodoMain()
     },
     "errors":{
-    },
-    "isSimulate": false
+    }
 };
 
 new Main().init();
