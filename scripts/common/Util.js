@@ -28,8 +28,7 @@ const logger = loggerCreator({
             } else {
                 newState[i] = state[i];
             }
-        }
-        ;
+        };
 
         return newState;
     }
