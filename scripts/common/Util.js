@@ -4,7 +4,6 @@
 
 //公共js
 import $ from 'jquery';
-import _ from 'underscore';
 import dialog from '../plugins/dialog';
 require("../plugins/bootstrap");
 import Tools from './Tools';
@@ -44,7 +43,6 @@ const storeCreateByReducer = reducer => {
 
 export {
     $,
-    _,
     dialog,
     Tools,
     React,

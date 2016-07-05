@@ -2,7 +2,7 @@
  * Created by anchao on 2016/5/26.
  */
 
-import BaseAction from '../../base/BaseAPI';
+import BaseAction from '../../base/BaseService';
 
 export default class ProjectAction extends BaseAction{
     /**

@@ -2,7 +2,7 @@
  * Created by anchao on 2016/6/29.
  */
 import {$} from '../../common/Util';
-import BaseAPI from '../../base/BaseAPI';
+import BaseAPI from '../../base/BaseService';
 
 export default class TodoAPI extends BaseAPI {
     /**

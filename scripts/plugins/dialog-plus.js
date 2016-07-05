@@ -1241,9 +1241,9 @@ var jQuery = require('jquery');
 
 
     /**
-     * 根据 ID 获取某对话框 API
+     * 根据 ID 获取某对话框 service
      * @param    {String}    对话框 ID
-     * @return   {Object}    对话框 API (实例)
+     * @return   {Object}    对话框 service (实例)
      */
     artDialog.get = function (id) {
       return id === undefined

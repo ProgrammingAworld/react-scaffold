@@ -3,7 +3,7 @@
  */
 import {dialog} from '../../common/Util';
 import * as actionTypes from './actionTypes';
-import TodoAPI from '../API/TodoAPI';
+import TodoAPI from '../service/TodoService';
 
 const actionCreator = {
     getAllTodo:function () {
