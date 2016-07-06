@@ -9,6 +9,7 @@ require("../plugins/bootstrap");
 import Tools from './Tools';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Immutable from 'immutable';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {Provider, connect} from 'react-redux';
@@ -46,6 +47,7 @@ export {
     Tools,
     React,
     ReactDOM,
+    PureRenderMixin,
     Immutable,
     storeCreateByReducer,
     combineReducers,
