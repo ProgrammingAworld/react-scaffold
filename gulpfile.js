@@ -8,9 +8,11 @@ var del = require('del');
 var changed = require('gulp-changed');
 //html
 var jade = require('gulp-jade');
+var replace = require('gulp-replace');
 //css
 var compass = require('gulp-compass');
 var picbase64 = require('gulp-base64');
+var makeUrlVer = require('gulp-make-css-url-version');
 //image
 var minimage = require('gulp-imagemin');
 //js
@@ -31,7 +33,8 @@ var config = {
     'distScript': 'dist/scripts',
     'images':'images/{,*/}*.{gif,jpeg,jpg,png,ico}',
     'distImg': 'dist/images',
-    'mainJs': 'app.js'
+    'mainJs': 'app.js',
+    'v':Date.now()
 };
 
 //删除
@@ -49,6 +52,9 @@ gulp.task('jade', function() {
             doctype:'html',
             pretty:false
         }))
+        .pipe(replace(/images?\/(\w+?)(.png)/g, 'images/$1$2?v='+config.v))
+        .pipe(replace('css/main.css','css/main.css?v='+config.v))
+        .pipe(replace('scripts/app.js','scripts/app.js?v='+config.v))
         .pipe(gulp.dest(config.dist));
 });
 
@@ -67,6 +73,7 @@ gulp.task('styles', function () {
             maxImageSize: 100*1024,
             debug: false
         }))
+        .pipe(makeUrlVer({useDate:true}))
         .pipe(gulp.dest(config.distCss))
         .pipe(reload({stream: true}));
 });
@@ -85,6 +92,7 @@ gulp.task('styles_build', function () {
             maxImageSize: 100*1024,
             debug: false
         }))
+        .pipe(makeUrlVer({useDate:true}))
         .pipe(gulp.dest(config.distCss));
 });
 
