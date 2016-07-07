@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/4/27.
  */
-
+var jQuery = require('jquery');
 (function ($) {
     var old = $.fn.animateCss;
     
