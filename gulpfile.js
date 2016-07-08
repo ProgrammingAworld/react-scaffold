@@ -197,7 +197,7 @@ gulp.task('browserSync', function () {
     });
 
     //监听模板html变化
-    gulp.watch("templates/*.jade",['templates']);
+    gulp.watch(config.jade,['jade']);
     //监听sass变化
     gulp.watch(config.sass,['styles']);
     //监听image变化
