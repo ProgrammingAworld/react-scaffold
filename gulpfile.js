@@ -161,7 +161,7 @@ gulp.task('webpack_build', function() {
         .pipe(webpackstream({
             watch: false,
             entry: {
-                main: './scripts/app.js'
+                app: './scripts/app.js'
             },
             output: {
                 filename: '[name].js'
