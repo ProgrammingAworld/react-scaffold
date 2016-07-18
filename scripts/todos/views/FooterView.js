@@ -2,8 +2,9 @@
  * Created by anchao on 2016/6/30.
  */
 
-import {React} from '../../common/Util';
+import {React,PureRenderMixin} from '../../common/Util';
 const FooterView = React.createClass({
+    mixins:[PureRenderMixin],
     onRenderLi:function (filter, name) {
         if(filter == this.props.filter){
             return (
@@ -21,9 +22,9 @@ const FooterView = React.createClass({
     },
     render: function () {
         let aTodos = this.props.todos;
-        let clsName = aTodos.length == 0 ? 'hide' : '';
-        let nCompletedCount = aTodos.filter(oTodo=>!oTodo.completed).length;
-        let completedCls = aTodos.length - nCompletedCount > 0 ? 'pull-right' : 'pull-right hide';
+        let clsName = aTodos.size == 0 ? 'hide' : '';
+        let nCompletedCount = aTodos.filter(oTodo=>!oTodo.get('completed')).size;
+        let completedCls = aTodos.size - nCompletedCount > 0 ? 'pull-right' : 'pull-right hide';
 
         return (
             <footer id="footer" className={clsName}>

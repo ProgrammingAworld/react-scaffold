@@ -2,8 +2,7 @@
  * Created by anchao on 2016/6/29.
  */
 
-import { Tools } from '../common/Util';
-import { $, React, ReactDOM, storeCreateByReducer,Provider} from '../common/Util';
+import {React, ReactDOM, storeCreateByReducer,Provider} from '../common/Util';
 import TodoMainView from './views/TodoMainView';
 import reducers from './reducers/reducers';
 

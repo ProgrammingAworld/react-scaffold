@@ -2,10 +2,11 @@
  * Created by anchao on 2016/6/30.
  */
 
-import {React} from '../../common/Util';
+import {React,PureRenderMixin} from '../../common/Util';
 import Todo from './TodoSingleView';
 
 const TodoListView = React.createClass({
+    mixins:[PureRenderMixin],
     getInitialState: function () {
         return {
             delIcoIndex: -1,
@@ -41,7 +42,7 @@ const TodoListView = React.createClass({
         let aTodos = this.props.todos;
         let bCheckedAll = true;
 
-        if (aTodos.length > 0) {
+        if (aTodos.size > 0) {
             aTodos.forEach((oTodo, index)=> {
                 aLis.push(<Todo
                     key={index}
@@ -61,7 +62,7 @@ const TodoListView = React.createClass({
 
         //全选是否选中
         for (let oTodo of aTodos) {
-            if (!oTodo.completed) {
+            if (!oTodo.get('completed')) {
                 bCheckedAll = false;
                 break;
             }

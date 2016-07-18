@@ -1,9 +1,10 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { React,dialog } from '../../common/Util';
+import { React,dialog,PureRenderMixin } from '../../common/Util';
 
 const AddTodoView = React.createClass({
+    mixins:[PureRenderMixin],
     addTodo: function (e) {
         if(e.which == 13){
             let sTxt = e.currentTarget.value.trim();

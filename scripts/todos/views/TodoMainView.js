@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import {React, connect, createSelector} from '../../common/Util';
+import {React, connect, createSelector,PureRenderMixin} from '../../common/Util';
 import * as actionTypes from '../actions/actionTypes';
 import actionCreator from '../actions/actionCreator';
 import AddTodoView from './AddTodoView';
@@ -9,6 +9,7 @@ import TodoListView from './TodoListView';
 import FooterView from './FooterView';
 
 const TodoMainView = React.createClass({
+    mixins:[PureRenderMixin],
     componentDidMount: function () {
         const {dispatch} =  this.props;
         dispatch(actionCreator.getAllTodo());
@@ -38,9 +39,9 @@ const selectByFilter = (aTodos, sFilter) => {
         case actionTypes.VisibilityFilters.SHOW_ALL:
             return aTodos;
         case actionTypes.VisibilityFilters.SHOW_COMPLETED:
-            return aTodos.filter(oTodo=>oTodo.completed);
+            return aTodos.filter(oTodo=>oTodo.get('completed'));
         case actionTypes.VisibilityFilters.SHOW_ACTIVE:
-            return aTodos.filter(oTodo=>!oTodo.completed);
+            return aTodos.filter(oTodo=>!oTodo.get('completed'));
     }
 };
 const getTodosByFilter = createSelector([todos, filter], (aTodos, sFilter)=> {

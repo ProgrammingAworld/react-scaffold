@@ -1,8 +1,9 @@
 /**
  * Created by anchao on 2016/6/30.
  */
-import {React} from '../../common/Util';
+import {React,PureRenderMixin} from '../../common/Util';
 const TodoSingleView = React.createClass({
+    mixins:[PureRenderMixin],
     editNameHandler:function (e) {
         this.props.onEditTodo(e.currentTarget.value.trim());
     },
@@ -32,16 +33,16 @@ const TodoSingleView = React.createClass({
         let viewCls = bCanEdit ? 'view hide' : 'view';
         let editCls = bCanEdit ? 'edit' : 'edit hide';
 
-        let labelCls = oTodo.completed ? 'completed' : '';
+        let labelCls = oTodo.get('completed') ? 'completed' : '';
 
         return (
             <li onMouseEnter={this.props.showDeleteIco} onMouseLeave={this.props.hideDeleteIco} onDoubleClick={this.showEdit}>
                 <div className={viewCls}>
-                    <input className="toggle" type="checkbox" checked={oTodo.completed} onChange={this.props.completedTodo}/>
-                    <label className={labelCls}>{oTodo.text}</label>
+                    <input className="toggle" type="checkbox" checked={oTodo.get('completed')} onChange={this.props.completedTodo}/>
+                    <label className={labelCls}>{oTodo.get('text')}</label>
                     <button className={destroyCls} onClick={this.props.removeTodo}></button>
                 </div>
-                <input className={editCls} value={oTodo.text} onChange={this.editNameHandler} onKeyDown={this.keyDownFinishNameEdit} onBlur={this.finishNameEdit}/>
+                <input className={editCls} value={oTodo.get('text')} onChange={this.editNameHandler} onKeyDown={this.keyDownFinishNameEdit} onBlur={this.finishNameEdit}/>
             </li>
         );
     }

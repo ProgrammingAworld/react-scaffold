@@ -7,13 +7,10 @@ import TodoAPI from '../service/TodoService';
 
 const actionCreator = {
     getAllTodo:function () {
-        return function (dispath) {
+        return dispath => {
             TodoAPI.getAllTodo().done(oData=>{
                 if(oData.statusCode == 200){
-                    dispath({
-                        type:actionTypes.SET_ALL_TODO,
-                        todos:oData.list
-                    });
+                    dispath(this.setAllTodo(oData.list));
                 }else {
                     dialog.alert('加载失败');
                 }

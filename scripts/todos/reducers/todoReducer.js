@@ -1,46 +1,30 @@
 /**
  * Created by anchao on 2016/6/30.
  */
-
+import {Immutable} from '../../common/Util';
 import * as actionTypes from '../actions/actionTypes';
-export const todoReducer = (state = [], action) => {
+export const todoReducer = (state = Immutable.fromJS([]), action) => {
     switch (action.type) {
         case actionTypes.SET_ALL_TODO:
-            return action.todos;
+            return state.merge(Immutable.fromJS(action.todos));
         case actionTypes.GET_ALL_TODO:
             return state;
         case actionTypes.ADD_TODO:
-            return [
-                {text: action.text, completed: false},
-                ...state
-            ];
+            return state.unshift(Immutable.fromJS({text: action.text, completed: false}));
         case actionTypes.REMOVE_TODO:
-            return [
-                ...state.slice(0,action.index),
-                ...state.slice(action.index+1)
-            ];
+            return state.splice(action.index,1);
         case actionTypes.COMPLETED_TODO:
-            let oTodo = state[action.index];
-            return [
-                ...state.slice(0,action.index),
-                Object.assign({}, oTodo,{completed:!oTodo.completed}),
-                ...state.slice(action.index+1)
-            ];
+            let oTodo = state.get(action.index);
+            return state.setIn([action.index,'completed'],!oTodo.get('completed'));
         case actionTypes.UPDATE_TODO:
-            let oTodoTemp = state[action.index];
-            return [
-                ...state.slice(0,action.index),
-                Object.assign({}, oTodoTemp,{text:action.text}),
-                ...state.slice(action.index+1)
-            ];
+            return state.setIn([action.index,'text'],action.text);
         case actionTypes.CHECKED_ALL_TODO:
             return state.map(oTodo => {
-                oTodo.completed = action.checked;
-                return oTodo;
+                return oTodo.set('completed',action.checked);
             });
         case actionTypes.CLEAR_COMPLETED_TODO:
             return state.filter(oTodo =>{
-                if(!oTodo.completed){
+                if(!oTodo.get('completed')){
                     return oTodo;
                 }
             });
