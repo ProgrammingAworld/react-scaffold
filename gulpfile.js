@@ -182,7 +182,13 @@ gulp.task('webpack_build', function() {
                     }
                 ]
             },
-            plugins:[new webpack.optimize.UglifyJsPlugin({minimize: true})]
+            plugins: [
+                new webpack.optimize.UglifyJsPlugin({minimize: true}),
+                new webpack.DefinePlugin({
+                    'process.env.NODE_ENV': JSON.stringify('production')
+                }),
+                new webpack.optimize.OccurenceOrderPlugin()
+            ]
         }))
         .pipe(gulp.dest(config.distScript));
 });
