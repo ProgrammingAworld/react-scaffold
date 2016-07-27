@@ -1,12 +1,15 @@
 /**
  * Created by anchao on 2015/12/7.
  */
-import {$, Tools, React, ReactDOM} from '../common/Util';
-import HeaderView from '../common/views/HeaderView';
+import {
+    $,
+    Tools,
+} from '../common/Util';
+import RouterConfig from './RouterConfig';
 
 class Main {
     init() {
-        this.gotoPage();
+        new RouterConfig().init();
         this.event();
     }
 
@@ -19,7 +22,6 @@ class Main {
 
     event() {
         this.globalEvent();
-        this.drawHeader();
     }
 
     globalEvent() {
@@ -68,13 +70,6 @@ class Main {
             // console.log('stop');
             // this.closeLoading();
         });
-    }
-
-    drawHeader(){
-        let oMenu = document.querySelector('#header');
-        if (oMenu) {
-            ReactDOM.render(<HeaderView active={this.sHTMLName} />, oMenu);
-        }
     }
 
     gotoPage() {

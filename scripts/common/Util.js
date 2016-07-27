@@ -13,6 +13,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Immutable from 'immutable';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {Provider, connect} from 'react-redux';
+import {Router, Route, IndexRoute, Link, hashHistory} from 'react-router';
+import {syncHistoryWithStore, routerReducer, routerMiddleware, push} from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk';
 import loggerCreator from 'redux-logger';
 import promise from 'redux-promise';
@@ -29,16 +31,29 @@ const logger = loggerCreator({
             } else {
                 newState[i] = state[i];
             }
-        };
+        }
+        ;
 
         return newState;
     }
 });
 //中间件
-const middleWare = applyMiddleware(thunkMiddleware, logger);
+const middleware = routerMiddleware(hashHistory);
+
 //store创建工具
-const storeCreateByReducer = reducer => {
-    return createStore(reducer, middleWare);
+const storeCreateByReducer = reducers => {
+    return createStore(
+        combineReducers({
+            ...reducers,
+            routing: routerReducer
+        }),
+        applyMiddleware(middleware, thunkMiddleware, logger)
+    );
+};
+
+//history创建工具
+const historyCreateByStore = store=> {
+    return syncHistoryWithStore(hashHistory, store)
 };
 
 export {
@@ -54,5 +69,10 @@ export {
     Provider,
     connect,
     promise,
-    createSelector
+    createSelector,
+    Router,
+    Route,
+    IndexRoute,
+    Link,
+    historyCreateByStore
 };

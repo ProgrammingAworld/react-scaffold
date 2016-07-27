@@ -1,6 +1,13 @@
 #container{
   @include size(100%,100%);
   min-width:1000px;
+  .containerchild{
+    @include size(100%,100%);
+    .hasmain{
+      @include size(100%,100%);
+    }
+  }
+
   @at-root {
     #header{
       @include size(100%,60px);
@@ -61,5 +68,10 @@
       position: relative;
       overflow: hidden;
     }
+  }
+  .login{
+    //登录没有顶部导航
+    @include size(100%,100%);
+    background: $white;
   }
 }

@@ -1,6 +1,7 @@
 /**
  * Created by anchao on 2016/6/29.
  */
+import {$} from '../common/Util';
 
 export default class BaseAPI{
     /**
@@ -12,8 +13,8 @@ export default class BaseAPI{
     static postWithParameter(url,oSettings){
         let settings = {
             method: 'POST',
-            data: JSON.stringify(oSettings),
-            contentType: 'application/json',
+            data: oSettings,
+            contentType: 'application/json;charset=UTF-8',
             dataType: 'json'
         };
 

@@ -17,7 +17,7 @@ module.exports = {
         filename: 'app.js',
         sourceMapFilename:'app.map'
     },
-    devtool:"source-map",
+    devtool:"source-archives",
     module: {
         loaders: [{
             test: /\.jsx?$/,

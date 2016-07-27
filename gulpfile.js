@@ -54,7 +54,7 @@ gulp.task('jade', function() {
         }))
         .pipe(replace(/images?\/(\w+?)(.png)/g, 'images/$1$2?v='+config.v))
         .pipe(replace('css/main.css','css/main.css?v='+config.v))
-        .pipe(replace('scripts/app.js','scripts/app.js?v='+config.v))
+        .pipe(replace('scripts/home.js','scripts/home.js?v='+config.v))
         .pipe(gulp.dest(config.dist));
 });
 
@@ -132,9 +132,9 @@ gulp.task('webpack',function() {
             },
             output: {
                 filename: '[name].js',
-                sourceMapFilename:'[file].map'
+                sourceMapFilename:'[judged].map'
             },
-            devtool:"source-map",
+            devtool:"source-archives",
             resolve: {
                 extensions: ['', '.js', '.jsx']
             },

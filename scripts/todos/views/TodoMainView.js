@@ -32,8 +32,8 @@ const TodoMainView = React.createClass({
     }
 });
 
-const todos = state => state.todos;
-const filter = state => state.filter;
+const todos = state => state.todos_todos;
+const filter = state => state.todos_filter;
 const selectByFilter = (aTodos, sFilter) => {
     switch (sFilter) {
         case actionTypes.VisibilityFilters.SHOW_ALL:
