@@ -67,12 +67,6 @@ gulp.task('styles', function () {
             css: config.distCss,
             sass: 'css'
         }))
-        .pipe(picbase64({
-            baseDir: 'dist',
-            extensions: ['png'],
-            maxImageSize: 100*1024,
-            debug: false
-        }))
         .pipe(makeUrlVer({useDate:true}))
         .pipe(gulp.dest(config.distCss))
         .pipe(reload({stream: true}));
@@ -98,11 +92,11 @@ gulp.task('styles_build', function () {
 
 //copy bootstrap服务器端字体
 gulp.task('copyFont',function(){
-    var src='node_modules/bootstrap-css/assets/fonts/bootstrap/*';
+    var src='node_modules/bootstrap-sass/assets/fonts/bootstrap/*';
     var src2 = 'css/common/fonts/*'
     var dest= config.distCss+'/fonts/';
 
-    return gulp.src([src,src2])
+    return gulp.src([src, src2])
         .pipe(gulp.dest(dest));
 });
 
@@ -112,8 +106,17 @@ gulp.task('copySimulate',function(){
         .pipe(gulp.dest(config.distsimulate));
 });
 
+//copy plugins
+gulp.task('copyPlugins', function () {
+    var src = 'scripts/plugins/*';
+    var dest = config.distScript+'/plugins/';
+
+    gulp.src(src)
+        .pipe(gulp.dest(dest));
+});
+
 gulp.task('copy',function(){
-    gulp.start(['copyFont','copySimulate']);
+    gulp.start(['copyFont','copySimulate','copyPlugins']);
 });
 
 //image
@@ -132,9 +135,9 @@ gulp.task('webpack',function() {
             },
             output: {
                 filename: '[name].js',
-                sourceMapFilename:'[judged].map'
+                sourceMapFilename:'[file].map'
             },
-            devtool:"source-archives",
+            devtool:"source-map",
             resolve: {
                 extensions: ['', '.js', '.jsx']
             },
