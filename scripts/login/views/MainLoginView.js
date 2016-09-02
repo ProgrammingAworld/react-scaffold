@@ -214,7 +214,7 @@ const MainLoginView = React.createClass({
                                                                       className={type == "1" ? "checked" : ""}></span>管理员
                                 </div>
                             </div>
-                            <div className="pull-right hide"><a href="http://k1268.mlamp.co/tuning/qbscopa16.cer"
+                            <div className="pull-right hide"><a href="javascript:;"
                                                            target="_blank">下载证书</a></div>
                         </div>
                     </div>
