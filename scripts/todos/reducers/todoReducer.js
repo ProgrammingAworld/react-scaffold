@@ -6,7 +6,7 @@ import * as actionTypes from '../actions/actionTypes';
 export const todoReducer = (state = Immutable.fromJS([]), action) => {
     switch (action.type) {
         case actionTypes.SET_ALL_TODO:
-            return state.merge(Immutable.fromJS(action.todos));
+            return Immutable.fromJS(action.todos);
         case actionTypes.GET_ALL_TODO:
             return state;
         case actionTypes.ADD_TODO:

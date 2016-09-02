@@ -1,8 +1,6 @@
 /**
  * Created by anchao on 2016/7/26.
  */
-
-import {$} from '../../common/Util';
 import BaseService from '../../base/ServiceBase';
 
 export default class LoginService extends BaseService {
