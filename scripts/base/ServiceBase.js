@@ -3,7 +3,7 @@
  */
 import {$} from '../common/Util';
 
-export default class BaseAPI {
+export default class ServiceBase{
     /**
      * POST请求统一接口
      * @param url{string}请求的地址

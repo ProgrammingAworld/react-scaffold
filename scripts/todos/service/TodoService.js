@@ -10,6 +10,6 @@ export default class TodoAPI extends ServiceBase {
      * @returns {*}
      */
     static getAllTodo(){
-        return $.get('../simulates/todos.json');
+        return this.getWithParameter('../simulates/todos.json');
     }
 }

@@ -1,0 +1,122 @@
+#header {
+  @include size(100%, 60px);
+  background-color: $header-bg-color;
+  padding: 0 20px;
+
+  #logo {
+    @include size(46px, 36px);
+    background: url("../images/nav-logo.png");
+    margin: 12px 60px 0 0;
+    overflow: hidden;
+  }
+  .navigation {
+    height: 60px;
+    overflow: hidden;
+
+    li {
+      font-size: 16px;
+      margin: 19px 40px 0 0;
+
+      a {
+        @include size(100%, 100%);
+        text-decoration: none;
+        color: $header-font-color;
+        display: block;
+        text-align: center;
+
+        &:hover, &.active {
+          color: $header-active-color;
+        }
+        & > span {
+          line-height: 60px;
+          vertical-align: top;
+        }
+
+        & > span:nth-child(1) {
+          font-size: 24px;
+          overflow: hidden;
+        }
+
+        & > span:nth-child(2) {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .headrright {
+    font-size: 16px;
+    @include size(550px, 60px);
+    color: $header-font-color;
+    overflow: hidden;
+    & > div:nth-child(4) {
+      @include size(180px, 60px);
+      position: relative;
+
+      %activeInput {
+        @include size(180px, 28px);
+        @include opacity(1);
+      }
+
+      > input {
+        @include size(0, 28px);
+        @include opacity(0);
+        @include transition(all, ease, 0.5s);
+        font-size: 14px;
+        background-color: $header-bg-color;
+        border: 1px solid $header-font-color;
+        padding: 0 10px;
+        position: absolute;
+        right: 0;
+        top: 16px;
+
+        &:focus {
+          outline: none;
+          border: 1px solid $header-active-color;
+          color: $white;
+        }
+
+        &:hover,&.active{
+          @extend %activeInput;
+        }
+      }
+      > .icon {
+        font-size: 20px;
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        cursor: pointer;
+        &:hover {
+          color: $header-active-color;
+        }
+      }
+    }
+    & > div:nth-child(3) {
+      @include size(45px, 25px);
+      font-size: 24px;
+      text-align: right;
+      .icon-importdata {
+        margin-top: 19px;
+        cursor: pointer;
+        &:hover {
+          color: $header-active-color;
+        }
+      }
+    }
+    & > div:nth-child(2) {
+      padding: 0 20px;
+      @include text-overflow();
+      text-align: center;
+      line-height: 60px;
+    }
+    & > div:nth-child(1) {
+      @include size(20px, 60px);
+      .glyphicon-off {
+        margin-top: 22px;
+        cursor: pointer;
+        &:hover {
+          color: $header-active-color;
+        }
+      }
+    }
+  }
+}

@@ -1,77 +1,27 @@
-#container{
-  @include size(100%,100%);
-  min-width:1000px;
-  .containerchild{
-    @include size(100%,100%);
-    .hasmain{
-      @include size(100%,100%);
+#container {
+  @include size(100%, 100%);
+  min-width: 1000px;
+  .containerchild {
+    @include size(100%, 100%);
+    .hasmain {
+      @include size(100%, 100%);
     }
   }
 
   @at-root {
-    #header{
-      @include size(100%,60px);
-      background-color: $header-bg-color;
-      padding: 0 15px;
+    @import "header";
 
-      @at-root #logo{
-        @include size(155px,30px);
-        background: url("../images/nav-logo.png");
-        margin: 15px 26px 0 0;
-        overflow: hidden;
-      }
-
-      .navigation{
-        height: 60px;
-
-        li{
-          font-size: 16px;
-          @include size(98px,60px);
-
-          a{
-            @include size(100%,100%);
-            text-decoration: none;
-            color: $header-font-color;
-            display: block;
-            text-align: center;
-
-            &:hover{
-              color: $white;
-            }
-            & > span{
-              line-height: 60px;
-              vertical-align: top;
-            }
-
-            & > span:nth-child(1){
-              font-size: 24px;
-              overflow: hidden;
-            }
-
-            & > span:nth-child(2){
-              margin-left: 5px;
-            }
-          }
-        }
-        li.active{
-          background-color: $header-active-bg-color;
-          a{
-            color: $white;
-          }
-        }
-      }
-    }
-    #chief{
-      @include size(100%,calc(100% - 60px));
+    #chief {
+      @include size(100%, 100%);
       background: url("../images/bodybg.jpg") left -60px no-repeat;
       @include background-size(100%);
       position: relative;
       overflow: hidden;
     }
   }
-  .login{
+  .login {
     //登录没有顶部导航
-    @include size(100%,100%);
+    @include size(100%, 100%);
     background: $white;
   }
 }

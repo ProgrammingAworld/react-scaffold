@@ -170,11 +170,11 @@ const MainLoginView = React.createClass({
 
         //登录检验
         // dispatch(actionCreator.login(username, pwd, type, ()=> {
-        //     this.context.router.push('/home');
+        //     this.context.router.push('/main/todos');
         //     dispatch(actionCreator.setUserName(username));
         // }));
 
-        this.context.router.push('/home');
+        this.context.router.push('/main/todos');
         dispatch(actionCreator.setUserName("admin"));
     },
     forbidSpace: function (e) {
@@ -202,7 +202,7 @@ const MainLoginView = React.createClass({
                     <div className="login-btn">
                         <div className={errorCls}>{error}</div>
                         <div className="clearfix"></div>
-                        <button className="login_button pull-left" onClick={this.PKIlogin}>PKI登录</button>
+                        <button className="login_button pull-left hide" onClick={this.PKIlogin}>PKI登录</button>
                         <button className="login_button pull-right" onClick={this.login}>登录</button>
                         <div className="clearfix"></div>
                         <div className="rolerow">
@@ -214,7 +214,7 @@ const MainLoginView = React.createClass({
                                                                       className={type == "1" ? "checked" : ""}></span>管理员
                                 </div>
                             </div>
-                            <div className="pull-right"><a href="http://k1268.mlamp.co/tuning/qbscopa16.cer"
+                            <div className="pull-right hide"><a href="http://k1268.mlamp.co/tuning/qbscopa16.cer"
                                                            target="_blank">下载证书</a></div>
                         </div>
                     </div>

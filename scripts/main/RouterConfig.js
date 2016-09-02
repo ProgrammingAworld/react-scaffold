@@ -13,6 +13,7 @@ import {
 } from '../common/Util';
 import {reducers} from './reducers';
 import MainAppView from './views/MainAppView';
+import MainHomeView from './views/MainHomeView';
 import LoginView from '../login/views/MainLoginView';
 import TodoMainView from '../todos/views/TodoMainView';
 
@@ -24,7 +25,10 @@ export default class RouterConfig{
             <Route path="/" component={MainAppView}>
                 <IndexRoute component={LoginView}/>
                 <Route path="login" component={LoginView} />
-                <Route path="todos" component={TodoMainView} />
+                <Route path="/main" component={MainHomeView}>
+                    <IndexRoute component={TodoMainView}/>
+                    <Route path="todos" component={TodoMainView} />
+                </Route>
             </Route>;
 
         ReactDOM.render(
@@ -32,6 +36,6 @@ export default class RouterConfig{
                 <Router history={history} routes={routes}/>
             </Provider>,
             document.querySelector('#container')
-        )
+        );
     }
 }

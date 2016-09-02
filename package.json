@@ -1,7 +1,7 @@
 {
-  "name": "scopa",
+  "name": "example for react&redux",
   "version": "3.0.0",
-  "description": "mlamp's frontEnd solution",
+  "description": "alex's frontEnd solution",
   "main": "app.js",
   "scripts": {
     "dev": "webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist"
@@ -54,7 +54,7 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.6",
     "cytoscape": "^2.7.4",
-    "echarts": "^3.1.10",
+    "echarts": "^3.2.3",
     "immutable": "^3.8.1",
     "jquery": "^2.2.4",
     "react": "^15.1.0",

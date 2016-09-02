@@ -10,16 +10,15 @@ const MainAppView = React.createClass({
         router: React.PropTypes.object
     },
     render: function () {
-        let pathname = this.props.pathname;
-        let chiefCls = "";
-
-        if (pathname == "/") {
-            chiefCls = "login";
-        } else {
-            chiefCls = "others";
-        }
-
-        return (<div id="chief" className={chiefCls}>{this.props.children}</div>);
+        let clsName = this.props.pathname.split('/')[2];
+        return (
+            <div>
+                <HeaderView />
+                <div className={clsName}>
+                    {this.props.children}
+                </div>
+            </div>
+        );
     }
 });
 

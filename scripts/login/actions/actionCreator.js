@@ -9,7 +9,7 @@ import LoginService from '../service/LoginService';
 const actionCreator = {
     login: function (username, password, type = "0", fnCb) {
         let that = this;
-        return (dispatch, getState)=> {
+        return dispatch=> {
             LoginService.login({username: username, password, type: type}).done(oData=> {
                 if (oData.statusCode == 200) {
                     Tools.exeCb(fnCb);
