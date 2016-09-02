@@ -17,6 +17,10 @@
       @include background-size(100%);
       position: relative;
       overflow: hidden;
+
+      &>div{
+        @include size(100%, 100%);
+      }
     }
   }
   .login {

@@ -3,6 +3,11 @@
   background-color: $header-bg-color;
   padding: 0 20px;
 
+  &+div{
+    @include size(100%, calc(100% - 60px));
+    overflow: auto;
+  }
+
   #logo {
     @include size(46px, 36px);
     background: url("../images/nav-logo.png");

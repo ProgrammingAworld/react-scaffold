@@ -4,7 +4,6 @@
   background: $login-bg-color !important;
 
   & > div {
-    @include size(100%, 100%);
     .loginmain {
       @include size(500px,316px);
       background: url("../images/logo.png") no-repeat center 28px $login-main-bg-color;

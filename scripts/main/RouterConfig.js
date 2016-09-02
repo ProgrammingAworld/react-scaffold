@@ -25,7 +25,7 @@ export default class RouterConfig{
             <Route path="/" component={MainAppView}>
                 <IndexRoute component={LoginView}/>
                 <Route path="login" component={LoginView} />
-                <Route path="/main" component={MainHomeView}>
+                <Route path="main" component={MainHomeView}>
                     <IndexRoute component={TodoMainView}/>
                     <Route path="todos" component={TodoMainView} />
                 </Route>
