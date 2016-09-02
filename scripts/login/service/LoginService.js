@@ -19,7 +19,7 @@ export default class LoginService extends BaseService {
     }
 
     static PKIlogin() {
-        return $.get('');
+        return this.getWithParameter('');
     }
 
     static checkAuthority(){
