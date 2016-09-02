@@ -3,13 +3,30 @@
  */
 
 import {$} from '../../common/Util';
-import BaseService from '../../base/BaseService';
+import BaseService from '../../base/ServiceBase';
 
 export default class LoginService extends BaseService {
+    /**
+     * 用户登录
+     * @param oSettings
+     *        username: 用户名{string}
+     *        password: 密码{string}
+     *        type: 用户类型{string}"0"用户,"1"管理员
+     * @returns {*}
+     */
     static login(oSettings) {
-        return this.postWithParameter('http://k1222.mlamp.co/tuning/services/pass/login',oSettings);
+        return this.postWithParameter('', oSettings);
     }
-    static PKIlogin(){
-        return $.get('https://qbbigdata.sjzs.eb:8443/tuning/services/console/gongan/auth/pkiLogin');
+
+    static PKIlogin() {
+        return $.get('');
+    }
+
+    static checkAuthority(){
+        return this.getWithParameter('');
+    }
+
+    static logout(){
+        return this.getWithParameter('');
     }
 }

@@ -5,8 +5,8 @@
 //模块js
 import Main from './main/Main';
 
-window.config = {
-    "url": {},
+window.scopaConfig = {
+    "url": "/",
     "errors": {}
 };
 

@@ -4,23 +4,6 @@
 
 //公共工具类
 class Tools {
-    static routerM(opts, defaultexe) {
-        var Workspace = Backbone.Router.extend(opts);
-        router = new Workspace();
-        Backbone.history.start();
-
-        //默认执行
-        if (this.getHash().indexOf('#') == -1) {
-            this.setHash(defaultexe);
-        } else {
-        }
-    }
-
-    static setHash(v) {
-        router.navigate(v, {trigger: true});
-        // location.hash = v;
-    }
-
     static getHash() {
         return location.hash;
     }
@@ -106,6 +89,14 @@ class Tools {
         }
 
         return sDate;
+    }
+
+    static execObj(obj,params){
+        if(obj){
+            obj[params].init();
+        }else {
+            console.log('SCOPA_connModule=',obj);
+        }
     }
 }
 

@@ -13,7 +13,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Immutable from 'immutable';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {Provider, connect} from 'react-redux';
-import {Router, Route, IndexRoute, Link, hashHistory} from 'react-router';
+import {Router, Route, IndexRoute, Link, IndexRedirect, hashHistory} from 'react-router';
 import {syncHistoryWithStore, routerReducer, routerMiddleware, push} from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk';
 import loggerCreator from 'redux-logger';
@@ -32,11 +32,11 @@ const logger = loggerCreator({
                 newState[i] = state[i];
             }
         }
-        ;
 
         return newState;
     }
 });
+
 //中间件
 const middleware = routerMiddleware(hashHistory);
 
@@ -73,6 +73,7 @@ export {
     Router,
     Route,
     IndexRoute,
+    IndexRedirect,
     Link,
     historyCreateByStore
 };

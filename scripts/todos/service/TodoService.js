@@ -2,9 +2,9 @@
  * Created by anchao on 2016/6/29.
  */
 import {$} from '../../common/Util';
-import BaseAPI from '../../base/BaseService';
+import ServiceBase from '../../base/ServiceBase';
 
-export default class TodoAPI extends BaseAPI {
+export default class TodoAPI extends ServiceBase {
     /**
      * 获得todos列表数据
      * @returns {*}

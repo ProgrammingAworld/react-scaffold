@@ -165,7 +165,7 @@ var jQuery = require('jquery');
       innerHTML: '',
 
       /** CSS 类名 */
-      className: 'ui-popup',
+      className: 'artui-popup',
 
       /**
        * 显示浮层
@@ -692,7 +692,7 @@ var jQuery = require('jquery');
     backdropOpacity: 0.7,
 
     // 消息内容
-    content: '<span class="ui-dialog-loading">Loading..</span>',
+    content: '<span class="artui-dialog-loading">Loading..</span>',
 
     // 标题
     title: '',
@@ -734,30 +734,30 @@ var jQuery = require('jquery');
 
     // css 文件路径，留空则不会使用 js 自动加载样式
     // 注意：css 只允许加载一个
-    cssUri: '../css/ui-dialog.css',
+    cssUri: '../css/artui-dialog.css',
 
     // 模板（使用 table 解决 IE7 宽度自适应的 BUG）
     // js 使用 i="***" 属性识别结构，其余的均可自定义
     innerHTML:
-    '<div i="dialog" class="ui-dialog">'
-    +       '<div class="ui-dialog-arrow-a"></div>'
-    +       '<div class="ui-dialog-arrow-b"></div>'
-    +       '<table class="ui-dialog-grid">'
+    '<div i="dialog" class="artui-dialog">'
+    +       '<div class="artui-dialog-arrow-a"></div>'
+    +       '<div class="artui-dialog-arrow-b"></div>'
+    +       '<table class="artui-dialog-grid">'
     +           '<tr>'
-    +               '<td i="header" class="ui-dialog-header">'
-    +                   '<button i="close" class="ui-dialog-close">&#215;</button>'
-    +                   '<div i="title" class="ui-dialog-title"></div>'
+    +               '<td i="header" class="artui-dialog-header">'
+    +                   '<button i="close" class="artui-dialog-close">&#215;</button>'
+    +                   '<div i="title" class="artui-dialog-title"></div>'
     +               '</td>'
     +           '</tr>'
     +           '<tr>'
-    +               '<td i="body" class="ui-dialog-body">'
-    +                   '<div i="content" class="ui-dialog-content"></div>'
+    +               '<td i="body" class="artui-dialog-body">'
+    +                   '<div i="content" class="artui-dialog-content"></div>'
     +               '</td>'
     +           '</tr>'
     +           '<tr>'
-    +               '<td i="footer" class="ui-dialog-footer">'
-    +                   '<div i="statusbar" class="ui-dialog-statusbar"></div>'
-    +                   '<div i="button" class="ui-dialog-button"></div>'
+    +               '<td i="footer" class="artui-dialog-footer">'
+    +                   '<div i="statusbar" class="artui-dialog-statusbar"></div>'
+    +                   '<div i="button" class="artui-dialog-button"></div>'
     +               '</td>'
     +           '</tr>'
     +       '</table>'
@@ -1179,7 +1179,7 @@ var jQuery = require('jquery');
                 + ' i-id="' + id + '"'
                 + style
                 + (val.disabled ? ' disabled' : '')
-                + (val.autofocus ? ' autofocus class="ui-dialog-autofocus"' : '')
+                + (val.autofocus ? ' autofocus class="artui-dialog-autofocus"' : '')
                 + '>'
                 +   val.value
                 + '</button>';

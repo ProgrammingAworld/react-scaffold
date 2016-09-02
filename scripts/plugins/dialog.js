@@ -46,17 +46,17 @@ $.extend(dialog, {
 
         if (type == 'success') {
             title = '成功啦';
-            content = '<span class="ui-dialog-alert-success"></span><span>' + content + '</span>';
+            content = '<span class="artui-dialog-alert-success"></span><span>' + content + '</span>';
         } else if (type == 'warning') {
             title = '提醒';
-            content = '<span class="ui-dialog-alert-warning"></span><span>' + content + '</span>';
+            content = '<span class="artui-dialog-alert-warning"></span><span>' + content + '</span>';
         } else if (type == 'error') {
             title = '出错啦';
-            content = '<span class="ui-dialog-alert-error"></span><span>' + content + '</span>';
+            content = '<span class="artui-dialog-alert-error"></span><span>' + content + '</span>';
         } else {
             title = '消息';
         }
-        content = '<div class="ui-dialog-alert">' + content + '</div>';
+        content = '<div class="artui-dialog-alert">' + content + '</div>';
 
         var $d = dialog({
             title: title,
@@ -92,7 +92,7 @@ $.extend(dialog, {
             ok: true
         }, options);
 
-        options.content = '<span class="ui-dialog-confirm"></span><span>' + options.content + '</span>';
+        options.content = '<span class="artui-dialog-confirm"></span><span>' + options.content + '</span>';
         return dialog(options).showModal();
     },
     open: function (title, content, aButton, fnCb) {
@@ -113,10 +113,9 @@ $.extend(dialog, {
         return dialog({
             id: 'loadingDiv',
             lock: true,
-            opacity: 0,
             zIndex: dialog.topIndex(),
             fixed: true,
-            content: '<div class="progress" style="overflow: hidden;"><div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>'
+            content: '<div class="progress"></div>'
         }).showModal();
     },
     close: function ($d) {
