@@ -52,9 +52,7 @@ const storeCreateByReducer = reducers => {
 };
 
 //history创建工具
-const historyCreateByStore = store=> {
-    return syncHistoryWithStore(hashHistory, store)
-};
+const historyCreateByStore = store=> syncHistoryWithStore(hashHistory, store);
 
 export {
     $,

@@ -4,10 +4,11 @@
 
 //模块js
 import Main from './main/Main';
+import {config} from './common/config';
 
 window.scopaConfig = {
     "url": "/",
-    "errors": {}
+    "errors": config.errors
 };
 
 new Main().init();

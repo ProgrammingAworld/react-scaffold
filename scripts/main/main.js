@@ -72,11 +72,11 @@ class Main {
         });
     }
 
-    gotoPage() {
-        let sPathName = Tools.getPathname().replace('/', '').replace(new RegExp(".html$"), '');
-        this.sHTMLName = sPathName ? sPathName : 'login';
-        config.pages[this.sHTMLName].init();
-    }
+    // gotoPage() {
+    //     let sPathName = Tools.getPathname().replace('/', '').replace(new RegExp(".html$"), '');
+    //     this.sHTMLName = sPathName ? sPathName : 'login';
+    //     config.pages[this.sHTMLName].init();
+    // }
 }
 
 export default Main;
