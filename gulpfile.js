@@ -7,7 +7,7 @@ var gulp = require('gulp');
 var del = require('del');
 var changed = require('gulp-changed');
 //html
-var jade = require('gulp-jade');
+var pug = require('gulp-pug');
 var replace = require('gulp-replace');
 //css
 var compass = require('gulp-compass');
@@ -25,7 +25,7 @@ var reload = browserSync.reload;
 var config = {
     'dist': 'dist',
     'html': 'dist/*.html',
-    'jade': 'html/*.jade',
+    'pug': 'html/*.pug',
     'sass': 'css/**/*.scss',
     'distCss': 'dist/css',
     'simulate':'simulates/*.json',
@@ -44,11 +44,11 @@ gulp.task('clean', function () {
     });
 });
 
-//html_jade
-gulp.task('jade', function() {
-    gulp.src(config.jade)
-        .pipe(changed(config.jade))
-        .pipe(jade({
+//html_pug
+gulp.task('pug', function() {
+    gulp.src(config.pug)
+        .pipe(changed(config.pug))
+        .pipe(pug({
             doctype:'html',
             pretty:false
         }))
@@ -206,7 +206,7 @@ gulp.task('browserSync', function () {
     });
 
     //监听模板html变化
-    gulp.watch(config.jade,['jade']);
+    gulp.watch(config.pug,['pug']);
     //监听sass变化
     gulp.watch(config.sass,['styles']);
     //监听image变化
@@ -214,11 +214,11 @@ gulp.task('browserSync', function () {
 });
 
 gulp.task('build',['clean'],function () {
-    gulp.start(['webpack_build','jade','styles_build','images','copy']);
+    gulp.start(['webpack_build','pug','styles_build','images','copy']);
 });
 
 gulp.task('watch',['clean'],function () {
-    gulp.start(['browserSync','webpack','jade','styles','images','copy']);
+    gulp.start(['browserSync','webpack','pug','styles','images','copy']);
 });
 
 gulp.task('default',['clean'], function () {
