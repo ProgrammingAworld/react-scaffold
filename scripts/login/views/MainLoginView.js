@@ -142,7 +142,7 @@ const MainLoginView = React.createClass({
     checkedChange: function (e) {
         let {dispatch} = this.props;
         let value = e.currentTarget.getAttribute('value');
-        dispatch(actionCreator.setUserType(value))
+        dispatch(actionCreator.setUserType(value));
     },
     PKIlogin: function () {
         let {dispatch} = this.props;
@@ -232,10 +232,10 @@ const loginError = state => {
 };
 
 const getLoginType = createSelector([loginType, loginError], (loginType, loginError)=> {
-    return {
-        type: loginType,
-        error: loginError
-    }
+        return {
+            type: loginType,
+            error: loginError
+        }
 });
 
 export default connect(getLoginType)(MainLoginView);
