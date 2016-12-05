@@ -5,12 +5,14 @@
 import {React, dialog, PureRenderMixin, connect, createSelector} from '../../common/Util';
 import actionCreator from '../actions/actionCreator';
 
-const MainLoginView = React.createClass({
-    mixins: [PureRenderMixin],
-    contextTypes: {
-        router: React.PropTypes.object
-    },
-    componentDidMount: function () {
+class MainLoginView extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+
+    componentDidMount() {
         //用户名获得焦点
         this.refs.username.focus();
 
@@ -133,22 +135,25 @@ const MainLoginView = React.createClass({
         particlesJS('particles-js', particles);
 
         //回车登录
-        document.onkeydown = e=> {
+        document.onkeydown = e => {
             if (e.which == 13) {
                 this.login();
             }
         }
-    },
-    checkedChange: function (e) {
+    }
+
+    checkedChange(e) {
         let {dispatch} = this.props;
         let value = e.currentTarget.getAttribute('value');
         dispatch(actionCreator.setUserType(value));
-    },
-    PKIlogin: function () {
+    }
+
+    PKIlogin() {
         let {dispatch} = this.props;
         dispatch(actionCreator.PKIlogin());
-    },
-    login: function () {
+    }
+
+    login() {
         let {dispatch, type} = this.props;
         let username = this.refs.username.value.trim();
         let pwd = this.refs.pwd.value.trim();
@@ -176,13 +181,15 @@ const MainLoginView = React.createClass({
 
         this.context.router.push('/main/todos');
         dispatch(actionCreator.setUserName("admin"));
-    },
-    forbidSpace: function (e) {
+    }
+
+    forbidSpace(e) {
         if (e.which == 32) {
             e.preventDefault();
         }
-    },
-    render: function () {
+    }
+
+    render() {
         let {dispatch, type, error} = this.props;
         let errorCls = "errors pull-right invisible";
         if (error.length > 0) {
@@ -194,7 +201,7 @@ const MainLoginView = React.createClass({
                 <div id="particles-js"></div>
                 <div className="loginmain">
                     <div className="input-group">
-                        <input type="text" ref="username" className="login-user" onKeyDown={this.forbidSpace}/>
+                        <input type="text" ref="username" className="login-user" onKeyDown={this.forbidSpace.bind(this)}/>
                         <input type="password" ref="pwd" className="login-pwd"/>
                         <div className="adminico"></div>
                         <div className="pwdico"></div>
@@ -202,27 +209,31 @@ const MainLoginView = React.createClass({
                     <div className="login-btn">
                         <div className={errorCls}>{error}</div>
                         <div className="clearfix"></div>
-                        <button className="login_button pull-left hide" onClick={this.PKIlogin}>PKI登录</button>
-                        <button className="login_button pull-right" onClick={this.login}>登录</button>
+                        <button className="login_button pull-left hide" onClick={this.PKIlogin.bind(this)}>PKI登录</button>
+                        <button className="login_button pull-right" onClick={this.login.bind(this)}>登录</button>
                         <div className="clearfix"></div>
                         <div className="rolerow">
                             <div className="pull-left">
-                                <div className="pull-left role"><span value="0" onClick={this.checkedChange}
+                                <div className="pull-left role"><span value="0" onClick={this.checkedChange.bind(this)}
                                                                       className={type == "0" ? "checked" : ""}></span>用户
                                 </div>
-                                <div className="pull-left role"><span value="1" onClick={this.checkedChange}
+                                <div className="pull-left role"><span value="1" onClick={this.checkedChange.bind(this)}
                                                                       className={type == "1" ? "checked" : ""}></span>管理员
                                 </div>
                             </div>
                             <div className="pull-right hide"><a href="javascript:;"
-                                                           target="_blank">下载证书</a></div>
+                                                                target="_blank">下载证书</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         );
     }
-});
+}
+
+MainLoginView.contextTypes = {
+    router: React.PropTypes.object
+};
 
 const loginType = state => {
     return state.login_type;
@@ -231,11 +242,11 @@ const loginError = state => {
     return state.login_error;
 };
 
-const getLoginType = createSelector([loginType, loginError], (loginType, loginError)=> {
-        return {
-            type: loginType,
-            error: loginError
-        }
+const getLoginType = createSelector([loginType, loginError], (loginType, loginError) => {
+    return {
+        type: loginType,
+        error: loginError
+    }
 });
 
 export default connect(getLoginType)(MainLoginView);

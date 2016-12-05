@@ -7,7 +7,6 @@ import Main from './main/main';
 import {config} from './common/config';
 
 window.projectConfig = {
-    "url": "/",
     "errors": config.errors
 };
 

@@ -22,7 +22,6 @@ export default class ServiceBase{
     }
 
     static getWithParameter(url, oSettings) {
-        url = scopaConfig.url + url;
         if (oSettings) {
             return $.get(url, oSettings);
         } else {
