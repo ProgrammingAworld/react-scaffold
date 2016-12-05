@@ -3,10 +3,10 @@
  */
 
 //模块js
-import Main from './main/Main';
+import Main from './main/main';
 import {config} from './common/config';
 
-window.scopaConfig = {
+window.projectConfig = {
     "url": "/",
     "errors": config.errors
 };
