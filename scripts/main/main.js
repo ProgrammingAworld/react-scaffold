@@ -25,13 +25,6 @@ class Main {
     }
 
     globalEvent() {
-        //全局控制左右键
-        $(document).on('click', function (e) {
-
-        }).on('contextmenu', function () {
-
-        });
-
         //窗口尺寸变化时执行reload
         $(window).on('resize', function () {
 
@@ -69,7 +62,11 @@ class Main {
         }).ajaxStop(() => {
             // console.log('stop');
             // this.closeLoading();
-        });
+        }).on('click', function (e) {
+
+        }).on('contextmenu', function () {
+
+        })
     }
 
     // gotoPage() {
