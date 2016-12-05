@@ -62,9 +62,9 @@ class Main {
         }).ajaxStop(() => {
             // console.log('stop');
             // this.closeLoading();
-        }).on('click', function (e) {
+        }).on('click', e =>{
 
-        }).on('contextmenu', function () {
+        }).on('contextmenu', () => {
 
         })
     }
