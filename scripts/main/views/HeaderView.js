@@ -1,10 +1,14 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import {React,Link} from '../../common/Util';
+import {React, Link} from '../../common/Util';
 
-let HeaderView = React.createClass({
-    render: function () {
+class HeaderView extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
         return (
             <div id="header" className="clearfix">
                 <div className="pull-left" id="logo"></div>
@@ -18,6 +22,6 @@ let HeaderView = React.createClass({
             </div>
         );
     }
-});
+}
 
 export default HeaderView;

@@ -4,12 +4,14 @@
 import {React, connect, PureRenderMixin, createSelector, Link} from '../../common/Util';
 import HeaderView from './HeaderView';
 
-const MainAppView = React.createClass({
-    mixins: [PureRenderMixin],
-    contextTypes: {
-        router: React.PropTypes.object
-    },
-    render: function () {
+class MainAppView extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+
+    render() {
         let pathname = this.props.pathname;
         let chiefCls = "";
 
@@ -21,13 +23,17 @@ const MainAppView = React.createClass({
 
         return (<div id="chief" className={chiefCls}>{this.props.children}</div>);
     }
-});
+}
+
+MainAppView.contextTypes = {
+    router: React.PropTypes.object
+}
 
 const pathname = state => {
     return state.routing.locationBeforeTransitions.pathname;
 };
 
-const appData = createSelector([pathname], (pathname)=> {
+const appData = createSelector([pathname], (pathname) => {
     return {
         pathname: pathname
     }

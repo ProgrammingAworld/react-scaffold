@@ -3,6 +3,7 @@
  */
 import {loginReducer} from '../login/reducers/reducers';
 import {todosReducers} from '../todos/reducers/reducers';
+import "babel-polyfill";
 
 //每个模块单独一个对象整理
 //登录模块

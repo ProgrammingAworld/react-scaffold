@@ -9,8 +9,8 @@ import LoginService from '../service/LoginService';
 const actionCreator = {
     login: function (username, password, type = "0", fnCb) {
         let that = this;
-        return dispatch=> {
-            LoginService.login({username: username, password, type: type}).done(oData=> {
+        return dispatch => {
+            LoginService.login({username: username, password, type: type}).done(oData => {
                 if (oData.statusCode == 200) {
                     Tools.exeCb(fnCb);
                 } else {
@@ -22,8 +22,8 @@ const actionCreator = {
         }
     },
     logout: function (fnCb) {
-        return dispatch=> {
-            LoginService.logout().done(oData=> {
+        return dispatch => {
+            LoginService.logout().done(oData => {
                 if (oData.statusCode == 200) {
                     Tools.exeCb(fnCb);
                 } else {
@@ -33,15 +33,15 @@ const actionCreator = {
         }
     },
     PKIlogin: function () {
-        return dispatch=> {
+        return dispatch => {
             LoginService.PKIlogin().done(function () {
                 location.href = "console.html";
             })
         }
     },
     checkAuthority: function (fnCb) {
-        return dispatch=> {
-            LoginService.checkAuthority().done(oData=> {
+        return dispatch => {
+            LoginService.checkAuthority().done(oData => {
                 if (oData.statusCode != 200) {
                     Tools.exeCb(fnCb);
                 } else {
