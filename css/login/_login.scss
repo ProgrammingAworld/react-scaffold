@@ -45,16 +45,14 @@
         input.error {
           border: 1px solid $errorred;
         }
-        & > div {
-          @include size(20px,21px);
-          background: url("../images/loginicons.png") no-repeat 0 0 $white;
+        & > i {
+          color: $login-btn-bg-color;
           position: absolute;
-          left:8px;
-          top:7px;
+          left: 10px;
+          top: 9px;
         }
-        .pwdico{
-          background-position: -3px bottom;
-          top:51px;
+        .pwdico {
+          top: 54px;
         }
       }
       .errors {
@@ -63,8 +61,11 @@
         height: 22px;
         line-height: 22px;
         color: $errorred;
-        background: url("../images/icon-error.png") left center no-repeat;
         padding-left: 26px;
+
+        >i{
+          margin-right: 5px;
+        }
       }
       .errors + div {
         padding-top: 6px;

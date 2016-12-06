@@ -6,7 +6,7 @@ import {React, connect, createSelector} from '../../common/Util';
 import ReactComponentBase from '../../base/ReactComponentBase';
 import actionCreator from '../actions/actionCreator';
 
-class MainLoginView extends ReactComponentBase {
+class LoginMainView extends ReactComponentBase {
     constructor(props) {
         super(props);
     }
@@ -203,11 +203,11 @@ class MainLoginView extends ReactComponentBase {
                         <input type="text" ref="username" className="login-user"
                                onKeyDown={this.forbidSpace.bind(this)}/>
                         <input type="password" ref="pwd" className="login-pwd"/>
-                        <div className="adminico"></div>
-                        <div className="pwdico"></div>
+                        <i className="fa fa-user-o fa-lg"></i>
+                        <i className="fa fa-bell-o fa-lg pwdico"></i>
                     </div>
                     <div className="login-btn">
-                        <div className={errorCls}>{error}</div>
+                        <div className={errorCls}><i className="fa fa-exclamation-circle fa-lg"></i>{error}</div>
                         <div className="clearfix"></div>
                         <button className="login_button pull-left hide" onClick={this.PKIlogin.bind(this)}>PKI登录
                         </button>
@@ -246,4 +246,4 @@ const getLoginType = createSelector([loginType, loginError], (loginType, loginEr
     }
 });
 
-export default connect(getLoginType)(MainLoginView);
+export default connect(getLoginType)(LoginMainView);

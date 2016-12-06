@@ -14,7 +14,7 @@ import {
 import {reducers} from './reducers';
 import MainAppView from './views/MainAppView';
 import MainHomeView from './views/MainHomeView';
-import LoginView from '../login/views/MainLoginView';
+import LoginView from '../login/views/LoginMainView';
 import TodoMainView from '../todos/views/TodoMainView';
 
 export default class RouterConfig{
