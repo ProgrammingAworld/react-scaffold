@@ -1,14 +1,13 @@
 /**
  * Created by anchao on 2016/7/26.
  */
-import {React, connect, PureRenderMixin, createSelector, Link} from '../../common/Util';
+import {React,connect, createSelector, Link} from '../../common/Util';
+import ReactComponentBase from '../../base/ReactComponentBase';
 import HeaderView from './HeaderView';
 
-class MainAppView extends React.Component {
+class MainAppView extends ReactComponentBase {
     constructor(props) {
         super(props);
-
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     render() {
@@ -22,10 +21,6 @@ class MainAppView extends React.Component {
             </div>
         );
     }
-}
-
-MainAppView.contextTypes = {
-    router: React.PropTypes.object
 }
 
 const pathname = state => {

@@ -2,10 +2,11 @@
  * Created by anchao on 2016/6/30.
  */
 
-import {React, PureRenderMixin} from '../../common/Util';
+import {React} from '../../common/Util';
+import ReactComponentBase from '../../base/ReactComponentBase';
 import Todo from './TodoSingleView';
 
-class TodoListView extends React.Component {
+class TodoListView extends ReactComponentBase {
     constructor(props) {
         super(props);
 
@@ -13,8 +14,6 @@ class TodoListView extends React.Component {
             delIcoIndex: -1,
             editNameIndex: -1
         };
-
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     showDeleteIco(index) {

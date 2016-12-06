@@ -1,9 +1,10 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import {React, Link} from '../../common/Util';
+import {React,Link} from '../../common/Util';
+import ReactComponentBase from '../../base/ReactComponentBase';
 
-class HeaderView extends React.Component {
+class HeaderView extends ReactComponentBase {
     constructor(props) {
         super(props);
     }

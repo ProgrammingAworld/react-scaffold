@@ -1,18 +1,17 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import {React, connect, createSelector, PureRenderMixin} from '../../common/Util';
+import {React,connect, createSelector} from '../../common/Util';
+import ReactComponentBase from '../../base/ReactComponentBase';
 import * as actionTypes from '../actions/actionTypes';
 import actionCreator from '../actions/actionCreator';
 import AddTodoView from './AddTodoView';
 import TodoListView from './TodoListView';
 import FooterView from './FooterView';
 
-class TodoMainView extends React.Component {
+class TodoMainView extends ReactComponentBase {
     constructor(props) {
         super(props);
-
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     componentDidMount() {

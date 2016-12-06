@@ -1,13 +1,13 @@
 /**
  * Created by anchao on 2016/6/30.
  */
-import {React, PureRenderMixin} from '../../common/Util';
 
-class TodoSingleView extends React.Component {
+import {React} from '../../common/Util';
+import ReactComponentBase from '../../base/ReactComponentBase';
+
+class TodoSingleView extends ReactComponentBase {
     constructor(props) {
         super(props);
-
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     editNameHandler(e) {

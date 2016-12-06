@@ -2,14 +2,13 @@
  * Created by anchao on 2016/7/26.
  */
 
-import {React, dialog, PureRenderMixin, connect, createSelector} from '../../common/Util';
+import {React, connect, createSelector} from '../../common/Util';
+import ReactComponentBase from '../../base/ReactComponentBase';
 import actionCreator from '../actions/actionCreator';
 
-class MainLoginView extends React.Component {
+class MainLoginView extends ReactComponentBase {
     constructor(props) {
         super(props);
-
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     componentDidMount() {
@@ -201,7 +200,8 @@ class MainLoginView extends React.Component {
                 <div id="particles-js"></div>
                 <div className="loginmain">
                     <div className="input-group">
-                        <input type="text" ref="username" className="login-user" onKeyDown={this.forbidSpace.bind(this)}/>
+                        <input type="text" ref="username" className="login-user"
+                               onKeyDown={this.forbidSpace.bind(this)}/>
                         <input type="password" ref="pwd" className="login-pwd"/>
                         <div className="adminico"></div>
                         <div className="pwdico"></div>
@@ -209,7 +209,8 @@ class MainLoginView extends React.Component {
                     <div className="login-btn">
                         <div className={errorCls}>{error}</div>
                         <div className="clearfix"></div>
-                        <button className="login_button pull-left hide" onClick={this.PKIlogin.bind(this)}>PKI登录</button>
+                        <button className="login_button pull-left hide" onClick={this.PKIlogin.bind(this)}>PKI登录
+                        </button>
                         <button className="login_button pull-right" onClick={this.login.bind(this)}>登录</button>
                         <div className="clearfix"></div>
                         <div className="rolerow">
@@ -230,10 +231,6 @@ class MainLoginView extends React.Component {
         );
     }
 }
-
-MainLoginView.contextTypes = {
-    router: React.PropTypes.object
-};
 
 const loginType = state => {
     return state.login_type;

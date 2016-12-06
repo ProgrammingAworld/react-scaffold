@@ -1,13 +1,12 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import {React, dialog, PureRenderMixin} from '../../common/Util';
+import {React,dialog} from '../../common/Util';
+import ReactComponentBase from '../../base/ReactComponentBase';
 
-class AddTodoView extends React.Component {
+class AddTodoView extends ReactComponentBase {
     constructor(props) {
         super(props);
-
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     addTodo(e) {

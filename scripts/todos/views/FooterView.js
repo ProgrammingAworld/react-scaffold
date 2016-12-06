@@ -2,12 +2,12 @@
  * Created by anchao on 2016/6/30.
  */
 
-import {React, PureRenderMixin} from '../../common/Util';
-class FooterView extends React.Component {
+import {React} from '../../common/Util';
+import ReactComponentBase from '../../base/ReactComponentBase';
+
+class FooterView extends ReactComponentBase {
     constructor(props) {
         super(props);
-
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     onRenderLi(filter, name) {
