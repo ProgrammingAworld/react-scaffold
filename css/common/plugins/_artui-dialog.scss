@@ -1,385 +1,508 @@
-.ui-dialog {
-  font-family: Helvetica, arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.428571429;
-  color: #333;
+@charset "utf-8";
+body .artui-dialog {
+  background: #fbfbfb;
+  border-color: #eee;
+  border-radius: 3px;
+  font-family: "Microsoft Yahei", "SimSun", Arial;
+  font-size: 12px;
+  border: 0;
+}
+
+body .artui-mask {
+  opacity: 0.2;
+}
+
+body .artui-dialog-header {
+  background: #eff2f9;
+  color: #56688a;
+  border: none;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+  box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+}
+
+body .artui-dialog-title {
+  padding: 7px 20px;
+}
+
+body .artui-dialog-close {
+  top: 5px;
+  background-color: #bbb;
+  padding-bottom: 3px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: normal;
+  font-size: 18px;
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+body .artui-dialog-body {
+  background-color: #fbfbfb;
+}
+
+body .select2-result-selectable .select2-match, .select2-result-unselectable .select2-match {
+  color: #707070;
+}
+
+body .artui-dialog-content {
+  font-size: 12px;
+}
+
+body .artui-dialog label {
+  padding: 0 !important;
+  line-height: 20px;
+  color: #343434;
+}
+
+body .artui-dialog form label.error {
+  font-size: 12px;
+  position: absolute;
+  left: 15px;
+  top: 25px;
+  font-weight: normal;
+  color: rgba(217, 41, 95, 0.7);
+  background-size: 22px 22px;
+  padding-left: 24px !important;
+}
+
+body .artui-dialog-footer {
+  text-align: center;
+}
+
+body .artui-dialog-footer .artui-dialog-button {
+  float: none;
+}
+
+body .artui-dialog-footer button {
+  padding: 4px 20px;
+  border-radius: 2px;
+  color: #fff;
+  background: #aaaaaa;
+  border: none;
+  outline: none;
+  margin: 0 10px;
+}
+
+body .artui-dialog-footer button.artui-dialog-autofocus,
+body .artui-dialog-footer button.artui-dialog-autofocus:hover,
+body .artui-dialog-footer button.artui-dialog-autofocus:focus,
+body .artui-dialog-footer button.artui-dialog-autofocus:active {
+  background: #78a2f3;
+  outline: none;
+}
+
+body .artui-dialog .a_check {
+  margin: 0 10px 0 0;
+  line-height: 20px;
+  display: inline-block;
+  text-indent: 20px;
+}
+
+body .artui-dialog .a_check, body .artui-dialog .a_check:hover, body .artui-dialog .a_check:visited {
+  color: #666
+}
+
+.artui-dialog {
+  *zoom: 1;
+  _float: left;
   position: relative;
   background-color: #FFF;
   border: 1px solid #999;
   border-radius: 6px;
   outline: 0;
   background-clip: padding-box;
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #333;
   opacity: 0;
-  @include scale(0);
-  transition: all .15s ease-in-out;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: -webkit-transform .15s ease-in-out, opacity .15s ease-in-out;
+  transition: transform .15s ease-in-out, opacity .15s ease-in-out
 }
-.ui-popup-show .ui-dialog {
+
+.artui-popup-show .artui-dialog {
   opacity: 1;
-  @include scale(1);
+  -webkit-transform: scale(1);
+  transform: scale(1)
 }
-.ui-popup-focus .ui-dialog {
-  @include single-box-shadow(0,0,8px,0,rgba(0, 0, 0, 0.1));
+
+.artui-popup-focus .artui-dialog {
+  box-shadow: 0 0 8px rgba(0, 0, 0, .1)
 }
-.ui-popup-modal .ui-dialog {
-  @include single-box-shadow(0,0,8px,0,rgba(0, 0, 0, 0.1));
+
+.artui-popup-modal .artui-dialog {
+  box-shadow: 0 0 8px rgba(0, 0, 0, .1), 0 0 256px rgba(255, 255, 255, .3)
 }
-.ui-dialog-grid {
+
+.artui-dialog-grid {
   width: auto;
   margin: 0;
-  border: none;
-  border-collapse:collapse;
+  border: 0 none;
+  border-collapse: collapse;
   border-spacing: 0;
-  background: transparent;
+  background: transparent
 }
-.ui-dialog-header,
-.ui-dialog-body,
-.ui-dialog-footer {
+
+.artui-dialog-header, .artui-dialog-body, .artui-dialog-footer {
   padding: 0;
-  border: none;
+  border: 0 none;
   text-align: left;
-  background: transparent;
+  background: transparent
 }
-.ui-dialog-header {
+
+.artui-dialog-header {
   white-space: nowrap;
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5
 }
-.ui-dialog-close {
+
+.artui-dialog-close {
   position: relative;
+  _position: absolute;
   float: right;
   top: 13px;
   right: 13px;
+  _height: 26px;
   padding: 0 4px;
   font-size: 21px;
-  font-weight: bold;
+  font-weight: 700;
   line-height: 1;
   color: #000;
   text-shadow: 0 1px 0 #FFF;
   opacity: .2;
+  filter: alpha(opacity=20);
   cursor: pointer;
   background: transparent;
-  border: none;
-  appearance: none;
+  _background: #FFF;
+  border: 0;
+  -webkit-appearance: none
 }
-button.ui-dialog-close[disabled]{
-  cursor: not-allowed;
-}
-.ui-dialog-close:hover,
-.ui-dialog-close:focus {
-  color: #000000;
+
+.artui-dialog-close:hover, .artui-dialog-close:focus {
+  color: #000;
   text-decoration: none;
   cursor: pointer;
   outline: 0;
-  opacity: 0.5;
+  opacity: .5;
+  filter: alpha(opacity=50)
 }
-.ui-dialog-title {
+
+.artui-dialog-title {
   margin: 0;
   line-height: 1.428571429;
   min-height: 16.428571429px;
   padding: 15px;
-  overflow:hidden;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-weight: bold;
-  cursor: default;
+  font-weight: 700;
+  cursor: default
 }
-.ui-dialog-body {
+
+.artui-dialog-body {
   padding: 20px;
-  text-align: center;
+  text-align: center
 }
-.ui-dialog-content {
+
+.artui-dialog-content {
   display: inline-block;
   position: relative;
   vertical-align: middle;
-  text-align: left;
+  *zoom: 1;
+  *display: inline;
+  text-align: left
 }
-.ui-dialog-footer {
-  padding: 0 20px 20px 20px;
+
+.artui-dialog-footer {
+  padding: 0 20px 20px
 }
-.ui-dialog-statusbar {
+
+.artui-dialog-statusbar {
   float: left;
   margin-right: 20px;
   padding: 6px 0;
   line-height: 1.428571429;
   font-size: 14px;
   color: #888;
-  white-space: nowrap;
+  white-space: nowrap
 }
-.ui-dialog-statusbar label:hover {
-  color: #333;
+
+.artui-dialog-statusbar label:hover {
+  color: #333
 }
-.ui-dialog-statusbar input,
-.ui-dialog-statusbar .label {
-  vertical-align: middle;
+
+.artui-dialog-statusbar input, .artui-dialog-statusbar .label {
+  vertical-align: middle
 }
-.ui-dialog-button {
+
+.artui-dialog-button {
   float: right;
-  white-space: nowrap;
+  white-space: nowrap
 }
-.ui-dialog-footer button+button {
+
+.artui-dialog-footer button + button {
   margin-bottom: 0;
-  margin-left: 5px;
+  margin-left: 5px
 }
-.ui-dialog-footer button {
-  width:auto;
-  overflow:visible;
+
+.artui-dialog-footer button {
+  width: auto;
+  overflow: visible;
   display: inline-block;
+  padding: 6px 12px;
+  _margin-left: 5px;
   margin-bottom: 0;
-  font:{
-    size: 14px;
-    weight: normal;
-  }
+  font-size: 14px;
+  font-weight: 400;
   line-height: 1.428571429;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
+  cursor: pointer;
   background-image: none;
   border: 1px solid transparent;
-  user-select: none;
-  border-radius: 0;
-  padding: 9px 35px;
-  color: #333333;
-  background-color: #ffffff;
-  border-color: #cccccc;
-  float: right;
-  margin-left: 10px;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none
 }
 
-.ui-dialog-footer button:focus {
-  outline: 0 auto -webkit-focus-ring-color;
+.artui-dialog-footer button:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px
 }
 
-.ui-dialog-footer button:hover,
-.ui-dialog-footer button:focus {
-  color: #333333;
-  text-decoration: none;
+.artui-dialog-footer button:hover, .artui-dialog-footer button:focus {
+  color: #333;
+  text-decoration: none
 }
 
-.ui-dialog-footer button:active {
+.artui-dialog-footer button:active {
   background-image: none;
   outline: 0;
-  @include single-box-shadow(0,3px,5px,0,rgba(0, 0, 0, 0.1),inset);
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
 }
-.ui-dialog-footer button[disabled] {
-  opacity: 0.65;
-  box-shadow: none;
+
+.artui-dialog-footer button[disabled] {
+  pointer-events: none;
   cursor: not-allowed;
+  opacity: .65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none
 }
 
-.ui-dialog-footer button:hover,
-.ui-dialog-footer button:focus,
-.ui-dialog-footer button:active {
-  color: #333333;
+.artui-dialog-footer button {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc
+}
+
+.artui-dialog-footer button:hover, .artui-dialog-footer button:focus, .artui-dialog-footer button:active {
+  color: #333;
   background-color: #ebebeb;
-}
-.ui-dialog-footer button:hover{
-  border-color: #adadad;
+  border-color: #adadad
 }
 
-.ui-dialog-footer button:active{
-  background-image: none;
+.artui-dialog-footer button:active {
+  background-image: none
 }
 
-.ui-dialog-footer button[disabled],
-.ui-dialog-footer button[disabled]:hover,
-.ui-dialog-footer button[disabled]:focus,
-.ui-dialog-footer button[disabled]:active {
-  background-color: #ffffff;
-  border-color: #cccccc;
+.artui-dialog-footer button[disabled], .artui-dialog-footer button[disabled]:hover, .artui-dialog-footer button[disabled]:focus, .artui-dialog-footer button[disabled]:active {
+  background-color: #fff;
+  border-color: #ccc
 }
 
-.ui-dialog-footer button.ui-dialog-autofocus {
-  //color: #ffffff;
-  //background-color: #49a7f0;
-  //border-color: #49a7f0;
+.artui-dialog-footer button.artui-dialog-autofocus {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd
 }
 
-.ui-dialog-footer button.ui-dialog-autofocus:hover,
-.ui-dialog-footer button.ui-dialog-autofocus:focus,
-.ui-dialog-footer button.ui-dialog-autofocus:active {
-  //color: #ffffff;
-  //background-color: #3e98df;
-  //border-color: #3e98df;
+.artui-dialog-footer button.artui-dialog-autofocus:hover, .artui-dialog-footer button.artui-dialog-autofocus:focus, .artui-dialog-footer button.artui-dialog-autofocus:active {
+  color: #fff;
+  background-color: #3276b1;
+  border-color: #285e8e
 }
 
-.ui-dialog-footer button.ui-dialog-autofocus:active {
-  background-image: none;
+.artui-dialog-footer button.artui-dialog-autofocus:active {
+  background-image: none
 }
-.ui-popup-top-left .ui-dialog,
-.ui-popup-top .ui-dialog,
-.ui-popup-top-right .ui-dialog {
-  top: -8px;
+
+.artui-popup-top-left .artui-dialog, .artui-popup-top .artui-dialog, .artui-popup-top-right .artui-dialog {
+  top: -8px
 }
-.ui-popup-bottom-left .ui-dialog,
-.ui-popup-bottom .ui-dialog,
-.ui-popup-bottom-right .ui-dialog {
-  top: 8px;
+
+.artui-popup-bottom-left .artui-dialog, .artui-popup-bottom .artui-dialog, .artui-popup-bottom-right .artui-dialog {
+  top: 8px
 }
-.ui-popup-left-top .ui-dialog,
-.ui-popup-left .ui-dialog,
-.ui-popup-left-bottom .ui-dialog {
-  left: -8px;
+
+.artui-popup-left-top .artui-dialog, .artui-popup-left .artui-dialog, .artui-popup-left-bottom .artui-dialog {
+  left: -8px
 }
-.ui-popup-right-top .ui-dialog,
-.ui-popup-right .ui-dialog,
-.ui-popup-right-bottom .ui-dialog {
-  left: 8px;
+
+.artui-popup-right-top .artui-dialog, .artui-popup-right .artui-dialog, .artui-popup-right-bottom .artui-dialog {
+  left: 8px
 }
-.ui-dialog-arrow-a,
-.ui-dialog-arrow-b {
+
+.artui-dialog-arrow-a, .artui-dialog-arrow-b {
   position: absolute;
   display: block;
   width: 0;
   height: 0;
-  overflow:hidden;
-  line-height:0;
+  overflow: hidden;
+  line-height: 0;
   font-size: 0;
+  _color: #FF3FFF;
+  _filter: chroma(color=#FF3FFF)
 }
-.ui-popup-top-left .ui-dialog-arrow-a,
-.ui-popup-top .ui-dialog-arrow-a,
-.ui-popup-top-right .ui-dialog-arrow-a {
+
+.artui-popup-top-left .artui-dialog-arrow-a, .artui-popup-top .artui-dialog-arrow-a, .artui-popup-top-right .artui-dialog-arrow-a {
   bottom: -8px;
-  border-top:8px solid #7C7C7C;
-  border-bottom:none;
-  border-left:8px solid transparent;
-  border-right:8px solid transparent;
+  border-top: 8px solid #7C7C7C;
+  border-bottom: 0 none;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent
 }
-.ui-popup-top-left .ui-dialog-arrow-b,
-.ui-popup-top .ui-dialog-arrow-b,
-.ui-popup-top-right .ui-dialog-arrow-b {
+
+.artui-popup-top-left .artui-dialog-arrow-b, .artui-popup-top .artui-dialog-arrow-b, .artui-popup-top-right .artui-dialog-arrow-b {
   bottom: -7px;
-  border-top:8px solid #fff;
-  border-bottom:none;
-  border-left:8px solid transparent;
-  border-right:8px solid transparent;
+  border-top: 8px solid #fff;
+  border-bottom: 0 none;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent
 }
-.ui-popup-top-left .ui-dialog-arrow-a,
-.ui-popup-top-left .ui-dialog-arrow-b  {
-  left: 15px;
+
+.artui-popup-top-left .artui-dialog-arrow-a, .artui-popup-top-left .artui-dialog-arrow-b {
+  left: 15px
 }
-.ui-popup-top .ui-dialog-arrow-a,
-.ui-popup-top .ui-dialog-arrow-b  {
+
+.artui-popup-top .artui-dialog-arrow-a, .artui-popup-top .artui-dialog-arrow-b {
   left: 50%;
-  margin-left: -8px;
+  margin-left: -8px
 }
-.ui-popup-top-right .ui-dialog-arrow-a,
-.ui-popup-top-right .ui-dialog-arrow-b {
-  right: 15px;
+
+.artui-popup-top-right .artui-dialog-arrow-a, .artui-popup-top-right .artui-dialog-arrow-b {
+  right: 15px
 }
-.ui-popup-bottom-left .ui-dialog-arrow-a,
-.ui-popup-bottom .ui-dialog-arrow-a,
-.ui-popup-bottom-right .ui-dialog-arrow-a {
+
+.artui-popup-bottom-left .artui-dialog-arrow-a, .artui-popup-bottom .artui-dialog-arrow-a, .artui-popup-bottom-right .artui-dialog-arrow-a {
   top: -8px;
-  border-bottom:8px solid #7C7C7C;
-  border-top:none;
-  border-left:8px solid transparent;
-  border-right:8px solid transparent;
+  border-bottom: 8px solid #7C7C7C;
+  border-top: 0 none;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent
 }
-.ui-popup-bottom-left .ui-dialog-arrow-b,
-.ui-popup-bottom .ui-dialog-arrow-b,
-.ui-popup-bottom-right .ui-dialog-arrow-b {
+
+.artui-popup-bottom-left .artui-dialog-arrow-b, .artui-popup-bottom .artui-dialog-arrow-b, .artui-popup-bottom-right .artui-dialog-arrow-b {
   top: -7px;
-  border-bottom:8px solid #fff;
-  border-top:none;
-  border-left:8px solid transparent;
-  border-right:8px solid transparent;
+  border-bottom: 8px solid #fff;
+  border-top: 0 none;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent
 }
-.ui-popup-bottom-left .ui-dialog-arrow-a,
-.ui-popup-bottom-left .ui-dialog-arrow-b {
-  left: 15px;
+
+.artui-popup-bottom-left .artui-dialog-arrow-a, .artui-popup-bottom-left .artui-dialog-arrow-b {
+  left: 15px
 }
-.ui-popup-bottom .ui-dialog-arrow-a,
-.ui-popup-bottom .ui-dialog-arrow-b {
+
+.artui-popup-bottom .artui-dialog-arrow-a, .artui-popup-bottom .artui-dialog-arrow-b {
   margin-left: -8px;
-  left: 50%;
+  left: 50%
 }
-.ui-popup-bottom-right .ui-dialog-arrow-a,
-.ui-popup-bottom-right .ui-dialog-arrow-b {
-  right: 15px;
+
+.artui-popup-bottom-right .artui-dialog-arrow-a, .artui-popup-bottom-right .artui-dialog-arrow-b {
+  right: 15px
 }
-.ui-popup-left-top .ui-dialog-arrow-a,
-.ui-popup-left .ui-dialog-arrow-a,
-.ui-popup-left-bottom .ui-dialog-arrow-a {
+
+.artui-popup-left-top .artui-dialog-arrow-a, .artui-popup-left .artui-dialog-arrow-a, .artui-popup-left-bottom .artui-dialog-arrow-a {
   right: -8px;
-  border-left:8px solid #7C7C7C;
-  border-right:none;
-  border-top:8px solid transparent;
-  border-bottom:8px solid transparent;
+  border-left: 8px solid #7C7C7C;
+  border-right: 0 none;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent
 }
-.ui-popup-left-top .ui-dialog-arrow-b,
-.ui-popup-left .ui-dialog-arrow-b,
-.ui-popup-left-bottom .ui-dialog-arrow-b {
+
+.artui-popup-left-top .artui-dialog-arrow-b, .artui-popup-left .artui-dialog-arrow-b, .artui-popup-left-bottom .artui-dialog-arrow-b {
   right: -7px;
-  border-left:8px solid #fff;
-  border-right:none;
-  border-top:8px solid transparent;
-  border-bottom:8px solid transparent;
+  border-left: 8px solid #fff;
+  border-right: 0 none;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent
 }
-.ui-popup-left-top .ui-dialog-arrow-a,
-.ui-popup-left-top .ui-dialog-arrow-b {
-  top: 15px;
+
+.artui-popup-left-top .artui-dialog-arrow-a, .artui-popup-left-top .artui-dialog-arrow-b {
+  top: 15px
 }
-.ui-popup-left .ui-dialog-arrow-a,
-.ui-popup-left .ui-dialog-arrow-b {
+
+.artui-popup-left .artui-dialog-arrow-a, .artui-popup-left .artui-dialog-arrow-b {
   margin-top: -8px;
-  top: 50%;
+  top: 50%
 }
-.ui-popup-left-bottom .ui-dialog-arrow-a,
-.ui-popup-left-bottom .ui-dialog-arrow-b {
-  bottom: 15px;
+
+.artui-popup-left-bottom .artui-dialog-arrow-a, .artui-popup-left-bottom .artui-dialog-arrow-b {
+  bottom: 15px
 }
-.ui-popup-right-top .ui-dialog-arrow-a,
-.ui-popup-right .ui-dialog-arrow-a,
-.ui-popup-right-bottom .ui-dialog-arrow-a {
+
+.artui-popup-right-top .artui-dialog-arrow-a, .artui-popup-right .artui-dialog-arrow-a, .artui-popup-right-bottom .artui-dialog-arrow-a {
   left: -8px;
-  border-right:8px solid #7C7C7C;
-  border-left:none;
-  border-top:8px solid transparent;
-  border-bottom:8px solid transparent;
+  border-right: 8px solid #7C7C7C;
+  border-left: 0 none;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent
 }
-.ui-popup-right-top .ui-dialog-arrow-b,
-.ui-popup-right .ui-dialog-arrow-b,
-.ui-popup-right-bottom .ui-dialog-arrow-b {
+
+.artui-popup-right-top .artui-dialog-arrow-b, .artui-popup-right .artui-dialog-arrow-b, .artui-popup-right-bottom .artui-dialog-arrow-b {
   left: -7px;
-  border-right:8px solid #fff;
-  border-left:none;
-  border-top:8px solid transparent;
-  border-bottom:8px solid transparent;
+  border-right: 8px solid #fff;
+  border-left: 0 none;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent
 }
-.ui-popup-right-top .ui-dialog-arrow-a,
-.ui-popup-right-top .ui-dialog-arrow-b {
-  top: 15px;
+
+.artui-popup-right-top .artui-dialog-arrow-a, .artui-popup-right-top .artui-dialog-arrow-b {
+  top: 15px
 }
-.ui-popup-right .ui-dialog-arrow-a,
-.ui-popup-right .ui-dialog-arrow-b {
+
+.artui-popup-right .artui-dialog-arrow-a, .artui-popup-right .artui-dialog-arrow-b {
   margin-top: -8px;
-  top: 50%;
-}
-.ui-popup-right-bottom .ui-dialog-arrow-a,
-.ui-popup-right-bottom .ui-dialog-arrow-b {
-  bottom: 15px;
+  top: 50%
 }
 
-@-webkit-keyframes ui-dialog-loading {
-  0% {
-    @include rotate(0deg);
-  }
-  100% {
-    @include rotate(360deg);
-  }
+.artui-popup-right-bottom .artui-dialog-arrow-a, .artui-popup-right-bottom .artui-dialog-arrow-b {
+  bottom: 15px
 }
-@keyframes ui-dialog-loading {
+
+@-webkit-keyframes artui-dialog-loading {
   0% {
-    @include rotate(0deg);
+    -webkit-transform: rotate(0deg)
   }
   100% {
-    @include rotate(360deg);
+    -webkit-transform: rotate(360deg)
   }
 }
 
-.ui-dialog-loading {
+@keyframes artui-dialog-loading {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+.artui-dialog-loading {
   vertical-align: middle;
   position: relative;
   display: block;
+  *zoom: 1;
+  *display: inline;
   overflow: hidden;
   width: 32px;
   height: 32px;
@@ -387,44 +510,32 @@ button.ui-dialog-close[disabled]{
   margin: -16px auto 0 auto;
   font-size: 0;
   text-indent: -999em;
-  color: #666;
-}
-.ui-dialog-loading {
-  width: 100%\9;
-  text-indent: 0\9;
-  line-height: 32px\9;
-  text-align: center\9;
-  font-size: 12px\9;
+  color: #666
 }
 
-.ui-dialog-loading::after {
+.artui-dialog-loading {
+  width: 100% \9
+;
+  text-indent: 0 \9
+;
+  line-height: 32px \9
+;
+  text-align: center \9
+;
+  font-size: 12px \9
+}
+
+.artui-dialog-loading::after {
   position: absolute;
   content: '';
   width: 3px;
   height: 3px;
   margin: 14.5px 0 0 14.5px;
   border-radius: 100%;
-  @include single-box-shadow(0,-10px,0,1px,#ccc);
-  @include rotate(360deg);
-  animation: ui-dialog-loading 1.5s infinite linear;
-  display: none\9;
-}
-
-.ui-dialog {
-  font-size: 14px;
-  color: #505050;
-  border-radius: 0;
-  border-color: #ddd;
-}
-
-.ui-dialog-footer {
-  background-color: #eaeaea;
-  border-top: 1px solid #ddd;
-  padding: 20px;
-}
-
-.ui-dialog-footer button:hover,
-.ui-dialog-footer button:focus,
-.ui-dialog-footer button:active {
-  background: #f9f9f9;
+  box-shadow: 0 -10px 0 1px #ccc, 10px 0 #ccc, 0 10px #ccc, -10px 0 #ccc, -7px -7px 0 .5px #ccc, 7px -7px 0 1.5px #ccc, 7px 7px #ccc, -7px 7px #ccc;
+  -webkit-transform: rotate(360deg);
+  -webkit-animation: artui-dialog-loading 1.5s infinite linear;
+  transform: rotate(360deg);
+  animation: artui-dialog-loading 1.5s infinite linear;
+  display: none \9
 }
