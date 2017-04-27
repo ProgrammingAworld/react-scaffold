@@ -135,7 +135,7 @@ class LoginMainView extends ReactComponentBase {
 
         //回车登录
         document.onkeydown = e => {
-            if (e.which == 13) {
+            if (this.context.router.location.pathname == '/' && e.which == 13) {
                 this.login();
             }
         }
