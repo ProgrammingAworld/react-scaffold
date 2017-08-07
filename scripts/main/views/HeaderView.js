@@ -1,10 +1,9 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import {React,Link} from '../../common/Util';
-import ReactComponentBase from '../../base/ReactComponentBase';
+import {React,NavLink} from '../../common/Util';
 
-class HeaderView extends ReactComponentBase {
+class HeaderView extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -15,8 +14,8 @@ class HeaderView extends ReactComponentBase {
                 <div className="pull-left" id="logo"></div>
                 <div className="pull-left navigation">
                     <ul role="nav" className="list-unstyled list-inline">
-                        <li><Link to="/">登录</Link></li>
-                        <li><Link to="/main/todos" activeClassName="active">示例</Link></li>
+                        <li><NavLink replace to="/login" activeClassName="active">登录</NavLink></li>
+                        <li><NavLink replace to="/todos" activeClassName="active">示例</NavLink></li>
                     </ul>
                 </div>
                 <div className="pull-right"></div>

@@ -15,16 +15,16 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: "/scripts/",
         filename: 'app.js',
-        sourceMapFilename:'app.map'
+        sourceMapFilename: 'app.map'
     },
-    devtool:"source-archives",
+    devtool: "source-archives",
     module: {
         loaders: [{
             test: /\.jsx?$/,
             loader: 'babel',
             query: {
                 cacheDirectory: true,
-                presets: ['es2015', 'stage-0', 'react'],
+                presets: ['env', 'stage-0', 'react'],
                 compact: false
             }
         }]

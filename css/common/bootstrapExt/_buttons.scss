@@ -1,0 +1,20 @@
+.btn-datacloud {
+  font-size: 12px;
+  width: 100px;
+  height: 32px;
+  display: inline-block;
+  line-height: 32px;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid #4789b3;
+  color: #4789b3;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+  &>i{
+    font-size: 18px;
+    vertical-align: sub;
+  }
+}

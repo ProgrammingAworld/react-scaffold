@@ -6,13 +6,13 @@ import * as actionTypes from './actionTypes';
 import TodoAPI from '../service/TodoService';
 
 const actionCreator = {
-    getAllTodo:function () {
+    getAllTodo:function (fnCb=()=>{}) {
         return dispatch => {
             TodoAPI.getAllTodo().done(oData=>{
                 if(oData.statusCode == 200){
                     dispatch(this.setAllTodo(oData.list));
                 }else {
-                    dialog.alert('加载失败');
+                    fnCb(false,oData.message);
                 }
             });
         }

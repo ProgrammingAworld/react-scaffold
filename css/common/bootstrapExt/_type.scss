@@ -1,0 +1,8 @@
+@include text-emphasis-variant('.text-info', $main-normal-color);
+
+.text-danger{
+  color: $errorred!important;
+}
+.cell-danger{
+  border:1px solid $red!important;
+}

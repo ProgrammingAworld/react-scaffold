@@ -7,8 +7,114 @@
   color: $black;
   padding: 0.2em 0;
 }
-html,body{
+
+html, body {
   font-family: $font-family;
+  background-color: $white;
   height: 100%;
   overflow: hidden;
+}
+
+div[particularid="loadingdiv"]{
+  .artui-dialog,
+  .artui-dialog-body{
+    background: none;
+    box-shadow: none;
+  }
+}
+.text-bold{
+  font-weight: bold;
+}
+.textnormal{
+  border:1px solid $main-btn-border-color;
+  &:focus{
+    border:1px solid $main-btn-border-color!important;
+  }
+}
+.btnfilter {
+  background-color: $main-btn-border-color;
+  border:1px solid $main-btn-border-color;
+  color: $white;
+  cursor: pointer;
+}
+
+.pagesecnav {
+  @include size(100%, 70px);
+  padding: 0 20px;
+  text-align: center;
+  overflow: hidden;
+  > div:first-child {
+    line-height: 70px;
+  }
+  > div:last-child {
+    nav {
+      height: 70px;
+      li {
+        a {
+          background-color: $main-nav-bgcolor;
+          border-color: $main-nav-bgcolor;
+        }
+      }
+      li.active {
+        span {
+          background-color: $main-active-color;
+          border-color: $main-active-color;
+        }
+      }
+    }
+  }
+}
+
+.navtab{
+  height: 48px;
+  line-height: 32px;
+  background-color: $main-nav-bgcolor;
+  border-bottom: 1px solid $gray-dd;
+  margin: 0;
+  color: $black;
+}
+
+.tableeditsec{
+  @include fieldset;
+}
+
+.drag-vertical-line-dag{
+  @include size(4px,100%);
+  position: absolute;
+  left: calc(100% - 360px);
+  top:0;
+  cursor: e-resize;
+
+  &:hover{
+    background-color: $blue-d3;
+  }
+}
+
+.drag-horizontal-line-extend{
+  @include size(100%,4px);
+  position: absolute;
+  left: 0;
+  top: calc(100% - 334px);
+  cursor: n-resize;
+  z-index:20;
+
+  &:hover{
+    background-color: $blue-d3;
+  }
+}
+
+.context-menu {
+  margin: 0;
+  @include box-shadow(2px 2px 5px 3px $main-border-color);
+  @include transition;
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  a {
+    color: $main-left-fontcolor!important;
+    border-width: 0;
+    padding: 5px 10px;
+  }
 }

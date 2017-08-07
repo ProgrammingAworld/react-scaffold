@@ -1,5 +1,5 @@
-@mixin size($width:100%,$height:auto){
-  width:$width;
+@mixin size($width:100%,$height:auto) {
+  width: $width;
   height: $height;
 }
 
@@ -9,12 +9,162 @@
   white-space: nowrap;
 }
 
-@mixin headerIco($end){
+@mixin headerIco($end) {
   @for $i from 1 through $end {
-    >li:nth-child(#{$i}){
-      a:hover,a.active{
-        i{
+    > li:nth-child(#{$i}) {
+      a:hover, a.active {
+        i {
           @extend .icons-icon00#{$i}.icon00#{$i}-hover;
+        }
+      }
+    }
+  }
+}
+
+@mixin text-emphasis-variant($parent, $color) {
+  #{$parent} {
+    color: $color;
+  }
+  a#{$parent}:hover,
+  a#{$parent}:focus {
+    color: darken($color, 10%);
+  }
+}
+
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+@mixin navtab{
+  height: 48px;
+  background-color: $main-nav-bgcolor;
+  border-bottom: 1px solid $gray-dd;
+  margin: 0;
+  color: $black;
+
+  > li {
+    @include size(120px, 48px);
+    text-align: center;
+    line-height: 48px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    a {
+      display: inline-block;
+      @include size(120px, 28px);
+      padding-right: 10px;
+      line-height: 28px;
+      text-decoration: none;
+      border-right: 1px solid $main-nav-vline-bgcolor;
+    }
+    > span {
+      color: $gray-f5;
+      position: absolute;
+      left: 43px;
+      top: 38px;
+      display: none;
+    }
+    > span:first-of-type {
+      color: $gray-dd;
+      top: 37px;
+    }
+  }
+
+  > li.active {
+    > span {
+      display: block;
+    }
+    a {
+      color: $main-active-color;
+    }
+  }
+
+  > li:last-child {
+    a {
+      border-right: 0;
+    }
+  }
+}
+
+@mixin fieldset{
+  fieldset{
+    border: 1px solid $gray-dd;
+    border-radius: 5px;
+    padding: 10px;
+    position: relative;
+
+    legend{
+      font-size: 14px;
+      width: auto;
+      margin: 0 10px;
+      border-width: 0;
+    }
+
+    &+fieldset{
+      margin-top: 10px;
+    }
+  }
+}
+
+@mixin tab-content{
+  @include size(100%, calc(100% - 48px));
+  overflow: hidden;
+
+  & > .datasecbtns {
+    @include size(100%, 68px);
+    padding: 10px;
+    min-width: 1000px;
+
+    & > a {
+      margin: 10px 0 0 10px;
+    }
+  }
+
+  & > .tablelistsec {
+    @include size(calc(100% - 40px), calc(100% - 88px));
+    min-width: 870px;
+    background-color: $white;
+    margin: 0 20px 20px 20px;
+    @include box-shadow(2px 2px 3px 2px $gray-dd);
+
+    & > .datasecfilter {
+      @include size(100%, 70px);
+      padding: 20px;
+      border-bottom: 1px solid $gray-dd;
+      position: relative;
+
+      > div:first-child {
+        width: calc(100% - 140px);
+        position: relative;
+
+        .fa-times-circle{
+          color: $main-normal-color;
+          position: absolute;
+          right: 90px;
+          top: 10px;
+          z-index: 100;
+          cursor: pointer;
+        }
+      }
+      > div:last-child {
+        width: 140px;
+        text-align: right;
+      }
+    }
+
+    & > .datasectable {
+      @include size(100%, 100%);
+      min-height: 300px;
+      padding: 10px;
+      overflow: auto;
+      position: relative;
+
+      tr.structure{
+        &:hover{
+          .btnsoperation{
+            display:block!important;
+          }
         }
       }
     }

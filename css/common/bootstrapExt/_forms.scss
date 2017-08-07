@@ -1,0 +1,6 @@
+.form-control:focus{
+  @include box-shadow(none);
+}
+textarea.form-control{
+  resize: vertical;
+}

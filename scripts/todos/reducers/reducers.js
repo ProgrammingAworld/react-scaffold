@@ -4,7 +4,7 @@
 import {todoReducer} from './todoReducer';
 import {filterReducer} from './filterReducer';
 
-export const todosReducers = {
+export const TodosReducers = {
     todos_todos: todoReducer,
     todos_filter: filterReducer
 };

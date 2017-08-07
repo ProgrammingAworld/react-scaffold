@@ -16,7 +16,7 @@ var makeUrlVer = require('gulp-make-css-url-version');
 //image
 var minimage = require('gulp-imagemin');
 //js
-var webpack= require('webpack');
+var webpack = require('webpack');
 var webpackstream = require('webpack-stream');
 
 var browserSync = require('browser-sync').create();
@@ -28,33 +28,33 @@ var config = {
     'pug': 'html/*.pug',
     'sass': 'css/**/*.scss',
     'distCss': 'dist/css',
-    'simulate':'simulates/*.json',
-    'distsimulate':'dist/simulates',
+    'simulate': 'simulates/*.json',
+    'distsimulate': 'dist/simulates',
     'distScript': 'dist/scripts',
-    'images':'images/{,*/}*.{gif,jpeg,jpg,png,ico}',
+    'images': 'images/{,*/}*.{gif,jpeg,jpg,png,ico}',
     'distImg': 'dist/images',
     'mainJs': 'app.js',
-    'v':Date.now()
+    'v': Date.now()
 };
 
 //删除
 gulp.task('clean', function () {
-    return del(['dist']).then(function(){
+    return del(['dist']).then(function () {
         console.log('删除完成');
     });
 });
 
 //html_pug
-gulp.task('pug', function() {
+gulp.task('pug', function () {
     gulp.src(config.pug)
         .pipe(changed(config.pug))
         .pipe(pug({
-            doctype:'html',
-            pretty:false
+            doctype: 'html',
+            pretty: false
         }))
-        .pipe(replace(/images?\/(\w+?)(.png)/g, 'images/$1$2?v='+config.v))
-        .pipe(replace('css/main.css','css/main.css?v='+config.v))
-        .pipe(replace('scripts/home.js','scripts/home.js?v='+config.v))
+        .pipe(replace(/images?\/(\w+?)(.png)/g, 'images/$1$2?v=' + config.v))
+        .pipe(replace('css/main.css', 'css/main.css?v=' + config.v))
+        .pipe(replace('scripts/app.js', 'scripts/app.js?v=' + config.v))
         .pipe(gulp.dest(config.dist));
 });
 
@@ -67,7 +67,7 @@ gulp.task('styles', function () {
             css: config.distCss,
             sass: 'css'
         }))
-        .pipe(makeUrlVer({useDate:true}))
+        .pipe(makeUrlVer({useDate: true}))
         .pipe(gulp.dest(config.distCss))
         .pipe(reload({stream: true}));
 });
@@ -83,25 +83,25 @@ gulp.task('styles_build', function () {
         .pipe(picbase64({
             baseDir: 'dist',
             extensions: ['png'],
-            maxImageSize: 100*1024,
+            maxImageSize: 100 * 1024,
             debug: false
         }))
-        .pipe(makeUrlVer({useDate:true}))
+        .pipe(makeUrlVer({useDate: true}))
         .pipe(gulp.dest(config.distCss));
 });
 
 //copy bootstrap服务器端字体
-gulp.task('copyFont',function(){
-    var src='node_modules/bootstrap-sass/assets/fonts/bootstrap/*';
+gulp.task('copyFont', function () {
+    var src = 'node_modules/bootstrap-sass/assets/fonts/bootstrap/*';
     var src2 = 'css/common/fonts/*'
-    var dest= config.distCss+'/fonts/';
+    var dest = config.distCss + '/fonts/';
 
     return gulp.src([src, src2])
         .pipe(gulp.dest(dest));
 });
 
 //copy simulates
-gulp.task('copySimulate',function(){
+gulp.task('copySimulate', function () {
     gulp.src(config.simulate)
         .pipe(gulp.dest(config.distsimulate));
 });
@@ -109,24 +109,24 @@ gulp.task('copySimulate',function(){
 //copy plugins
 gulp.task('copyPlugins', function () {
     var src = 'scripts/plugins/*';
-    var dest = config.distScript+'/plugins/';
+    var dest = config.distScript + '/plugins/';
 
     gulp.src(src)
         .pipe(gulp.dest(dest));
 });
 
-gulp.task('copy',function(){
-    gulp.start(['copyFont','copySimulate','copyPlugins']);
+gulp.task('copy', function () {
+    gulp.start(['copyFont', 'copySimulate', 'copyPlugins']);
 });
 
 //image
 gulp.task('images', function () {
-    return gulp.src([config.images,'!images/icons/*'])
+    return gulp.src([config.images, '!images/icons/*'])
         .pipe(minimage())
         .pipe(gulp.dest(config.distImg));
 });
 
-gulp.task('webpack',function() {
+gulp.task('webpack', function () {
     return gulp.src(config.mainJs)
         .pipe(webpackstream({
             watch: true,
@@ -135,9 +135,9 @@ gulp.task('webpack',function() {
             },
             output: {
                 filename: '[name].js',
-                sourceMapFilename:'[file].map'
+                sourceMapFilename: '[file].map'
             },
-            devtool:"source-map",
+            devtool: "source-map",
             resolve: {
                 extensions: ['', '.js', '.jsx']
             },
@@ -149,7 +149,7 @@ gulp.task('webpack',function() {
                         loader: 'babel',
                         query: {
                             cacheDirectory: true,
-                            presets: ['es2015','stage-0','react']
+                            presets: ['env', 'stage-0', 'react']
                         }
                     }
                 ]
@@ -159,7 +159,7 @@ gulp.task('webpack',function() {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('webpack_build', function() {
+gulp.task('webpack_build', function () {
     return gulp.src(config.mainJs)
         .pipe(webpackstream({
             watch: false,
@@ -180,17 +180,17 @@ gulp.task('webpack_build', function() {
                         loader: 'babel',
                         query: {
                             cacheDirectory: true,
-                            presets: ['es2015','stage-0','react']
+                            presets: ['env', 'stage-0', 'react']
                         }
                     }
                 ]
             },
             plugins: [
                 new webpack.optimize.UglifyJsPlugin({minimize: true}),
-                new webpack.DefinePlugin({
-                    'process.env.NODE_ENV': JSON.stringify('production')
-                }),
-                new webpack.optimize.OccurenceOrderPlugin()
+            //     new webpack.DefinePlugin({
+            //         'process.env.NODE_ENV': JSON.stringify('production')
+            //     }),
+            //     new webpack.optimize.OccurenceOrderPlugin()
             ]
         }))
         .pipe(gulp.dest(config.distScript));
@@ -201,26 +201,26 @@ gulp.task('browserSync', function () {
         server: {
             baseDir: './dist/'
         },
-        port: 3000,
+        port: 3333,
         open: false
     });
 
     //监听模板html变化
-    gulp.watch(config.pug,['pug']);
+    gulp.watch(config.pug, ['pug']);
     //监听sass变化
-    gulp.watch(config.sass,['styles']);
+    gulp.watch(config.sass, ['styles']);
     //监听image变化
-    gulp.watch(config.image,['images']);
+    gulp.watch(config.image, ['images']);
 });
 
-gulp.task('build',['clean'],function () {
-    gulp.start(['webpack_build','pug','styles_build','images','copy']);
+gulp.task('build', ['clean'], function () {
+    gulp.start(['webpack_build', 'pug', 'styles_build', 'images', 'copy']);
 });
 
-gulp.task('watch',['clean'],function () {
-    gulp.start(['browserSync','webpack','pug','styles','images','copy']);
+gulp.task('watch', ['clean'], function () {
+    gulp.start(['browserSync', 'webpack', 'pug', 'styles', 'images', 'copy']);
 });
 
-gulp.task('default',['clean'], function () {
+gulp.task('default', ['clean'], function () {
     gulp.start(['watch']);
 });

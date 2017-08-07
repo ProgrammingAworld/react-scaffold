@@ -1,17 +1,21 @@
 #header {
+  font-size: 16px;
   @include size(100%, 60px);
   background-color: $header-bg-color;
-  padding: 0 20px;
+  overflow:hidden;
 
-  &+div{
+  & + div {
     @include size(100%, calc(100% - 60px));
     overflow: auto;
+
+    & > div {
+      @include size(100%, 100%);
+    }
   }
 
   #logo {
-    @include size(46px, 36px);
-    background: url("../images/nav-logo.png");
-    margin: 12px 60px 0 0;
+    @include size(150px, 60px);
+    background: url("../images/icon.png") 20px 6px no-repeat;
     overflow: hidden;
   }
   .navigation {
@@ -19,103 +23,126 @@
     overflow: hidden;
 
     li {
-      font-size: 16px;
-      margin: 19px 40px 0 0;
+      @include size(120px, 60px);
+      padding: 0;
+      line-height: 60px;
+      overflow: hidden;
 
       a {
         @include size(100%, 100%);
         text-decoration: none;
+        padding-left: 35px;
         color: $header-font-color;
         display: block;
-        text-align: center;
+        position: relative;
+        outline: none;
 
-        &:hover, &.active {
+        &:hover,&.active {
           color: $header-active-color;
-        }
-        & > span {
-          line-height: 60px;
-          vertical-align: top;
+
+          &.active {
+            background-color: $header-active-bgcolor;
+          }
+
+          & > .icon{
+            &.graph{
+              background-position: -221px 3px;
+            }
+            &.origintable{
+              background-position: -226px -44px;
+            }
+            &.targettable{
+              background-position: -226px -90px;
+            }
+            &.mapping{
+              background-position: -226px -136px;
+            }
+            &.ruleconfigorigin{
+              background-position: -226px -182px;
+            }
+            &.rulemanage{
+              background-position: -226px -228px;
+            }
+            &.verify{
+              background-position: -226px -274px;
+            }
+          }
         }
 
-        & > span:nth-child(1) {
-          font-size: 24px;
-          overflow: hidden;
+        & > .icon {
+          @include size(30px, 30px);
+          display: inline-block;
+          background: url("../images/icon.png") right top no-repeat;
+          position: absolute;
+          left: 0;
+          top: 16px;
+
+          &.graph{
+            background-position: -471px 3px;
+          }
+          &.origintable{
+            background-position: -476px -44px;
+          }
+          &.targettable{
+            background-position: -476px -90px;
+          }
+          &.mapping{
+            background-position: -476px -136px;
+          }
+          &.ruleconfigorigin{
+            background-position: -476px -182px;
+          }
+          &.rulemanage{
+            background-position: -476px -228px;
+          }
+          &.verify{
+            background-position: -476px -274px;
+          }
         }
 
-        & > span:nth-child(2) {
+        & > .badge{
+          color: $white;
           margin-left: 5px;
+          background-color: $red;
+          @include transition;
+
+          &:hover{
+            background-color: $green;
+          }
         }
+      }
+    }
+
+    li.userheadernav {
+      width: 170px;
+      .vline {
+        @include size(1px, 20px);
+        margin-top: 20px;
+        background: $main-nav-vline-bgcolor;
+      }
+      a {
+        width: 168px;
+      }
+      a.active {
+        border-bottom: 2px solid $main-active-color;
+        background: none;
       }
     }
   }
   .headrright {
-    font-size: 16px;
-    @include size(550px, 60px);
+    @include size(155px, 60px);
     color: $header-font-color;
+    margin-right: 20px;
     overflow: hidden;
-    & > div:nth-child(4) {
-      @include size(180px, 60px);
-      position: relative;
-
-      %activeInput {
-        @include size(180px, 28px);
-        @include opacity(1);
-      }
-
-      > input {
-        @include size(0, 28px);
-        @include opacity(0);
-        @include transition(all, ease, 0.5s);
-        font-size: 14px;
-        background-color: $header-bg-color;
-        border: 1px solid $header-font-color;
-        padding: 0 10px;
-        position: absolute;
-        right: 0;
-        top: 16px;
-
-        &:focus {
-          outline: none;
-          border: 1px solid $header-active-color;
-          color: $white;
-        }
-
-        &:hover,&.active{
-          @extend %activeInput;
-        }
-      }
-      > .icon {
-        font-size: 20px;
-        position: absolute;
-        top: 20px;
-        right: 10px;
-        cursor: pointer;
-        &:hover {
-          color: $header-active-color;
-        }
-      }
-    }
-    & > div:nth-child(3) {
-      @include size(45px, 25px);
-      font-size: 24px;
-      text-align: right;
-      .icon-importdata {
-        margin-top: 19px;
-        cursor: pointer;
-        &:hover {
-          color: $header-active-color;
-        }
-      }
-    }
     & > div:nth-child(2) {
-      padding: 0 20px;
+      padding-right: 5px;
       @include text-overflow();
       text-align: center;
       line-height: 60px;
     }
     & > div:nth-child(1) {
       @include size(20px, 60px);
-      .glyphicon-off {
+      .fa-power-off {
         margin-top: 22px;
         cursor: pointer;
         &:hover {

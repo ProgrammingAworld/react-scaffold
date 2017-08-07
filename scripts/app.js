@@ -4,10 +4,5 @@
 
 //模块js
 import Main from './main/main';
-import {config} from './common/config';
-
-window.projectConfig = {
-    "errors": config.errors
-};
 
 new Main().init();

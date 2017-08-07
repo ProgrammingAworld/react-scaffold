@@ -9,7 +9,7 @@ class AddTodoView extends ReactComponentBase {
         super(props);
     }
 
-    addTodo(e) {
+    addTodo = e=> {
         if (e.which == 13) {
             let sTxt = e.currentTarget.value.trim();
             if (sTxt.length > 0) {
@@ -25,7 +25,7 @@ class AddTodoView extends ReactComponentBase {
         return (
             <header className="header">
                 <h1>todos</h1>
-                <input className="newtodo" placeholder="What needs to be done?" onKeyDown={this.addTodo.bind(this)}/>
+                <input className="newtodo" placeholder="What needs to be done?" onKeyDown={this.addTodo}/>
             </header>
         );
     }
