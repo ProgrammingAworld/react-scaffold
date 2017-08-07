@@ -37,7 +37,7 @@ npm install package_name --dev-save
 2.webpack-stream
 3.babel-core
 4.babel-loader
-5.babel-preset-es2015
+5.babel-preset-env
 6.babel-preset-react
 7.babel-preset-stage-0
 8.babel-polyfill
