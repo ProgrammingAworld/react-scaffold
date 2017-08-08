@@ -25,12 +25,12 @@ export default class RouterConfig {
     ReactDOM.render(
       <Provider store={store}>
         <Router hashHistory={history}>
-            <Switch>
-              <Route path='/' exact render={() => <Redirect to='/login' />} />
-              <Route path='/login' component={LoginView} />
-              <Route path='/app' replace component={MainAppView} />
-              <Route component={Main404View} />
-            </Switch>
+          <Switch>
+            <Route path='/' exact render={() => <Redirect to='/login' />} />
+            <Route path='/login' component={LoginView} />
+            <Route path='/app' replace component={MainAppView} />
+            <Route component={Main404View} />
+          </Switch>
         </Router>
       </Provider>,
       document.querySelector('#container')
