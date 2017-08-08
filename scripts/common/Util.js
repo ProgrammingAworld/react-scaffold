@@ -14,7 +14,7 @@ import Immutable from 'immutable'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider, connect } from 'react-redux'
 import createHistory from 'history/createHashHistory'
-import { NavLink, Link, HashRouter as Router, Route, Redirect } from 'react-router-dom'
+import { NavLink, Link, HashRouter as Router, Route, Redirect,Switch } from 'react-router-dom'
 import { routerReducer } from 'react-router-redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
@@ -68,5 +68,6 @@ export {
   NavLink,
   Link,
   Redirect,
+  Switch,
   createHistory
 }

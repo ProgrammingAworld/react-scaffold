@@ -8,8 +8,9 @@ import {
   Router,
   Route,
   Redirect,
+  Switch,
   storeCreateByReducer,
-  createHistory
+  createHistory,
 } from '../common/Util'
 import { reducers } from './reducers'
 import LoginView from '../login/views/LoginMainView'
@@ -25,14 +26,16 @@ export default class RouterConfig {
       <Provider store={store}>
         <Router hashHistory={history}>
           <div id='chief'>
-            <Route path='/' exact render={() => <Redirect to='/login' />} />
-            <Route path='/login' exact component={LoginView} />
-            <Route path='/todos' exact component={TodoMainView} />
-            <Route path='*' exact component={Main404View} />
+            <Switch>
+              <Route path='/' exact render={() => <Redirect to='/login'/>}/>
+              <Route path='/login' component={LoginView}/>
+              <Route path='/todos' component={TodoMainView}/>
+              <Route component={Main404View}/>
+            </Switch>
           </div>
         </Router>
       </Provider>,
-      document.querySelector('#container')
+      document.querySelector('#container'),
     )
   }
 }
