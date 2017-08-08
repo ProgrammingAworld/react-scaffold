@@ -27,15 +27,15 @@ export default class RouterConfig {
         <Router hashHistory={history}>
           <div id='chief'>
             <Switch>
-              <Route path='/' exact render={() => <Redirect to='/login'/>}/>
-              <Route path='/login' component={LoginView}/>
-              <Route path='/todos' component={TodoMainView}/>
-              <Route component={Main404View}/>
+              <Route path='/' exact render={() => <Redirect to='/login' />} />
+              <Route path='/login' component={LoginView} />
+              <Route path='/todos' component={TodoMainView} />
+              <Route component={Main404View} />
             </Switch>
           </div>
         </Router>
       </Provider>,
-      document.querySelector('#container'),
+      document.querySelector('#container')
     )
   }
 }
