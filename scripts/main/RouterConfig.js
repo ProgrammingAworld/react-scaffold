@@ -10,7 +10,7 @@ import {
   Redirect,
   Switch,
   storeCreateByReducer,
-  createHistory,
+  createHistory
 } from '../common/Util'
 import { reducers } from './reducers'
 import LoginView from '../login/views/LoginMainView'
