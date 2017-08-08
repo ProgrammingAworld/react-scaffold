@@ -4,18 +4,9 @@
   background-color: $header-bg-color;
   overflow:hidden;
 
-  & + div {
-    @include size(100%, calc(100% - 60px));
-    overflow: auto;
-
-    & > div {
-      @include size(100%, 100%);
-    }
-  }
-
   #logo {
     @include size(150px, 60px);
-    background: url("../images/icon.png") 20px 6px no-repeat;
+    background: url("../images/nav-logo.png") 20px 13px no-repeat;
     overflow: hidden;
   }
   .navigation {

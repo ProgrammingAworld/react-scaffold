@@ -15,7 +15,7 @@ class HeaderView extends React.Component {
                 <div className="pull-left navigation">
                     <ul role="nav" className="list-unstyled list-inline">
                         <li><NavLink replace to="/login" activeClassName="active">登录</NavLink></li>
-                        <li><NavLink replace to="/todos" activeClassName="active">示例</NavLink></li>
+                        <li><NavLink replace to="/app/todos" activeClassName="active">示例</NavLink></li>
                     </ul>
                 </div>
                 <div className="pull-right"></div>

@@ -14,7 +14,7 @@ import {
 } from '../common/Util'
 import { reducers } from './reducers'
 import LoginView from '../login/views/LoginMainView'
-import TodoMainView from '../todos/views/TodoMainView'
+import MainAppView from '../main/views/MainAppView'
 import Main404View from '../main/views/Main404View'
 
 export default class RouterConfig {
@@ -25,14 +25,12 @@ export default class RouterConfig {
     ReactDOM.render(
       <Provider store={store}>
         <Router hashHistory={history}>
-          <div id='chief'>
             <Switch>
               <Route path='/' exact render={() => <Redirect to='/login' />} />
               <Route path='/login' component={LoginView} />
-              <Route path='/todos' component={TodoMainView} />
+              <Route path='/app' replace component={MainAppView} />
               <Route component={Main404View} />
             </Switch>
-          </div>
         </Router>
       </Provider>,
       document.querySelector('#container')

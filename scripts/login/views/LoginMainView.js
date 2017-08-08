@@ -2,18 +2,18 @@
  * Created by anchao on 2016/7/26.
  */
 
-import {React, connect, createSelector} from '../../common/Util';
-import ReactComponentBase from '../../base/ReactComponentBase';
-import actionCreator from '../actions/actionCreator';
+import { React, connect, createSelector } from '../../common/Util'
+import ReactComponentBase from '../../base/ReactComponentBase'
+import actionCreator from '../actions/actionCreator'
 
 class LoginMainView extends ReactComponentBase {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     //用户名获得焦点
-    this.refs.username.focus();
+    this.refs.username.focus()
 
     let particles = {
       'particles': {
@@ -130,40 +130,40 @@ class LoginMainView extends ReactComponentBase {
         'background_repeat': 'no-repeat',
         'background_size': 'cover',
       },
-    };
-    particlesJS('particles-js', particles);
+    }
+    particlesJS('particles-js', particles)
   }
 
   checkedChange = e => {
-    let {dispatch} = this.props;
-    let value = e.currentTarget.getAttribute('value');
-    dispatch(actionCreator.setUserType(value));
-  };
+    let {dispatch} = this.props
+    let value = e.currentTarget.getAttribute('value')
+    dispatch(actionCreator.setUserType(value))
+  }
 
   PKIlogin = () => {
-    let {dispatch} = this.props;
-    dispatch(actionCreator.PKIlogin());
-  };
+    let {dispatch} = this.props
+    dispatch(actionCreator.PKIlogin())
+  }
 
   login = () => {
-    let {dispatch, type} = this.props;
-    let username = this.refs.username.value.trim();
-    let pwd = this.refs.pwd.value.trim();
+    let {dispatch, type} = this.props
+    let username = this.refs.username.value.trim()
+    let pwd = this.refs.pwd.value.trim()
 
     if (username.length == 0) {
-      this.refs.username.focus();
-      dispatch(actionCreator.setError('请输入用户名'));
-      return;
+      this.refs.username.focus()
+      dispatch(actionCreator.setError('请输入用户名'))
+      return
     }
 
     if (pwd.length == 0) {
-      this.refs.pwd.focus();
-      dispatch(actionCreator.setError('请输入密码'));
-      return;
+      this.refs.pwd.focus()
+      dispatch(actionCreator.setError('请输入密码'))
+      return
     }
 
     //清空错误信息
-    dispatch(actionCreator.setError(''));
+    dispatch(actionCreator.setError(''))
 
     //登录检验
     // dispatch(actionCreator.login(username, pwd, type, ()=> {
@@ -171,28 +171,29 @@ class LoginMainView extends ReactComponentBase {
     //     dispatch(actionCreator.setUserName(username));
     // }));
 
-    this.gotoUrl('/todos');
-    dispatch(actionCreator.setUserName('admin'));
-  };
+    this.gotoUrl('/app')
+    dispatch(actionCreator.setUserName('admin'))
+  }
 
   forbidSpace = e => {
     if (e.which == 32) {
-      e.preventDefault();
+      e.preventDefault()
     }
-  };
+  }
 
   gotoUrl = url => {
-    this.props.history.replace(url);
-  };
+    this.props.history.replace(url)
+  }
 
-  render() {
-    let {dispatch, type, error} = this.props;
-    let errorCls = 'errors pull-right invisible';
+  render () {
+    let {dispatch, type, error} = this.props
+    let errorCls = 'errors pull-right invisible'
     if (error.length > 0) {
-      errorCls = 'errors pull-right';
+      errorCls = 'errors pull-right'
     }
 
     return (
+      <div id='chief'>
         <div className="login">
           <div id="particles-js"></div>
           <div className="loginmain">
@@ -205,7 +206,7 @@ class LoginMainView extends ReactComponentBase {
             </div>
             <div className="login-btn">
               <div className={errorCls}><i
-                  className="fa fa-exclamation-circle fa-lg"></i>{error}</div>
+                className="fa fa-exclamation-circle fa-lg"></i>{error}</div>
               <div className="clearfix"></div>
               <button className="login_button pull-left hide"
                       onClick={this.PKIlogin}>PKI登录
@@ -219,14 +220,14 @@ class LoginMainView extends ReactComponentBase {
                   <div className="pull-left role"><span value="0"
                                                         onClick={this.checkedChange}
                                                         className={type == '0'
-                                                            ? 'checked'
-                                                            : ''}></span>用户
+                                                          ? 'checked'
+                                                          : ''}></span>用户
                   </div>
                   <div className="pull-left role"><span value="1"
                                                         onClick={this.checkedChange}
                                                         className={type == '1'
-                                                            ? 'checked'
-                                                            : ''}></span>管理员
+                                                          ? 'checked'
+                                                          : ''}></span>管理员
                   </div>
                 </div>
                 <div className="pull-right hide"><a href="javascript:;"
@@ -236,23 +237,24 @@ class LoginMainView extends ReactComponentBase {
             </div>
           </div>
         </div>
-    );
+      </div>
+    )
   }
 }
 
 const loginType = state => {
-  return state.login_type;
-};
+  return state.login_type
+}
 const loginError = state => {
-  return state.login_error;
-};
+  return state.login_error
+}
 
 const getLoginType = createSelector([loginType, loginError],
-    (loginType, loginError) => {
-      return {
-        type: loginType,
-        error: loginError,
-      };
-    });
+  (loginType, loginError) => {
+    return {
+      type: loginType,
+      error: loginError,
+    }
+  })
 
-export default connect(getLoginType)(LoginMainView);
+export default connect(getLoginType)(LoginMainView)
