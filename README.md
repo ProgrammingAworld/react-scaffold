@@ -11,6 +11,7 @@
 #ruby
 gem sources --remove https://rubygems.org/
 gem sources -a https://ruby.taobao.org/
+```
 
 #### 安装依赖包
 
