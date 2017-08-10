@@ -9,7 +9,6 @@ import Tools from './Tools'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import PureRenderMixin from 'react-addons-pure-render-mixin'
 import Immutable from 'immutable'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider, connect } from 'react-redux'
@@ -56,7 +55,6 @@ export {
   React,
   ReactDOM,
   PropTypes,
-  PureRenderMixin,
   Immutable,
   storeCreateByReducer,
   combineReducers,

@@ -2,13 +2,12 @@
  * Created by anchao on 17-7-6.
  */
 
-import {React, PropTypes, PureRenderMixin} from '../common/Util'
-class ReactComponentBase extends React.Component {
+import {React, PropTypes} from '../common/Util'
+class ReactComponentBase extends React.PureComponent {
   constructor (props, context, updater) {
     super(props)
 
     this.stateChange = this.stateChange.bind(this)
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
     // 禁止空格
     this.forbitBlackSpace = this.forbitBlackSpace.bind(this)
     // 禁止默认事件并禁止冒泡
