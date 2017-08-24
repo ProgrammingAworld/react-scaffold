@@ -13,7 +13,7 @@ class LoginMainView extends ReactComponentBase {
 
   componentDidMount () {
     //用户名获得焦点
-    this.refs.username.focus()
+    this.username.focus()
 
     let particles = {
       'particles': {
@@ -147,17 +147,17 @@ class LoginMainView extends ReactComponentBase {
 
   login = () => {
     let {dispatch, type} = this.props
-    let username = this.refs.username.value.trim()
-    let pwd = this.refs.pwd.value.trim()
+    let username = this.username.value.trim()
+    let pwd = this.pwd.value.trim()
 
     if (username.length == 0) {
-      this.refs.username.focus()
+      this.username.focus()
       dispatch(actionCreator.setError('请输入用户名'))
       return
     }
 
     if (pwd.length == 0) {
-      this.refs.pwd.focus()
+      this.pwd.focus()
       dispatch(actionCreator.setError('请输入密码'))
       return
     }
@@ -198,9 +198,9 @@ class LoginMainView extends ReactComponentBase {
           <div id="particles-js"></div>
           <div className="loginmain">
             <div className="input-group">
-              <input type="text" ref="username" className="login-user"
+              <input type="text" ref={input=>this.username=input} className="login-user"
                      onKeyDown={this.forbidSpace}/>
-              <input type="password" ref="pwd" className="login-pwd"/>
+              <input type="password" ref={input=>this.pwd=input} className="login-pwd"/>
               <i className="fa fa-user-o fa-lg"></i>
               <i className="fa fa-bell-o fa-lg pwdico"></i>
             </div>
