@@ -19,7 +19,7 @@ class Tools {
   }
 
   static getStrLen (str) {
-        // 计算字符串长度(英文占1个字符，中文汉字占2个字符)
+    // 计算字符串长度(英文占1个字符，中文汉字占2个字符)
     var len = 0
     for (var i = 0; i < str.length; i++) {
       if (str.charCodeAt(i) > 127 || str.charCodeAt(i) === 94) {
@@ -66,12 +66,15 @@ class Tools {
     }
 
     if (/(y+)/.test(format)) {
-      format = format.replace(RegExp.$1, (oDate.getFullYear() + '').substr(4 - RegExp.$1.length))
+      format = format.replace(RegExp.$1,
+        (oDate.getFullYear() + '').substr(4 - RegExp.$1.length))
     }
 
     for (var k in o) {
       if (new RegExp('(' + k + ')').test(format)) {
-        format = format.replace(RegExp.$1, RegExp.$1.length === 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length))
+        format = format.replace(RegExp.$1,
+          RegExp.$1.length === 1 ? o[k] : ('00' + o[k]).substr(
+            ('' + o[k]).length))
       }
     }
 
@@ -79,7 +82,7 @@ class Tools {
   }
 
   static formatSdate (sDate) {
-        // 默认sDate格式为：2015-10-09 20:45:35
+    // 默认sDate格式为：2015-10-09 20:45:35
     if (typeof sDate === 'string') {
       sDate = sDate.trim()
 
@@ -91,11 +94,16 @@ class Tools {
     return sDate
   }
 
-  static execObj (obj, params) {
-    if (obj) {
-      obj[params].init()
-    } else {
-      console.log('connModule=', obj)
+  static makeActionCreator (type, ...argNames) {
+    //生成静态acionCreator
+    return function (...args) {
+      let action = {type}
+
+      argNames.forEach((arg, index) => {
+        action[arg] = args[index]
+      })
+
+      return action
     }
   }
 }
