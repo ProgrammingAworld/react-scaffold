@@ -10,7 +10,7 @@ const actionCreator = {
     return dispatch => {
       TodoService.getAllTodo().done(oData => {
         if (oData.statusCode === 200) {
-          dispatch(this.setAllTodo(oData.list))
+          fnCb(true, oData.list)
         } else {
           fnCb(false, oData.message)
         }

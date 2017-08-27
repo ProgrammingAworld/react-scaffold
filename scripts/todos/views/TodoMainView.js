@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { React, connect, createSelector } from '../../common/Util'
+import { React, connect, createSelector, dialog } from '../../common/Util'
 import ReactComponentBase from '../../base/ReactComponentBase'
 import * as actionTypes from '../actions/actionTypes'
 import actionCreator from '../actions/actionCreator'
@@ -16,7 +16,13 @@ class TodoMainView extends ReactComponentBase {
 
   componentDidMount () {
     const {dispatch} = this.props
-    dispatch(actionCreator.getAllTodo())
+    dispatch(actionCreator.getAllTodo((status, data) => {
+      if (status) {
+        dispatch(actionCreator.setAllTodo(data))
+      } else {
+        dialog.alert(data, 'error')
+      }
+    }))
   }
 
   render () {
