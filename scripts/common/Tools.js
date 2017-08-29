@@ -95,8 +95,8 @@ class Tools {
   }
 
   static makeActionCreator (type, ...argNames) {
-    //生成静态acionCreator
-    return function (...args) {
+    // 生成静态acionCreator
+    return (...args) => {
       let action = {type}
 
       argNames.forEach((arg, index) => {
@@ -104,6 +104,17 @@ class Tools {
       })
 
       return action
+    }
+  }
+
+  static createReducer (initialState, handlers) {
+    // 生成reducer
+    return (state = initialState, action) => {
+      if (handlers.hasOwnProperty(action.type)) {
+        return handlers[action.type](state, action)
+      } else {
+        return state
+      }
     }
   }
 }
