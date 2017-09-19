@@ -194,44 +194,44 @@ class LoginMainView extends ReactComponentBase {
 
     return (
       <div id='chief'>
-        <div className="login">
-          <div id="particles-js"></div>
-          <div className="loginmain">
-            <div className="input-group">
-              <input type="text" ref={input=>this.username=input} className="login-user"
+        <div className='login'>
+          <div id='particles-js'></div>
+          <div className='loginmain'>
+            <div className='input-group'>
+              <input type='text' ref={input=>this.username=input} className='login-user'
                      onKeyDown={this.forbidSpace}/>
-              <input type="password" ref={input=>this.pwd=input} className="login-pwd"/>
-              <i className="fa fa-user-o fa-lg"></i>
-              <i className="fa fa-bell-o fa-lg pwdico"></i>
+              <input type='password' ref={input=>this.pwd=input} className='login-pwd'/>
+              <i className='fa fa-user-o fa-lg'></i>
+              <i className='fa fa-bell-o fa-lg pwdico'></i>
             </div>
-            <div className="login-btn">
+            <div className='login-btn'>
               <div className={errorCls}><i
-                className="fa fa-exclamation-circle fa-lg"></i>{error}</div>
-              <div className="clearfix"></div>
-              <button className="login_button pull-left hide"
+                className='fa fa-exclamation-circle fa-lg'></i>{error}</div>
+              <div className='clearfix'></div>
+              <button className='login_button pull-left hide'
                       onClick={this.PKIlogin}>PKI登录
               </button>
-              <button className="login_button pull-right" onClick={this.login}>
+              <button className='login_button pull-right' onClick={this.login}>
                 登录
               </button>
-              <div className="clearfix"></div>
-              <div className="rolerow">
-                <div className="pull-left">
-                  <div className="pull-left role"><span value="0"
+              <div className='clearfix'></div>
+              <div className='rolerow'>
+                <div className='pull-left'>
+                  <div className='pull-left role'><span value='0'
                                                         onClick={this.checkedChange}
                                                         className={type == '0'
                                                           ? 'checked'
                                                           : ''}></span>用户
                   </div>
-                  <div className="pull-left role"><span value="1"
+                  <div className='pull-left role'><span value='1'
                                                         onClick={this.checkedChange}
                                                         className={type == '1'
                                                           ? 'checked'
                                                           : ''}></span>管理员
                   </div>
                 </div>
-                <div className="pull-right hide"><a href="javascript:;"
-                                                    target="_blank">下载证书</a>
+                <div className='pull-right hide'><a href='javascript:;'
+                                                    target='_blank'>下载证书</a>
                 </div>
               </div>
             </div>
