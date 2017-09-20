@@ -4,7 +4,7 @@
   "description": "ac frontEnd solution",
   "main": "app.js",
   "scripts": {
-    "dev": "webpack-dev-server --port 3333 --devtool eval --progress --colors --hot --content-base dist",
+    "dev": "webpack-dev-server --port 3333 --devtool eval --progress --colors --inline --hot --content-base dist",
     "test": "jest",
     "test:watch": "npm test -- --watch",
     "jsdoc": "jsdoc ./scripts/*.js --readme ./README.md -t ./node_modules/ink-docstrap/template -c ./conf.json",
