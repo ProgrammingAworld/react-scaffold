@@ -10,7 +10,8 @@ var changed = require('gulp-changed')
 var pug = require('gulp-pug')
 var replace = require('gulp-replace')
 // css
-var compass = require('gulp-compass')
+var sass = require('gulp-sass')
+var sourcemaps = require('gulp-sourcemaps');
 var picbase64 = require('gulp-base64')
 var makeUrlVer = require('gulp-make-css-url-version')
 // image
@@ -61,12 +62,10 @@ gulp.task('pug', function () {
 // 样式
 gulp.task('styles', function () {
   return gulp.src(config.sass)
+        .pipe(sourcemaps.init())
         .pipe(changed(config.distCss))
-        .pipe(compass({
-          config_file: 'config.rb',
-          css: config.distCss,
-          sass: 'css'
-        }))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(sourcemaps.write())
         .pipe(makeUrlVer({useDate: true}))
         .pipe(gulp.dest(config.distCss))
         .pipe(reload({stream: true}))
@@ -74,12 +73,9 @@ gulp.task('styles', function () {
 
 gulp.task('styles_build', function () {
   return gulp.src(config.sass)
+        .pipe(sourcemaps.init())
         .pipe(changed(config.distCss))
-        .pipe(compass({
-          config_file: 'config_build.rb',
-          css: config.distCss,
-          sass: 'css'
-        }))
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(picbase64({
           baseDir: 'dist',
           extensions: ['png'],

@@ -29,6 +29,9 @@ module.exports = {
         presets: ['env', 'stage-0', 'react'],
         compact: false
       }
+    }, {
+      test: /.scss$/,
+      loader: ['style-loader', 'css-loader', 'sass-loader']
     }]
   },
   plugins: [
