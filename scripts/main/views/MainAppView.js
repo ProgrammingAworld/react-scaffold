@@ -11,6 +11,7 @@ import {
 import ReactComponentBase from '../../base/ReactComponentBase'
 import HeaderView from './HeaderView'
 import TodoMainView from '../../todos/views/TodoMainView'
+import TableMainView from '../../table/views/TableMainView'
 
 class MainAppView extends ReactComponentBase {
   constructor (props) {
@@ -23,6 +24,7 @@ class MainAppView extends ReactComponentBase {
       <div id='chief'>
         <HeaderView />
         <Route path={`${url}/todos`} component={(props) => <TodoMainView {...props} />} />
+        <Route path={`${url}/table`} component={(props) => <TableMainView {...props} />} />
         <Route path={url} exact render={() => <Redirect to={`${url}/todos`} />} />
       </div>
     )

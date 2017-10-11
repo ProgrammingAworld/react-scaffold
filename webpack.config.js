@@ -23,7 +23,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      loader: ['babel'],
+      loader: 'babel',
       query: {
         cacheDirectory: true,
         presets: ['env', 'stage-0', 'react'],
@@ -38,6 +38,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
+    historyApiFallback: true,
     host: '0.0.0.0',
     contentBase: path.join(__dirname, 'dist'),
     compress: true,

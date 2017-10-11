@@ -74,6 +74,7 @@
     "babel-cli": "^6.24.1",
     "bootstrap-sass": "^3.3.7",
     "compass-mixins": "^0.12.10",
+    "fixed-data-table-2": "^0.8.1",
     "history": "^4.6.3",
     "immutable": "^3.8.1",
     "ink-docstrap": "^1.3.0",
