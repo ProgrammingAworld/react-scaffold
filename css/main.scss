@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+//compass
 @import "../node_modules/compass-mixins/lib/compass";
 @import "../node_modules/compass-mixins/lib/animate";
 @import "../node_modules/compass-mixins/lib/lemonade";
@@ -16,7 +17,7 @@
 //公共
 @import "common/mixins/common";
 @import "common/public";
-@import "common/bootstrapExt/_bootstrap.ext";
+@import "common/bootstrapExt/bootstrap.ext";
 @import "common/container";
 @import "common/plugins/tree";
 
