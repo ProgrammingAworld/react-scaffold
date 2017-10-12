@@ -98,5 +98,5 @@
       "plugins"
     ]
   },
-  "pre-commit": [ "fixJsStandard" ]
+  "pre-commit": [ "test" ]
 }
