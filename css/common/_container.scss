@@ -18,6 +18,7 @@
 
       & > .main404{
         @include size(100%,100%);
+        text-align: center;
         background:url('../images/404.gif') center center no-repeat;
         position: relative;
         overflow: hidden;
