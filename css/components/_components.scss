@@ -1,5 +1,5 @@
 .componentmain{
-  @include size(100%, 100%);
+  @include size(100%, calc(100% - 60px));
   overflow: hidden;
 
   & > div:first-child{
@@ -34,5 +34,6 @@
     overflow: auto;
 
     @import "tableSec";
+    @import "acesec";
   }
 }
