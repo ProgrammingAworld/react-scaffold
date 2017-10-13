@@ -17,8 +17,9 @@ class AceExampleView extends ReactComponentBase {
   render(){
     return (
       <div className='acesec'>
+        <h3>基于：react-ace</h3>
         <AceEditor
-          height="100%"
+          height="calc(100% - 26px)"
           width="100%"
           mode='javascript'
           theme='github'

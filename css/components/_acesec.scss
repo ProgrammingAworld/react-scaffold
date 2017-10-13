@@ -1,5 +1,6 @@
 .acesec{
   @include size(100%,100%);
+  overflow:hidden;
 
   .ace-github .ace_print-margin{
     background: transparent!important;
