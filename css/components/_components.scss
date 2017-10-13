@@ -1,0 +1,15 @@
+.componentmain{
+  @include size(100%, 100%);
+  overflow: hidden;
+
+  & > div:first-child{
+    @include size(240px,100%);
+    border-right: 1px solid $gray-55;
+    overflow: auto;
+  }
+
+  & > div:last-child{
+    @include size(calc(100% - 240px), 100%);
+    overflow: auto;
+  }
+}

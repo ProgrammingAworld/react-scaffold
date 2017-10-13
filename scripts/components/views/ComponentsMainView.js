@@ -63,7 +63,7 @@ class TableMainView extends ReactComponentBase {
     const {schema, dataList, currentIndex, tableWidth} = this.state
 
     return (
-      <div style={{border: '1px solid red'}} id='tableSec'>
+      <div id='tableSec'>
         <Table
           rowsCount={dataList.length}
           scrollToColumn={currentIndex}
