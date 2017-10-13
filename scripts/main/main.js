@@ -34,6 +34,7 @@ class Main {
     })
 
     // 全局loading画面及错误处理
+    // 这里需要增加一个参数，阻止loading画面
     $(document).ajaxSend(function (event, jqXHR, ajaxOptions) {
       // 不需要loading画面的ajax请求在这里特殊处理一下
       let url = ajaxOptions.url
