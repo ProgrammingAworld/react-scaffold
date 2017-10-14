@@ -18,7 +18,7 @@ import { routerReducer } from 'react-router-redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { createSelector } from 'reselect'
-require('../plugins/bootstrap')
+// require('../plugins/bootstrap')
 
 // state日志
 const logger = createLogger({

@@ -1,0 +1,29 @@
+.bootstrapsec{
+  @include size(100%,100%);
+  overflow:hidden;
+
+  & > div:first-of-type{
+    @include size(100%, calc(100% - 66px));
+    padding: 20px;
+    overflow: auto;
+
+    fieldset{
+      border:1px solid $gray-cc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 20px;
+
+      legend{
+        width: auto;
+        display: inline-block;
+        padding: 0 10px;
+        border: 0;
+      }
+    }
+
+    .mybtn{
+      @extend .btn;
+      background-color: pink;
+    }
+  }
+}
