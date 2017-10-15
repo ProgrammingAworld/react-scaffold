@@ -10,7 +10,8 @@ import {
   MenuItem,
   ToggleButtonGroup,
   ToggleButton,
-  Glyphicon
+  Glyphicon,
+  FormControl
 } from 'react-bootstrap'
 
 class BootstrapReactView extends ReactComponentBase {
@@ -67,7 +68,16 @@ class BootstrapReactView extends ReactComponentBase {
                 <Button>&lt;&lt;</Button>
                 <Button>1</Button>
                 <Button>2</Button>
-                <DropdownButton id='language' title='语言' bsSize='lg' bsStyle='info'>
+                <DropdownButton
+                  id='language'
+                  title='语言'
+                  bsSize='lg'
+                  bsStyle='info'
+                  defaultOpen
+                  onSelect={(eventKey,e)=>console.log(eventKey,e)}
+                  onToggle={(isOpen,e,eventType)=>console.log(isOpen,e,eventType)}
+                  rootCloseEvent='click'
+                >
                   <MenuItem eventKey='1'>中文</MenuItem>
                   <MenuItem eventKey='2'>英文</MenuItem>
                 </DropdownButton>
@@ -166,6 +176,7 @@ class BootstrapReactView extends ReactComponentBase {
                   <MenuItem eventKey='4'>王菲</MenuItem>
                 </Dropdown.Menu>
               </Dropdown>
+              <MyDropdownList title='列表' />
             </ButtonToolbar>
           </fieldset>
           <fieldset>
@@ -265,6 +276,108 @@ class CheckboxGroupButtons extends ReactComponentBase{
         <ToggleButton value='eating'>eating</ToggleButton>
         <ToggleButton value='run'>run</ToggleButton>
       </ToggleButtonGroup>
+    )
+  }
+}
+
+// 自定义dropdownlist
+class MyDropdownList extends ReactComponentBase{
+  constructor (props){
+    super(props)
+
+    this.state = {
+      id:'dropdown-title-'+Date.now(),
+      value:'',
+      open: false
+    }
+  }
+
+  valueChange = e=>{
+    this.setState({
+      value:e.currentTarget.value
+    })
+  }
+
+  toggleHandler = (isOpen,e,eventType)=>{
+    console.log(isOpen,e,eventType)
+
+    this.setState({
+      open: isOpen
+    })
+  }
+
+  render(){
+    const {title} = this.props
+    const {id,value,open} = this.state
+
+    return (
+      <Dropdown id={id}
+                rootCloseEvent='mousedown'
+                open={open}
+                onToggle={this.toggleHandler}
+      >
+        <CustomToggle bsRole='toggle'>{title}</CustomToggle>
+        <CustomMenu bsRole='menu' value={value} valueChange={this.valueChange}>
+          <MenuItem eventKey='1' onSelect={e=>this.setState({open:false})}>ok</MenuItem>
+          <MenuItem eventKey='2' active>error</MenuItem>
+          <MenuItem eventKey='3'>warning</MenuItem>
+          <MenuItem eventKey='4'>info</MenuItem>
+        </CustomMenu>
+      </Dropdown>
+    )
+  }
+}
+
+class CustomToggle extends ReactComponentBase{
+  constructor (props){
+    super(props)
+  }
+
+  titleClick = e=>{
+    e.preventDefault()
+    this.props.onClick(e)
+  }
+
+  render(){
+    return (
+      <a href='javascript:;' onClick={this.titleClick}>{this.props.children}</a>
+    )
+  }
+}
+
+class CustomMenu extends ReactComponentBase{
+  constructor (props){
+    super(props)
+  }
+
+  focusNext() {
+    const input = ReactDOM.findDOMNode(this.input)
+
+    if(input){
+      input.focus()
+    }
+  }
+
+  render(){
+    let {value, valueChange, children} = this.props;
+
+    return (
+      <div className='dropdown-menu' style={{padding:'10px'}}>
+        <FormControl
+          ref={c => this.input = c}
+          type='text'
+          placeholder='请输入文件名...'
+          value={value}
+          onChange={valueChange}
+        />
+        <ul className='list-unstyled'>
+          {
+            React.Children.toArray(children).filter(child => (
+              value.trim() == null || child.props.children.includes(value)
+            ))
+          }
+        </ul>
+      </div>
     )
   }
 }
