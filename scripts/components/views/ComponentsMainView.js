@@ -1,4 +1,4 @@
-import { React, connect, createSelector, NavLink, Route, Redirect } from '../../common/Util'
+import { React, connect, withRouter, createSelector, NavLink, Route, Redirect } from '../../common/Util'
 import ReactComponentBase from '../../base/ReactComponentBase'
 import TableExampleView from './TableExampleView'
 import AceExampleView from './AceExampleView'
@@ -36,4 +36,4 @@ const componentData = createSelector([], () => {
   return {}
 })
 
-export default connect(componentData)(ComponentsMainView)
+export default withRouter(connect(componentData)(ComponentsMainView))

@@ -2,7 +2,7 @@
  * Created by anchao on 2016/7/26.
  */
 
-import { React, connect, createSelector } from '../../common/Util'
+import { React, connect, withRouter, createSelector } from '../../common/Util'
 import ReactComponentBase from '../../base/ReactComponentBase'
 import actionCreator from '../actions/actionCreator'
 
@@ -257,4 +257,4 @@ const getLoginType = createSelector([loginType, loginError],
     }
   })
 
-export default connect(getLoginType)(LoginMainView)
+export default withRouter(connect(getLoginType)(LoginMainView))

@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { React, connect, createSelector, dialog } from '../../common/Util'
+import { React, connect, withRouter, createSelector, dialog } from '../../common/Util'
 import ReactComponentBase from '../../base/ReactComponentBase'
 import * as actionTypes from '../actions/actionTypes'
 import actionCreator from '../actions/actionCreator'
@@ -70,4 +70,4 @@ const getTodosByFilter = createSelector([todos, filter], (aTodos, sFilter) => {
   }
 })
 
-export default connect(getTodosByFilter)(TodoMainView)
+export default withRouter(connect(getTodosByFilter)(TodoMainView))
