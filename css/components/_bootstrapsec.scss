@@ -18,6 +18,18 @@
         display: inline-block;
         padding: 0 10px;
         border: 0;
+        cursor: pointer;
+      }
+
+      .fold{
+        @include transition;
+        @include transform(rotate(-90deg));
+      }
+
+      & > .foldsec3 > .open{
+        position: static;
+        display: block;
+        clear: left;
       }
     }
 
