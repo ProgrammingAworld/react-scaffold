@@ -71,7 +71,8 @@ class Main {
       // console.log("Error requesting page " + settings.url);
       // 关闭Loading画面
       this.closeLoading(settings.url)
-      dialog.alert('当前服务不可用！', 'warning')
+      // cmd + ctr + space -->emoji
+      dialog.alert('当前服务不可用😂！', 'warning')
     }).on('click', function (e) {
 
     }).on('contextmenu', function () {
