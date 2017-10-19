@@ -10,6 +10,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import Immutable from 'immutable'
+import pathToRegExp from 'path-to-regexp'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider, connect } from 'react-redux'
 import createHistory from 'history/createHashHistory'
@@ -56,6 +57,7 @@ export {
   ReactDOM,
   PropTypes,
   Immutable,
+  pathToRegExp,
   storeCreateByReducer,
   combineReducers,
   Provider,
