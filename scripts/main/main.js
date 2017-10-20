@@ -25,6 +25,7 @@ class Main {
 
   event () {
     this.globalEvent()
+    this.unloadModule()
   }
 
   globalEvent () {
@@ -78,6 +79,15 @@ class Main {
     }).on('contextmenu', function () {
 
     })
+  }
+
+  unloadModule () {
+    window.addEventListener('beforeunload', e => {
+      const msg = '确定要离开吗？'
+      e.returnValue = msg
+      console.log(msg)
+      return msg
+    }, false)
   }
 }
 
