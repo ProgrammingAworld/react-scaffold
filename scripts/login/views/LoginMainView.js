@@ -15,7 +15,7 @@ class LoginMainView extends ReactComponentBase {
     //用户名获得焦点
     this.username.focus()
 
-    let particles = {
+    const particles = {
       'particles': {
         'number': {
           'value': 50,
@@ -175,12 +175,6 @@ class LoginMainView extends ReactComponentBase {
     dispatch(actionCreator.setUserName('admin'))
   }
 
-  forbidSpace = e => {
-    if (e.which == 32) {
-      e.preventDefault()
-    }
-  }
-
   gotoUrl = url => {
     this.props.history.replace(url)
   }
@@ -199,7 +193,7 @@ class LoginMainView extends ReactComponentBase {
           <div className='loginmain'>
             <div className='input-group'>
               <input type='text' ref={input=>this.username=input} className='login-user'
-                     onKeyDown={this.forbidSpace}/>
+                     onKeyDown={this.forbitBlackSpace}/>
               <input type='password' ref={input=>this.pwd=input} className='login-pwd'/>
               <i className='fa fa-user-o fa-lg'></i>
               <i className='fa fa-bell-o fa-lg pwdico'></i>
