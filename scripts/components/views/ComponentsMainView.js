@@ -13,6 +13,7 @@ import {config} from '../../conf/config'
 import TableExampleView from './components/TableExampleView'
 import AceExampleView from './components/AceExampleView'
 import BootstrapReact from './components/BootstrapReactView'
+import ValidatorView from './components/ValidatorView'
 
 class ComponentsMainView extends ReactComponentBase {
   constructor (props) {
@@ -29,6 +30,7 @@ class ComponentsMainView extends ReactComponentBase {
             <li><NavLink replace to={config.url.app.table} activeClassName='active'>表格</NavLink></li>
             <li><NavLink replace to={config.url.app.codeeditor} activeClassName='active'>代码编辑器</NavLink></li>
             <li><NavLink replace to={config.url.app.bootstrap} activeClassName='active'>react-bootstrap</NavLink></li>
+            <li><NavLink replace to={config.url.app.validator} activeClassName='active'>validator</NavLink></li>
           </ul>
         </div>
         <div className='pull-right'>
@@ -36,6 +38,7 @@ class ComponentsMainView extends ReactComponentBase {
             <Route path={config.url.app.table} component={(props) => <TableExampleView {...props} />} />
             <Route path={config.url.app.codeeditor} component={(props) => <AceExampleView {...props} />} />
             <Route path={config.url.app.bootstrap} component={(props) => <BootstrapReact {...props} />} />
+            <Route path={config.url.app.validator} component={(props) => <ValidatorView {...props} />} />
             <Route path={url} exact render={() => <Redirect to={config.url.app.table} />} />
           </Switch>
         </div>
