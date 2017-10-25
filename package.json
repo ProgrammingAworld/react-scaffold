@@ -99,7 +99,8 @@
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1"
+    "reselect": "^3.0.1",
+    "validator": "^9.1.1"
   },
   "standard": {
     "ignore": [

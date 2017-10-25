@@ -1,5 +1,5 @@
-import { React, dialog } from '../../common/Util'
-import ReactComponentBase from '../../base/ReactComponentBase'
+import { React, dialog } from '../../../common/Util'
+import ReactComponentBase from '../../../base/ReactComponentBase'
 import classNames from 'classnames'
 import {
   ButtonGroup,

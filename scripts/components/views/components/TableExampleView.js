@@ -1,5 +1,5 @@
-import { React } from '../../common/Util'
-import ReactComponentBase from '../../base/ReactComponentBase'
+import { React } from '../../../common/Util'
+import ReactComponentBase from '../../../base/ReactComponentBase'
 import {Table, Column, Cell} from 'fixed-data-table-2'
 
 class TableExampleView extends ReactComponentBase {

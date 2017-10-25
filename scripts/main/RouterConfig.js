@@ -13,6 +13,7 @@ import {
   createHistory
 } from '../common/Util'
 import { reducers } from './reducers'
+import { config } from '../conf/config'
 import LoginView from '../login/views/LoginMainView'
 import MainAppView from '../main/views/MainAppView'
 import Main404View from '../main/views/Main404View'
@@ -26,9 +27,9 @@ export default class RouterConfig {
       <Provider store={store}>
         <Router hashHistory={history}>
           <Switch>
-            <Route path='/' exact render={() => <Redirect to='/login' />} />
-            <Route path='/login' component={LoginView} />
-            <Route path='/app' replace component={MainAppView} />
+            <Route path={config.url.root} exact render={() => <Redirect to='/login' />} />
+            <Route path={config.url.login.root} component={LoginView} />
+            <Route path={config.url.app.root} replace component={MainAppView} />
             <Route component={Main404View} />
           </Switch>
         </Router>

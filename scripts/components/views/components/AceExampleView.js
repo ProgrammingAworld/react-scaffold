@@ -1,5 +1,5 @@
-import { React } from '../../common/Util'
-import ReactComponentBase from '../../base/ReactComponentBase'
+import { React } from '../../../common/Util'
+import ReactComponentBase from '../../../base/ReactComponentBase'
 import brace from 'brace'
 import AceEditor from 'react-ace'
 import 'brace/mode/javascript'

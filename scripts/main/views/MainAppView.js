@@ -6,9 +6,11 @@ import {
   connect,
   createSelector,
   Route,
-  Redirect
+  Redirect,
+  Switch
 } from '../../common/Util'
 import ReactComponentBase from '../../base/ReactComponentBase'
+import {config} from '../../conf/config'
 import HeaderView from './HeaderView'
 import TodoMainView from '../../todos/views/TodoMainView'
 import ComponentsMainView from '../../components/views/ComponentsMainView'
@@ -23,9 +25,11 @@ class MainAppView extends ReactComponentBase {
     return (
       <div id='chief'>
         <HeaderView />
-        <Route path={`${url}/todos`} component={(props) => <TodoMainView {...props} />} />
-        <Route path={`${url}/component`} component={(props) => <ComponentsMainView {...props} />} />
-        <Route path={url} exact render={() => <Redirect to={`${url}/todos`} />} />
+        <Switch>
+          <Route path={config.url.app.todos} component={(props) => <TodoMainView {...props} />} />
+          <Route path={config.url.app.component} component={(props) => <ComponentsMainView {...props} />} />
+          <Route path={url} exact render={() => <Redirect to={config.url.app.todos} />} />
+        </Switch>
       </div>
     )
   }

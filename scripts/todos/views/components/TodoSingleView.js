@@ -2,8 +2,8 @@
  * Created by anchao on 2016/6/30.
  */
 
-import {React, Immutable} from '../../common/Util';
-import ReactComponentBase from '../../base/ReactComponentBase';
+import {React, Immutable} from '../../../common/Util';
+import ReactComponentBase from '../../../base/ReactComponentBase';
 
 class TodoSingleView extends ReactComponentBase {
   constructor(props) {

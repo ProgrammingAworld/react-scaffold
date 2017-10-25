@@ -1,8 +1,18 @@
-import { React, connect, withRouter, createSelector, NavLink, Route, Redirect } from '../../common/Util'
+import {
+  React,
+  connect,
+  withRouter,
+  createSelector,
+  NavLink,
+  Route,
+  Redirect,
+  Switch
+} from '../../common/Util'
 import ReactComponentBase from '../../base/ReactComponentBase'
-import TableExampleView from './TableExampleView'
-import AceExampleView from './AceExampleView'
-import BootstrapReact from './BootstrapReactView'
+import {config} from '../../conf/config'
+import TableExampleView from './components/TableExampleView'
+import AceExampleView from './components/AceExampleView'
+import BootstrapReact from './components/BootstrapReactView'
 
 class ComponentsMainView extends ReactComponentBase {
   constructor (props) {
@@ -16,16 +26,18 @@ class ComponentsMainView extends ReactComponentBase {
       <div className='componentmain clearfix'>
         <div className='pull-left'>
           <ul className='list-unstyled'>
-            <li><NavLink replace to='/app/component/table' activeClassName='active'>表格</NavLink></li>
-            <li><NavLink replace to='/app/component/codeeditor' activeClassName='active'>代码编辑器</NavLink></li>
-            <li><NavLink replace to='/app/component/bootstrap' activeClassName='active'>react-bootstrap</NavLink></li>
+            <li><NavLink replace to={config.url.app.table} activeClassName='active'>表格</NavLink></li>
+            <li><NavLink replace to={config.url.app.codeeditor} activeClassName='active'>代码编辑器</NavLink></li>
+            <li><NavLink replace to={config.url.app.bootstrap} activeClassName='active'>react-bootstrap</NavLink></li>
           </ul>
         </div>
         <div className='pull-right'>
-          <Route path={`${url}/table`} component={(props) => <TableExampleView {...props} />} />
-          <Route path={`${url}/codeeditor`} component={(props) => <AceExampleView {...props} />} />
-          <Route path={`${url}/bootstrap`} component={(props) => <BootstrapReact {...props} />} />
-          <Route path={url} exact render={() => <Redirect to={`${url}/table`} />} />
+          <Switch>
+            <Route path={config.url.app.table} component={(props) => <TableExampleView {...props} />} />
+            <Route path={config.url.app.codeeditor} component={(props) => <AceExampleView {...props} />} />
+            <Route path={config.url.app.bootstrap} component={(props) => <BootstrapReact {...props} />} />
+            <Route path={url} exact render={() => <Redirect to={config.url.app.table} />} />
+          </Switch>
         </div>
       </div>
     )

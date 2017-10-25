@@ -5,9 +5,9 @@ import { React, connect, withRouter, createSelector, dialog } from '../../common
 import ReactComponentBase from '../../base/ReactComponentBase'
 import * as actionTypes from '../actions/actionTypes'
 import actionCreator from '../actions/actionCreator'
-import AddTodoView from './AddTodoView'
-import TodoListView from './TodoListView'
-import FooterView from './FooterView'
+import AddTodoView from './components/AddTodoView'
+import TodoListView from './components/TodoListView'
+import FooterView from './components/FooterView'
 
 class TodoMainView extends ReactComponentBase {
   constructor (props) {
