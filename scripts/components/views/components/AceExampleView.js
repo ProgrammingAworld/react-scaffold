@@ -25,6 +25,8 @@ class AceExampleView extends ReactComponentBase {
           theme='github'
           onChange={this.aceChange}
           name="UNIQUE_ID_OF_DIV"
+          showGutter={true}
+          showPrintMargin={true}
           editorProps={{$blockScrolling: true}}
         />
       </div>

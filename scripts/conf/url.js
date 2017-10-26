@@ -10,7 +10,7 @@ const url = {
     'table': '/app/component/table',
     'codeeditor': '/app/component/codeeditor',
     'bootstrap': '/app/component/bootstrap',
-    'validator': '/app/component/validator',
+    'validator': '/app/component/validator'
   }
 }
 
