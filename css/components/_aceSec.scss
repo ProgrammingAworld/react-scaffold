@@ -5,4 +5,9 @@
   .ace-github .ace_print-margin{
     background: transparent!important;
   }
+
+  // 默认行号为3位数的宽度
+  .ace_gutter-layer{
+    min-width: 55px;
+  }
 }
