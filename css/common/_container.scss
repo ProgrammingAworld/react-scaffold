@@ -1,6 +1,7 @@
 #container {
   @include size(100%, 100%);
   min-width: 1000px;
+  background: repeating-linear-gradient(rgb(244, 244, 244), rgb(244, 244, 244) 5px, transparent 6px, transparent 73px, rgb(244, 244, 244) 74px);
   .containerchild {
     @include size(100%, 100%);
     .hasmain {
@@ -13,6 +14,7 @@
 
     #chief {
       @include size(100%, 100%);
+      background: repeating-linear-gradient(90deg, rgb(244, 244, 244), rgb(244, 244, 244) 5px, transparent 6px, transparent 73px, rgb(244, 244, 244) 74px);
       position: relative;
       overflow: hidden;
 
