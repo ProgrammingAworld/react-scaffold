@@ -8,6 +8,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://0.0.0.0:3333',
     'webpack/hot/only-dev-server',
+    'react-hot-loader/patch',
     path.resolve(__dirname, 'scripts/app.js')
   ],
   resolve: {
@@ -25,10 +26,13 @@ module.exports = {
       test: /\.jsx?$/,
       exclude: /(node_modules|bower_components)/,
       loader: 'babel-loader',
-      query: {
+      options: {
         cacheDirectory: true,
         presets: ['env', 'stage-0', 'react'],
-        compact: false
+        compact: false,
+        plugins: [
+          'react-hot-loader/babel'
+        ]
       }
     }, {
       test: /.scss$/,

@@ -12,7 +12,9 @@ class LoginMainView extends ReactComponentBase {
   }
 
   componentDidMount () {
-    //用户名获得焦点
+    console.log(Date.now())
+
+    //用户名获得焦点11
     this.username.focus()
 
     const particles = {
@@ -206,7 +208,7 @@ class LoginMainView extends ReactComponentBase {
                       onClick={this.PKIlogin}>PKI登录
               </button>
               <button className='login_button pull-right' onClick={this.login}>
-                登录
+                登录11
               </button>
               <div className='clearfix'></div>
               <div className='rolerow'>

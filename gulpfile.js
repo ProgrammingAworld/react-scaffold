@@ -143,7 +143,7 @@ gulp.task('webpack', function () {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
-                query: {
+                options: {
                   cacheDirectory: true,
                   presets: ['env', 'stage-0', 'react']
                 }
@@ -174,7 +174,7 @@ gulp.task('webpack_build', function () {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel-loader',
-                query: {
+                options: {
                   cacheDirectory: true,
                   presets: ['env', 'stage-0', 'react']
                 }
