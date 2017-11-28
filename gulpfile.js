@@ -15,7 +15,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var picbase64 = require('gulp-base64')
 var makeUrlVer = require('gulp-make-css-url-version')
 // image
-var minimage = require('gulp-imageoptim')
+var minimage = require('gulp-imagemin')
 // js
 var webpack = require('webpack')
 var webpackstream = require('webpack-stream')
@@ -27,12 +27,12 @@ var config = {
   'dist': 'dist',
   'html': 'dist/*.html',
   'pug': 'html/*.pug',
-  'sass': 'css/**/*.scss',
+  'sass': 'src/css/**/*.scss',
   'distCss': 'dist/css',
   'simulate': 'simulates/*.json',
   'distsimulate': 'dist/simulates',
   'distScript': 'dist/scripts',
-  'images': 'images/{,*/}*.{gif,jpeg,jpg,png,ico}',
+  'images': 'src/images/{,*/}*.{gif,jpeg,jpg,png,ico}',
   'distImg': 'dist/images',
   'mainJs': 'app.js',
   'v': Date.now()
@@ -104,7 +104,7 @@ gulp.task('copySimulate', function () {
 
 // copy plugins
 gulp.task('copyPlugins', function () {
-  var src = 'scripts/plugins/*'
+  var src = 'src/scripts/plugins/*'
   var dest = config.distScript + '/plugins/'
 
   gulp.src(src)
@@ -118,7 +118,7 @@ gulp.task('copy', function () {
 // image
 gulp.task('images', function () {
   return gulp.src([config.images, '!images/icons/*'])
-        .pipe(minimage.optimize())
+        .pipe(minimage())
         .pipe(gulp.dest(config.distImg))
 })
 
@@ -127,7 +127,7 @@ gulp.task('webpack', function () {
         .pipe(webpackstream({
           watch: true,
           entry: {
-            app: './scripts/app.js'
+            app: './src/scripts/app.js'
           },
           output: {
             filename: '[name].js',
@@ -160,7 +160,7 @@ gulp.task('webpack_build', function () {
         .pipe(webpackstream({
           watch: false,
           entry: {
-            app: './scripts/app.js'
+            app: './src/scripts/app.js'
           },
           output: {
             filename: '[name].js'

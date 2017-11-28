@@ -8,7 +8,7 @@ class ValidatorView extends ReactComponentBase {
 
   render () {
     return (
-      <div>验证组件</div>
+      <div>验证组件1122</div>
     )
   }
 }
