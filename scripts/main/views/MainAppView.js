@@ -16,10 +16,6 @@ import TodoMainView from '../../todos/views/TodoMainView'
 import ComponentsMainView from '../../components/views/ComponentsMainView'
 
 class MainAppView extends ReactComponentBase {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     let {url} = this.props.match
     return (

@@ -11,7 +11,7 @@ module.exports = {
     path.resolve(__dirname, 'scripts/app.js')
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -21,9 +21,10 @@ module.exports = {
   },
   devtool: 'source-archives',
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
-      loader: 'babel',
+      exclude: /(node_modules|bower_components)/,
+      loader: 'babel-loader',
       query: {
         cacheDirectory: true,
         presets: ['env', 'stage-0', 'react'],

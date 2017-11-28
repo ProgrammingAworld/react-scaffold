@@ -15,7 +15,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var picbase64 = require('gulp-base64')
 var makeUrlVer = require('gulp-make-css-url-version')
 // image
-var minimage = require('gulp-imagemin')
+var minimage = require('gulp-imageoptim')
 // js
 var webpack = require('webpack')
 var webpackstream = require('webpack-stream')
@@ -118,7 +118,7 @@ gulp.task('copy', function () {
 // image
 gulp.task('images', function () {
   return gulp.src([config.images, '!images/icons/*'])
-        .pipe(minimage())
+        .pipe(minimage.optimize())
         .pipe(gulp.dest(config.distImg))
 })
 
@@ -135,14 +135,14 @@ gulp.task('webpack', function () {
           },
           devtool: 'source-map',
           resolve: {
-            extensions: ['', '.js', '.jsx']
+            extensions: ['.js', '.jsx']
           },
           module: {
-            loaders: [
+            rules: [
               {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 query: {
                   cacheDirectory: true,
                   presets: ['env', 'stage-0', 'react']
@@ -166,14 +166,14 @@ gulp.task('webpack_build', function () {
             filename: '[name].js'
           },
           resolve: {
-            extensions: ['', '.js', '.jsx']
+            extensions: ['.js', '.jsx']
           },
           module: {
-            loaders: [
+            rules: [
               {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'babel',
+                loader: 'babel-loader',
                 query: {
                   cacheDirectory: true,
                   presets: ['env', 'stage-0', 'react']
@@ -185,8 +185,7 @@ gulp.task('webpack_build', function () {
             new webpack.optimize.UglifyJsPlugin({minimize: true}),
             new webpack.DefinePlugin({
               'process.env.NODE_ENV': JSON.stringify('production')
-            }),
-            new webpack.optimize.OccurenceOrderPlugin()
+            })
           ]
         }))
         .pipe(gulp.dest(config.distScript))
