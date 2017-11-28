@@ -1,54 +1,66 @@
-/**
- * Created by anchao on 2016/5/12.
- */
 var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://0.0.0.0:3333',
-    'webpack/hot/only-dev-server',
     'react-hot-loader/patch',
-    path.resolve(__dirname, 'scripts/app.js')
+    // activate HMR for React
+
+    'webpack-dev-server/client?http://localhost:3000',
+    // bundle the client for webpack-dev-server
+    // and connect to the provided endpoint
+
+    'webpack/hot/only-dev-server',
+    // bundle the client for hot reloading
+    // only- means to only hot reload for successful updates
+
+    // './src/index.js',
+    './scripts/app.js'
+    // the entry point of our app
   ],
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
+
   output: {
+    filename: 'bundle.js',
+    // the output bundle
+
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/scripts/',
-    filename: 'app.js',
-    sourceMapFilename: 'app.map'
+
+    publicPath: '/static/'
+    // necessary for HMR to know where to load the hot update chunks
   },
-  devtool: 'source-archives',
+
+  devtool: 'inline-source-map',
+
   module: {
-    rules: [{
-      test: /\.jsx?$/,
-      exclude: /(node_modules|bower_components)/,
-      loader: 'babel-loader',
-      options: {
-        cacheDirectory: true,
-        presets: ['env', 'stage-0', 'react'],
-        compact: false,
-        plugins: [
-          'react-hot-loader/babel'
-        ]
+    rules: [
+      {
+        test: /\.jsx?$/,
+        use: [
+          'babel-loader'
+        ],
+        exclude: /node_modules/
       }
-    }, {
-      test: /.scss$/,
-      loader: ['style-loader', 'css-loader', 'sass-loader']
-    }]
+    ]
   },
+
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    // enable HMR globally
+
+    new webpack.NamedModulesPlugin(),
+    // prints more readable module names in the browser console on HMR updates
+
+    new webpack.NoEmitOnErrorsPlugin()
+    // do not emit compiled assets that include errors
   ],
+
   devServer: {
-    historyApiFallback: true,
-    host: '0.0.0.0',
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
+    host: 'localhost',
     port: 3333,
-    inline: true,
+    historyApiFallback: true,
+    // respond to 404s with index.html
+
     hot: true
+    // enable HMR on the server
   }
 }

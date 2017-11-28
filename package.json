@@ -6,6 +6,7 @@
   "scripts": {
     "mock": "json-server ./mock/db.js --port 4444",
     "dev": "webpack-dev-server --devtool eval --progress --colors",
+    "start": "webpack-dev-server",
     "build": "webpack",
     "test": "jest",
     "test:watch": "npm test -- --watch",
