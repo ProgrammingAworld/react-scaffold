@@ -3,14 +3,48 @@
  */
 import {
   $,
-  dialog
+  React,
+  ReactDOM,
+  Provider,
+  Router,
+  Route,
+  Redirect,
+  Switch,
+  storeCreateByReducer,
+  createHistory,
+  AppContainer
 } from '../common/Util'
-import RouterConfig from './RouterConfig'
+import { reducers } from './reducers'
+import RootRoutesView from './views/RootRoutesView'
+
+const store = storeCreateByReducer(reducers)
+const history = createHistory()
+const oContainer = document.querySelector('#container')
 
 class Main {
   init () {
-    new RouterConfig().init()
+    this.render(RootRoutesView)
     this.event()
+
+    if(module.hot && process.env.NODE_ENV === 'development'){
+      module.hot.accept('./views/RootRoutesView', () => {
+        const NextComponent = require('./views/RootRoutesView').default; // eslint-disable-line
+        this.render(NextComponent)
+      });
+    }
+  }
+
+  render(Componet){
+    ReactDOM.render(
+      <AppContainer>
+        <Provider store={store}>
+          <Router hashHistory={history}>
+            <Componet/>
+          </Router>
+        </Provider>
+      </AppContainer>,
+      oContainer
+    )
   }
 
   closeLoading (url) {

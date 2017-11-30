@@ -1,66 +1,89 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+const config = require('./project.config')
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    // activate HMR for React
-
-    'webpack-dev-server/client?http://localhost:3000',
-    // bundle the client for webpack-dev-server
-    // and connect to the provided endpoint
-
-    'webpack/hot/only-dev-server',
-    // bundle the client for hot reloading
-    // only- means to only hot reload for successful updates
-
-    // './src/index.js',
-    './src/scripts/app.js'
-    // the entry point of our app
-  ],
-
-  output: {
-    filename: 'bundle.js',
-    // the output bundle
-
-    path: path.resolve(__dirname, 'dist'),
-
-    publicPath: '/static/'
-    // necessary for HMR to know where to load the hot update chunks
+  entry: {
+    app: [
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?http://localhost:'+config.port,
+      'webpack/hot/only-dev-server',
+      './src/scripts/app.js'
+    ],
+    vendor: config.vendor
   },
-
-  devtool: 'inline-source-map',
-
+  output: {
+    filename: 'scripts/[name].js',
+    sourceMapFilename: '[file].map'
+  },
+  devtool: 'cheap-module-source-map',
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        use: [
-          'babel-loader'
-        ],
-        exclude: /node_modules/
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+          presets: ['env', 'stage-0', 'react']
+        }
       }
     ]
   },
-
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    // enable HMR globally
-
     new webpack.NamedModulesPlugin(),
-    // prints more readable module names in the browser console on HMR updates
-
-    new webpack.NoEmitOnErrorsPlugin()
-    // do not emit compiled assets that include errors
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: [
+        'vendor', 'manifest'
+      ],
+      filename: 'scripts/[name].js',
+      minChunks: Infinity
+    }),
+    new ChunkManifestPlugin({
+      filename: 'chunk-manifest.json',
+      manifestVariable: 'webpackManifest'
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      title: '示例工程',
+      description: '这是一个示例产品工程',
+      filename: 'index.html',
+      inject: 'body',
+      chunks: ['manifest', 'vendor', 'app'],
+      chunksSortMode: 'manual',
+      minify: {
+        removeComments: true
+      },
+      cache: false
+    })
   ],
-
   devServer: {
-    host: 'localhost',
-    port: 3333,
+    contentBase: './dist',
+    publicPath: '/',
     historyApiFallback: true,
-    // respond to 404s with index.html
-
-    hot: true
-    // enable HMR on the server
+    clientLogLevel: 'none',
+    host: 'localhost',
+    port: config.port,
+    open: true,
+    openPage: '',
+    hot: true,
+    inline: true,
+    compress: true,
+    stats: {
+      colors: true,
+      errors: true,
+      warnings: true,
+      modules: false,
+      chunks: false
+    }
   }
 }

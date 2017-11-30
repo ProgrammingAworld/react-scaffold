@@ -2,7 +2,7 @@
  * Created by anchao on 2016/7/26.
  */
 
-import { React, connect, withRouter, createSelector } from '../../common/Util'
+import { React, connect, createSelector } from '../../common/Util'
 import ReactComponentBase from '../../base/ReactComponentBase'
 import actionCreator from '../actions/actionCreator'
 
@@ -208,7 +208,7 @@ class LoginMainView extends ReactComponentBase {
                       onClick={this.PKIlogin}>PKI登录
               </button>
               <button className='login_button pull-right' onClick={this.login}>
-                登录111
+                登录
               </button>
               <div className='clearfix'></div>
               <div className='rolerow'>
@@ -253,4 +253,4 @@ const getLoginType = createSelector([loginType, loginError],
     }
   })
 
-export default withRouter(connect(getLoginType)(LoginMainView))
+export default connect(getLoginType)(LoginMainView)

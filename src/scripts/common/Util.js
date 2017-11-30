@@ -19,6 +19,7 @@ import { routerReducer } from 'react-router-redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { createSelector } from 'reselect'
+import { AppContainer } from 'react-hot-loader'
 // require('../plugins/bootstrap')
 
 // state日志
@@ -70,5 +71,6 @@ export {
   Link,
   Redirect,
   Switch,
-  createHistory
+  createHistory,
+  AppContainer
 }

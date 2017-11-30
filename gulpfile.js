@@ -3,60 +3,34 @@
  */
 'use strict'
 
-var gulp = require('gulp')
-var del = require('del')
-var changed = require('gulp-changed')
-// html
-var pug = require('gulp-pug')
-var replace = require('gulp-replace')
+const gulp = require('gulp')
+const del = require('del')
+const changed = require('gulp-changed')
 // css
-var sass = require('gulp-sass')
-var sourcemaps = require('gulp-sourcemaps');
-var picbase64 = require('gulp-base64')
-var makeUrlVer = require('gulp-make-css-url-version')
+const sass = require('gulp-sass')
+const sourcemaps = require('gulp-sourcemaps');
+const picbase64 = require('gulp-base64')
+const makeUrlVer = require('gulp-make-css-url-version')
 // image
-var minimage = require('gulp-imagemin')
+const minimage = require('gulp-imagemin')
 // js
-var webpack = require('webpack')
-var webpackstream = require('webpack-stream')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpackConfig = require('./webpack.config.js');
+const webpackstream = require('webpack-stream')
+const WebpackDevServer = require('webpack-dev-server')
+const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 
-var browserSync = require('browser-sync').create()
-var reload = browserSync.reload
+const browserSync = require('browser-sync').create()
+const reload = browserSync.reload
 
-var config = {
-  'dist': 'dist',
-  'html': 'dist/*.html',
-  'pug': 'html/*.pug',
-  'sass': 'src/css/**/*.scss',
-  'distCss': 'dist/css',
-  'simulate': 'simulates/*.json',
-  'distsimulate': 'dist/simulates',
-  'distScript': 'dist/scripts',
-  'images': 'src/images/{,*/}*.{gif,jpeg,jpg,png,ico}',
-  'distImg': 'dist/images',
-  'mainJs': 'app.js',
-  'v': Date.now()
-}
+const config = require('./project.config')
 
 // 删除
 gulp.task('clean', function () {
   return del(['dist']).then(function () {
     console.log('删除完成')
   })
-})
-
-// html_pug
-gulp.task('pug', function () {
-  gulp.src(config.pug)
-        .pipe(changed(config.pug))
-        .pipe(pug({
-          doctype: 'html',
-          pretty: false
-        }))
-        .pipe(replace(/images?\/(\w+?)(.png)/g, 'images/$1$2?v=' + config.v))
-        .pipe(replace('css/main.css', 'css/main.css?v=' + config.v))
-        .pipe(replace('scripts/app.js', 'scripts/app.js?v=' + config.v))
-        .pipe(gulp.dest(config.dist))
 })
 
 // 样式
@@ -88,11 +62,10 @@ gulp.task('styles_build', function () {
 
 // copy bootstrap服务器端字体
 gulp.task('copyFont', function () {
-  var src = 'node_modules/bootstrap-sass/assets/fonts/bootstrap/*'
-  var src2 = 'css/common/fonts/*'
-  var dest = config.distCss + '/fonts/'
+  const src = 'src/css/common/fonts/*'
+  const dest = config.distCss + '/fonts/'
 
-  return gulp.src([src, src2])
+  return gulp.src([src])
         .pipe(gulp.dest(dest))
 })
 
@@ -104,8 +77,8 @@ gulp.task('copySimulate', function () {
 
 // copy plugins
 gulp.task('copyPlugins', function () {
-  var src = 'src/scripts/plugins/*'
-  var dest = config.distScript + '/plugins/'
+  const src = 'src/scripts/plugins/*'
+  const dest = config.distScript + '/plugins/'
 
   gulp.src(src)
         .pipe(gulp.dest(dest))
@@ -127,13 +100,19 @@ gulp.task('webpack', function () {
         .pipe(webpackstream({
           watch: true,
           entry: {
-            app: './src/scripts/app.js'
+            app: [
+              'react-hot-loader/patch',
+              'webpack-dev-server/client?http://localhost:'+config.port,
+              'webpack/hot/only-dev-server',
+              './src/scripts/app.js'
+            ],
+            vendor: config.vendor
           },
           output: {
-            filename: '[name].js',
+            filename: 'scripts/[name].js',
             sourceMapFilename: '[file].map'
           },
-          devtool: 'source-map',
+          devtool: 'cheap-module-source-map',
           resolve: {
             extensions: ['.js', '.jsx']
           },
@@ -149,10 +128,41 @@ gulp.task('webpack', function () {
                 }
               }
             ]
-          }
+          },
+          plugins: [
+            new webpack.HotModuleReplacementPlugin(),
+            new webpack.NamedModulesPlugin(),
+            new webpack.DefinePlugin({
+              'process.env.NODE_ENV': JSON.stringify('development')
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+              names: [
+                'vendor', 'manifest'
+              ],
+              filename: 'scripts/[name].js',
+              minChunks: Infinity
+            }),
+            new ChunkManifestPlugin({
+              filename: 'chunk-manifest.json',
+              manifestVariable: 'webpackManifest'
+            }),
+            new HtmlWebpackPlugin({
+              template: './src/index.html',
+              title: '示例工程',
+              description: '这是一个示例产品工程',
+              filename: 'index.html',
+              inject: 'body',
+              chunks: ['manifest', 'vendor', 'app'],
+              chunksSortMode: 'manual',
+              minify: {
+                removeComments: true
+              },
+              cache: false
+            })
+          ]
         }))
-        .pipe(gulp.dest(config.distScript))
-        .pipe(reload({stream: true}))
+        .pipe(gulp.dest(config.dist))
+        // .pipe(reload({stream: true}))
 })
 
 gulp.task('webpack_build', function () {
@@ -160,10 +170,11 @@ gulp.task('webpack_build', function () {
         .pipe(webpackstream({
           watch: false,
           entry: {
-            app: './src/scripts/app.js'
+            app: './src/scripts/app.js',
+            vendor: config.vendor
           },
           output: {
-            filename: '[name].js'
+            filename: 'scripts/[name].js'
           },
           resolve: {
             extensions: ['.js', '.jsx']
@@ -185,10 +196,23 @@ gulp.task('webpack_build', function () {
             new webpack.optimize.UglifyJsPlugin({minimize: true}),
             new webpack.DefinePlugin({
               'process.env.NODE_ENV': JSON.stringify('production')
+            }),
+            new HtmlWebpackPlugin({
+              template: './src/index.html',
+              title: '示例工程',
+              description: '这是一个示例产品工程',
+              filename: 'index.html',
+              inject: 'body',
+              chunks: ['vendor', 'app'],
+              chunksSortMode: 'manual',
+              minify: {
+                removeComments: true
+              },
+              cache: false
             })
           ]
         }))
-        .pipe(gulp.dest(config.distScript))
+        .pipe(gulp.dest(config.dist))
 })
 
 gulp.task('browserSync', function () {
@@ -196,24 +220,52 @@ gulp.task('browserSync', function () {
     server: {
       baseDir: './dist/'
     },
-    port: 3333,
+    port: config.port,
     open: false
   })
 
-    // 监听模板html变化
-  gulp.watch(config.pug, ['pug'])
     // 监听sass变化
   gulp.watch(config.sass, ['styles'])
     // 监听image变化
   gulp.watch(config.image, ['images'])
 })
 
+gulp.task('webpack-dev-server', function () {
+  let myConfig = Object.create(require('./webpack.config.js'));
+  myConfig.devtool = 'eval'
+  const compiler = webpack(myConfig)
+  new WebpackDevServer(compiler, {
+    contentBase: 'dist',
+    publicPath: '/',
+    historyApiFallback: true,
+    clientLogLevel: 'none',
+    host: 'localhost',
+    port: config.port,
+    open: true,
+    openPage: '',
+    hot: true,
+    inline: true,
+    compress: true,
+    stats: {
+      colors: true,
+      errors: true,
+      warnings: true,
+      modules: false,
+      chunks: false
+    }
+  }).listen(config.port, 'localhost', function (err) {
+    if (err) {
+      console.log('webpack-dev-server', err);
+    }
+  });
+});
+
 gulp.task('build', ['clean'], function () {
-  gulp.start(['webpack_build', 'pug', 'styles_build', 'images', 'copy'])
+  gulp.start(['copy', 'webpack_build', 'styles_build', 'images'])
 })
 
 gulp.task('watch', ['clean'], function () {
-  gulp.start(['browserSync', 'webpack', 'pug', 'styles', 'images', 'copy'])
+  gulp.start(['copy', 'webpack-dev-server', 'webpack', 'styles', 'images'])
 })
 
 gulp.task('default', ['clean'], function () {
