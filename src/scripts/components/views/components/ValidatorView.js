@@ -1,4 +1,4 @@
-import { React } from '../../../common/Util'
+import { React, connect, withRouter } from '../../../common/Util'
 import ReactComponentBase from '../../../base/ReactComponentBase'
 
 class ValidatorView extends ReactComponentBase {
@@ -8,9 +8,17 @@ class ValidatorView extends ReactComponentBase {
 
   render () {
     return (
-      <div>验证组件1122</div>
+      <div>验证组件<VaTest /></div>
     )
   }
 }
 
-export default ValidatorView
+class VaTest extends ReactComponentBase{
+  render(){
+    return (
+      <div>aaa11111231231</div>
+    )
+  }
+}
+
+export default connect()(withRouter(ValidatorView))

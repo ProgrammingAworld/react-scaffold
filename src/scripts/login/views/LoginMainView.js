@@ -12,8 +12,6 @@ class LoginMainView extends ReactComponentBase {
   }
 
   componentDidMount () {
-    console.log(Date.now())
-
     //用户名获得焦点11
     this.username.focus()
 

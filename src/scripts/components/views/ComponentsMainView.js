@@ -1,7 +1,6 @@
 import {
   React,
   connect,
-  withRouter,
   createSelector,
   NavLink,
   Route,
@@ -12,7 +11,7 @@ import ReactComponentBase from '../../base/ReactComponentBase'
 import {config} from '../../conf/config'
 import TableExampleView from './components/TableExampleView'
 import AceExampleView from './components/AceExampleView'
-import BootstrapReact from './components/BootstrapReactView'
+import BootstrapReactView from './components/BootstrapReactView'
 import ValidatorView from './components/ValidatorView'
 
 class ComponentsMainView extends ReactComponentBase {
@@ -35,11 +34,11 @@ class ComponentsMainView extends ReactComponentBase {
         </div>
         <div className='pull-right'>
           <Switch>
-            <Route path={config.url.app.table} component={(props) => <TableExampleView {...props} />} />
-            <Route path={config.url.app.codeeditor} component={(props) => <AceExampleView {...props} />} />
-            <Route path={config.url.app.bootstrap} component={(props) => <BootstrapReact {...props} />} />
-            <Route path={config.url.app.validator} component={(props) => <ValidatorView {...props} />} />
-            <Route path={url} exact render={() => <Redirect to={config.url.app.table} />} />
+            <Route path={config.url.app.table} replace component={TableExampleView} />
+            <Route path={config.url.app.codeeditor} replace component={AceExampleView} />
+            <Route path={config.url.app.bootstrap} replace component={BootstrapReactView} />
+            <Route path={config.url.app.validator} replace component={ValidatorView} />
+            <Route path={url} exact render={() => <Redirect to={config.url.app.validator} />} />
           </Switch>
         </div>
       </div>
@@ -51,4 +50,4 @@ const componentData = createSelector([], () => {
   return {}
 })
 
-export default withRouter(connect(componentData)(ComponentsMainView))
+export default connect(componentData)(ComponentsMainView)

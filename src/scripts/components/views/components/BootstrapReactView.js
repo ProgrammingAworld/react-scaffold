@@ -1,4 +1,4 @@
-import { React, dialog } from '../../../common/Util'
+import { React, connect, dialog } from '../../../common/Util'
 import ReactComponentBase from '../../../base/ReactComponentBase'
 import classNames from 'classnames'
 import {
@@ -414,4 +414,5 @@ class CustomMenu extends ReactComponentBase{
   }
 }
 
-export default BootstrapReactView
+// export default withRouter(BootstrapReactView)
+export default connect()(BootstrapReactView)

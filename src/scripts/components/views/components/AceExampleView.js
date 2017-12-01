@@ -1,4 +1,4 @@
-import { React } from '../../../common/Util'
+import { React, connect } from '../../../common/Util'
 import ReactComponentBase from '../../../base/ReactComponentBase'
 import brace from 'brace'
 import AceEditor from 'react-ace'
@@ -34,4 +34,4 @@ class AceExampleView extends ReactComponentBase {
   }
 }
 
-export default AceExampleView
+export default connect()(AceExampleView)

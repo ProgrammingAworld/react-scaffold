@@ -22,8 +22,8 @@ class MainAppView extends ReactComponentBase {
       <div id='chief'>
         <HeaderView />
         <Switch>
-          <Route path={config.url.app.todos} component={(props) => <TodoMainView {...props} />} />
-          <Route path={config.url.app.component} component={(props) => <ComponentsMainView {...props} />} />
+          <Route path={config.url.app.todos} component={TodoMainView} />
+          <Route path={config.url.app.component} component={ComponentsMainView} />
           <Route path={url} exact render={() => <Redirect to={config.url.app.todos} />} />
         </Switch>
       </div>

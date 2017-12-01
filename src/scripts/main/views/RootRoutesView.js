@@ -16,7 +16,7 @@ const RootRoutesView = () => (
   <Switch>
     <Route path={config.url.root} exact render={() => <Redirect to='/login' />} />
     <Route path={config.url.login.root} component={LoginView} />
-    <Route path={config.url.app.root} replace component={MainAppView} />
+    <Route path={config.url.app.root} component={MainAppView} />
     <Route component={Main404View} />
   </Switch>
 )

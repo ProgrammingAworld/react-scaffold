@@ -1,8 +1,8 @@
-import { React } from '../../../common/Util'
+import { React, connect, createSelector } from '../../../common/Util'
 import ReactComponentBase from '../../../base/ReactComponentBase'
 import {Table, Column, Cell} from 'fixed-data-table-2'
 
-class TableExampleView extends ReactComponentBase {
+class TableExampleView extends React.Component {
   constructor (props) {
     super(props)
 
@@ -103,4 +103,8 @@ class TableExampleView extends ReactComponentBase {
   }
 }
 
-export default TableExampleView
+const componentData = createSelector([], () => {
+  return {}
+})
+
+export default connect(componentData)(TableExampleView)
