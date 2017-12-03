@@ -1,6 +1,7 @@
 /**
  * Created by anchao on 2015/12/7.
  */
+import 'babel-polyfill'
 import {
   $,
   React,
