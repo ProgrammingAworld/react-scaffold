@@ -5,10 +5,11 @@ const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 const config = require('./project.config')
 
 module.exports = {
+  watch: true,
   entry: {
     app: [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:'+config.port,
+      'webpack-dev-server/client?http://'+config.ip+':'+config.port,
       'webpack/hot/only-dev-server',
       './src/scripts/app.js'
     ],
@@ -18,8 +19,12 @@ module.exports = {
     filename: 'scripts/[name].js',
     sourceMapFilename: '[file].map'
   },
-  devtool: 'cheap-module-source-map',
+  devtool: 'cheap-module-eval-source-map',
   resolve: {
+    modules: [
+      config.defaultPath.APP_PATH,
+      'node_modules'
+    ],
     extensions: ['.js', '.jsx']
   },
   module: {
@@ -71,7 +76,7 @@ module.exports = {
     publicPath: '/',
     historyApiFallback: true,
     clientLogLevel: 'none',
-    host: 'localhost',
+    host: config.ip,
     port: config.port,
     open: true,
     openPage: '',

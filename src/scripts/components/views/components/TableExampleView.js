@@ -2,7 +2,7 @@ import { React, connect, createSelector } from '../../../common/Util'
 import ReactComponentBase from '../../../base/ReactComponentBase'
 import {Table, Column, Cell} from 'fixed-data-table-2'
 
-class TableExampleView extends React.Component {
+class TableExampleView extends ReactComponentBase {
   constructor (props) {
     super(props)
 
