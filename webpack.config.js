@@ -1,49 +1,94 @@
-/**
- * Created by anchao on 2016/5/12.
- */
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+const config = require('./project.config')
 
 module.exports = {
-  entry: [
-    'webpack-dev-server/client?http://0.0.0.0:3333',
-    'webpack/hot/only-dev-server',
-    path.resolve(__dirname, 'scripts/app.js')
-  ],
-  resolve: {
-    extensions: ['', '.js', '.jsx']
+  watch: true,
+  entry: {
+    app: [
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?http://'+config.ip+':'+config.port,
+      'webpack/hot/only-dev-server',
+      './src/scripts/app.js'
+    ],
+    vendor: config.vendor
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/scripts/',
-    filename: 'app.js',
-    sourceMapFilename: 'app.map'
+    filename: 'scripts/[name].js',
+    sourceMapFilename: '[file].map'
   },
-  devtool: 'source-archives',
+  devtool: 'cheap-module-eval-source-map',
+  resolve: {
+    modules: [
+      config.defaultPath.APP_PATH,
+      'node_modules'
+    ],
+    extensions: ['.js', '.jsx']
+  },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loader: 'babel',
-      query: {
-        cacheDirectory: true,
-        presets: ['env', 'stage-0', 'react'],
-        compact: false
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+          presets: ['env', 'stage-0', 'react']
+        }
       }
-    }, {
-      test: /.scss$/,
-      loader: ['style-loader', 'css-loader', 'sass-loader']
-    }]
+    ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: [
+        'vendor', 'manifest'
+      ],
+      filename: 'scripts/[name].js',
+      minChunks: Infinity
+    }),
+    new ChunkManifestPlugin({
+      filename: 'chunk-manifest.json',
+      manifestVariable: 'webpackManifest'
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      title: '示例工程',
+      description: '这是一个示例产品工程',
+      filename: 'index.html',
+      inject: 'body',
+      chunks: ['manifest', 'vendor', 'app'],
+      chunksSortMode: 'manual',
+      minify: {
+        removeComments: true
+      },
+      cache: false
+    })
   ],
   devServer: {
+    contentBase: './dist',
+    publicPath: '/',
     historyApiFallback: true,
-    host: '0.0.0.0',
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 3333,
+    clientLogLevel: 'none',
+    host: config.ip,
+    port: config.port,
+    open: true,
+    openPage: '',
+    hot: true,
     inline: true,
-    hot: true
+    compress: true,
+    stats: {
+      colors: true,
+      errors: true,
+      warnings: true,
+      modules: false,
+      chunks: false
+    }
   }
 }
