@@ -1,7 +1,5 @@
 const path = require('path');
-// const DB = require('./db.json');
 const jsonServer = require('json-server');
-// 获取本机ip
 const ip = require('ip').address();
 const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, 'db.json'));
