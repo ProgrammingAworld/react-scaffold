@@ -27,7 +27,9 @@ module.exports = {
     'react-router-redux',
     'redux-logger',
     'redux-thunk',
-    'reselect'
+    'reselect',
+    'particles',
+    'echarts'
   ],
   defaultPath: {
     ROOT_PATH: ROOT_PATH,

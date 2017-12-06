@@ -25,6 +25,10 @@ module.exports = {
       config.defaultPath.APP_PATH,
       'node_modules'
     ],
+    alias: {
+      particles: path.resolve(__dirname, './src/scripts/plugins/particles.js'),
+      echarts: path.resolve(__dirname, './src/scripts/plugins/echarts.min.js')
+    },
     extensions: ['.js', '.jsx']
   },
   module: {
