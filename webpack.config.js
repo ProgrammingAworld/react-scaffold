@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const config = require('./project.config')
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
   entry: {
     app: [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://'+config.ip+':'+config.port,
+      'webpack-dev-server/client?http://' + config.ip + ':' + config.port,
       'webpack/hot/only-dev-server',
       './src/scripts/app.js'
     ],
@@ -52,22 +52,20 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       names: [
-        'vendor', 'manifest'
+        'vendor', 'runtime'
       ],
       filename: 'scripts/[name].js',
       minChunks: Infinity
     }),
-    new ChunkManifestPlugin({
-      filename: 'chunk-manifest.json',
-      manifestVariable: 'webpackManifest'
-    }),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new FriendlyErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       title: '示例工程',
       description: '这是一个示例产品工程',
       filename: 'index.html',
       inject: 'body',
-      chunks: ['manifest', 'vendor', 'app'],
+      chunks: ['runtime', 'vendor', 'app'],
       chunksSortMode: 'manual',
       minify: {
         removeComments: true
@@ -82,7 +80,7 @@ module.exports = {
     clientLogLevel: 'none',
     host: config.ip,
     port: config.port,
-    open: true,
+    open: false,
     openPage: '',
     hot: true,
     inline: true,
