@@ -86,7 +86,7 @@ gulp.task('copy', function () {
   gulp.start(['copyFont', 'copySimulate', 'copyPlugins'])
 })
 
-// image
+// 图片处理
 gulp.task('images', function () {
   return gulp.src([config.images, '!images/icons/*'])
         .pipe(minimage())
