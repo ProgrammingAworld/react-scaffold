@@ -8,17 +8,15 @@ const del = require('del')
 const changed = require('gulp-changed')
 // css
 const sass = require('gulp-sass')
-const sourcemaps = require('gulp-sourcemaps');
+const sourcemaps = require('gulp-sourcemaps')
 const picbase64 = require('gulp-base64')
 const makeUrlVer = require('gulp-make-css-url-version')
 // image
 const minimage = require('gulp-imagemin')
 // js
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpackConfig = require('./webpack.config.js');
+const webpackConfig = require('./webpack.config.js')
 const webpackstream = require('webpack-stream')
-const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 
 const browserSync = require('browser-sync').create()
 const reload = browserSync.reload
@@ -88,7 +86,7 @@ gulp.task('copy', function () {
   gulp.start(['copyFont', 'copySimulate', 'copyPlugins'])
 })
 
-// image
+// 图片处理
 gulp.task('images', function () {
   return gulp.src([config.images, '!images/icons/*'])
         .pipe(minimage())
@@ -97,7 +95,7 @@ gulp.task('images', function () {
 
 gulp.task('webpack', function () {
   let myWebpackConfig = Object.assign({}, webpackConfig)
-  myWebpackConfig.entry.app.splice(1,1)
+  myWebpackConfig.entry.app.splice(1, 1)
 
   return gulp.src(config.mainJs)
         .pipe(webpackstream(myWebpackConfig))
@@ -128,13 +126,12 @@ gulp.task('webpack_build', function () {
 
 gulp.task('browserSync', function () {
   browserSync.init({
-    proxy:"",
     server: {
       baseDir: './dist/'
     },
     host: config.ip,
     port: config.port,
-    open: true
+    open: false
   })
 
     // 监听sass变化
