@@ -83,7 +83,7 @@ module.exports = {
     open: false,
     openPage: '',
     hot: true,
-    inline: true,
+    inline: false,
     compress: true,
     stats: {
       colors: true,

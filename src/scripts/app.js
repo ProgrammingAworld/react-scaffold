@@ -10,7 +10,8 @@ import {
   Router,
   storeCreateByReducer,
   createHistory,
-  AppContainer
+  AppContainer,
+  dialog
 } from './common/Util'
 import { reducers } from './main/reducers'
 import RootRoutesView from './main/views/RootRoutesView'
