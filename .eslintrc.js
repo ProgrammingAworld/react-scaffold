@@ -1,5 +1,6 @@
-{
-  "extends": "airbnb",
+module.exports = {
+  "root": true,
+  "extends": ["airbnb"],
   "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
@@ -17,29 +18,42 @@
   },
   "plugins": [
     "react",
-    "jsdoc"
+    "jsdoc",
+    "import",
+    "jsx-a11y"
   ],
+  "globals": {
+
+  },
   "rules": {
-    // Common js rules
+    // 大括号风格要求
     "brace-style": [
-      2,
+      "error",
       "1tbs", {
         "allowSingleLine": true
       }
     ],
-    "camelcase": 2,
-    "curly": 2,
-    "eqeqeq": 2,
-    "no-extend-native": 2,
-    "no-proto": 2,
-    "no-caller": 2,
+    // 一条语句也使用大括号
+    "curly": "error",
+    // 变量名使用驼峰形式
+    "camelcase": "error",
+    // 必须使用===和!==
+    "eqeqeq": "error",
+    // 禁止扩展原生对象
+    "no-extend-native": "error",
+    // 禁用__proto__
+    "no-proto": "error",
+    // 禁用 caller 或 callee
+    "no-caller": "error",
+    // 禁止未使用过的变量包括全局变量和函数中的所有参数
     "no-unused-vars": [
-      2, {
+      "error", {
         "vars": "all",
-        "args": "none"
+        "args": "all"
       }
     ],
-    "new-cap": 0,
+    // 构造函数首字母大写
+    "new-cap": "error",
     "quotes": [
       2, "single"
     ],
