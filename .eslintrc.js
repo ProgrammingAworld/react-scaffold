@@ -54,28 +54,35 @@ module.exports = {
     ],
     // 构造函数首字母大写
     "new-cap": "error",
+    // 使用单引号
     "quotes": [
-      2, "single"
+      "error", "single"
     ],
+    // 强制最大可嵌深度为3
     "max-depth": [
-      2, 3
+      "error", 3
     ],
+    // 强制函数块中的语句最大50行
     "max-statements": [
-      2, 45
+      "error", 50
     ],
+    // 强制行的最大长度100
     "max-len": [
-      2, 200
-    ],
-    "no-eq-null": 2,
-    "operator-linebreak": 2,
-    "no-multiple-empty-lines": [
-      2, {
-        "max": 2
+      "error", {
+        "code": 100,
+        "comments": 200
       }
     ],
-    "no-mixed-spaces-and-tabs": 0,
-    "space-unary-ops": 2,
-    "no-multi-spaces": 2,
+    // 与null进行比较同样使用===和!==
+    "no-eq-null": "error",
+    // 强制操作符使用一致的换行符风格
+    "operator-linebreak": "error",
+    // 不允许多个空行，默认2个空行
+    "no-multiple-empty-lines": "error",
+    // 可以使用空格和tab混合缩进
+    "no-mixed-spaces-and-tabs": "off",
+    "space-unary-ops": "error",
+    "no-multi-spaces": "error",
     "space-before-blocks": 0,
     "keyword-spacing": 0,
     "space-infix-ops": 0,
@@ -86,27 +93,27 @@ module.exports = {
       }
     ],
     "comma-dangle": 0,
-    "wrap-iife": 2,
-    "no-extra-semi": 2,
-    "semi-spacing": 2,
-    "spaced-comment": 2,
+    "wrap-iife": "error",
+    "no-extra-semi": "error",
+    "semi-spacing": "error",
+    "spaced-comment": "error",
     "func-names": 0,
 
     // NodeJs rules
-    "block-scoped-var": 2,
+    "block-scoped-var": "error",
     "global-require": 0,
-    "no-mixed-requires": 2,
-    "no-new-require": 2,
+    "no-mixed-requires": "error",
+    "no-new-require": "error",
 
     // ES6 rules
-    "arrow-spacing": 2,
-    "no-const-assign": 2,
-    "no-var": 2,
+    "arrow-spacing": "error",
+    "no-const-assign": "error",
+    "no-var": "error",
     "prefer-const": 0,
 
     // React
     "jsx-quotes": [
-      2, "prefer-double"
+      "error", "prefer-double"
     ],
     "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": 1
