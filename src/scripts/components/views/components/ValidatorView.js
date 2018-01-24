@@ -1,5 +1,6 @@
 import { React, connect, withRouter, $ } from '../../../common/Util'
 import ReactComponentBase from '../../../base/ReactComponentBase'
+import axios from 'axios'
 
 class ValidatorView extends ReactComponentBase {
   componentDidMount () {
@@ -15,13 +16,23 @@ class ValidatorView extends ReactComponentBase {
 
 class VaTest extends ReactComponentBase {
   getTime = ()=>{
-    $.get('http://192.168.25.35:3000/getTime',function (res) {
-      if(res.status === 200) {
-        console.log(res.msg)
-      } else {
-        console.log('获得失败')
-      }
-    }, 'json')
+    // $.get('http://192.168.25.35:3000/getTime',function (res) {
+    //   if(res.status === 200) {
+    //     console.log(res.msg)
+    //   } else {
+    //     console.log('获得失败')
+    //   }
+    // }, 'json')
+
+
+    const msg = 'hellow'
+    axios.get(`http://192.168.10.193:3000/handleRobotMsg?q=${msg}`)
+      .then(function (res) {
+        console.log(res.data.msg)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 
   createLog = ()=>{

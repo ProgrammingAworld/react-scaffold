@@ -66,7 +66,7 @@ module.exports = {
     "max-statements": [
       "error", 50
     ],
-    // 强制行的最大长度100
+    // 强制行的最大长度100,注释200
     "max-len": [
       "error", {
         "code": 100,
@@ -81,27 +81,41 @@ module.exports = {
     "no-multiple-empty-lines": "error",
     // 可以使用空格和tab混合缩进
     "no-mixed-spaces-and-tabs": "off",
+    // 在一元操作符之前或之后存在空格
     "space-unary-ops": "error",
+    // 禁止出现多个空格
     "no-multi-spaces": "error",
-    "space-before-blocks": 0,
-    "keyword-spacing": 0,
-    "space-infix-ops": 0,
+    // 关闭语句块之前的空格保持一致
+    "space-before-blocks": "off",
+    // 强制关键字周围空格的一致性
+    "keyword-spacing": "error",
+    // 要求中缀操作符周围有空格
+    "space-infix-ops": "error",
+    // 强制逗号前没有空格，逗号后追回一个空格
     "comma-spacing": [
-      0, {
+      "error", {
         "before": false,
         "after": true
       }
     ],
-    "comma-dangle": 0,
+    // 关闭拖尾逗号
+    "comma-dangle": "off",
+    // 立即执行函数用括号包裹起来
     "wrap-iife": "error",
+    // 禁用不必要的分号
     "no-extra-semi": "error",
+    // 强制分号前没有空格，后有空格
     "semi-spacing": "error",
+    // 注释//或/*必须跟随一个空格
     "spaced-comment": "error",
+    // 关闭命名function表达式规则
     "func-names": 0,
 
     // NodeJs rules
+    // 把var语句看作是在块级作用域范围之内
     "block-scoped-var": "error",
-    "global-require": 0,
+    // 关闭require()强制在模块顶部调用
+    "global-require": "off",
     "no-mixed-requires": "error",
     "no-new-require": "error",
 
