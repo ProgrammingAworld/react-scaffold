@@ -12,19 +12,19 @@ export default class LoginService extends BaseService {
      *        type: 用户类型{string}"0"用户,"1"管理员
      * @returns {*}
      */
-  static login (oSettings) {
-    return this.postWithParameter('', oSettings)
-  }
+    static login(oSettings) {
+        return this.postWithParameter('', oSettings)
+    }
 
-  static PKIlogin () {
-    return this.getWithParameter('')
-  }
+    static PKIlogin() {
+        return this.getWithParameter('')
+    }
 
-  static checkAuthority () {
-    return this.getWithParameter('')
-  }
+    static checkAuthority() {
+        return this.getWithParameter('')
+    }
 
-  static logout () {
-    return this.getWithParameter('')
-  }
+    static logout() {
+        return this.getWithParameter('')
+    }
 }

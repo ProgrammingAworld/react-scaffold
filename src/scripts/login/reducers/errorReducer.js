@@ -3,11 +3,13 @@
  */
 import * as actionTypes from '../actions/actionTypes'
 
-export const errorReducer = (state = '', action) => {
-  switch (action.type) {
+const errorReducer = (state = '', action) => {
+    switch (action.type) {
     case actionTypes.SET_ERROR:
-      return action.msg
+        return action.msg
     default:
-      return state
-  }
+        return state
+    }
 }
+
+export default errorReducer

@@ -97,7 +97,7 @@
               content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3" /><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z" /></svg>');
             }
           }
-          label {
+          .normal {
             text-align: left;
             white-space: pre-line;
             word-break: break-all;
@@ -178,14 +178,14 @@
             left: 0;
 
             li {
-
-              a {
+              span {
                 color: inherit;
                 margin: 3px;
                 padding: 3px 7px;
                 text-decoration: none;
                 border: 1px solid transparent;
                 border-radius: 3px;
+                cursor: pointer;
 
                 &.selected {
                   border-color: rgba(175, 47, 47, 0.2);

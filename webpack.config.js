@@ -35,6 +35,15 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
+        include: path.resolve(__dirname, './src/scripts'),
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
+      {
+        test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         options: {
