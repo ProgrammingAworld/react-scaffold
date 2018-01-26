@@ -3,11 +3,13 @@
  */
 import * as actionTypes from '../actions/actionTypes'
 
-export const userTypeReducer = (state = actionTypes.USER_TYPE[0], action) => {
-  switch (action.type) {
+const userTypeReducer = (state = actionTypes.USER_TYPE[0], action) => {
+    switch (action.type) {
     case actionTypes.SET_USER_TYPE:
-      return actionTypes.USER_TYPE[action.userType]
+        return actionTypes.USER_TYPE[action.userType]
     default:
-      return state
-  }
+        return state
+    }
 }
+
+export default userTypeReducer

@@ -1,6 +1,7 @@
 /**
  * Created by anchao on 2016/7/26.
  */
+
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
 export const KPI_LOGIN = 'KPI_LOGIN'

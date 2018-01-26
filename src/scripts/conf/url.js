@@ -1,17 +1,17 @@
 const url = {
-  'root': '/',
-  'login': {
-    'root': '/login'
-  },
-  'app': {
-    'root': '/app',
-    'todos': '/app/todos',
-    'component': '/app/component',
-    'table': '/app/component/table',
-    'codeeditor': '/app/component/codeeditor',
-    'bootstrap': '/app/component/bootstrap',
-    'validator': '/app/component/validator'
-  }
+    root: '/',
+    login: {
+        root: '/login'
+    },
+    app: {
+        root: '/app',
+        todos: '/app/todos',
+        component: '/app/component',
+        table: '/app/component/table',
+        codeeditor: '/app/component/codeeditor',
+        bootstrap: '/app/component/bootstrap',
+        validator: '/app/component/validator'
+    }
 }
 
-export { url }
+export default url
