@@ -9,7 +9,7 @@
     "test": "jest",
     "test:watch": "npm test -- --watch",
     "jsdoc": "jsdoc ./scripts/*.js --readme ./README.md -t ./node_modules/ink-docstrap/template -c ./conf.json",
-    "lint": "git show"
+    "lintall": "node_modules/.bin/gulp eslint"
   },
   "author": "anchao",
   "repository": {
@@ -111,5 +111,5 @@
     "underscore": "^1.8.3",
     "validator": "^9.1.2"
   },
-  "pre-commit": []
+  "pre-commit": [ "lintall" ]
 }

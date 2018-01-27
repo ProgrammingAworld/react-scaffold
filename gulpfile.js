@@ -1,7 +1,7 @@
 /**
  * Created by Anchao on 2017/9/26.
  */
-'use strict'
+
 
 const gulp = require('gulp')
 const del = require('del')
@@ -19,135 +19,142 @@ const webpackConfig = require('./webpack.config.js')
 const webpackstream = require('webpack-stream')
 
 const browserSync = require('browser-sync').create()
-const reload = browserSync.reload
+
+const { reload } = browserSync
 const config = require('./project.config')
 
 console.log('当前ip=', config.ip)
 
 // 删除
-gulp.task('clean', function () {
-  return del(['dist']).then(function () {
+gulp.task('clean', () => del(['dist']).then(() => {
     console.log('删除完成')
-  })
-})
+}))
 
 // 样式
-gulp.task('styles', function () {
-  return gulp.src(config.sass)
-        .pipe(sourcemaps.init())
-        .pipe(changed(config.distCss))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(sourcemaps.write())
-        .pipe(makeUrlVer({useDate: true}))
-        .pipe(gulp.dest(config.distCss))
-        .pipe(reload({stream: true}))
-})
+gulp.task('styles', () => gulp.src(config.sass)
+    .pipe(sourcemaps.init())
+    .pipe(changed(config.distCss))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write())
+    .pipe(makeUrlVer({ useDate: true }))
+    .pipe(gulp.dest(config.distCss))
+    .pipe(reload({ stream: true })))
 
-gulp.task('styles_build', function () {
-  return gulp.src(config.sass)
-        .pipe(sourcemaps.init())
-        .pipe(changed(config.distCss))
-        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-        .pipe(picbase64({
-          baseDir: 'dist',
-          extensions: ['png'],
-          maxImageSize: 100 * 1024,
-          debug: false
-        }))
-        .pipe(makeUrlVer({useDate: true}))
-        .pipe(gulp.dest(config.distCss))
-})
+gulp.task('styles_build', () => gulp.src(config.sass)
+    .pipe(sourcemaps.init())
+    .pipe(changed(config.distCss))
+    .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+    .pipe(picbase64({
+        baseDir: 'dist',
+        extensions: ['png'],
+        maxImageSize: 100 * 1024,
+        debug: false
+    }))
+    .pipe(makeUrlVer({ useDate: true }))
+    .pipe(gulp.dest(config.distCss)))
 
 // copy bootstrap服务器端字体
-gulp.task('copyFont', function () {
-  const src = 'src/css/common/fonts/*'
-  const dest = config.distCss + '/fonts/'
+gulp.task('copyFont', () => {
+    const src = 'src/css/common/fonts/*'
+    const dest = `${config.distCss}/fonts/`
 
-  return gulp.src([src])
+    return gulp.src([src])
         .pipe(gulp.dest(dest))
 })
 
 // copy simulates
-gulp.task('copySimulate', function () {
-  gulp.src(config.simulate)
+gulp.task('copySimulate', () => {
+    gulp.src(config.simulate)
         .pipe(gulp.dest(config.distsimulate))
 })
 
 // copy plugins
-gulp.task('copyPlugins', function () {
-  const src = 'src/scripts/plugins/*'
-  const dest = config.distScript + '/plugins/'
+gulp.task('copyPlugins', () => {
+    const src = 'src/scripts/plugins/*'
+    const dest = `${config.distScript}/plugins/`
 
-  gulp.src(src)
+    gulp.src(src)
         .pipe(gulp.dest(dest))
 })
 
-gulp.task('copy', function () {
-  gulp.start(['copyFont', 'copySimulate', 'copyPlugins'])
+gulp.task('copy', () => {
+    gulp.start(['copyFont', 'copySimulate', 'copyPlugins'])
 })
 
 // 图片处理
-gulp.task('images', function () {
-  return gulp.src([config.images, '!images/icons/*'])
-        .pipe(minimage())
-        .pipe(gulp.dest(config.distImg))
-})
+gulp.task('images', () => gulp.src([config.images, '!images/icons/*'])
+    .pipe(minimage())
+    .pipe(gulp.dest(config.distImg)))
 
-gulp.task('webpack', function () {
-  let myWebpackConfig = Object.assign({}, webpackConfig)
-  myWebpackConfig.entry.app.splice(1, 1)
+// 代码校验
+gulp.task('eslint', () => {
+    const myWebpackConfig = Object.assign({}, webpackConfig)
+    myWebpackConfig.watch = false
+    myWebpackConfig.entry.app.splice(1, 1)
 
-  return gulp.src(config.mainJs)
+    return gulp.src(config.mainJs)
         .pipe(webpackstream(myWebpackConfig))
         .pipe(gulp.dest(config.dist))
-        .pipe(reload({stream: true}))
+        .pipe(reload({ stream: true }))
 })
 
-gulp.task('webpack_build', function () {
-  let myWebpackConfig = Object.assign({}, webpackConfig)
-  delete myWebpackConfig.devServer
-  myWebpackConfig.watch = false
-  myWebpackConfig.devtool = 'cheap-module-source-map'
-  myWebpackConfig.entry.app = webpackConfig.entry.app[3]
+gulp.task('webpack', () => {
+    const myWebpackConfig = Object.assign({}, webpackConfig)
+    myWebpackConfig.entry.app.splice(1, 1)
+    myWebpackConfig.module.rules.shift()
 
-  myWebpackConfig.plugins.shift()
-  myWebpackConfig.plugins.shift()
-  myWebpackConfig.plugins.shift()
-  myWebpackConfig.plugins.unshift(new webpack.optimize.ModuleConcatenationPlugin())
-  myWebpackConfig.plugins.unshift(new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('production')
-  }))
-  myWebpackConfig.plugins.unshift(new webpack.optimize.UglifyJsPlugin(config.uglifyJsConfig))
+    return gulp.src(config.mainJs)
+        .pipe(webpackstream(myWebpackConfig))
+        .pipe(gulp.dest(config.dist))
+        .pipe(reload({ stream: true }))
+})
 
-  return gulp.src(config.mainJs)
+gulp.task('webpack_build', () => {
+    const myWebpackConfig = Object.assign({}, webpackConfig)
+    const newApp = webpackConfig.entry.app[3]
+    delete myWebpackConfig.devServer
+    myWebpackConfig.watch = false
+    myWebpackConfig.devtool = 'cheap-module-source-map'
+    myWebpackConfig.entry.app = newApp
+
+    myWebpackConfig.plugins.shift()
+    myWebpackConfig.plugins.shift()
+    myWebpackConfig.plugins.shift()
+    myWebpackConfig.plugins.unshift(new webpack.optimize.ModuleConcatenationPlugin())
+    myWebpackConfig.plugins.unshift(new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('production')
+    }))
+    myWebpackConfig.plugins.unshift(new webpack.optimize.UglifyJsPlugin(config.uglifyJsConfig))
+
+    return gulp.src(config.mainJs)
         .pipe(webpackstream(myWebpackConfig))
         .pipe(gulp.dest(config.dist))
 })
 
-gulp.task('browserSync', function () {
-  browserSync.init({
-    server: {
-      baseDir: './dist/'
-    },
-    host: config.ip,
-    port: config.port,
-    open: false
-  })
+gulp.task('browserSync', () => {
+    browserSync.init({
+        server: {
+            baseDir: './dist/'
+        },
+        host: config.ip,
+        port: config.port,
+        open: false
+    })
 
     // 监听sass变化
-  gulp.watch(config.sass, ['styles'])
+    gulp.watch(config.sass, ['styles'])
     // 监听image变化
-  gulp.watch(config.image, ['images'])
+    gulp.watch(config.image, ['images'])
 })
 
-gulp.task('build', ['clean'], function () {
-  gulp.start(['copy', 'webpack_build', 'styles_build', 'images'])
+gulp.task('build', ['clean'], () => {
+    gulp.start(['copy', 'webpack_build', 'styles_build', 'images'])
 })
 
-gulp.task('watch', ['clean'], function () {
-  gulp.start(['copy', 'browserSync', 'webpack', 'styles', 'images'])
+gulp.task('watch', ['clean'], () => {
+    gulp.start(['copy', 'browserSync', 'webpack', 'styles', 'images'])
 })
 
-gulp.task('default', ['clean'], function () {
-  gulp.start(['watch'])
+gulp.task('default', ['clean'], () => {
+    gulp.start(['watch'])
 })
