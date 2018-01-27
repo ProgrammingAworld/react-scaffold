@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/6/30.
  */
-import { Immutable, Tools } from '../../common/Util'
+import { Immutable, Tools } from 'common/Util'
 import * as actionTypes from '../actions/actionTypes'
 
 const todoReducer = Tools.createReducer(Immutable.fromJS([]), {

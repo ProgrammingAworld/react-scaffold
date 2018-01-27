@@ -13,8 +13,8 @@ import {
     FormControl,
     Clearfix
 } from 'react-bootstrap'
-import { React, connect, dialog } from '../../../common/Util'
-import ReactComponentBase from '../../../base/ReactComponentBase'
+import { React, connect, dialog } from 'common/Util'
+import ReactComponentBase from 'base/ReactComponentBase'
 
 class BootstrapReactView extends ReactComponentBase {
     constructor(props) {

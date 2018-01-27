@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { Tools } from '../../common/Util'
+import { Tools } from 'common/Util'
 import * as actionTypes from './actionTypes'
 import TodoService from '../service/TodoService'
 

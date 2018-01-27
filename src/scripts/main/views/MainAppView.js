@@ -9,7 +9,7 @@ import {
     Route,
     Redirect,
     Switch
-} from '../../common/Util'
+} from 'common/Util'
 import config from '../../conf/config'
 import HeaderView from './HeaderView'
 import TodoMainView from '../../todos/views/TodoMainView'

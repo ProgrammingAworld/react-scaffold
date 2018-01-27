@@ -6,7 +6,7 @@ import {
     Route,
     Redirect,
     Switch
-} from '../../common/Util'
+} from 'common/Util'
 import config from '../../conf/config'
 import LoginView from '../../login/views/LoginMainView'
 import MainAppView from './MainAppView'

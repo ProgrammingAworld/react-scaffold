@@ -1,5 +1,5 @@
-import { React, connect, withRouter, $, axios } from '../../../common/Util'
-import ReactComponentBase from '../../../base/ReactComponentBase'
+import { React, connect, withRouter, $, axios } from 'common/Util'
+import ReactComponentBase from 'base/ReactComponentBase'
 
 class ValidatorView extends ReactComponentBase {
     componentDidMount() {

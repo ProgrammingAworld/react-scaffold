@@ -1,22 +1,20 @@
 /**
  * Created by anchao on 2015/12/7.
  */
-import 'babel-polyfill';
+import 'babel-polyfill'
 import {
     $,
     React,
     ReactDOM,
     Provider,
     Router,
-    storeCreateByReducer,
     createHistory,
     AppContainer,
     dialog
-} from './common/Util';
-import reducers from './main/reducers';
-import RootRoutesView from './main/views/RootRoutesView';
+} from 'common/Util'
+import RootRoutesView from 'main/views/RootRoutesView'
+import store from './store'
 
-const store = storeCreateByReducer(reducers);
 const history = createHistory();
 const oContainer = document.querySelector('#container');
 

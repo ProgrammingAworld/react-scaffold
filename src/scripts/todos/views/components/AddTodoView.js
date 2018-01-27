@@ -1,8 +1,8 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { React, dialog } from '../../../common/Util';
-import ReactComponentBase from '../../../base/ReactComponentBase';
+import { React, dialog } from 'common/Util';
+import ReactComponentBase from 'base/ReactComponentBase';
 
 class AddTodoView extends ReactComponentBase {
     addTodo = (e) => {

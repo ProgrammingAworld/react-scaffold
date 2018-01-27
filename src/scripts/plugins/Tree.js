@@ -6,7 +6,7 @@ import $ from 'jquery';
 import React from 'react';
 import Immutable from 'immutable';
 import Checkbox from './Checkbox';
-import ReactComponentBase from '../base/ReactComponentBase';
+import ReactComponentBase from 'base/ReactComponentBase';
 
 export default class Tree extends ReactComponentBase {
     constructor(props) {

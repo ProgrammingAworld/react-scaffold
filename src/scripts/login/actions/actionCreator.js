@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/7/26.
  */
-import { Tools } from '../../common/Util'
+import { Tools } from 'common/Util'
 import * as actionTypes from './actionTypes'
 import LoginService from '../service/LoginService'
 

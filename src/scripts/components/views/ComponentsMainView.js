@@ -6,8 +6,8 @@ import {
     Route,
     Redirect,
     Switch
-} from '../../common/Util'
-import ReactComponentBase from '../../base/ReactComponentBase'
+} from 'common/Util'
+import ReactComponentBase from 'base/ReactComponentBase'
 import config from '../../conf/config'
 import TableExampleView from './components/TableExampleView'
 import AceExampleView from './components/AceExampleView'

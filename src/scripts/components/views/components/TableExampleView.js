@@ -1,6 +1,6 @@
 import { Table, Column, Cell } from 'fixed-data-table-2'
-import { React, connect, createSelector } from '../../../common/Util'
-import ReactComponentBase from '../../../base/ReactComponentBase'
+import { React, connect, createSelector } from 'common/Util'
+import ReactComponentBase from 'base/ReactComponentBase'
 
 class TableExampleView extends ReactComponentBase {
     constructor(props) {

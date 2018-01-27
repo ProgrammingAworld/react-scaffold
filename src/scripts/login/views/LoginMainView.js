@@ -3,8 +3,8 @@
  */
 
 import particlesJS from 'particles';
-import { React, connect, createSelector } from '../../common/Util';
-import ReactComponentBase from '../../base/ReactComponentBase';
+import { React, connect, createSelector } from 'common/Util';
+import ReactComponentBase from 'base/ReactComponentBase';
 import actionCreator from '../actions/actionCreator';
 
 const particles = {

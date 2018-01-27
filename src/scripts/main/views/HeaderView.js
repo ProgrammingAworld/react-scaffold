@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { React, NavLink } from '../../common/Util'
+import { React, NavLink } from 'common/Util'
 
 const HeaderView = function () {
     return (

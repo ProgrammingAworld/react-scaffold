@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { $ } from '../common/Util'
+import { $ } from 'common/Util'
 
 export default class ServiceBase {
     /**

@@ -3,7 +3,7 @@
  */
 import {
     Tools
-} from '../../common/Util'
+} from 'common/Util'
 import * as actionTypes from '../actions/actionTypes'
 
 const filterReducer = Tools.createReducer(actionTypes.VisibilityFilters.SHOW_ALL, {

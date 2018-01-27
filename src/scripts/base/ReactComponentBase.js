@@ -2,7 +2,7 @@
  * Created by anchao on 15-7-6.
  */
 
-import { React, PropTypes } from '../common/Util'
+import { React, PropTypes } from 'common/Util'
 
 class ReactComponentBase extends React.PureComponent {
     constructor(props) {
