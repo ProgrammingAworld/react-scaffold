@@ -95,7 +95,6 @@ gulp.task('eslint', () => {
     return gulp.src(config.mainJs)
         .pipe(webpackstream(myWebpackConfig))
         .pipe(gulp.dest(config.dist))
-        .pipe(reload({ stream: true }))
 })
 
 gulp.task('webpack', () => {
