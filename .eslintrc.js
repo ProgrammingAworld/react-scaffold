@@ -63,7 +63,7 @@
 // 'no-new-require': 'error',
 
 // reactjs
-// webpack别名启用，禁用以下功能(eslint-import-resolver-webpack解决)
+// webpack别名启用，(eslint-import-resolver-webpack解决)
 // 'import/no-unresolved': 'error'
 
 module.exports = {
