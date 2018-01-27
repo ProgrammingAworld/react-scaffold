@@ -62,6 +62,10 @@
 // 禁止new require()的写法
 // 'no-new-require': 'error',
 
+// reactjs
+// webpack别名启用，禁用以下功能(eslint-import-resolver-webpack解决)
+// 'import/no-unresolved': 'error'
+
 module.exports = {
     'root': true,
     'extends': 'airbnb',
@@ -79,6 +83,11 @@ module.exports = {
         'browser': true,
         'node': true,
         'es6': true
+    },
+    'settings': {
+        'import/resolver': {
+            'webpack': 'webpack.config.js'
+        }
     },
     'plugins': [
         'react',
@@ -168,8 +177,6 @@ module.exports = {
         'import/extensions': ['error', {
             'js': 'never',
             'jsx': 'never'
-        }],
-        // webpack别名启用，禁用以下功能
-        'import/no-unresolved': 'off'
+        }]
     }
 }
