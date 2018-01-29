@@ -105,6 +105,15 @@ module.exports = {
             warnings: true,
             modules: false,
             chunks: false
-        }
+        },
+        proxy: (function () {
+            const obj = {}
+            const target = `${config.proxy.target}:${config.proxy.proxyPort}`
+            config.proxy.paths.forEach((apiPath) => {
+                obj[apiPath] = target
+            })
+            
+            return obj
+        }())
     }
 }

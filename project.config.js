@@ -49,5 +49,13 @@ module.exports = {
         space_colon: false,
         comments: false
     },
+    proxy: {
+        target: 'http://172.17.1.197',
+        proxyPort: 3000,
+        headers: {
+            host: '',
+        },
+        paths: ['/api']
+    },
     v: Date.now()
 }

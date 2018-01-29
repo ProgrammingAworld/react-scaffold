@@ -19,6 +19,7 @@ const webpackConfig = require('./webpack.config.js')
 const webpackstream = require('webpack-stream')
 
 const browserSync = require('browser-sync').create()
+const proxy = require('http-proxy-middleware')
 
 const { reload } = browserSync
 const config = require('./project.config')
@@ -131,7 +132,19 @@ gulp.task('webpack_build', () => {
 })
 
 gulp.task('browserSync', () => {
+    const { paths, target, proxyPort } = config.proxy
+    const filter = function (pathname, req) {
+        console.log('method=', req.method)
+        return (pathname.match(paths.join('|')));
+    }
+    
+    const middleware = proxy(filter, {
+        target: `${target}:${proxyPort}`,
+        changeOrigin: true
+    })
+
     browserSync.init({
+        middleware: [middleware],
         server: {
             baseDir: './dist/'
         },
