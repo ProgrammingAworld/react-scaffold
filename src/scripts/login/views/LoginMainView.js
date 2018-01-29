@@ -7,9 +7,6 @@ import { React, connect, createSelector } from 'common/Util';
 import ReactComponentBase from 'base/ReactComponentBase';
 import actionCreator from '../actions/actionCreator';
 
-
-
-
 const particles = {
     particles: {
         number: {
@@ -129,7 +126,7 @@ const particles = {
 
 class LoginMainView extends ReactComponentBase {
     componentDidMount() {
-    // 用户名获得焦点11
+        // 用户名获得焦点11
         this.username.focus();
         particlesJS('particles-js', particles);
     }

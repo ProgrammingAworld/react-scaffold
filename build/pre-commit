@@ -1,14 +1,25 @@
-STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "(.jsx?)$")
+#!/bin/bash
 
-if [[ "$STAGED_FILES" = "" ]]; then
+# --cached 可以查看暂存区与当前 HEAD 指针指向版本之间的差异
+# HEAD 查看workspace 和local repository 的差别的
+
+DIFFTYPE="--cached"
+
+if [[ "$1" == "lintall" ]]; then
+    DIFFTYPE="HEAD"
+fi
+
+STAGED_FILES=$(git diff $DIFFTYPE --name-only --diff-filter=ACM | grep -E "(.jsx?)$")
+
+if [[ "$STAGED_FILES" == "" ]]; then
   exit 0
 fi
 
 PASS=true
 
-echo "\n开始代码检查...:\n"
+echo "\n开始代码检查...\n"
 
-which eslint &> /dev/null
+which node_modules/.bin/eslint &> /dev/null
 if [[ "$?" == 1 ]]; then
   echo "\t\033[41m 请安装 ESlint\033[0m"
   exit 1
@@ -16,7 +27,7 @@ fi
 
 for FILE in $STAGED_FILES
 do
-  eslint --config .eslintrc.js --format node_modules/eslint-friendly-formatter "$FILE" --cache
+  node_modules/.bin/eslint --config .eslintrc.js --format node_modules/eslint-friendly-formatter "$FILE" --cache
   if [[ "$?" == 0 ]]; then
     echo "\t\033[32mESLint Passed: $FILE\033[0m"
   else
