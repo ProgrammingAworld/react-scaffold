@@ -124,6 +124,9 @@ const particles = {
     },
 };
 
+
+
+
 class LoginMainView extends ReactComponentBase {
     componentDidMount() {
     // 用户名获得焦点11

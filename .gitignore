@@ -4,3 +4,6 @@ node_modules
 dist
 *.log
 *-compiled.js
+
+# Optional eslint cache
+.eslintcache
