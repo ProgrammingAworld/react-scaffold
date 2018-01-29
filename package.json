@@ -27,9 +27,7 @@
     "react",
     "redux",
     "immutable",
-    "babel",
-    "es6",
-    "bootstrap"
+    "babel"
   ],
   "license": "MIT",
   "bugs": {
