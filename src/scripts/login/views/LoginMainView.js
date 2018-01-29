@@ -7,6 +7,9 @@ import { React, connect, createSelector } from 'common/Util';
 import ReactComponentBase from 'base/ReactComponentBase';
 import actionCreator from '../actions/actionCreator';
 
+
+
+
 const particles = {
     particles: {
         number: {
@@ -123,9 +126,6 @@ const particles = {
         background_size: 'cover',
     },
 };
-
-
-
 
 class LoginMainView extends ReactComponentBase {
     componentDidMount() {
