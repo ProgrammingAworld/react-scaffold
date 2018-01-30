@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/7/26.
  */
-import { Tools } from 'common/Util'
+import { createAction } from 'common/Util'
 import * as actionTypes from './actionTypes'
 import LoginService from '../service/LoginService'
 
@@ -47,9 +47,9 @@ const actionCreator = {
             })
         }
     },
-    setUserType: Tools.makeActionCreator(actionTypes.SET_USER_TYPE, 'userType'),
-    setUserName: Tools.makeActionCreator(actionTypes.SET_USERNAME, 'username'),
-    setError: Tools.makeActionCreator(actionTypes.SET_ERROR, 'msg')
+    setUserType: createAction(actionTypes.SET_USER_TYPE),
+    setUserName: createAction(actionTypes.SET_USERNAME),
+    setError: createAction(actionTypes.SET_ERROR)
 }
 
 export default actionCreator

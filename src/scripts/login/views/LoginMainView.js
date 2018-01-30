@@ -252,14 +252,13 @@ class LoginMainView extends ReactComponentBase {
   }
 }
 
-const loginType = state => state.login_type;
-const loginError = state => state.login_error;
+const login = state => state.login;
 
 const getLoginType = createSelector(
-    [loginType, loginError],
-    (type, error) => ({
-        type,
-        error
+    [login],
+    loginState => ({
+        type: loginState.userType,
+        error: loginState.errorMsg
     })
 );
 

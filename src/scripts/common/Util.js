@@ -21,6 +21,9 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { createSelector } from 'reselect'
 import { AppContainer } from 'react-hot-loader'
+import {
+    createAction, createActions, handleAction, handleActions, combineActions
+} from 'redux-actions'
 import dialog from '../plugins/dialog'
 import Tools from './Tools'
 // require('../plugins/bootstrap')
@@ -74,5 +77,10 @@ export {
     Redirect,
     Switch,
     createHistory,
-    AppContainer
+    AppContainer,
+    createAction,
+    createActions,
+    handleAction,
+    handleActions,
+    combineActions
 }

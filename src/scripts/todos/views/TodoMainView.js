@@ -23,8 +23,9 @@ class TodoMainView extends ReactComponentBase {
 
     render() {
         const {
-            dispatch, todos, visibleTodos, filter
+            dispatch, todos, visibleTodos, todoFilter
         } = this.props
+        
         return (
             <div className="todomain">
                 <AddTodoView
@@ -34,12 +35,14 @@ class TodoMainView extends ReactComponentBase {
                     onCheckedAll={checked => dispatch(actionCreator.checkedAllTodo(checked))}
                     onCompletedTodo={index => dispatch(actionCreator.completedTodo(index))}
                     onRemoveTodo={index => dispatch(actionCreator.removeTodo(index))}
-                    onEditTodo={(index, text) => dispatch(actionCreator.updateTodo(index, text))}
+                    onEditTodo={(index, text) =>
+                        dispatch(actionCreator.updateTodo({ index, text }))
+                    }
                     todos={visibleTodos}
                 />
                 <FooterView
                     todos={todos}
-                    filter={filter}
+                    todoFilter={todoFilter}
                     onChangeFilter={newFilter => dispatch(actionCreator.setFilter(newFilter))}
                     onClearCompleted={() => dispatch(actionCreator.clearCompletedTodo())}
                 />
@@ -48,8 +51,7 @@ class TodoMainView extends ReactComponentBase {
     }
 }
 
-const todos = state => state.todos_todos
-const filter = state => state.todos_filter
+const todos = state => state.todos
 const selectByFilter = (aTodos, sFilter) => {
     switch (sFilter) {
     case actionTypes.VisibilityFilters.SHOW_ALL:
@@ -62,10 +64,10 @@ const selectByFilter = (aTodos, sFilter) => {
         return aTodos
     }
 }
-const getTodosByFilter = createSelector([todos, filter], (aTodos, sFilter) => ({
-    todos: aTodos,
-    visibleTodos: selectByFilter(aTodos, sFilter),
-    filter: sFilter
+const getTodosByFilter = createSelector([todos], oTodos => ({
+    todos: oTodos.todoList,
+    visibleTodos: selectByFilter(oTodos.todoList, oTodos.todoFilter),
+    todoFilter: oTodos.todoFilter
 }))
 
 export default connect(getTodosByFilter)(TodoMainView)

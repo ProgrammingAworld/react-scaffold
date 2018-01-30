@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { Tools } from 'common/Util'
+import { createAction } from 'common/Util'
 import * as actionTypes from './actionTypes'
 import TodoService from '../service/TodoService'
 
@@ -17,14 +17,14 @@ const actionCreator = {
             })
         }
     },
-    setAllTodo: Tools.makeActionCreator(actionTypes.SET_ALL_TODO, 'todos'),
-    addTodo: Tools.makeActionCreator(actionTypes.ADD_TODO, 'text'),
-    removeTodo: Tools.makeActionCreator(actionTypes.REMOVE_TODO, 'index'),
-    completedTodo: Tools.makeActionCreator(actionTypes.COMPLETED_TODO, 'index'),
-    updateTodo: Tools.makeActionCreator(actionTypes.UPDATE_TODO, 'index', 'text'),
-    checkedAllTodo: Tools.makeActionCreator(actionTypes.CHECKED_ALL_TODO, 'checked'),
-    setFilter: Tools.makeActionCreator(actionTypes.SET_VISIBILITY_FILTER, 'filter'),
-    clearCompletedTodo: Tools.makeActionCreator(actionTypes.CLEAR_COMPLETED_TODO)
+    setAllTodo: createAction(actionTypes.SET_ALL_TODO),
+    addTodo: createAction(actionTypes.ADD_TODO),
+    removeTodo: createAction(actionTypes.REMOVE_TODO),
+    completedTodo: createAction(actionTypes.COMPLETED_TODO),
+    updateTodo: createAction(actionTypes.UPDATE_TODO),
+    checkedAllTodo: createAction(actionTypes.CHECKED_ALL_TODO),
+    setFilter: createAction(actionTypes.SET_VISIBILITY_FILTER),
+    clearCompletedTodo: createAction(actionTypes.CLEAR_COMPLETED_TODO)
 }
 
 export default actionCreator

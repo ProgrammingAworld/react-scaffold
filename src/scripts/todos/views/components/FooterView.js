@@ -7,7 +7,7 @@ import ReactComponentBase from 'base/ReactComponentBase';
 
 class FooterView extends ReactComponentBase {
     onRenderLi(filter, name) {
-        if (filter === this.props.filter) {
+        if (filter === this.props.todoFilter) {
             return (
                 <li>
                     <span
