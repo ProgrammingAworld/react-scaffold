@@ -3,6 +3,10 @@
  */
 import { $ } from 'common/Util'
 
+/* eslint-disable no-undef */
+const host = basicRequestLink
+
+/* eslint-enable */
 export default class ServiceBase {
     /**
    * POST请求统一接口
@@ -14,17 +18,17 @@ export default class ServiceBase {
         const settings = {
             method: 'POST',
             data: $.extend({}, oSettings, { timestamp: Date.now() }),
-            contentType: 'application/json;charset=UTF-8',
+            // contentType: 'application/json;charset=UTF-8',
             dataType: 'json'
         }
-        return $.ajax(url, settings)
+        return $.ajax(`${host}${url}`, settings)
     }
 
     static getWithParameter(url, oSettings) {
         if (oSettings) {
-            return $.get(url, oSettings)
+            return $.get(`${host}${url}`, oSettings)
         }
-        return $.get(url)
+        return $.get(`${host}${url}`)
     }
 
     // ---------------------------------------跨域&restful--------------------------

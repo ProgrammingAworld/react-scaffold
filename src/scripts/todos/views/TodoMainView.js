@@ -4,54 +4,56 @@
 import { React, connect, createSelector, dialog } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 import * as actionTypes from '../actions/actionTypes'
-import actionCreator from '../actions/actionCreator'
+import * as actionCreator from '../actions/actionCreator'
 import AddTodoView from './components/AddTodoView'
 import TodoListView from './components/TodoListView'
 import FooterView from './components/FooterView'
 
 class TodoMainView extends ReactComponentBase {
     componentDidMount() {
-        const { dispatch } = this.props
-        dispatch(actionCreator.getAllTodo((status, data) => {
-            if (status) {
-                dispatch(actionCreator.setAllTodo(data))
+        const { getAllTodo, setAllTodo } = this.props
+        getAllTodo().done((res) => {
+            if (res.statusCode === 200) {
+                setAllTodo(res.list)
             } else {
-                dialog.alert(data, 'error')
+                dialog.alert(res.message, 'error')
             }
-        }))
+        })
     }
 
     render() {
         const {
-            dispatch, todos, visibleTodos, todoFilter
+            todos, visibleTodos, todoFilter,
+            addTodo, checkedAllTodo, completedTodo, removeTodo, updateTodo,
+            setFilter, clearCompletedTodo
         } = this.props
         
         return (
             <div className="todomain">
                 <AddTodoView
-                    onAddNewTodo={sText => dispatch(actionCreator.addTodo(sText))}
+                    onAddNewTodo={sText => addTodo(sText)}
                 />
                 <TodoListView
-                    onCheckedAll={checked => dispatch(actionCreator.checkedAllTodo(checked))}
-                    onCompletedTodo={index => dispatch(actionCreator.completedTodo(index))}
-                    onRemoveTodo={index => dispatch(actionCreator.removeTodo(index))}
+                    onCheckedAll={checked => checkedAllTodo(checked)}
+                    onCompletedTodo={index => completedTodo(index)}
+                    onRemoveTodo={index => removeTodo(index)}
                     onEditTodo={(index, text) =>
-                        dispatch(actionCreator.updateTodo({ index, text }))
+                        updateTodo({ index, text })
                     }
                     todos={visibleTodos}
                 />
                 <FooterView
                     todos={todos}
                     todoFilter={todoFilter}
-                    onChangeFilter={newFilter => dispatch(actionCreator.setFilter(newFilter))}
-                    onClearCompleted={() => dispatch(actionCreator.clearCompletedTodo())}
+                    onChangeFilter={newFilter => setFilter(newFilter)}
+                    onClearCompleted={() => clearCompletedTodo()}
                 />
             </div>
         )
     }
 }
 
-const todos = state => state.todos
+const todosSelector = state => state.todos
 const selectByFilter = (aTodos, sFilter) => {
     switch (sFilter) {
     case actionTypes.VisibilityFilters.SHOW_ALL:
@@ -64,10 +66,10 @@ const selectByFilter = (aTodos, sFilter) => {
         return aTodos
     }
 }
-const getTodosByFilter = createSelector([todos], oTodos => ({
+const todosByFilterSelector = createSelector([todosSelector], oTodos => ({
     todos: oTodos.todoList,
     visibleTodos: selectByFilter(oTodos.todoList, oTodos.todoFilter),
     todoFilter: oTodos.todoFilter
 }))
 
-export default connect(getTodosByFilter)(TodoMainView)
+export default connect(todosByFilterSelector, actionCreator)(TodoMainView)

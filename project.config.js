@@ -49,6 +49,14 @@ module.exports = {
         space_colon: false,
         comments: false
     },
+    development: {
+        env: { NODE_ENV: JSON.stringify('development') },
+        basicRequestLink: `http://${ip}:3003`,
+    },
+    production: {
+        env: { NODE_ENV: JSON.stringify('production') },
+        basicRequestLink: `http://${ip}:3003`,
+    },
     proxy: {
         target: 'http://172.17.1.197',
         proxyPort: 3000,

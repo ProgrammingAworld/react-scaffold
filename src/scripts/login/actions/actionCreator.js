@@ -5,51 +5,12 @@ import { createAction } from 'common/Util'
 import * as actionTypes from './actionTypes'
 import LoginService from '../service/LoginService'
 
-const actionCreator = {
-    login(username, password, type = '0', fnCb) {
-        return () => {
-            LoginService.login({ username, password, type })
-                .done((oData) => {
-                    if (oData.statusCode === 200) {
-                        fnCb(true)
-                    } else {
-                        fnCb(false, oData.message)
-                    }
-                })
-        }
-    },
-    logout(fnCb) {
-        return () => {
-            LoginService.logout().done((oData) => {
-                if (oData.statusCode === 200) {
-                    fnCb(true)
-                } else {
-                    fnCb(false, oData.message)
-                }
-            })
-        }
-    },
-    PKIlogin(fnCb) {
-        return () => {
-            LoginService.PKIlogin().done(() => {
-                fnCb(true)
-            })
-        }
-    },
-    checkAuthority(fnCb) {
-        return () => {
-            LoginService.checkAuthority().done((oData) => {
-                if (oData.statusCode !== 200) {
-                    fnCb(true)
-                } else {
-                    fnCb(false, oData.obj)
-                }
-            })
-        }
-    },
-    setUserType: createAction(actionTypes.SET_USER_TYPE),
-    setUserName: createAction(actionTypes.SET_USERNAME),
-    setError: createAction(actionTypes.SET_ERROR)
-}
-
-export default actionCreator
+export const setUserType = createAction(actionTypes.SET_USER_TYPE)
+export const setUserName = createAction(actionTypes.SET_USERNAME)
+export const setError = createAction(actionTypes.SET_ERROR)
+export const login = (username, password, type = '0') => () =>
+    LoginService.login({ username, password, type })
+export const KPIlogin = (username, password, type = '0') => () =>
+    LoginService.PKIlogin({ username, password, type })
+export const logout = () => () => (LoginService.logout())
+export const checkAuthority = () => () => (LoginService.checkAuthority())

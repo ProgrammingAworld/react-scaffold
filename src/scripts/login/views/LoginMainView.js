@@ -2,10 +2,10 @@
  * Created by anchao on 2016/7/26.
  */
 
-import particlesJS from 'particles';
-import { React, connect, createSelector } from 'common/Util';
-import ReactComponentBase from 'base/ReactComponentBase';
-import actionCreator from '../actions/actionCreator';
+import particlesJS from 'particles'
+import { React, connect, createSelector } from 'common/Util'
+import ReactComponentBase from 'base/ReactComponentBase'
+import * as actionCreator from '../actions/actionCreator'
 
 const particles = {
     particles: {
@@ -122,7 +122,7 @@ const particles = {
         background_repeat: 'no-repeat',
         background_size: 'cover',
     },
-};
+}
 
 class LoginMainView extends ReactComponentBase {
     componentDidMount() {
@@ -132,56 +132,51 @@ class LoginMainView extends ReactComponentBase {
     }
 
   checkedChange = (e) => {
-      const { dispatch } = this.props;
       const value = e.currentTarget.getAttribute('value');
-      dispatch(actionCreator.setUserType(value));
+      this.props.setUserType(value)
   }
 
   PKIlogin = () => {
-      const { dispatch } = this.props;
-      dispatch(actionCreator.PKIlogin());
+      this.props.PKIlogin()
   }
 
   login = () => {
-      const { dispatch, type } = this.props;
-      const username = this.username.value.trim();
-      const pwd = this.pwd.value.trim();
+      const {
+          type, setError, setUserName, login 
+      } = this.props
+      const username = this.username.value.trim()
+      const pwd = this.pwd.value.trim()
 
       if (username.length === 0) {
-          this.username.focus();
-          dispatch(actionCreator.setError('请输入用户名'));
-          return;
+          this.username.focus()
+          setError('请输入用户名')
       }
 
       if (pwd.length === 0) {
-          this.pwd.focus();
-          dispatch(actionCreator.setError('请输入密码'));
-          return;
+          this.pwd.focus()
+          setError('请输入密码')
       }
 
       // 清空错误信息
-      dispatch(actionCreator.setError(''));
+      setError('')
 
       // 登录检验
-      // dispatch(actionCreator.login(username, pwd, type, ()=> {
-      //     this.gotoUrl('/todos');
-      //     dispatch(actionCreator.setUserName(username));
-      // }));
-
-      this.gotoUrl('/app');
-      dispatch(actionCreator.setUserName('admin'));
-      console.log('type=', type)
+      login(username, pwd, type).done((res) => {
+          console.log('res=', res)
+          this.gotoUrl('/app')
+          setUserName(username)
+      })
   }
 
   gotoUrl = (url) => {
-      this.props.history.replace(url);
+      this.props.history.replace(url)
   }
 
   render() {
-      const { type, error } = this.props;
-      let errorCls = 'errors pull-right invisible';
+      const { type, error } = this.props
+      let errorCls = 'errors pull-right invisible'
       if (error.length > 0) {
-          errorCls = 'errors pull-right';
+          errorCls = 'errors pull-right'
       }
 
       return (
@@ -248,18 +243,18 @@ class LoginMainView extends ReactComponentBase {
                   </div>
               </div>
           </div>
-      );
+      )
   }
 }
 
-const login = state => state.login;
+const loginSelector = state => state.login
 
-const getLoginType = createSelector(
-    [login],
+const loginTotalSelector = createSelector(
+    [loginSelector],
     loginState => ({
         type: loginState.userType,
         error: loginState.errorMsg
     })
-);
+)
 
-export default connect(getLoginType)(LoginMainView);
+export default connect(loginTotalSelector, actionCreator)(LoginMainView)

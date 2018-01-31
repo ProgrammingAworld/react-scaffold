@@ -1,9 +1,31 @@
 {
-  "list": [
-    {
-      "id": 1,
-      "name": "张三",
-      "tel": "15223810923"
-    }
-  ]
+  "login": {
+    "statusCode": 200,
+    "message": "登录成功"
+  },
+  "todos": {
+    "statusCode": 200,
+    "list": [
+      {
+        "text": "alex",
+        "completed": true
+      },
+      {
+        "text": "tom",
+        "completed": false
+      },
+      {
+        "text": "jerry",
+        "completed": false
+      },
+      {
+        "text": "lucy",
+        "completed": true
+      },
+      {
+        "text": "lili",
+        "completed": false
+      }
+    ]
+  }
 }

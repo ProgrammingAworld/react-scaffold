@@ -13,18 +13,18 @@ export default class LoginService extends BaseService {
      * @returns {*}
      */
     static login(oSettings) {
-        return this.postWithParameter('', oSettings)
+        return this.getWithParameter('/login', oSettings)
     }
 
     static PKIlogin() {
-        return this.getWithParameter('')
+        return this.getWithParameter('/loginPKI')
     }
 
     static checkAuthority() {
-        return this.getWithParameter('')
+        return this.getWithParameter('/checkAuc')
     }
 
     static logout() {
-        return this.getWithParameter('')
+        return this.getWithParameter('/logout')
     }
 }

@@ -17,7 +17,7 @@
   "author": "anchao",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pvfhv/example-usegulp-cmd.git"
+    "url": "https://github.com/pvfhv/react-redux-router.git"
   },
   "keywords": [
     "gulp",
@@ -31,9 +31,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pvfhv/example-usegulp-cmd/issues"
+    "url": "https://github.com/pvfhv/react-redux-router/issues"
   },
-  "homepage": "https://github.com/pvfhv/example-usegulp-cmd",
+  "homepage": "https://github.com/pvfhv/react-redux-router",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",

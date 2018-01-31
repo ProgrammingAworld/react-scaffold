@@ -55,6 +55,11 @@ module.exports = {
                     cacheDirectory: true,
                     presets: ['env', 'stage-0', 'react']
                 }
+            },
+            {
+                test: path.resolve(__dirname, './src/scripts/base/ServiceBase.js'),
+                loader: `imports-loader?basicRequestLink=>
+                ${JSON.stringify(config.development.basicRequestLink)}`
             }
         ]
     },
