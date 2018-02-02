@@ -40,6 +40,6 @@ if ! $PASS; then
   echo "\033[41mCOMMIT FAILED:\033[0m 你的提交里包含不符合eslint规则的代码，请检查....\n"
   exit 1
 else
-  echo "\033[42m 提交成功\033[0m\n"
+  echo "\033[42m 代码符合规范\033[0m\n"
 fi
 exit $?

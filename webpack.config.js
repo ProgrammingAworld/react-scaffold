@@ -58,8 +58,8 @@ module.exports = {
             },
             {
                 test: path.resolve(__dirname, './src/scripts/base/ServiceBase.js'),
-                loader: `imports-loader?basicRequestLink=>
-                ${JSON.stringify(config.development.basicRequestLink)}`
+                loader: `imports-loader?domain=>
+                ${JSON.stringify(config.development.domain)}`
             }
         ]
     },

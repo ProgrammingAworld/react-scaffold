@@ -4,7 +4,7 @@
 import { $ } from 'common/Util'
 
 /* eslint-disable no-undef */
-const host = basicRequestLink
+const host = domain
 
 /* eslint-enable */
 export default class ServiceBase {

@@ -9,6 +9,6 @@ export default class TodoService extends ServiceBase {
      * @returns {*}
      */
     static getAllTodo() {
-        return this.getWithParameter('/todos')
+        return this.getWithParameter('/todos/getAll')
     }
 }

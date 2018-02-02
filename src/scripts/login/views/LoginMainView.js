@@ -171,7 +171,7 @@ class LoginMainView extends ReactComponentBase {
   gotoUrl = (url) => {
       this.props.history.replace(url)
   }
-
+  
   render() {
       const { type, error } = this.props
       let errorCls = 'errors pull-right invisible'

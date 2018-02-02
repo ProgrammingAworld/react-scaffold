@@ -51,11 +51,11 @@ module.exports = {
     },
     development: {
         env: { NODE_ENV: JSON.stringify('development') },
-        basicRequestLink: `http://${ip}:3003`,
+        domain: `http://${ip}:3003`,
     },
     production: {
         env: { NODE_ENV: JSON.stringify('production') },
-        basicRequestLink: `http://${ip}:3003`,
+        domain: `http://${ip}:3003`,
     },
     proxy: {
         target: 'http://172.17.1.197',
