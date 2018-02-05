@@ -22,8 +22,11 @@ import { createLogger } from 'redux-logger'
 import { createSelector } from 'reselect'
 import { AppContainer } from 'react-hot-loader'
 import {
-    createAction, createActions, handleAction, handleActions, combineActions
+    createAction,
+    handleAction, handleActions as originalHandleActions,
+    combineActions
 } from 'redux-actions'
+import ServiceBase from '../base/ServiceBase'
 import dialog from '../plugins/dialog'
 import Tools from './Tools'
 // require('../plugins/bootstrap')
@@ -53,6 +56,51 @@ const storeCreateByReducer = reducers => createStore(
     }),
     applyMiddleware(thunkMiddleware, logger)
 )
+
+// 增强createActions, 可以配置{}
+const createActions = function (actionMap) {
+    const eventNames = Object.keys(actionMap)
+    const fnsMap = {}
+    eventNames.forEach((eventName) => {
+        const configOrFn = actionMap[eventName]
+        if (typeof configOrFn !== 'function') {
+            const config = { method: 'GET', ...configOrFn }
+            fnsMap[eventName] = settings => (dispatch) => {
+                dispatch(createAction(`${configOrFn.actionType}_PRE`)())
+
+                return ServiceBase[`${config.method.toLowerCase()}WithParameter`](
+                    config.url,
+                    settings
+                ).done((res) => {
+                    dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(res.list))
+                }).fail(() => {
+                    dispatch(createAction(`${configOrFn.actionType}_ERROR`)())
+                }).always(() => {
+                    dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
+                })
+            }
+        } else {
+            fnsMap[eventName] = configOrFn
+        }
+    })
+    
+    return fnsMap
+}
+
+// 增强handleActions，可以配置{}
+const handleActions = function (reducerMap, defaultState) {
+    const result = { ...reducerMap }
+    Object.keys(result).forEach((actionType) => {
+        const fnOrObject = result[actionType]
+        if (fnOrObject && typeof fnOrObject !== 'function') {
+            Object.keys(fnOrObject).forEach((suffixAction) => {
+                result[`${actionType}_${suffixAction.toUpperCase()}`] = fnOrObject[suffixAction]
+            })
+        }
+    })
+    
+    return originalHandleActions(result, defaultState)
+}
 
 export {
     $,

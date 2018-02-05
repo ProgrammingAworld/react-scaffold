@@ -5,16 +5,19 @@ import { Immutable, handleActions } from 'common/Util'
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
+    isLoading: false,
     todoList: Immutable.fromJS([]),
     todoFilter: actionTypes.VisibilityFilters.SHOW_ALL
 }
 
 const todoReducer = handleActions({
-    [actionTypes.SET_ALL_TODO](state, action) {
-        return {
+    [actionTypes.GET_ALL_TODO]: {
+        pre: state => ({ ...state, isLoading: true }),
+        success: (state, action) => ({
             ...state,
             todoList: Immutable.fromJS(action.payload)
-        }
+        }),
+        always: state => ({ ...state, isLoading: false })
     },
     [actionTypes.ADD_TODO](state, action) {
         return {

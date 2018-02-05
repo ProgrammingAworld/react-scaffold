@@ -5,7 +5,7 @@
 import particlesJS from 'particles'
 import { React, connect, createSelector } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
-import * as actionCreator from '../actions/actionCreator'
+import actionCreator from '../actions/actionCreator'
 
 const particles = {
     particles: {
@@ -150,21 +150,24 @@ class LoginMainView extends ReactComponentBase {
       if (username.length === 0) {
           this.username.focus()
           setError('请输入用户名')
+          return
       }
 
       if (pwd.length === 0) {
           this.pwd.focus()
           setError('请输入密码')
+          return
       }
 
       // 清空错误信息
       setError('')
 
       // 登录检验
-      login(username, pwd, type).done((res) => {
-          console.log('res=', res)
-          this.gotoUrl('/app')
-          setUserName(username)
+      login({ data: { username, pwd, type } }).done((res) => {
+          if (res.statusCode === 200) {
+              this.gotoUrl('/app')
+              setUserName(username)
+          }
       })
   }
 

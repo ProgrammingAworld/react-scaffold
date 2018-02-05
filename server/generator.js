@@ -19,9 +19,8 @@ module.exports = function () {
             statusCode: 200,
             list: _.times(10, n => ({
                 id: n,
-                text: faker.name.jobTitle(),
-                completed: faker.random.boolean(),
-                avatar: faker.internet.avatar
+                text: faker.name.findName(),
+                completed: faker.random.boolean()
             }))
         }
     }

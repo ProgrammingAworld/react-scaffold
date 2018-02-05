@@ -18,8 +18,7 @@ server.use(router);
 server.listen({
     host: ip,
     port: 3003,
-    delay: 1000,
-    'no-gzip': true
+    delay: 5000
 }, () => {
     console.log(`JSON Server is running in http://${ip}:3003`);
 });

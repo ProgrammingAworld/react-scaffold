@@ -1,22 +1,21 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { React, connect, createSelector, dialog } from 'common/Util'
+import { React, connect, createSelector } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 import * as actionTypes from '../actions/actionTypes'
-import * as actionCreator from '../actions/actionCreator'
+import actionCreator from '../actions/actionCreator'
 import AddTodoView from './components/AddTodoView'
 import TodoListView from './components/TodoListView'
 import FooterView from './components/FooterView'
 
 class TodoMainView extends ReactComponentBase {
     componentDidMount() {
-        const { getAllTodo, setAllTodo } = this.props
-        getAllTodo().done((res) => {
-            if (res.statusCode === 200) {
-                setAllTodo(res.list)
-            } else {
-                dialog.alert(res.message, 'error')
+        const { getAllTodo } = this.props
+        
+        getAllTodo({
+            params: {
+                id: 100
             }
         })
     }
