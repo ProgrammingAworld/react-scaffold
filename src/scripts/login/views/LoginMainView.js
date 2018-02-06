@@ -161,8 +161,6 @@ class LoginMainView extends ReactComponentBase {
 
       // 清空错误信息
       setError('')
-
-      
       
       // 登录检验
       login({ data: { username, pwd, type } }).done((res) => {
