@@ -149,13 +149,13 @@ class LoginMainView extends ReactComponentBase {
 
       if (username.length === 0) {
           this.username.focus()
-          setError('请输入用户名')
+          setError('请输入用户名!')
           return
       }
 
       if (pwd.length === 0) {
           this.pwd.focus()
-          setError('请输入密码')
+          setError('请输入密码!')
           return
       }
 

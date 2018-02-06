@@ -71,10 +71,10 @@ module.exports = {
         'max-statements': [
             'error', 50
         ],
-        // 强制行的最大长度100,注释200
+        // 强制行的最大长度150,注释200
         'max-len': [
             'error', {
-                'code': 100,
+                'code': 150,
                 'comments': 200
             }
         ],
