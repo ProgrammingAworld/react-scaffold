@@ -24,10 +24,26 @@ const handleWithParameter = function (url, {
         }
     }
     const urlFull = `${host}${result}`
+    let dataNew = ''
+    
+    if (method.toUpperCase() === 'GET') {
+        if (JSON.stringify(params) === '{}') {
+            dataNew = undefined
+        } else {
+            dataNew = params
+        }
+    } else {
+        dataNew = JSON.stringify(data)
+        
+        if (dataNew === '{}'){
+            dataNew = undefined
+        }
+    }
+    
     const settings = {
         method,
-        data,
-        contentType: 'application/json',
+        data: dataNew,
+        contentType: 'application/json; charset=uft-8',
         dataType: 'json'
     }
     return $.ajax(urlFull, settings)

@@ -72,7 +72,11 @@ const createActions = function (actionMap) {
                     config.url,
                     settings
                 ).done((res) => {
-                    dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(res.list))
+                    if (res.statusCode === 200) {
+                        dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(res.data))
+                    } else {
+                        dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(res.message))
+                    }
                 }).fail(() => {
                     dispatch(createAction(`${configOrFn.actionType}_ERROR`)())
                 }).always(() => {

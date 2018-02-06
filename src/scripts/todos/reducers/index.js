@@ -19,12 +19,12 @@ const todoReducer = handleActions({
         }),
         always: state => ({ ...state, isLoading: false })
     },
-    [actionTypes.ADD_TODO](state, action) {
-        return {
+    [actionTypes.ADD_TODO]: {
+        success: (state, action) => ({
             ...state,
             todoList: state.todoList
                 .unshift(Immutable.fromJS({ text: action.payload, completed: false }))
-        }
+        })
     },
     [actionTypes.REMOVE_TODO](state, action) {
         return {

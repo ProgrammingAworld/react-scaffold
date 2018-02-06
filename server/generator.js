@@ -17,11 +17,16 @@ module.exports = function () {
         },
         todos: {
             statusCode: 200,
-            list: _.times(10, n => ({
+            data: _.times(10, n => ({
                 id: n,
                 text: faker.name.findName(),
                 completed: faker.random.boolean()
             }))
-        }
+        },
+        addTodo: _.times(10, n => ({
+            id: n,
+            text: faker.name.findName(),
+            completed: faker.random.boolean()
+        }))
     }
 }

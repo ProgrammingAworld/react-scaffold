@@ -1,4 +1,6 @@
-module.exports = {
+const router = {
     '/todos/getAll': '/todos',
-    '/todos/add': '/todos'
+    '/todos/addTodo': '/addTodo'
 }
+
+module.exports = router

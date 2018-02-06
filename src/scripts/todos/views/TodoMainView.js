@@ -13,11 +13,7 @@ class TodoMainView extends ReactComponentBase {
     componentDidMount() {
         const { getAllTodo } = this.props
         
-        getAllTodo({
-            params: {
-                id: 100
-            }
-        })
+        getAllTodo()
     }
 
     render() {
@@ -30,7 +26,7 @@ class TodoMainView extends ReactComponentBase {
         return (
             <div className="todomain">
                 <AddTodoView
-                    onAddNewTodo={sText => addTodo(sText)}
+                    onAddNewTodo={sText => addTodo({ data: { text: sText, completed: false } })}
                 />
                 <TodoListView
                     onCheckedAll={checked => checkedAllTodo(checked)}

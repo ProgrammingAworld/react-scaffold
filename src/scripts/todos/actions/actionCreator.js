@@ -8,10 +8,13 @@ const actionCreator = createActions({
     getAllTodo: {
         url: '/todos/getAll',
         method: 'GET',
-        actionType: actionTypes.GET_ALL_TODO,
+        actionType: actionTypes.GET_ALL_TODO
     },
-    setAllTodo: createAction(actionTypes.SET_ALL_TODO),
-    addTodo: createAction(actionTypes.ADD_TODO),
+    addTodo: {
+        url: '/todos/addTodo',
+        method: 'POST',
+        actionType: actionTypes.ADD_TODO
+    },
     removeTodo: createAction(actionTypes.REMOVE_TODO),
     completedTodo: createAction(actionTypes.COMPLETED_TODO),
     updateTodo: createAction(actionTypes.UPDATE_TODO),
