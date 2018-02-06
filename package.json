@@ -13,8 +13,7 @@
     "cphook": "node build/cphook.js",
     "lint": "cross-env sh build/pre-commit || true",
     "prelintall": "npm run cphook",
-    "lintall": "cross-env sh build/pre-commit lintall || true",
-    "lintall2": "node build/exeprecommit.js",
+    "lintall": "node build/exeprecommit.js",
     "postlintall": "echo 'lintall complete'",
     "lintall-gulp": "node_modules/.bin/gulp eslint"
   },

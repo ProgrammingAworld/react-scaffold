@@ -159,7 +159,7 @@ class LoginMainView extends ReactComponentBase {
           return
       }
 
-      // 清空错误信息
+      // 清空错误信息adsasdf
       setError('')
 
       // 登录检验
