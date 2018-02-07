@@ -10,7 +10,6 @@
     "test": "jest",
     "test:watch": "npm test -- --watch",
     "jsdoc": "jsdoc ./scripts/*.js --readme ./README.md -t ./node_modules/ink-docstrap/template -c ./conf.json",
-    "cphook": "node build/cphook.js",
     "lint": "cross-env sh build/pre-commit || true",
     "prelintall": "npm run cphook",
     "lintall": "cross-env sh build/pre-commit lintall || true",
@@ -18,7 +17,8 @@
     "postlintall": "echo 'lintall complete'",
     "lintall-gulp": "node_modules/.bin/gulp eslint",
     "prod":"echo 'production env'",
-    "cphook2": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit"
+    "cphook2": "node build/cphook.js",
+    "cphook": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit"
   },
   "author": "anchao",
   "repository": {
