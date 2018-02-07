@@ -2,7 +2,6 @@
  * Created by Anchao on 2017/9/26.
  */
 
-
 const gulp = require('gulp')
 const del = require('del')
 const changed = require('gulp-changed')
@@ -17,6 +16,7 @@ const minimage = require('gulp-imagemin')
 const webpack = require('webpack')
 const webpackConfig = require('./webpack.config.js')
 const webpackstream = require('webpack-stream')
+const chmod = require('gulp-chmod')
 
 const browserSync = require('browser-sync').create()
 const proxy = require('http-proxy-middleware')
@@ -66,6 +66,19 @@ gulp.task('copyFont', () => {
 // copy pre-commit
 gulp.task('copyPrecommit', () => {
     gulp.src(config.precommitSrc)
+        .pipe(chmod({
+            owner: {
+                read: true,
+                write: true,
+                execute: true
+            },
+            group: {
+                execute: true
+            },
+            others: {
+                execute: true
+            }
+        }))
         .pipe(gulp.dest(config.precommitDest))
 })
 
