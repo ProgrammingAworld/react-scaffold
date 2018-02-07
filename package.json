@@ -7,18 +7,16 @@
     "server": "node server/index.js",
     "predev": "npm run cphook",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --devtool eval --progress",
-    "test": "jest",
-    "test:watch": "npm test -- --watch",
-    "jsdoc": "jsdoc ./scripts/*.js --readme ./README.md -t ./node_modules/ink-docstrap/template -c ./conf.json",
     "lint": "cross-env sh build/pre-commit || true",
     "prelintall": "npm run cphook",
     "lintall": "cross-env sh build/pre-commit lintall || true",
-    "lintall2": "node build/exeprecommit.js",
     "postlintall": "echo 'lintall complete'",
-    "lintall-gulp": "node_modules/.bin/gulp eslint",
+    "lintall-gulp": "gulp eslint",
     "prod":"echo 'production env'",
-    "cphook2": "node build/cphook.js",
-    "cphook": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit"
+    "cphook": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit",
+    "jsdoc": "jsdoc ./scripts/*.js --readme ./README.md -t ./node_modules/ink-docstrap/template -c ./conf.json",
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
   },
   "author": "anchao",
   "repository": {

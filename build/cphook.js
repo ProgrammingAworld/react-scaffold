@@ -14,8 +14,8 @@ const dest = path.resolve('./', '.git/hooks/pre-commit')
 console.log(__dirname, src, dest)
 fs.copyFile(src, dest, (err) => {
     if (err) throw err;
-    fs.chmod(dest, 777, (err2) => {
-        if (err2) throw err2
-        console.log('修改文件属性成功！')
-    })
+    // fs.chmod(dest, 777, (err2) => {
+    //     if (err2) throw err2
+    //     console.log('修改文件属性成功！')
+    // })
 })
