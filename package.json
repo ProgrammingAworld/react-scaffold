@@ -123,6 +123,6 @@
     "validator": "^9.1.2"
   },
   "pre-commit": [
-    "lintall"
+
   ]
 }
