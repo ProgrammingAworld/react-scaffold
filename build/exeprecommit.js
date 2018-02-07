@@ -13,7 +13,7 @@ const src = path.resolve(__dirname, 'pre-commit')
 
 fs.readFile(src, 'utf8', (err, data) => {
     if (err) throw err
-    exec(`${data} lintall`, (err2, stdout, stderr) => {
+    exec(`${data} lintall || true`, (err2, stdout, stderr) => {
         if (err) {
             console.log('err2=', err2)
             return

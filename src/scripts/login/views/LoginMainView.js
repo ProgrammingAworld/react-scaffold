@@ -130,7 +130,6 @@ class LoginMainView extends ReactComponentBase {
         this.username.focus();
         particlesJS('particles-js', particles);
     }
-
     
     checkedChange = (e) => {
         const value = e.currentTarget.getAttribute('value');

@@ -63,10 +63,10 @@ gulp.task('copyFont', () => {
         .pipe(gulp.dest(dest))
 })
 
-// copy simulates
-gulp.task('copySimulate', () => {
-    gulp.src(config.simulate)
-        .pipe(gulp.dest(config.distsimulate))
+// copy pre-commit
+gulp.task('copyPrecommit', () => {
+    gulp.src(config.precommitSrc)
+        .pipe(gulp.dest(config.precommitDest))
 })
 
 // copy plugins
@@ -79,7 +79,7 @@ gulp.task('copyPlugins', () => {
 })
 
 gulp.task('copy', () => {
-    gulp.start(['copyFont', 'copySimulate', 'copyPlugins'])
+    gulp.start(['copyFont', 'copyPrecommit', 'copyPlugins'])
 })
 
 // 图片处理
