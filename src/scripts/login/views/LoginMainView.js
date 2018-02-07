@@ -131,123 +131,128 @@ class LoginMainView extends ReactComponentBase {
         particlesJS('particles-js', particles);
     }
 
-  checkedChange = (e) => {
-      const value = e.currentTarget.getAttribute('value');
-      this.props.setUserType(value)
-  }
-
-  PKIlogin = () => {
-      this.props.PKIlogin()
-  }
-
-  login = () => {
-      const {
-          type, setError, setUserName, login 
-      } = this.props
-      const username = this.username.value.trim()
-      const pwd = this.pwd.value.trim()
-
-      if (username.length === 0) {
-          this.username.focus()
-          setError('请输入用户名!')
-          return
-      }
-
-      if (pwd.length === 0) {
-          this.pwd.focus()
-          setError('请输入密码!')
-          return
-      }
-
-      // 清空错误信息
-      setError('')
-      
-      // 登录检验
-      login({ data: { username, pwd, type } }).done((res) => {
-          if (res.statusCode === 200) {
-              this.gotoUrl('/app')
-              setUserName(username)
-          }
-      })
-  }
-
-  gotoUrl = (url) => {
-      this.props.history.replace(url)
-  }
-  
-  render() {
-      const { type, error } = this.props
-      let errorCls = 'errors pull-right invisible'
-      if (error.length > 0) {
-          errorCls = 'errors pull-right'
-      }
-
-      return (
-          <div id="chief">
-              <div className="login">
-                  <div id="particles-js" />
-                  <div className="loginmain">
-                      <div className="input-group">
-                          <input
-                              type="text"
-                              ref={(username) => { this.username = username }}
-                              className="login-user"
-                              onKeyDown={this.forbitBlackSpace}
-                          />
-                          <input
-                              type="password"
-                              ref={(pwd) => { this.pwd = pwd }}
-                              className="login-pwd"
-                          />
-                          <i className="fa fa-user-o fa-lg" />
-                          <i className="fa fa-bell-o fa-lg pwdico" />
-                      </div>
-                      <div className="login-btn">
-                          <div className={errorCls}><i
-                              className="fa fa-exclamation-circle fa-lg"
-                          />{error}
-                          </div>
-                          <div className="clearfix" />
-                          <button
-                              className="login_button pull-left hide"
-                              onClick={this.PKIlogin}
-                          >PKI登录
-                          </button>
-                          <button className="login_button pull-right" onClick={this.login}>
-                登录
-                          </button>
-                          <div className="clearfix" />
-                          <div className="rolerow">
-                              <div className="pull-left">
-                                  <div className="pull-left role"><span
-                                      role="presentation"
-                                      value="0"
-                                      onClick={this.checkedChange}
-                                      className={type === '0'
-                                          ? 'checked'
-                                          : ''}
-                                  />用户
-                                  </div>
-                                  <div className="pull-left role"><span
-                                      role="presentation"
-                                      value="1"
-                                      onClick={this.checkedChange}
-                                      className={type === '1'
-                                          ? 'checked'
-                                          : ''}
-                                  />管理员
-                                  </div>
-                              </div>
-                              <div className="pull-right hide">
-                                  <span>下载证书</span>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      )
-  }
+    
+    checkedChange = (e) => {
+        const value = e.currentTarget.getAttribute('value');
+        this.props.setUserType(value)
+    }
+    
+    PKIlogin = () => {
+        this.props.PKIlogin()
+    }
+    
+    login = () => {
+        const {
+            type, setError, setUserName, login
+        } = this.props
+        const username = this.username.value.trim()
+        const pwd = this.pwd.value.trim()
+        
+        if (username.length === 0) {
+            this.username.focus()
+            setError('请输入用户名!')
+            return
+        }
+        
+        if (pwd.length === 0) {
+            this.pwd.focus()
+            setError('请输入密码!')
+            return
+        }
+        
+        // 清空错误信息
+        setError('')
+        
+        // 登录检验
+        login({ data: { username, pwd, type } }).done((res) => {
+            if (res.statusCode === 200) {
+                this.gotoUrl('/app')
+                setUserName(username)
+            }
+        })
+    }
+    
+    gotoUrl = (url) => {
+        this.props.history.replace(url)
+    }
+    
+    render() {
+        const { type, error } = this.props
+        let errorCls = 'errors pull-right invisible'
+        if (error.length > 0) {
+            errorCls = 'errors pull-right'
+        }
+        
+        return (
+            <div id="chief">
+                <div className="login">
+                    <div id="particles-js" />
+                    <div className="loginmain">
+                        <div className="input-group">
+                            <input
+                                type="text"
+                                ref={(username) => {
+                                    this.username = username
+                                }}
+                                className="login-user"
+                                onKeyDown={this.forbitBlackSpace}
+                            />
+                            <input
+                                type="password"
+                                ref={(pwd) => {
+                                    this.pwd = pwd
+                                }}
+                                className="login-pwd"
+                            />
+                            <i className="fa fa-user-o fa-lg" />
+                            <i className="fa fa-bell-o fa-lg pwdico" />
+                        </div>
+                        <div className="login-btn">
+                            <div className={errorCls}><i
+                                className="fa fa-exclamation-circle fa-lg"
+                            />{error}
+                            </div>
+                            <div className="clearfix" />
+                            <button
+                                className="login_button pull-left hide"
+                                onClick={this.PKIlogin}
+                            >PKI登录
+                            </button>
+                            <button className="login_button pull-right" onClick={this.login}>
+                                登录
+                            </button>
+                            <div className="clearfix" />
+                            <div className="rolerow">
+                                <div className="pull-left">
+                                    <div className="pull-left role"><span
+                                        role="presentation"
+                                        value="0"
+                                        onClick={this.checkedChange}
+                                        className={type === '0'
+                                            ? 'checked'
+                                            : ''}
+                                    />用户
+                                    </div>
+                                    <div className="pull-left role"><span
+                                        role="presentation"
+                                        value="1"
+                                        onClick={this.checkedChange}
+                                        className={type === '1'
+                                            ? 'checked'
+                                            : ''}
+                                    />管理员
+                                    </div>
+                                </div>
+                                <div className="pull-right hide">
+                                    <span>下载证书</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
 
 const loginSelector = state => state.login
