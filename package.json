@@ -13,7 +13,7 @@
     "postlintall": "echo 'lintall complete'",
     "lintall-gulp": "gulp eslint",
     "prod": "echo 'production env'",
-    "cphook": "shx cp build/pre-commit .git/hooks/ && shx chmod +x .git/hooks/pre-commit",
+    "cphook": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit",
     "jsdoc": "jsdoc ./scripts/*.js --readme ./README.md -t ./node_modules/ink-docstrap/template -c ./conf.json",
     "test": "jest",
     "test:watch": "npm test -- --watch"
@@ -81,7 +81,6 @@
     "pre-commit": "^1.2.2",
     "react-click-outside": "^3.0.0",
     "sass-loader": "^6.0.6",
-    "shx": "^0.2.2",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
     "webpack-chunk-hash": "^0.5.0",
