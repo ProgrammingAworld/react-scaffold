@@ -1,6 +1,6 @@
 /* dialog扩展 */
 var $ = require('jquery')
-var _ = require('underscore')
+var _ = require('lodash')
 require('./dialog-plus.js')
 
 $.extend(dialog, {

@@ -120,7 +120,6 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
-    "underscore": "^1.8.3",
     "validator": "^9.1.2"
   },
   "pre-commit": []
