@@ -58,7 +58,7 @@ module.exports = {
         domain: `http://${ip}:3003`,
     },
     proxy: {
-        target: 'http://172.17.1.197',
+        target: 'http://192.168.10.45',
         proxyPort: 3000,
         headers: {
             host: '',

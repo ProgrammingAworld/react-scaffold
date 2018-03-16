@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { React, connect, createSelector } from 'common/Util'
+import { React, Immutable, connect, createSelector, PropTypes } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 import * as actionTypes from '../actions/actionTypes'
 import actionCreator from '../actions/actionCreator'
@@ -9,13 +9,16 @@ import AddTodoView from './components/AddTodoView'
 import TodoListView from './components/TodoListView'
 import FooterView from './components/FooterView'
 
+const noop = function () {
+}
+
 class TodoMainView extends ReactComponentBase {
     componentDidMount() {
         const { getAllTodo } = this.props
         
         getAllTodo()
     }
-
+    
     render() {
         const {
             todos, visibleTodos, todoFilter,
@@ -47,6 +50,35 @@ class TodoMainView extends ReactComponentBase {
         )
     }
 }
+
+TodoMainView.defaultProps = {
+    todos: Immutable.List(),
+    visibleTodos: Immutable.List(),
+    todoFilter: '',
+    getAllTodo: noop,
+    addTodo: noop,
+    checkedAllTodo: noop,
+    completedTodo: noop,
+    removeTodo: noop,
+    updateTodo: noop,
+    setFilter: noop,
+    clearCompletedTodo: noop
+}
+
+TodoMainView.propType = {
+    todos: PropTypes.array,
+    visibleTodos: PropTypes.array,
+    todoFilter: PropTypes.string,
+    getAllTodo: PropTypes.func,
+    addTodo: PropTypes.func,
+    checkedAllTodo: PropTypes.func,
+    completedTodo: PropTypes.func,
+    removeTodo: PropTypes.func,
+    updateTodo: PropTypes.func,
+    setFilter: PropTypes.func,
+    clearCompletedTodo: PropTypes.func
+}
+
 
 const todosSelector = state => state.todos
 const selectByFilter = (aTodos, sFilter) => {

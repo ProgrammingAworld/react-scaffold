@@ -3,8 +3,6 @@
  */
 import {
     React,
-    connect,
-    createSelector,
     PropTypes,
     Route,
     Redirect,
@@ -34,7 +32,4 @@ MainAppView.propTypes = {
     match: PropTypes.object.isRequired
 }
 
-
-const appData = createSelector([], () => ({}))
-
-export default connect(appData)(MainAppView)
+export default MainAppView

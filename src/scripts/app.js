@@ -31,12 +31,12 @@ class Main {
         }
     }
 
-    render(Componet){
+    render(Component){
         ReactDOM.render(
             <AppContainer warnings={false}>
                 <Provider store={store}>
                     <Router hashHistory={history}>
-                        <Componet />
+                        <Component />
                     </Router>
                 </Provider>
             </AppContainer>,

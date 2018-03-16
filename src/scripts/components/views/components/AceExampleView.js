@@ -2,7 +2,7 @@
 import AceEditor from 'react-ace'
 import 'brace/mode/javascript'
 import 'brace/theme/github'
-import { React, connect } from 'common/Util'
+import { React, connect, withRouter } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 
 class AceExampleView extends ReactComponentBase {
@@ -30,4 +30,4 @@ class AceExampleView extends ReactComponentBase {
   }
 }
 
-export default connect()(AceExampleView)
+export default connect()(withRouter(AceExampleView))

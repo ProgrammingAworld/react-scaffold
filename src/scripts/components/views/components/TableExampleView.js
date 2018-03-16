@@ -1,5 +1,5 @@
 import { Table, Column, Cell } from 'fixed-data-table-2'
-import { React, connect, createSelector } from 'common/Util'
+import { React, connect, withRouter } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 
 class TableExampleView extends ReactComponentBase {
@@ -115,6 +115,4 @@ class TableExampleView extends ReactComponentBase {
     }
 }
 
-const componentData = createSelector([], () => ({}))
-
-export default connect(componentData)(TableExampleView)
+export default connect()(withRouter(TableExampleView))
