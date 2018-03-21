@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const config = require('./project.config')
 
@@ -64,6 +65,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(['dist/*.hot-update.js$', 'dist/*.hot-update.json$']),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.DefinePlugin({

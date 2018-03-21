@@ -133,6 +133,7 @@ gulp.task('webpack_build', () => {
     myWebpackConfig.plugins.shift()
     myWebpackConfig.plugins.shift()
     myWebpackConfig.plugins.shift()
+    myWebpackConfig.plugins.shift()
     myWebpackConfig.plugins.unshift(new webpack.optimize.ModuleConcatenationPlugin())
     myWebpackConfig.plugins.unshift(new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')

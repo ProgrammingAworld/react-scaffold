@@ -24,6 +24,9 @@ class Main {
         this.event();
 
         if (module.hot && process.env.NODE_ENV === 'development'){
+            // module.hot.dispose(data => {
+            //     console.log('data==', data)
+            // })
             module.hot.accept('./main/views/RootRoutesView', () => {
         const NextComponent = require('./main/views/RootRoutesView').default; // eslint-disable-line
                 this.render(NextComponent);

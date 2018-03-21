@@ -43,7 +43,7 @@ const handleWithParameter = function (url, {
     const settings = {
         method,
         data: dataNew,
-        contentType: 'application/json; charset=uft-8',
+        contentType: 'application/json; charset=utf-8',
         dataType: 'json'
     }
     return $.ajax(urlFull, settings)

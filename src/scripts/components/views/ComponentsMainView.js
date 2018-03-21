@@ -11,6 +11,7 @@ import TableExampleView from './components/TableExampleView'
 import AceExampleView from './components/AceExampleView'
 import BootstrapReactView from './components/BootstrapReactView'
 import ValidatorView from './components/ValidatorView'
+import AntdView from './components/AntdView'
 
 const ComponentsMainView = function (props) {
     const { url } = props.match
@@ -55,6 +56,15 @@ const ComponentsMainView = function (props) {
                             validator
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink
+                            replace
+                            to={config.url.app.antd}
+                            activeClassName="active"
+                        >
+                            antd
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
             <div className="pull-right">
@@ -78,6 +88,11 @@ const ComponentsMainView = function (props) {
                         replace
                         path={config.url.app.validator}
                         component={ValidatorView}
+                    />
+                    <Route
+                        replace
+                        path={config.url.app.antd}
+                        component={AntdView}
                     />
                     <Route
                         exact
