@@ -14,6 +14,7 @@ const host = domain
 
 const handleWithParameter = function (url, {
     method = 'GET',
+    contentType = 'application/json; charset=utf-8',
     params = {},
     data = {}
 }) {
@@ -42,8 +43,8 @@ const handleWithParameter = function (url, {
     
     const settings = {
         method,
+        contentType,
         data: dataNew,
-        contentType: 'application/json; charset=utf-8',
         dataType: 'json'
     }
     return $.ajax(urlFull, settings)

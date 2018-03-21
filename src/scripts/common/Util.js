@@ -75,10 +75,10 @@ const createActions = function (actionMap) {
                     if (res.statusCode === 200) {
                         dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(res.data))
                     } else {
-                        dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(res.message))
+                        dispatch(createAction(`${configOrFn.actionType}_ERROR`)(res.msg))
                     }
                 }).fail(() => {
-                    dispatch(createAction(`${configOrFn.actionType}_ERROR`)())
+                    dispatch(createAction(`${configOrFn.actionType}_FAIL`)())
                 }).always(() => {
                     dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
                 })
