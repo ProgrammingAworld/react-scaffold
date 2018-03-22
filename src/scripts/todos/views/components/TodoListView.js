@@ -2,51 +2,51 @@
  * Created by anchao on 2016/6/30.
  */
 
-import { React } from 'common/Util';
-import ReactComponentBase from 'base/ReactComponentBase';
-import Todo from './TodoSingleView';
+import { React } from 'common/Util'
+import ReactComponentBase from 'base/ReactComponentBase'
+import Todo from './TodoSingleView'
 
 class TodoListView extends ReactComponentBase {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             delIcoIndex: -1,
             editNameIndex: -1
-        };
+        }
     }
 
     showDeleteIco = (index) => {
         this.setState({
             delIcoIndex: index
-        });
+        })
     }
 
     hideDeleteIco = () => {
         this.setState({
             delIcoIndex: -1
-        });
+        })
     }
 
     showEdit = (index) => {
         this.setState({
             editNameIndex: index
-        });
+        })
     }
 
     hideEdit = (index, newText) => {
         if (newText.length === 0) {
-            this.props.onRemoveTodo(index);
+            this.props.onRemoveTodo(index)
         }
 
         this.setState({
             editNameIndex: -1
-        });
+        })
     }
 
     render() {
-        const { todos, onCheckedAll } = this.props;
-        const bCheckedAll = todos.filter(item => item.get('completed')).size === todos.size;
+        const { todos, onCheckedAll } = this.props
+        const bCheckedAll = todos.filter(item => item.get('completed')).size === todos.size
 
         return (
             <section className="main">
@@ -80,9 +80,9 @@ class TodoListView extends ReactComponentBase {
                     }
                 </ul>
             </section>
-        );
+        )
     }
 }
 
-export default TodoListView;
+export default TodoListView
 

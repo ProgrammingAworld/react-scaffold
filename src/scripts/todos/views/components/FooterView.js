@@ -2,8 +2,8 @@
  * Created by anchao on 2016/6/30.
  */
 
-import { React } from 'common/Util';
-import ReactComponentBase from 'base/ReactComponentBase';
+import { React } from 'common/Util'
+import ReactComponentBase from 'base/ReactComponentBase'
 
 class FooterView extends ReactComponentBase {
     onRenderLi(filter, name) {
@@ -17,7 +17,7 @@ class FooterView extends ReactComponentBase {
                     >{name}
                     </span>
                 </li>
-            );
+            )
         }
         return (
             <li>
@@ -27,14 +27,14 @@ class FooterView extends ReactComponentBase {
                 >{name}
                 </span>
             </li>
-        );
+        )
     }
 
     render() {
-        const aTodos = this.props.todos;
-        const clsName = aTodos.size === 0 ? 'hide' : '';
-        const nCompletedCount = aTodos.filter(oTodo => !oTodo.get('completed')).size;
-        const completedCls = aTodos.size - nCompletedCount > 0 ? 'pull-right' : 'pull-right hide';
+        const aTodos = this.props.todos
+        const clsName = aTodos.size === 0 ? 'hide' : ''
+        const nCompletedCount = aTodos.filter(oTodo => !oTodo.get('completed')).size
+        const completedCls = aTodos.size - nCompletedCount > 0 ? 'pull-right' : 'pull-right hide'
 
         return (
             <footer id="footer" className={clsName}>
@@ -55,8 +55,8 @@ class FooterView extends ReactComponentBase {
                 >Clear completed
                 </button>
             </footer>
-        );
+        )
     }
 }
 
-export default FooterView;
+export default FooterView

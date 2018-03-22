@@ -17,6 +17,9 @@ const todoReducer = handleActions({
             ...state,
             todoList: Immutable.fromJS(action.payload)
         }),
+        error: state => (
+            { ...state, isLoading: false }
+        ),
         always: state => ({ ...state, isLoading: false })
     },
     [actionTypes.ADD_TODO]: {
