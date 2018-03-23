@@ -2,9 +2,9 @@
  * Created by anchao on 2016/6/29.
  */
 import { $ } from 'common/Util'
+import config from '../conf/config'
 
-/* eslint-disable no-undef */
-const host = domain
+const { host } = config.injection
 /*
  * 用法：如下
  * url: '/todos/:todoId/getTodoContent'

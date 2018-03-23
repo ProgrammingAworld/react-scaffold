@@ -58,7 +58,7 @@ module.exports = {
                 }
             },
             {
-                test: path.resolve(__dirname, './src/scripts/base/ServiceBase.js'),
+                test: path.resolve(__dirname, './src/scripts/conf/injection.js'),
                 loader: `imports-loader?domain=>
                 ${JSON.stringify(config.development.domain)}`
             }
