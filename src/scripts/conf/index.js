@@ -3,13 +3,13 @@
  */
 
 import errors from './errors'
-import dbType from './dbType'
+import * as constant from './constant'
 import url from './url'
 import * as injection from './injection'
 
 const config = {
     errors,
-    dbType,
+    constant,
     url,
     injection
 }

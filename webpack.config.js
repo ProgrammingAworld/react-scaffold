@@ -30,6 +30,7 @@ module.exports = {
             base: path.resolve(__dirname, './src/scripts/base'),
             main: path.resolve(__dirname, './src/scripts/main'),
             common: path.resolve(__dirname, './src/scripts/common'),
+            conf: path.resolve(__dirname, './src/scripts/conf'),
             plugins: path.resolve(__dirname, './src/scripts/plugins'),
             particles: path.resolve(__dirname, './src/scripts/plugins/particles.js'),
             echarts: path.resolve(__dirname, './src/scripts/plugins/echarts.min.js')

@@ -4,6 +4,7 @@
 
 import { React } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
+import classNames from 'classnames/bind'
 
 class TodoSingleView extends ReactComponentBase {
   editNameHandler = (e) => {
@@ -39,31 +40,25 @@ class TodoSingleView extends ReactComponentBase {
           hideDeleteIco,
           removeTodo
       } = this.props
-      const destroyCls = bShowDel ? 'destroy' : 'destroy hide'
-
-      const viewCls = bCanEdit ? 'view hide' : 'view'
-      const editCls = bCanEdit ? 'edit' : 'edit hide'
-
-      const labelCls = oTodo.get('completed') ? 'normal completed' : 'normal'
-
+      
       return (
           <li
               onMouseEnter={showDeleteIco}
               onMouseLeave={hideDeleteIco}
               onDoubleClick={this.showEdit}
           >
-              <div className={viewCls}>
+              <div className={classNames('view', { hide: bCanEdit })}>
                   <input
                       className="toggle"
                       type="checkbox"
                       checked={oTodo.get('completed')}
                       onChange={this.props.completedTodo}
                   />
-                  <div className={labelCls}>{oTodo.get('text')}</div>
-                  <button className={destroyCls} onClick={removeTodo} />
+                  <div className={classNames('normal', { completed: oTodo.get('completed') })}>{oTodo.get('text')}</div>
+                  <button className={classNames('destroy', { hide: !bShowDel })} onClick={removeTodo} />
               </div>
               <input
-                  className={editCls}
+                  className={classNames('edit', { hide: !bCanEdit })}
                   value={oTodo.get('text')}
                   onChange={this.editNameHandler}
                   onKeyDown={this.keyDownFinishNameEdit}

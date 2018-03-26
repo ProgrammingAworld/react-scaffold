@@ -8,9 +8,9 @@ import {
     Redirect,
     Switch
 } from 'common/Util'
-import config from '../../conf/config'
+import config from 'conf'
 import HeaderView from './HeaderView'
-import TodoMainView from '../../todos/views/TodoMainView'
+import TodoMainView from '../../todos/views/components/TodoMainView'
 import ComponentsMainView from '../../components/views/ComponentsMainView'
 
 const MainAppView = function (props) {

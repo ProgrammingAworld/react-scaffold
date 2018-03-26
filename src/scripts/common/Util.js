@@ -106,6 +106,8 @@ const handleActions = function (reducerMap, defaultState) {
     return originalHandleActions(result, defaultState)
 }
 
+const noop = function () {}
+
 export {
     $,
     axios,
@@ -134,5 +136,6 @@ export {
     createActions,
     handleAction,
     handleActions,
-    combineActions
+    combineActions,
+    noop
 }

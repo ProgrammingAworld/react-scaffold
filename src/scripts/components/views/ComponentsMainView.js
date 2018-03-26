@@ -6,7 +6,7 @@ import {
     Switch,
     PropTypes
 } from 'common/Util'
-import config from '../../conf/config'
+import config from 'conf'
 import TableExampleView from './components/TableExampleView'
 import AceExampleView from './components/AceExampleView'
 import BootstrapReactView from './components/BootstrapReactView'

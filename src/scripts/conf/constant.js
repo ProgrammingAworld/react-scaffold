@@ -1,4 +1,10 @@
-const dbType = {
+export const VisibilityFilters = {
+    SHOW_ALL: 'SHOW_ALL',
+    SHOW_COMPLETED: 'SHOW_COMPLETED',
+    SHOW_ACTIVE: 'SHOW_ACTIVE'
+}
+
+export const dbType = {
     dbType: [
         { enName: 'int', cnName: '整数' },
         { enName: 'decimal', cnName: '小数' },
@@ -10,5 +16,3 @@ const dbType = {
         { enName: 'datetime', cnName: '日期时间' }
     ]
 }
-
-export default dbType

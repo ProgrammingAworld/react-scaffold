@@ -10,11 +10,7 @@ const actionCreator = createActions({
         method: 'GET',
         actionType: actionTypes.GET_ALL_TODO
     },
-    addTodo: {
-        url: '/todos/addTodo',
-        method: 'POST',
-        actionType: actionTypes.ADD_TODO
-    },
+    addTodo: createAction(actionTypes.ADD_TODO),
     removeTodo: createAction(actionTypes.REMOVE_TODO),
     completedTodo: createAction(actionTypes.COMPLETED_TODO),
     updateTodo: createAction(actionTypes.UPDATE_TODO),

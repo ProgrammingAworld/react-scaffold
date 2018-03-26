@@ -2,7 +2,7 @@
  * Created by anchao on 2016/6/29.
  */
 import { $ } from 'common/Util'
-import config from '../conf/config'
+import config from 'conf'
 
 const { host } = config.injection
 /*

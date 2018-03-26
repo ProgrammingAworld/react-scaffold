@@ -2,9 +2,11 @@
  * Created by anchao on 2016/6/30.
  */
 
-import { React } from 'common/Util'
+import config from 'conf';
+import { React, connect, createSelector } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
-import Todo from './TodoSingleView'
+import Todo from '../components/TodoSingleView'
+import actionCreator from '../../actions/actionCreator'
 
 class TodoListView extends ReactComponentBase {
     constructor(props) {
@@ -14,6 +16,12 @@ class TodoListView extends ReactComponentBase {
             delIcoIndex: -1,
             editNameIndex: -1
         }
+    }
+    
+    componentDidMount() {
+        const { getAllTodo } = this.props
+        
+        getAllTodo()
     }
 
     showDeleteIco = (index) => {
@@ -45,7 +53,9 @@ class TodoListView extends ReactComponentBase {
     }
 
     render() {
-        const { todos, onCheckedAll } = this.props
+        const {
+            todos, checkedAllTodo, completedTodo, removeTodo, updateTodo 
+        } = this.props
         const bCheckedAll = todos.filter(item => item.get('completed')).size === todos.size
 
         return (
@@ -55,7 +65,7 @@ class TodoListView extends ReactComponentBase {
                     id="toggle-all"
                     type="checkbox"
                     checked={bCheckedAll}
-                    onChange={() => onCheckedAll(!bCheckedAll)}
+                    onChange={() => checkedAllTodo(!bCheckedAll)}
                 />
                 <ul id="todo-list" className="list-unstyled">
                     {
@@ -64,17 +74,17 @@ class TodoListView extends ReactComponentBase {
                     {
                         todos.size > 0 && todos.map((oTodo, index) => (
                             <Todo
-                                key={index}
+                                key={oTodo.get('id')}
                                 todo={oTodo}
-                                completedTodo={() => this.props.onCompletedTodo(index)}
-                                removeTodo={() => this.props.onRemoveTodo(index)}
+                                completedTodo={() => completedTodo(index)}
+                                removeTodo={() => removeTodo(index)}
                                 showDeleteIco={() => this.showDeleteIco(index)}
                                 hideDeleteIco={this.hideDeleteIco}
                                 showDel={this.state.delIcoIndex === index}
                                 showEdit={() => this.showEdit(index)}
                                 hideEdit={newText => this.hideEdit(index, newText)}
                                 canEdit={this.state.editNameIndex === index}
-                                onEditTodo={newText => this.props.onEditTodo(index, newText)}
+                                onEditTodo={text => updateTodo({ index, text })}
                             />
                         ))
                     }
@@ -84,5 +94,21 @@ class TodoListView extends ReactComponentBase {
     }
 }
 
-export default TodoListView
+const todosSelector = state => state.todos
+const selectByFilter = (aTodos, sFilter) => {
+    switch (sFilter) {
+    case config.constant.VisibilityFilters.SHOW_ALL:
+        return aTodos
+    case config.constant.VisibilityFilters.SHOW_COMPLETED:
+        return aTodos.filter(oTodo => oTodo.get('completed'))
+    case config.constant.VisibilityFilters.SHOW_ACTIVE:
+        return aTodos.filter(oTodo => !oTodo.get('completed'))
+    default:
+        return aTodos
+    }
+}
+const todosByFilterSelector = createSelector([todosSelector], oTodos => ({
+    todos: selectByFilter(oTodos.todoList.list, oTodos.todoFilter)
+}))
 
+export default connect(todosByFilterSelector, actionCreator)(TodoListView)

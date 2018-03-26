@@ -7,7 +7,7 @@ import {
     Redirect,
     Switch
 } from 'common/Util'
-import config from '../../conf/config'
+import config from 'conf'
 import LoginView from '../../login/views/LoginMainView'
 import MainAppView from './MainAppView'
 import Main404View from './Main404View'
