@@ -27,7 +27,7 @@ class Main {
             // module.hot.dispose(data => {
             //     console.log('data==', data)
             // })
-            module.hot.accept('./main/views/RootRoutesView', () => {
+            module.hot.accept('./common/views/RootRoutesView', () => {
         const NextComponent = require('./common/views/RootRoutesView').default; // eslint-disable-line
                 this.render(NextComponent);
             });
