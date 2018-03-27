@@ -7,9 +7,13 @@ import { React } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 
 class AntdView extends ReactComponentBase {
+    state = {
+        name: ''
+    }
+    
     render() {
         return (
-            <div>测试有没有修改asdflasdjflasjdfasdfasdfasdf</div>
+            <div>测试{this.state.name}</div>
         )
     }
 }

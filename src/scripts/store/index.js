@@ -5,8 +5,12 @@
 import {
     storeCreateByReducer
 } from 'common/Util'
-import reducers from 'main/reducers'
+import login from '../login/reducers'
+import todos from '../todos/reducers'
 
-const store = storeCreateByReducer(reducers)
+const store = storeCreateByReducer({
+    login,
+    todos
+})
 
 export default store

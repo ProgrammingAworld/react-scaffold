@@ -12,7 +12,7 @@ import {
     AppContainer,
     dialog
 } from 'common/Util'
-import RootRoutesView from 'main/views/RootRoutesView'
+import RootRoutesView from 'common/views/RootRoutesView'
 import store from './store'
 
 const history = createHistory();
@@ -28,7 +28,7 @@ class Main {
             //     console.log('data==', data)
             // })
             module.hot.accept('./main/views/RootRoutesView', () => {
-        const NextComponent = require('./main/views/RootRoutesView').default; // eslint-disable-line
+        const NextComponent = require('./common/views/RootRoutesView').default; // eslint-disable-line
                 this.render(NextComponent);
             });
         }
