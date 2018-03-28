@@ -15,11 +15,10 @@ class AntdView extends ReactComponentBase {
     btnClick = () => {
         const Content = <div className="aaa">这里是一些内容</div>
         
-        diaglog.confirm({
+        diaglog.normal({
             title: '测试',
             infoType: 'success',
-            content: Content,
-            ok: () => false
+            content: Content
         })
     }
     

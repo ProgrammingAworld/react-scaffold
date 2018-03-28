@@ -14,16 +14,18 @@ import classNames from 'classnames/bind'
 
 function Dialog(props) {
     const {
-        dialogType, infoType, title, content, mousePosition, width, show,
+        dialogType, infoType, title, content, mousePosition, width, footer, show,
         ok, cancel
     } = props
-    let footer = []
+    let footerNew = footer
     let contentSec = content
     let infoTypeCls = 'dialog-info'
-    
+
     switch (dialogType) {
+    case 'normal':
+        break
     case 'confirm':
-        footer = [
+        footerNew = [
             <Button
                 key="cancel"
                 type="default"
@@ -37,41 +39,57 @@ function Dialog(props) {
                 className="dialog-confirm"
                 onClick={ok}
             >确认
-            </Button>,
+            </Button>
         ]
         break;
     case 'alert':
-        footer = [
+        footerNew = [
             <Button
                 key="confirm"
                 type="primary"
                 className="dialog-confirm"
                 onClick={ok}
             >确认
-            </Button>,
+            </Button>
         ]
-            
+
         if (infoType === 'success') {
-            contentSec = <div><div className="pull-left"><Icon type="check-circle-o" />&nbsp;&nbsp;</div>{content}</div>
+            contentSec = (
+                <div>
+                    <div className="pull-left"><Icon type="check-circle-o" />&nbsp;&nbsp;</div>
+                    {content}
+                </div>)
         } else if (infoType === 'warning') {
-            contentSec = <div><div className="pull-left"><Icon type="warning" />&nbsp;&nbsp;</div>{content}</div>
+            contentSec = (
+                <div>
+                    <div className="pull-left"><Icon type="warning" />&nbsp;&nbsp;</div>
+                    {content}
+                </div>)
         } else if (infoType === 'error') {
-            contentSec = <div><div className="pull-left"><Icon type="close-circle-o" />&nbsp;&nbsp;</div>{content}</div>
+            contentSec = (
+                <div>
+                    <div className="pull-left"><Icon type="close-circle-o" />&nbsp;&nbsp;</div>
+                    {content}
+                </div>)
         } else {
-            contentSec = <div><div className="pull-left"><Icon type="exclamation-circle-o" />&nbsp;&nbsp;</div>{content}</div>
+            contentSec = (
+                <div>
+                    <div className="pull-left"><Icon type="exclamation-circle-o" />&nbsp;&nbsp;</div>
+                    {content}
+                </div>)
         }
-            
+
         infoTypeCls = `dialog-${infoType}`
         break;
     default:
         break;
     }
-    
+
     return (
         <Modal
             className={classNames({ 'dialog-common': true, [infoTypeCls]: dialogType === 'alert' })}
             title={title}
-            footer={footer}
+            footer={footerNew}
             mousePosition={mousePosition}
             visible={show}
             wrapClassName="dialogwapper"
@@ -99,11 +117,12 @@ function Dialog(props) {
  */
 
 Dialog.propTypes = {
-    dialogType: PropTypes.oneOf(['alert', 'confirm']),
+    dialogType: PropTypes.oneOf(['normal', 'alert', 'confirm']),
     infoType: PropTypes.oneOf(['success', 'warning', 'info', 'error']),
     title: PropTypes.string,
     content: PropTypes.element,
     width: PropTypes.number,
+    footer: PropTypes.array,
     mousePosition: PropTypes.shape({
         x: PropTypes.number,
         y: PropTypes.number,
@@ -118,6 +137,7 @@ Dialog.defaultProps = {
     title: '标题',
     content: null,
     infoType: 'info',
+    footer: [],
     mousePosition: { x: 0, y: 0 },
     width: 500,
     show: false,

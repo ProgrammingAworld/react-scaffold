@@ -5,6 +5,26 @@ import actionCreator from './actions/actionCreator'
 import store from '../../store/index'
 
 const dialog = {
+    normal({
+        title = '确认', content, footer = [], width = 500, ok = dialog.hide, cancel = dialog.hide
+    }) {
+        const onOK = () => {
+            if (typeof ok === 'function' && ok()) {
+                dialog.hide()
+            }
+        }
+        store.dispatch(actionCreator.showDialog({
+            title,
+            content,
+            width,
+            footer,
+            cancel,
+            ok: onOK,
+            dialogType: 'normal',
+        }))
+
+        return this
+    },
     confirm({
         title = '确认', content, width = 500, ok, cancel = dialog.hide
     }) {
