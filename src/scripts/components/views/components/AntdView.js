@@ -5,15 +5,29 @@
  */
 import { React } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
+import diaglog from 'common/dialog'
 
 class AntdView extends ReactComponentBase {
     state = {
         name: ''
     }
     
+    btnClick = () => {
+        const Content = <div className="aaa">这里是一些内容</div>
+        
+        diaglog.confirm({
+            title: '测试',
+            infoType: 'success',
+            content: Content,
+            ok: () => false
+        })
+    }
+    
     render() {
         return (
-            <div>测试{this.state.name}</div>
+            <div>测试{this.state.name}
+                <button onClick={this.btnClick}>dialog</button>
+            </div>
         )
     }
 }

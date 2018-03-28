@@ -27,9 +27,7 @@ import {
     combineActions
 } from 'redux-actions'
 import ServiceBase from '../base/ServiceBase'
-import dialog from '../plugins/dialog'
 import Tools from './Tools'
-// require('../plugins/bootstrap')
 
 // state日志
 const logger = createLogger({
@@ -111,7 +109,6 @@ const noop = function () {}
 export {
     $,
     axios,
-    dialog,
     Tools,
     React,
     ReactDOM,
