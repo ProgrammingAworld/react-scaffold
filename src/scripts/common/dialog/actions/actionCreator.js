@@ -1,12 +1,8 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { createAction, createActions } from 'common/Util'
+import { createAction } from 'redux-actions'
 import * as actionTypes from './actionTypes'
 
-const actionCreator = createActions({
-    showDialog: createAction(actionTypes.SHOWDIALOG_COMMON),
-    hideDialog: createAction(actionTypes.HIDEDIALOG_COMMON)
-})
-
-export default actionCreator
+export const showDialog = createAction(actionTypes.SHOWDIALOG_COMMON)
+export const hideDialog = createAction(actionTypes.HIDEDIALOG_COMMON)

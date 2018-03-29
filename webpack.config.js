@@ -32,6 +32,7 @@ module.exports = {
             common: path.resolve(__dirname, './src/scripts/common'),
             conf: path.resolve(__dirname, './src/scripts/conf'),
             dialog: path.resolve(__dirname, './src/scripts/common/dialog/index.js'),
+            loading: path.resolve(__dirname, './src/scripts/common/loading/index.js'),
             plugins: path.resolve(__dirname, './src/scripts/plugins'),
             particles: path.resolve(__dirname, './src/scripts/plugins/particles.js'),
             echarts: path.resolve(__dirname, './src/scripts/plugins/echarts.min.js')

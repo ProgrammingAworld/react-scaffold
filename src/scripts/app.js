@@ -23,9 +23,6 @@ class Main {
         this.event()
         
         if (module.hot && process.env.NODE_ENV === 'development') {
-            // module.hot.dispose(data => {
-            //     console.log('data==', data)
-            // })
             module.hot.accept('./common/views/RootRoutesView', () => {
                 const NextComponent = require('./common/views/RootRoutesView').default // eslint-disable-line
                 this.render(NextComponent)
@@ -110,7 +107,7 @@ class Main {
             // 关闭Loading画面
             // this.closeLoading(settings.url)
             // cmd + ctr + space -->emoji
-            window.alert('当前服务不可用😂！', 'warning')
+            window.alert('当前服务不可用😂！')
         })
             .on('click', () => {
             

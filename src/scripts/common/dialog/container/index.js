@@ -7,8 +7,7 @@
 import { React, PropTypes, connect, createSelector, noop } from 'common/Util'
 import {
     Modal,
-    Button,
-    Icon,
+    Button
 } from 'antd'
 import classNames from 'classnames/bind'
 
@@ -56,25 +55,25 @@ function Dialog(props) {
         if (infoType === 'success') {
             contentSec = (
                 <div>
-                    <div className="pull-left"><Icon type="check-circle-o" />&nbsp;&nbsp;</div>
+                    <div className="pull-left"><i className="fa fa-check fa-lg text-success" />&nbsp;&nbsp;</div>
                     {content}
                 </div>)
         } else if (infoType === 'warning') {
             contentSec = (
                 <div>
-                    <div className="pull-left"><Icon type="warning" />&nbsp;&nbsp;</div>
+                    <div className="pull-left"><i className="fa fa-exclamation-triangle fa-lg text-warning" />&nbsp;&nbsp;</div>
                     {content}
                 </div>)
         } else if (infoType === 'error') {
             contentSec = (
                 <div>
-                    <div className="pull-left"><Icon type="close-circle-o" />&nbsp;&nbsp;</div>
+                    <div className="pull-left"><i className="fa fa-close fa-lg text-danger" />&nbsp;&nbsp;</div>
                     {content}
                 </div>)
         } else {
             contentSec = (
                 <div>
-                    <div className="pull-left"><Icon type="exclamation-circle-o" />&nbsp;&nbsp;</div>
+                    <div className="pull-left"><i className="fa fa-info fa-lg text-info" />&nbsp;&nbsp;</div>
                     {content}
                 </div>)
         }
@@ -129,7 +128,7 @@ Dialog.propTypes = {
     }),
     show: PropTypes.bool,
     ok: PropTypes.func,
-    cancel: PropTypes.func,
+    cancel: PropTypes.func
 }
 
 Dialog.defaultProps = {
@@ -142,12 +141,12 @@ Dialog.defaultProps = {
     width: 500,
     show: false,
     ok: noop,
-    cancel: noop,
+    cancel: noop
 }
 
 const mapStateToProps = state => state.dialog
 const selector = createSelector([mapStateToProps], dialogState => ({
-    ...dialogState,
+    ...dialogState
 }))
 
 export default connect(selector)(Dialog)

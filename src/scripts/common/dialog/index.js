@@ -1,12 +1,13 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import actionCreator from './actions/actionCreator'
-import store from '../../store/index'
+import * as actionCreator from './actions/actionCreator'
+import store from '../../store'
 
+const dialogWidth = 500
 const dialog = {
     normal({
-        title = '确认', content, footer = [], width = 500, ok = dialog.hide, cancel = dialog.hide
+        title = '确认', content, footer = [], width = dialogWidth, ok = dialog.hide, cancel = dialog.hide
     }) {
         const onOK = () => {
             if (typeof ok === 'function' && ok()) {
@@ -26,7 +27,7 @@ const dialog = {
         return this
     },
     confirm({
-        title = '确认', content, width = 500, ok, cancel = dialog.hide
+        title = '确认', content, width = dialogWidth, ok, cancel = dialog.hide
     }) {
         const onOK = () => {
             if (typeof ok === 'function' && ok()) {
@@ -46,7 +47,7 @@ const dialog = {
     },
 
     alert({
-        title, content, width = 500, infoType = 'info', cancel = dialog.hide, ok = dialog.hide
+        title, content, width = dialogWidth, infoType = 'info', cancel = dialog.hide, ok = dialog.hide
     }) {
         store.dispatch(actionCreator.showDialog({
             title,

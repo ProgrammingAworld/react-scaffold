@@ -4,7 +4,7 @@
  * 日期： 2018/3/27
  */
 
-import { handleActions } from 'common/Util'
+import { handleActions } from 'redux-actions'
 import {
     SHOWDIALOG_COMMON,
     HIDEDIALOG_COMMON,
@@ -35,5 +35,5 @@ export default handleActions({
             content: null,
             show: false,
         }
-    },
+    }
 }, initialState)

@@ -9,17 +9,13 @@
 //组件
 @import "common/plugins/bootstrap.min";
 @import "common/plugins/font-awesome/font-awesome";
-@import "common/plugins/daterangepicker";
 @import "common/plugins/animate.min";
-@import "common/plugins/artui-dialog";
 @import "common/plugins/fixed-data-table";
 
 //公共
 @import "common/mixins/common";
 @import "common/public";
-@import "common/bootstrapExt/bootstrap.ext";
 @import "common/container";
-@import "common/plugins/tree";
 @import "common/plugins/antd.min";
 
 //各模块

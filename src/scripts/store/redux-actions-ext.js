@@ -1,31 +1,16 @@
 /**
- * Created by Anchao on 2017/6/29.
+ * 功能：redux-actions扩展
+ * 作者：安超
+ * 日期： 2018/3/29
  */
 
-// 公共js
-import $ from 'jquery'
-import axios from 'axios'
-import React from 'react'
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
-import Immutable from 'immutable'
-import pathToRegExp from 'path-to-regexp'
-import { combineReducers } from 'redux'
-import { Provider, connect } from 'react-redux'
 import ServiceBase from 'base/ServiceBase'
 import {
     createAction,
     handleAction, handleActions as originalHandleActions,
     combineActions
 } from 'redux-actions'
-import createHistory from 'history/createHashHistory'
-import {
-    NavLink, Link, HashRouter as Router, Route, Redirect, Switch, withRouter
-} from 'react-router-dom'
-import { createSelector } from 'reselect'
-import { AppContainer } from 'react-hot-loader'
-import Tools from './Tools'
-import * as actionCreator from './loading/actions/actionCreator'
+import * as actionCreator from 'common/loading/actions/actionCreator'
 
 // 增强createActions, 可以配置{}
 const createActions = function (actionMap) {
@@ -77,35 +62,10 @@ const handleActions = function (reducerMap, defaultState) {
     return originalHandleActions(result, defaultState)
 }
 
-const noop = function () {}
-
 export {
-    $,
-    axios,
-    Tools,
-    React,
-    ReactDOM,
-    PropTypes,
-    Immutable,
-    pathToRegExp,
-    combineReducers,
     createAction,
     createActions,
     handleAction,
     handleActions,
-    originalHandleActions,
-    combineActions,
-    Provider,
-    connect,
-    createSelector,
-    Router,
-    Route,
-    withRouter,
-    NavLink,
-    Link,
-    Redirect,
-    Switch,
-    createHistory,
-    AppContainer,
-    noop
+    combineActions
 }

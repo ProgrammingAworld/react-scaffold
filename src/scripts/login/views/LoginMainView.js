@@ -4,6 +4,7 @@
 
 import particlesJS from 'particles'
 import { React, connect, createSelector } from 'common/Util'
+import classNames from 'classnames/bind'
 import ReactComponentBase from 'base/ReactComponentBase'
 import actionCreator from '../actions/actionCreator'
 
@@ -177,10 +178,7 @@ class LoginMainView extends ReactComponentBase {
     
     render() {
         const { type, error } = this.props
-        let errorCls = 'errors pull-right invisible'
-        if (error.length > 0) {
-            errorCls = 'errors pull-right'
-        }
+        const errorCls = classNames('errors', 'pull-right', { invisible: error.length <= 0 })
         
         return (
             <div id="chief">
