@@ -56,12 +56,14 @@ class Main {
     }
     
     unloadModule() {
-        window.addEventListener('beforeunload', (e) => {
-            const msg = '确定要离开吗？'
-            e.returnValue = msg
-            console.log(msg)
-            return msg
-        }, false)
+        if (process.env.NODE_ENV === 'production') {
+            window.addEventListener('beforeunload', (e) => {
+                const msg = '确定要离开吗？'
+                e.returnValue = msg
+                console.log(msg)
+                return msg
+            }, false)
+        }
         
         return this
     }
