@@ -37,6 +37,7 @@ const createActions = function (actionMap) {
             fnsMap[eventName] = settings => (dispatch) => {
                 const loading = require('loading').default
                 const dialog = require('dialog').default
+                
                 if ((configOrFn.hasLoading || configOrFn.hasLoading === undefined) && !loading.getLoadingStatus()) loading.show()
                 dispatch(createAction(`${configOrFn.actionType}_PRE`)())
                 return ServiceBase[`${config.method.toLowerCase()}WithParameter`](
