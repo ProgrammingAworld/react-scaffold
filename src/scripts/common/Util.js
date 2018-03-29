@@ -25,7 +25,6 @@ import {
 import { createSelector } from 'reselect'
 import { AppContainer } from 'react-hot-loader'
 import Tools from './Tools'
-import * as actionCreator from './loading/actions/actionCreator'
 
 // 增强createActions, 可以配置{}
 const createActions = function (actionMap) {
@@ -36,7 +35,9 @@ const createActions = function (actionMap) {
         if (typeof configOrFn !== 'function') {
             const config = { method: 'GET', ...configOrFn }
             fnsMap[eventName] = settings => (dispatch) => {
-                if (configOrFn.hasLoading || configOrFn.hasLoading === undefined) dispatch(actionCreator.showLoading())
+                const loading = require('loading').default
+                const dialog = require('dialog').default
+                if ((configOrFn.hasLoading || configOrFn.hasLoading === undefined) && !loading.getLoadingStatus()) loading.show()
                 dispatch(createAction(`${configOrFn.actionType}_PRE`)())
                 return ServiceBase[`${config.method.toLowerCase()}WithParameter`](
                     config.url,
@@ -49,9 +50,14 @@ const createActions = function (actionMap) {
                     }
                 }).fail(() => {
                     dispatch(createAction(`${configOrFn.actionType}_FAIL`)())
+                    dialog.alert({
+                        title: '提醒',
+                        content: <div>服务器端错误<span role="img" aria-label="cry">😂</span>！</div>,
+                        infoType: 'error',
+                    })
                 }).always(() => {
                     dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
-                    dispatch(actionCreator.hideLoading())
+                    loading.hide()
                 })
             }
         } else {

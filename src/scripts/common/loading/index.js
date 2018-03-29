@@ -15,6 +15,10 @@ const dialog = {
         store.dispatch(actionCreator.hideLoading())
 
         return this
+    },
+    
+    getLoadingStatus() {
+        return store.getState().loading.show
     }
 }
 

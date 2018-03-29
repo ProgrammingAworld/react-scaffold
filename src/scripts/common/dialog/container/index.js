@@ -19,7 +19,7 @@ function Dialog(props) {
     let footerNew = footer
     let contentSec = content
     let infoTypeCls = 'dialog-info'
-
+    
     switch (dialogType) {
     case 'normal':
         break
