@@ -1,11 +1,10 @@
+#particles-js{
+  @include size(100%,100%);
+}
+
 .login {
-  //登录没有顶部导航
   height: 100% !important;
   background: $login-bg-color !important;
-
-  #particles-js{
-    @include size(100%,100%);
-  }
 
   .loginmain {
     @include size(500px,316px);
@@ -16,7 +15,7 @@
     top: 50%;
     margin-left: -250px;
     margin-top: -158px;
-    @include opacity(0.8);
+    @include opacity(.8);
     overflow:hidden;
 
     .input-group {
@@ -98,7 +97,6 @@
         border: 0;
         border-radius: 2px;
         color: $white;
-        text-align: center;
       }
       .rolerow{
         margin-top: 13px;
