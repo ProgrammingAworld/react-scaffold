@@ -12,7 +12,7 @@
     "lintJs": "sh build/pre-commit lintall || true",
     "postlintJs": "echo 'lintallJs complete'",
     "lint:css": "stylelint 'src/css/**/*.scss' --syntax scss",
-    "lintJsAndCss": "npm run lintJs && npm run lint:css",
+    "lintJsAndCss": "npm run lint:css",
     "lintall-gulp": "gulp eslint",
     "prod": "echo 'production env'",
     "cphook": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit",
