@@ -15,12 +15,15 @@ class AntdView extends ReactComponentBase {
     }
     
     btnClick = () => {
-        const Content = <div className="aaa">这里是一些内容</div>
+        const Content = function () {
+            console.log('永远重新渲染')
+            return <div>aaaa</div>
+        }
         
         diaglog.confirm({
             title: '测试',
             infoType: 'info',
-            content: Content
+            content: <Content />
         })
     }
     
