@@ -7,8 +7,7 @@ import {
     ReactDOM,
     Provider,
     Router,
-    createHistory,
-    AppContainer
+    createHistory
 } from 'common/Util'
 import RootRoutesView from 'common/views/RootRoutesView'
 import store from './store'
@@ -20,41 +19,32 @@ class Main {
     init() {
         this.render(RootRoutesView)
         this.event()
-        
-        if (module.hot && process.env.NODE_ENV === 'development') {
-            module.hot.accept('./common/views/RootRoutesView', () => {
-                const NextComponent = require('./common/views/RootRoutesView').default // eslint-disable-line
-                this.render(NextComponent)
-            })
-        }
     }
-    
+
     render(Component) {
         ReactDOM.render(
-            <AppContainer warnings={false}>
-                <Provider store={store}>
-                    <Router hashHistory={history}>
-                        <Component />
-                    </Router>
-                </Provider>
-            </AppContainer>,
+            <Provider store={store}>
+                <Router hashHistory={history}>
+                    <Component />
+                </Router>
+            </Provider>,
             oContainer
         )
     }
-    
+
     closeLoading() {
         return this
     }
-    
+
     event() {
         this.globalEvent()
         this.unloadModule()
     }
-    
+
     globalEvent() {
         return this
     }
-    
+
     unloadModule() {
         if (process.env.NODE_ENV === 'production') {
             window.addEventListener('beforeunload', (e) => {
@@ -64,7 +54,7 @@ class Main {
                 return msg
             }, false)
         }
-        
+
         return this
     }
 }

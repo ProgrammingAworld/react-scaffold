@@ -20,10 +20,18 @@ import {
 } from 'redux-actions'
 import createHistory from 'history/createHashHistory'
 import {
-    NavLink, Link, HashRouter as Router, Route, Redirect, Switch, withRouter
+    NavLink,
+    Link,
+    HashRouter as Router,
+    Route,
+    Redirect,
+    Switch,
+    withRouter
 } from 'react-router-dom'
 import { createSelector } from 'reselect'
-import { AppContainer } from 'react-hot-loader'
+import { AppContainer, hot } from 'react-hot-loader'
+import loadable from 'loadable-components'
+import pMinDelay from 'p-min-delay'
 import Tools from './Tools'
 
 // 增强createActions, 可以配置{}
@@ -114,5 +122,8 @@ export {
     Switch,
     createHistory,
     AppContainer,
+    hot,
+    loadable,
+    pMinDelay,
     noop
 }

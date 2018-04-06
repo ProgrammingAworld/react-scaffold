@@ -57,7 +57,12 @@ module.exports = {
                 loader: 'babel-loader',
                 options: {
                     cacheDirectory: true,
-                    presets: ['env', 'stage-0', 'react']
+                    presets: ['env', 'stage-0', 'react'],
+                    plugins: [
+                        'react-hot-loader/babel',
+                        'transform-decorators-legacy',
+                        'loadable-components/babel'
+                    ]
                 }
             },
             {
