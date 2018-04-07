@@ -27,8 +27,8 @@ module.exports = {
             'node_modules'
         ],
         alias: {
+            root: path.resolve(__dirname, './src/scripts'),
             base: path.resolve(__dirname, './src/scripts/base'),
-            main: path.resolve(__dirname, './src/scripts/main'),
             common: path.resolve(__dirname, './src/scripts/common'),
             conf: path.resolve(__dirname, './src/scripts/conf'),
             dialog: path.resolve(__dirname, './src/scripts/common/dialog/index.js'),

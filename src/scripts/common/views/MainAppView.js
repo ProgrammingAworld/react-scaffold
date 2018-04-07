@@ -10,7 +10,6 @@ import {
 } from 'common/Util'
 import config from 'conf'
 import HeaderView from './HeaderView'
-import * as Routes from './RoutesView'
 
 const MainAppView = function (props) {
     const { url } = props.match
@@ -19,9 +18,9 @@ const MainAppView = function (props) {
         <div id="chief">
             <HeaderView />
             <Switch>
-                <Route path={config.url.app.todos} component={Routes.TodoMainView} />
-                <Route path={config.url.app.component} component={Routes.ComponentsMainView} />
-                <Route path={url} exact render={() => <Redirect to={config.url.app.todos} />} />
+                <Route path={config.url.app.todos.path} component={config.url.app.todos.component} />
+                <Route path={config.url.app.component.path} component={config.url.app.component.component} />
+                <Route path={url} exact render={() => <Redirect to={config.url.app.todos.path} />} />
             </Switch>
         </div>
     )

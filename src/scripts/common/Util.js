@@ -30,7 +30,6 @@ import {
 } from 'react-router-dom'
 import { createSelector } from 'reselect'
 import { AppContainer, hot } from 'react-hot-loader'
-import loadable from 'loadable-components'
 import pMinDelay from 'p-min-delay'
 import Tools from './Tools'
 
@@ -94,6 +93,8 @@ const handleActions = function (reducerMap, defaultState) {
 
 const noop = function () {}
 
+const EmptyComponent = () => null
+
 export {
     $,
     axios,
@@ -123,7 +124,7 @@ export {
     createHistory,
     AppContainer,
     hot,
-    loadable,
     pMinDelay,
-    noop
+    noop,
+    EmptyComponent
 }

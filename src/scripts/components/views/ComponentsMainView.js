@@ -7,11 +7,6 @@ import {
     PropTypes
 } from 'common/Util'
 import config from 'conf'
-import TableExampleView from './components/TableExampleView'
-import AceExampleView from './components/AceExampleView'
-import BootstrapReactView from './components/BootstrapReactView'
-import ValidatorView from './components/ValidatorView'
-import AntdView from './components/AntdView'
 
 const ComponentsMainView = function (props) {
     const { url } = props.match
@@ -23,7 +18,7 @@ const ComponentsMainView = function (props) {
                     <li>
                         <NavLink
                             replace
-                            to={config.url.app.table}
+                            to={config.url.app.table.path}
                             activeClassName="active"
                         >
                             表格
@@ -32,7 +27,7 @@ const ComponentsMainView = function (props) {
                     <li>
                         <NavLink
                             replace
-                            to={config.url.app.codeeditor}
+                            to={config.url.app.codeeditor.path}
                             activeClassName="active"
                         >
                             代码编辑器
@@ -41,7 +36,7 @@ const ComponentsMainView = function (props) {
                     <li>
                         <NavLink
                             replace
-                            to={config.url.app.bootstrap}
+                            to={config.url.app.bootstrap.path}
                             activeClassName="active"
                         >
                             react-bootstrap
@@ -50,7 +45,7 @@ const ComponentsMainView = function (props) {
                     <li>
                         <NavLink
                             replace
-                            to={config.url.app.validator}
+                            to={config.url.app.validator.path}
                             activeClassName="active"
                         >
                             validator
@@ -59,7 +54,7 @@ const ComponentsMainView = function (props) {
                     <li>
                         <NavLink
                             replace
-                            to={config.url.app.antd}
+                            to={config.url.app.antd.path}
                             activeClassName="active"
                         >
                             antd
@@ -71,33 +66,33 @@ const ComponentsMainView = function (props) {
                 <Switch>
                     <Route
                         replace
-                        path={config.url.app.table}
-                        component={TableExampleView}
+                        path={config.url.app.table.path}
+                        component={config.url.app.table.component}
                     />
                     <Route
                         replace
-                        path={config.url.app.codeeditor}
-                        component={AceExampleView}
+                        path={config.url.app.codeeditor.path}
+                        component={config.url.app.codeeditor.component}
                     />
                     <Route
                         replace
-                        path={config.url.app.bootstrap}
-                        component={BootstrapReactView}
+                        path={config.url.app.bootstrap.path}
+                        component={config.url.app.bootstrap.component}
                     />
                     <Route
                         replace
-                        path={config.url.app.validator}
-                        component={ValidatorView}
+                        path={config.url.app.validator.path}
+                        component={config.url.app.validator.component}
                     />
                     <Route
                         replace
-                        path={config.url.app.antd}
-                        component={AntdView}
+                        path={config.url.app.antd.path}
+                        component={config.url.app.antd.component}
                     />
                     <Route
                         exact
                         path={url}
-                        render={() => <Redirect to={config.url.app.validator} />}
+                        render={() => <Redirect to={config.url.app.validator.path} />}
                     />
                 </Switch>
             </div>
