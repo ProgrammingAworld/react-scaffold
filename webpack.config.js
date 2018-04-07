@@ -18,7 +18,9 @@ module.exports = {
     },
     output: {
         filename: 'scripts/[name].js',
-        sourceMapFilename: '[file].map'
+        sourceMapFilename: '[file].map',
+        hotUpdateChunkFilename: 'hot/hot-update.js',
+        hotUpdateMainFilename: 'hot/hot-update.json'
     },
     devtool: 'cheap-module-eval-source-map',
     resolve: {
@@ -73,7 +75,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['dist/*.hot-update.js$', 'dist/*.hot-update.json$']),
+        new CleanWebpackPlugin(['dist']),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.DefinePlugin({
