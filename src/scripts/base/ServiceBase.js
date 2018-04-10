@@ -37,6 +37,7 @@ const handleWithParameter = function (url, {
         data: dataNew,
         dataType: 'json'
     }
+    
     return $.ajax(result, settings)
 }
 
