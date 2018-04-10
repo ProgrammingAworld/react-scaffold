@@ -51,15 +51,15 @@ module.exports = {
     },
     development: {
         env: { NODE_ENV: JSON.stringify('development') },
-        domain: `http://${ip}:3003`,
+        domain: '',
     },
     production: {
         env: { NODE_ENV: JSON.stringify('production') },
-        domain: `http://${ip}:3003`,
+        domain: '',
     },
     proxy: {
-        target: 'http://192.168.10.103',
-        proxyPort: 3000,
+        target: `http://${ip}`,
+        proxyPort: 3003,
         headers: {
             host: '',
         },
