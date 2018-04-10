@@ -6,7 +6,7 @@ import * as actionTypes from './actionTypes'
 
 const actionCreator = createActions({
     getAllTodo: {
-        url: '/todos/getAll',
+        url: '/api/getTodos',
         method: 'GET',
         actionType: actionTypes.GET_ALL_TODO
     },

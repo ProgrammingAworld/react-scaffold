@@ -1,6 +1,6 @@
 const router = {
-    '/todos/getAll': '/todos',
-    '/todos/addTodo': '/addTodo'
+    '/api/login': '/login',
+    '/api/todos': '/todos'
 }
 
 module.exports = router

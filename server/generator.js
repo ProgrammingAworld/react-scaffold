@@ -15,7 +15,7 @@ module.exports = function () {
             statusCode: 200,
             message: '登录成功'
         },
-        todos: {
+        getTodos: {
             statusCode: 200,
             data: _.times(10, n => ({
                 id: n,

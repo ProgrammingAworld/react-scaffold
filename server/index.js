@@ -14,7 +14,7 @@ server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
 server.use(jsonServer.rewriter(rewriterJSON))
-server.use(router);
+server.use('/api', router);
 server.listen({
     host: ip,
     port: 3003,
