@@ -2,9 +2,7 @@
  * Created by anchao on 2016/6/29.
  */
 import { $ } from 'common/Util'
-import config from 'conf'
 
-const { host } = config.injection
 /*
  * 用法：如下
  * url: '/todos/:todoId/getTodoContent'
@@ -14,31 +12,23 @@ const { host } = config.injection
 
 const handleWithParameter = function (url, {
     method = 'GET',
-    contentType = 'application/json; charset=utf-8',
+    contentType = 'application/x-www-form-urlencoded',
     params = {},
     data = {}
 }) {
     let result = url
+    let dataNew
+    
     for (const key in params) {
         if ({}.hasOwnProperty.call(params, key)) {
             result = result.replace(new RegExp(`:${key}`, 'g'), params[key])
         }
     }
-    const urlFull = `${host}${result}`
-    let dataNew = ''
     
-    if (method.toUpperCase() === 'GET') {
-        if (JSON.stringify(params) === '{}') {
-            dataNew = undefined
-        } else {
-            dataNew = params
-        }
+    if (method.toUpperCase() === 'GET' && JSON.stringify(params) !== '{}') {
+        dataNew = params
     } else {
-        dataNew = JSON.stringify(data)
-        
-        if (dataNew === '{}'){
-            dataNew = undefined
-        }
+        dataNew = data
     }
     
     const settings = {
@@ -47,7 +37,7 @@ const handleWithParameter = function (url, {
         data: dataNew,
         dataType: 'json'
     }
-    return $.ajax(urlFull, settings)
+    return $.ajax(result, settings)
 }
 
 /* eslint-enable */

@@ -4,6 +4,8 @@
   "description": "ac frontEnd solution",
   "main": "app.js",
   "scripts": {
+    "precommit": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit",
+    "prepush": "npm run test",
     "server": "node server/index.js",
     "predev": "npm run precommit",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --devtool eval --progress",
@@ -13,7 +15,6 @@
     "postlintall": "echo 'lintallall complete'",
     "lintall-gulp": "gulp eslint",
     "prod": "echo 'production env'",
-    "precommit": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit",
     "jsdoc": "jsdoc ./scripts/*.js --readme ./README.md -t ./node_modules/ink-docstrap/template -c ./conf.json",
     "test": "jest",
     "test:watch": "npm test -- --watch"
@@ -132,6 +133,7 @@
     "reselect": "^3.0.1",
     "validator": "^9.4.1"
   },
+  "stylelint": {},
   "engines": {
     "node": ">=6.12.0",
     "npm": ">=3"
