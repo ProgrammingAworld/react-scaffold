@@ -173,7 +173,7 @@ gulp.task('browserSync', () => {
 })
 
 gulp.task('build', ['clean'], () => {
-    gulp.start(['copy', 'webpack_build', 'styles_build', 'images'])
+    gulp.start(['copyFont', 'webpack_build', 'styles_build', 'images'])
 })
 
 gulp.task('watch', ['clean'], () => {
