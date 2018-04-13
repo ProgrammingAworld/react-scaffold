@@ -29,6 +29,7 @@ import {
 import { createSelector } from 'reselect'
 import { AppContainer, hot } from 'react-hot-loader'
 import pMinDelay from 'p-min-delay'
+import qs from 'qs'
 import Tools from './Tools'
 
 // ajax 统一配置
@@ -60,21 +61,23 @@ const handleWithParameter = function (url, {
     }
     
     switch (method.toLowerCase()) {
-    case 'get':
-    case 'delete':
-        return instance.get(urlNew, { params: paramsNew })
-    case 'post':
-    case 'put':
-        return instance.post(url, { data })
-    default: {
-        const res = {
-            then: resolve => resolve({
-                statusCode: 300,
-                msg: 'method方式错误'
-            })
+        case 'get':
+            return instance.get(urlNew, { params: paramsNew })
+        case 'delete':
+            return instance.delete(urlNew, { params: paramsNew })
+        case 'post':
+            return instance.post(urlNew, qs.stringify(data))
+        case 'put':
+            return instance.put(urlNew, qs.stringify(data))
+        default: {
+            const res = {
+                then: resolve => resolve({
+                    statusCode: 300,
+                    msg: 'method方式错误'
+                })
+            }
+            return Promise.resolve(res)
         }
-        return Promise.resolve(res)
-    }
     }
 }
 
@@ -94,17 +97,20 @@ const createActions = function (actionMap) {
                 dispatch(createAction(`${configOrFn.actionType}_PRE`)())
                 return handleWithParameter(
                     config.url,
-                    settings
+                    {
+                        ...settings,
+                        ...config
+                    }
                 ).then((res) => {
                     loading.hide()
-    
+                    
                     const { statusCode, msg } = res.data
                     if (statusCode === 200) {
                         const data = res.data.data === undefined ? { data: 'data缺失' } : res.data.data
                         dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data))
                         dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
                         return res.data
-                    } 
+                    }
                     
                     dispatch(createAction(`${configOrFn.actionType}_ERROR`)(msg))
                     dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
