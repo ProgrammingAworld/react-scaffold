@@ -148,7 +148,7 @@ gulp.task('webpack_build', () => {
 gulp.task('browserSync', () => {
     const { paths, target, proxyPort } = config.proxy
     const filter = function (pathname) {
-        return (pathname.match(paths.join('|')));
+        return (pathname.match(paths.map(item => (`^${item}`)).join('|')))
     }
     
     const middleware = proxy(filter, {

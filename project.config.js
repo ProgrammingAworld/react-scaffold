@@ -62,7 +62,7 @@ module.exports = {
         headers: {
             host: '',
         },
-        paths: ['^/api']
+        paths: ['/api']
     },
     v: Date.now()
 }
