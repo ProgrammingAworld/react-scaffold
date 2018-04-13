@@ -60,6 +60,15 @@ const ComponentsMainView = function (props) {
                             antd
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink
+                            replace
+                            to={config.url.app.test.path}
+                            activeClassName="active"
+                        >
+                            test
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
             <div className="pull-right">
@@ -90,9 +99,13 @@ const ComponentsMainView = function (props) {
                         component={config.url.app.antd.component}
                     />
                     <Route
-                        exact
+                        replace
+                        path={config.url.app.test.path}
+                        component={config.url.app.test.component}
+                    />
+                    <Route
                         path={url}
-                        render={() => <Redirect to={config.url.app.validator.path} />}
+                        render={() => <Redirect to={config.url.app.test.path} />}
                     />
                 </Switch>
             </div>

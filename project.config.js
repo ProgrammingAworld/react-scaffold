@@ -16,7 +16,6 @@ module.exports = {
     distScript: 'dist/scripts',
     mainJs: 'app.js',
     vendor: [
-        'jquery',
         'react',
         'react-dom',
         'prop-types',
@@ -63,7 +62,7 @@ module.exports = {
         headers: {
             host: '',
         },
-        paths: ['/api']
+        paths: ['^/api']
     },
     v: Date.now()
 }

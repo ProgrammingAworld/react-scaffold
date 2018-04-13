@@ -164,7 +164,7 @@ class LoginMainView extends ReactComponentBase {
         setError('')
         
         // 登录检验
-        login({ data: { username, pwd, type } }).done((res) => {
+        login({ params: { username, pwd, type } }).then((res) => {
             if (res.statusCode === 200) {
                 this.gotoUrl('/app')
                 setUserName(username)

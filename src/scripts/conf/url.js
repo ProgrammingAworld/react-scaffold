@@ -40,6 +40,10 @@ const url = {
         antd: {
             path: '/app/component/antd',
             component: loadable(() => import('root/components/views/components/AntdView'))
+        },
+        test: {
+            path: '/app/component/test',
+            component: loadable(() => import('root/components/views/components/TestView'))
         }
     },
     notFind: {
