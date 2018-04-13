@@ -37,7 +37,7 @@ const store = createStore(
         todos,
         routing: routerReducer
     }),
-    applyMiddleware(thunkMiddleware, logger)
+    process.env.NODE_ENV === 'production' ? applyMiddleware(thunkMiddleware) : applyMiddleware(thunkMiddleware, logger)
 )
 
 export default store
