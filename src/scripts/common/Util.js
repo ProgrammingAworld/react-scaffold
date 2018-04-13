@@ -36,7 +36,6 @@ const instance = axios.create({
     method: 'get',
     baseURL: '',
     timeout: 0,
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
     responseType: 'json'
 })
 const handleWithParameter = function (url, {
