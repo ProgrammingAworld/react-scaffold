@@ -115,16 +115,24 @@ const createActions = function (actionMap) {
                     dispatch(createAction(`${configOrFn.actionType}_ERROR`)(msg))
                     dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
                     return msg
-                }).catch(() => {
+                }).catch((error) => {
                     loading.hide()
-                    
-                    dispatch(createAction(`${configOrFn.actionType}_FAIL`)())
-                    dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
-                    dialog.alert({
-                        title: '提醒',
-                        content: <div>服务器端错误<span role="img" aria-label="cry">😂</span>！</div>,
-                        infoType: 'error',
-                    })
+
+                    if(error.response){
+                        dispatch(createAction(`${configOrFn.actionType}_FAIL`)())
+                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
+                        dialog.alert({
+                            title: '错误',
+                            content: <div>服务器端错误<span role="img" aria-label="cry">😂</span>！</div>,
+                            infoType: 'error',
+                        })
+                    } else {
+                        dialog.alert({
+                            title: '错误',
+                            content: <div>{error.message}！<br />{error.stack}</div>,
+                            infoType: 'error',
+                        })
+                    }
                 })
             }
         } else {
