@@ -44,6 +44,14 @@ const url = {
         test: {
             path: '/app/component/test',
             component: loadable(() => import('root/components/views/components/TestView'))
+        },
+        person: {
+            path: '/app/component/test/per/:person?',
+            component: loadable(() => import('root/components/views/components/PersonView'))
+        },
+        animal: {
+            path: '/app/component/test/ani/:animal',
+            component: loadable(() => import('root/components/views/components/AnimalView'))
         }
     },
     notFind: {

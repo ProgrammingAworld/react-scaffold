@@ -4,8 +4,9 @@
  * 日期： 2018/4/12
  */
 
-import { React, axios } from 'common/Util'
+import { React, axios, NavLink, Switch, Route } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
+import config from 'conf'
 
 const instance = axios.create({
     method: 'get',
@@ -31,7 +32,31 @@ class TestView extends ReactComponentBase {
     render() {
         return (
             <div>
+                <NavLink
+                    to={config.url.app.person.path.replace('/:person?', '/jack')}
+                    activeClassName="acitve"
+                >
+                    person&nbsp;&nbsp;&nbsp;&nbsp;
+                </NavLink>
+                <NavLink
+                    to={config.url.app.animal.path.replace(':animal', 'dog')}
+                    activeClassName="acitve"
+                >
+                    animal
+                </NavLink>
                 <input type="button" value="get" onClick={this.getTest} />
+                <div>
+                    <Switch>
+                        <Route
+                            path={config.url.app.person.path}
+                            component={config.url.app.person.component}
+                        />
+                        <Route
+                            path={config.url.app.animal.path}
+                            component={config.url.app.animal.component}
+                        />
+                    </Switch>
+                </div>
             </div>
         )
     }
