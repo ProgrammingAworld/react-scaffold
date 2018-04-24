@@ -17,7 +17,7 @@ module.exports = function () {
         },
         getTodos: {
             statusCode: 200,
-            data: _.times(10, n => ({
+            data: _.times(5, n => ({
                 id: n,
                 text: faker.name.findName(),
                 completed: faker.random.boolean()

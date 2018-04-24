@@ -1,14 +1,17 @@
 /**
- * Created by anchao on 2016/6/30.
+ * 功能： 页脚
+ * 作者：安超
+ * 日期： 2018/4/24
  */
 
-import config from 'conf'
-import { Immutable, React, connect, createSelector, PropTypes, noop } from 'common/Util'
+import { React, PropTypes } from 'root/common/Util'
+import config from 'root/conf'
 import classNames from 'classnames/bind'
-import actionCreator from '../../actions/actionCreator'
 
-const FooterView = function ({
-    todos, todoFilter, clearCompletedTodo, setFilter 
+const { constant } = config
+
+const Footer = function ({
+    todos, todoFilter, clearCompletedTodo, setFilter
 }) {
     function onRenderLi(filter, name) {
         if (filter === todoFilter) {
@@ -46,9 +49,9 @@ const FooterView = function ({
                 <strong>{nCompletedCount}</strong> items left
             </div>
             <ul id="filters" className="list-unstyled list-inline">
-                {onRenderLi('SHOW_ALL', 'All')}
-                {onRenderLi('SHOW_ACTIVE', 'Active')}
-                {onRenderLi('SHOW_COMPLETED', 'Completed')}
+                {onRenderLi(constant.VisibilityFilters.SHOW_ALL, 'All')}
+                {onRenderLi(constant.VisibilityFilters.SHOW_ACTIVE, 'Active')}
+                {onRenderLi(constant.VisibilityFilters.SHOW_COMPLETED, 'Completed')}
             </ul>
             <button
                 id="clear-completed"
@@ -60,25 +63,12 @@ const FooterView = function ({
     )
 }
 
-FooterView.defaultProps = {
-    todos: Immutable.fromJS([]),
-    todoFilter: config.constant.VisibilityFilters.SHOW_ALL,
-    clearCompletedTodo: noop,
-    setFilter: noop
+
+Footer.propTypes = {
+    todos: PropTypes.object.isRequired,
+    todoFilter: PropTypes.string.isRequired,
+    clearCompletedTodo: PropTypes.func.isRequired,
+    setFilter: PropTypes.func.isRequired
 }
 
-FooterView.propTypes = {
-    todos: PropTypes.object,
-    todoFilter: PropTypes.string,
-    clearCompletedTodo: PropTypes.func,
-    setFilter: PropTypes.func,
-}
-
-const todosSelector = state => state.todos
-
-const todosByFilterSelector = createSelector([todosSelector], oTodos => ({
-    todos: oTodos.todoList.list,
-    todoFilter: oTodos.todoFilter
-}))
-
-export default connect(todosByFilterSelector, actionCreator)(FooterView)
+export default Footer

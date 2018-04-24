@@ -6,7 +6,7 @@ const url = {
     },
     login: {
         path: '/login',
-        component: loadable(() => import('root/login/views/LoginMainView'))
+        component: loadable(() => import('root/login/views/container'))
     },
     app: {
         root: {
@@ -15,7 +15,7 @@ const url = {
         },
         todos: {
             path: '/app/todos',
-            component: loadable(() => import('root/todos/views/components/TodoMainView'))
+            component: loadable(() => import('root/todos/views/components/todoMain'))
         },
         component: {
             path: '/app/component',

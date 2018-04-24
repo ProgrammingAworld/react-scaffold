@@ -1,10 +1,12 @@
 /**
- * Created by anchao on 2016/6/29.
+ * 功能：增加todo组件
+ * 作者：安超
+ * 日期： 2018/4/24
  */
-import { React, dialog, connect, PropTypes } from 'common/Util'
-import actionCreator from '../../actions/actionCreator'
 
-function AddTodoView({ addTodo }) {
+import { React, dialog, PropTypes } from 'common/Util'
+
+function AddTodo({ addTodo }) {
     function addTodoEv(e) {
         if (e.which === 13) {
             const sTxt = e.currentTarget.value.trim()
@@ -29,8 +31,8 @@ function AddTodoView({ addTodo }) {
     )
 }
 
-AddTodoView.propTypes = {
+AddTodo.propTypes = {
     addTodo: PropTypes.func.isRequired
 }
 
-export default connect(() => ({}), actionCreator)(AddTodoView)
+export default AddTodo

@@ -33,22 +33,28 @@ const todoList = handleActions({
     [actionTypes.REMOVE_TODO](state, action) {
         return {
             ...state,
-            list: state.list.splice(action.payload, 1)
-        }
-    },
-    [actionTypes.COMPLETED_TODO](state, action) {
-        const checked = state.list.getIn([action.payload, 'completed'])
-        return {
-            ...state,
-            list: state.list.setIn([action.payload, 'completed'], !checked)
+            list: state.list.filter(item => item.get('id') !== action.payload)
         }
     },
     [actionTypes.UPDATE_TODO](state, action) {
-        const { index, text } = action.payload
-        return {
-            ...state,
-            list: state.list.setIn([index, 'text'], text)
+        const { id, completed, text } = action.payload
+        const index = state.list.findIndex(item => item.get('id') === id)
+        
+        if (completed !== undefined) {
+            return {
+                ...state,
+                list: state.list.setIn([index, 'completed'], completed)
+            }
         }
+        
+        if (text !== undefined) {
+            return {
+                ...state,
+                list: state.list.setIn([index, 'text'], text)
+            }
+        }
+        
+        return state
     },
     [actionTypes.CHECKED_ALL_TODO](state, action) {
         return {
