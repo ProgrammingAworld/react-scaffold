@@ -8,7 +8,7 @@ import {
 } from 'common/Util'
 import config from 'conf'
 
-const ComponentsMainView = function (props) {
+const ComponentMain = function (props) {
     const { url } = props.match
     
     return (
@@ -101,8 +101,8 @@ const ComponentsMainView = function (props) {
     )
 }
 
-ComponentsMainView.propTypes = {
+ComponentMain.propTypes = {
     match: PropTypes.object.isRequired
 }
 
-export default ComponentsMainView
+export default ComponentMain

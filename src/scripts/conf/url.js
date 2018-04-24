@@ -19,7 +19,7 @@ const url = {
         },
         component: {
             path: '/app/component',
-            component: loadable(() => import('root/components/views/ComponentsMainView'))
+            component: loadable(() => import('root/components/views/components'))
         },
         table: {
             path: '/app/component/table',
