@@ -4,7 +4,7 @@
 
 import { connect, createSelector } from 'common/Util'
 import actionCreator from '../../actions/actionCreator'
-import Login from '../components/login'
+import Login from '../components'
 
 const loginSelector = state => state.login
 const loginTotalSelector = createSelector(

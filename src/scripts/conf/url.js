@@ -15,7 +15,7 @@ const url = {
         },
         todos: {
             path: '/app/todos',
-            component: loadable(() => import('root/todos/views/components/todoMain'))
+            component: loadable(() => import('root/todos/views/components'))
         },
         component: {
             path: '/app/component',
