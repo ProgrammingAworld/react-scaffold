@@ -16,11 +16,10 @@ import {
     handleAction, handleActions as originalHandleActions,
     combineActions
 } from 'redux-actions'
-import createHistory from 'history/createHashHistory'
 import {
     NavLink,
     Link,
-    HashRouter as Router,
+    BrowserRouter,
     Route,
     Redirect,
     Switch,
@@ -180,14 +179,13 @@ export {
     Provider,
     connect,
     createSelector,
-    Router,
+    BrowserRouter,
     Route,
     withRouter,
     NavLink,
     Link,
     Redirect,
     Switch,
-    createHistory,
     AppContainer,
     hot,
     pMinDelay,

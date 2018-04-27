@@ -6,13 +6,11 @@ import {
     React,
     ReactDOM,
     Provider,
-    Router,
-    createHistory
+    BrowserRouter
 } from 'common/Util'
 import RootRoutesView from 'common/views/RootRoutesView'
 import store from './store'
 
-const history = createHistory()
 const oContainer = document.querySelector('#container')
 
 class Main {
@@ -24,9 +22,9 @@ class Main {
     render(Component) {
         ReactDOM.render(
             <Provider store={store}>
-                <Router hashHistory={history}>
+                <BrowserRouter basename="/">
                     <Component />
-                </Router>
+                </BrowserRouter>
             </Provider>,
             oContainer
         )
@@ -50,7 +48,6 @@ class Main {
             window.addEventListener('beforeunload', (e) => {
                 const msg = '确定要离开吗？'
                 e.returnValue = msg
-                console.log(msg)
                 return msg
             }, false)
         }
