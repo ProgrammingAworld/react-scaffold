@@ -62,8 +62,7 @@ module.exports = {
                     presets: ['env', 'stage-0', 'react'],
                     plugins: [
                         'react-hot-loader/babel',
-                        'transform-decorators-legacy',
-                        'loadable-components/babel'
+                        'transform-decorators-legacy'
                     ]
                 }
             },

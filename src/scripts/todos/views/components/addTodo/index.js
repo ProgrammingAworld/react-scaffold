@@ -4,7 +4,8 @@
  * 日期： 2018/4/24
  */
 
-import { React, dialog, PropTypes } from 'common/Util'
+import { React, PropTypes } from 'common/Util'
+import dialog from 'dialog'
 
 function AddTodo({ addTodo }) {
     function addTodoEv(e) {

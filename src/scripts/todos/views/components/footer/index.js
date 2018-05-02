@@ -4,8 +4,8 @@
  * 日期： 2018/4/24
  */
 
-import { React, PropTypes } from 'root/common/Util'
-import config from 'root/conf'
+import { React, PropTypes } from 'common/Util'
+import config from 'conf'
 import classNames from 'classnames/bind'
 
 const { constant } = config

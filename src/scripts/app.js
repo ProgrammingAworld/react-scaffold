@@ -15,48 +15,19 @@ import store from './store'
 const history = createHistory()
 const oContainer = document.querySelector('#container')
 
-class Main {
-    init() {
-        this.render(RootRoutesView)
-        this.event()
-    }
+ReactDOM.render(
+    <Provider store={store}>
+        <Router hashHistory={history}>
+            <RootRoutesView />
+        </Router>
+    </Provider>,
+    oContainer
+)
 
-    render(Component) {
-        ReactDOM.render(
-            <Provider store={store}>
-                <Router hashHistory={history}>
-                    <Component />
-                </Router>
-            </Provider>,
-            oContainer
-        )
-    }
-
-    closeLoading() {
-        return this
-    }
-
-    event() {
-        this.globalEvent()
-        this.unloadModule()
-    }
-
-    globalEvent() {
-        return this
-    }
-
-    unloadModule() {
-        if (process.env.NODE_ENV === 'production') {
-            window.addEventListener('beforeunload', (e) => {
-                const msg = '确定要离开吗？'
-                e.returnValue = msg
-                console.log(msg)
-                return msg
-            }, false)
-        }
-
-        return this
-    }
+if (process.env.NODE_ENV === 'production') {
+    window.addEventListener('beforeunload', (e) => {
+        const msg = '确定要离开吗？'
+        e.returnValue = msg
+        return msg
+    }, false)
 }
-
-new Main().init()

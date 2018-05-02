@@ -5,7 +5,7 @@
  */
 
 import { React, PropTypes } from 'common/Util'
-import ReactComponentBase from 'root/base/ReactComponentBase'
+import ReactComponentBase from 'base/ReactComponentBase'
 import Todo from './Todo'
 
 class VisibleTodoList extends ReactComponentBase {

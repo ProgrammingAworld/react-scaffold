@@ -23,7 +23,6 @@
   },
   "plugins": [
     "react-hot-loader/babel",
-    "transform-decorators-legacy",
-    "loadable-components/babel"
+    "transform-decorators-legacy"
   ]
 }

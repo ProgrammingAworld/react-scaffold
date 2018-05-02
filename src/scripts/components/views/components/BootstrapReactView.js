@@ -13,8 +13,9 @@ import {
     FormControl,
     Clearfix
 } from 'react-bootstrap'
-import { React, connect, dialog, withRouter } from 'common/Util'
+import { React, connect } from 'common/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
+import dialog from 'dialog'
 
 class BootstrapReactView extends ReactComponentBase {
     constructor(props) {
@@ -455,4 +456,4 @@ class CustomMenu extends ReactComponentBase{
     }
 }
 
-export default connect()(withRouter(BootstrapReactView))
+export default connect()(BootstrapReactView)

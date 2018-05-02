@@ -1,61 +1,17 @@
-import loadable from 'loadable-components'
-
 const url = {
-    root: {
-        path: '/'
-    },
+    root: '/',
     login: {
-        path: '/login',
-        component: loadable(() => import('root/login/views/container'))
+        root: '/login'
     },
     app: {
-        root: {
-            path: '/app',
-            component: loadable(() => import('common/views/MainAppView'))
-        },
-        todos: {
-            path: '/app/todos',
-            component: loadable(() => import('root/todos/views/components'))
-        },
-        component: {
-            path: '/app/component',
-            component: loadable(() => import('root/components/views/components'))
-        },
-        table: {
-            path: '/app/component/table',
-            component: loadable(() => import('root/components/views/components/TableExampleView'))
-        },
-        codeeditor: {
-            path: '/app/component/codeeditor',
-            component: loadable(() => import('root/components/views/components/AceExampleView'))
-        },
-        bootstrap: {
-            path: '/app/component/bootstrap',
-            component: loadable(() => import('root/components/views/components/BootstrapReactView'))
-        },
-        validator: {
-            path: '/app/component/validator',
-            component: loadable(() => import('root/components/views/components/ValidatorView'))
-        },
-        antd: {
-            path: '/app/component/antd',
-            component: loadable(() => import('root/components/views/components/AntdView'))
-        },
-        test: {
-            path: '/app/component/test',
-            component: loadable(() => import('root/components/views/components/TestView'))
-        },
-        person: {
-            path: '/app/component/test/per/:person?',
-            component: loadable(() => import('root/components/views/components/PersonView'))
-        },
-        animal: {
-            path: '/app/component/test/ani/:animal',
-            component: loadable(() => import('root/components/views/components/AnimalView'))
-        }
-    },
-    notFind: {
-        component: loadable(() => import('common/views/Main404View'))
+        root: '/app',
+        todos: '/app/todos',
+        component: '/app/component',
+        table: '/app/component/table',
+        codeeditor: '/app/component/codeeditor',
+        bootstrap: '/app/component/bootstrap',
+        validator: '/app/component/validator',
+        antd: '/app/component/antd'
     }
 }
 

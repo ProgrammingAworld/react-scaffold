@@ -7,6 +7,11 @@ import {
     PropTypes
 } from 'common/Util'
 import config from 'conf'
+import TableExampleView from './TableExampleView'
+import AceExampleView from './AceExampleView'
+import BootstrapReactView from './BootstrapReactView'
+import ValidatorView from './ValidatorView'
+import AntdView from './AntdView'
 
 const ComponentMain = function (props) {
     const { url } = props.match
@@ -17,7 +22,7 @@ const ComponentMain = function (props) {
                 <ul className="list-unstyled">
                     <li>
                         <NavLink
-                            to={config.url.app.table.path}
+                            to={config.url.app.table}
                             activeClassName="active"
                         >
                             表格
@@ -25,7 +30,7 @@ const ComponentMain = function (props) {
                     </li>
                     <li>
                         <NavLink
-                            to={config.url.app.codeeditor.path}
+                            to={config.url.app.codeeditor}
                             activeClassName="active"
                         >
                             代码编辑器
@@ -33,7 +38,7 @@ const ComponentMain = function (props) {
                     </li>
                     <li>
                         <NavLink
-                            to={config.url.app.bootstrap.path}
+                            to={config.url.app.bootstrap}
                             activeClassName="active"
                         >
                             react-bootstrap
@@ -41,7 +46,7 @@ const ComponentMain = function (props) {
                     </li>
                     <li>
                         <NavLink
-                            to={config.url.app.validator.path}
+                            to={config.url.app.validator}
                             activeClassName="active"
                         >
                             validator
@@ -49,18 +54,10 @@ const ComponentMain = function (props) {
                     </li>
                     <li>
                         <NavLink
-                            to={config.url.app.antd.path}
+                            to={config.url.app.antd}
                             activeClassName="active"
                         >
                             antd
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={config.url.app.test.path}
-                            activeClassName="active"
-                        >
-                            test
                         </NavLink>
                     </li>
                 </ul>
@@ -68,32 +65,28 @@ const ComponentMain = function (props) {
             <div className="pull-right">
                 <Switch>
                     <Route
-                        path={config.url.app.table.path}
-                        component={config.url.app.table.component}
+                        path={config.url.app.table}
+                        component={TableExampleView}
                     />
                     <Route
-                        path={config.url.app.codeeditor.path}
-                        component={config.url.app.codeeditor.component}
+                        path={config.url.app.codeeditor}
+                        component={AceExampleView}
                     />
                     <Route
-                        path={config.url.app.bootstrap.path}
-                        component={config.url.app.bootstrap.component}
+                        path={config.url.app.bootstrap}
+                        component={BootstrapReactView}
                     />
                     <Route
-                        path={config.url.app.validator.path}
-                        component={config.url.app.validator.component}
+                        path={config.url.app.validator}
+                        component={ValidatorView}
                     />
                     <Route
-                        path={config.url.app.antd.path}
-                        component={config.url.app.antd.component}
-                    />
-                    <Route
-                        path={config.url.app.test.path}
-                        component={config.url.app.test.component}
+                        path={config.url.app.antd}
+                        component={AntdView}
                     />
                     <Route
                         path={url}
-                        render={() => <Redirect to={config.url.app.test.path} />}
+                        render={() => <Redirect to={config.url.app.table} />}
                     />
                 </Switch>
             </div>

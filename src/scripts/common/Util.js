@@ -28,7 +28,6 @@ import {
 } from 'react-router-dom'
 import { createSelector } from 'reselect'
 import { AppContainer, hot } from 'react-hot-loader'
-import pMinDelay from 'p-min-delay'
 import qs from 'qs'
 import Tools from './Tools'
 
@@ -190,7 +189,6 @@ export {
     createHistory,
     AppContainer,
     hot,
-    pMinDelay,
     noop,
     EmptyComponent
 }
