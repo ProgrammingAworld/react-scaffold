@@ -1,5 +1,5 @@
 import Loadable from 'react-loadable'
-import ComLoading from 'common/views/componentLoading'
+import ComLoading from 'common/views/ComponentLoading'
 
 const lazyloadDefault = {
     loading: ComLoading
