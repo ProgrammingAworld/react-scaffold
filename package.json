@@ -51,7 +51,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "browser-sync": "^2.24.1",
+    "browser-sync": "^2.24.2",
     "clean-webpack-plugin": "^0.1.19",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
@@ -101,7 +101,7 @@
     "webpack-stream": "^4.0.3"
   },
   "dependencies": {
-    "antd": "^3.4.4",
+    "antd": "^3.4.5",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "compass-mixins": "^0.12.10",
@@ -123,13 +123,13 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
-    "redux": "^3.7.2",
+    "redux": "^4.0.0",
     "redux-actions": "^2.3.0",
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
-    "validator": "^9.4.1"
+    "validator": "^10.0.0"
   },
   "stylelint": {},
   "engines": {
