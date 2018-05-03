@@ -9,8 +9,6 @@ import {
     Switch
 } from 'common/Util'
 import config from 'conf'
-import TodosMain from 'root/todos/views/components'
-import ComponentMain from 'root/components/views/components'
 import HeaderView from './HeaderView'
 
 const MainAppView = function (props) {
@@ -20,9 +18,9 @@ const MainAppView = function (props) {
         <div id="chief">
             <HeaderView />
             <Switch>
-                <Route path={config.url.app.todos} component={TodosMain} />
-                <Route path={config.url.app.component} component={ComponentMain} />
-                <Route path={url} exact render={() => <Redirect to={config.url.app.todos} />} />
+                <Route path={config.url.app.todos.path} component={config.url.app.todos.component} />
+                <Route path={config.url.app.component.path} component={config.url.app.component.component} />
+                <Route path={url} exact render={() => <Redirect to={config.url.app.todos.path} />} />
             </Switch>
         </div>
     )

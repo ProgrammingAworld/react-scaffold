@@ -11,19 +11,16 @@ import {
 import config from 'conf'
 import Dialog from 'common/dialog/container'
 import Loading from 'common/loading/container'
-import Login from 'root/login/views/container'
-import MainApp from 'common/views/MainAppView'
-import NotFind from 'common/views/Main404View'
 
 const { url } = config
 const RootRoutesView = function () {
     return (
         <div className="containerchild">
             <Switch>
-                <Route path={url.root} exact render={() => <Redirect to={url.login.root} />} />
-                <Route path={url.login.root} component={Login} />
-                <Route path={url.app.root} component={MainApp} />
-                <Route component={NotFind} />
+                <Route path={url.root} exact render={() => <Redirect to={url.login.path} />} />
+                <Route path={url.login.path} component={url.login.component} />
+                <Route path={url.app.root.path} component={url.app.root.component} />
+                <Route component={url.notFind} />
             </Switch>
             <Dialog />
             <Loading />

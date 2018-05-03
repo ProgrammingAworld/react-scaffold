@@ -7,11 +7,6 @@ import {
     PropTypes
 } from 'common/Util'
 import config from 'conf'
-import TableExampleView from './TableExampleView'
-import AceExampleView from './AceExampleView'
-import BootstrapReactView from './BootstrapReactView'
-import ValidatorView from './ValidatorView'
-import AntdView from './AntdView'
 
 const ComponentMain = function (props) {
     const { url } = props.match
@@ -22,7 +17,7 @@ const ComponentMain = function (props) {
                 <ul className="list-unstyled">
                     <li>
                         <NavLink
-                            to={config.url.app.table}
+                            to={config.url.app.table.path}
                             activeClassName="active"
                         >
                             表格
@@ -30,7 +25,7 @@ const ComponentMain = function (props) {
                     </li>
                     <li>
                         <NavLink
-                            to={config.url.app.codeeditor}
+                            to={config.url.app.codeeditor.path}
                             activeClassName="active"
                         >
                             代码编辑器
@@ -38,7 +33,7 @@ const ComponentMain = function (props) {
                     </li>
                     <li>
                         <NavLink
-                            to={config.url.app.bootstrap}
+                            to={config.url.app.bootstrap.path}
                             activeClassName="active"
                         >
                             react-bootstrap
@@ -46,7 +41,7 @@ const ComponentMain = function (props) {
                     </li>
                     <li>
                         <NavLink
-                            to={config.url.app.validator}
+                            to={config.url.app.validator.path}
                             activeClassName="active"
                         >
                             validator
@@ -54,7 +49,7 @@ const ComponentMain = function (props) {
                     </li>
                     <li>
                         <NavLink
-                            to={config.url.app.antd}
+                            to={config.url.app.antd.path}
                             activeClassName="active"
                         >
                             antd
@@ -65,28 +60,28 @@ const ComponentMain = function (props) {
             <div className="pull-right">
                 <Switch>
                     <Route
-                        path={config.url.app.table}
-                        component={TableExampleView}
+                        path={config.url.app.table.path}
+                        component={config.url.app.table.component}
                     />
                     <Route
-                        path={config.url.app.codeeditor}
-                        component={AceExampleView}
+                        path={config.url.app.codeeditor.path}
+                        component={config.url.app.codeeditor.component}
                     />
                     <Route
-                        path={config.url.app.bootstrap}
-                        component={BootstrapReactView}
+                        path={config.url.app.bootstrap.path}
+                        component={config.url.app.bootstrap.component}
                     />
                     <Route
-                        path={config.url.app.validator}
-                        component={ValidatorView}
+                        path={config.url.app.validator.path}
+                        component={config.url.app.validator.component}
                     />
                     <Route
-                        path={config.url.app.antd}
-                        component={AntdView}
+                        path={config.url.app.antd.path}
+                        component={config.url.app.antd.component}
                     />
                     <Route
                         path={url}
-                        render={() => <Redirect to={config.url.app.table} />}
+                        render={() => <Redirect to={config.url.app.table.path} />}
                     />
                 </Switch>
             </div>
