@@ -29,7 +29,14 @@ import {
 import { createSelector } from 'reselect'
 import { AppContainer, hot } from 'react-hot-loader'
 import qs from 'qs'
+import Loadable from 'react-loadable'
+import ComLoading from 'common/views/ComponentLoading'
 import Tools from './Tools'
+
+const lazyload = url => Loadable({
+    loading: ComLoading,
+    loader: () => import(`root/${url}`)
+})
 
 // ajax 统一配置
 const instance = axios.create({
@@ -190,5 +197,6 @@ export {
     AppContainer,
     hot,
     noop,
-    EmptyComponent
+    EmptyComponent,
+    lazyload
 }

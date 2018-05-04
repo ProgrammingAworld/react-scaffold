@@ -32,6 +32,6 @@ Loading.propTypes = {
     isLoading: PropTypes.bool.isRequired,
     pastDelay: PropTypes.bool.isRequired,
     timedOut: PropTypes.bool.isRequired,
-    error: PropTypes.string
+    error: PropTypes.object
 }
 

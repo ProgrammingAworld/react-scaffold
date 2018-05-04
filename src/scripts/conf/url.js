@@ -1,81 +1,46 @@
-import Loadable from 'react-loadable'
-import ComLoading from 'common/views/ComponentLoading'
-
-const lazyloadDefault = {
-    loading: ComLoading
-}
+import { lazyload } from 'common/Util'
 
 const url = {
     root: '/',
     login: {
         path: '/login',
-        component: Loadable({
-            ...lazyloadDefault,
-            loader: () => import('root/login/views/container')
-        })
+        component: lazyload('login/views/container/index.js')
     },
     app: {
         root: {
             path: '/app',
-            component: Loadable({
-                ...lazyloadDefault,
-                loader: () => import('common/views/MainAppView')
-            })
+            component: lazyload('common/views/MainAppView.js')
         },
         todos: {
             path: '/app/todos',
-            component: Loadable({
-                ...lazyloadDefault,
-                loader: () => import('root/todos/views/components')
-            })
+            component: lazyload('todos/views/components/index.js')
         },
         component: {
             path: '/app/component',
-            component: Loadable({
-                ...lazyloadDefault,
-                loader: () => import('root/components/views/components')
-            })
+            component: lazyload('components/views/components/index.js')
         },
         table: {
             path: '/app/component/table',
-            component: Loadable({
-                ...lazyloadDefault,
-                loader: () => import('root/components/views/components/TableExampleView')
-            })
+            component: lazyload('components/views/components/TableExampleView.js')
         },
         codeeditor: {
             path: '/app/component/codeeditor',
-            component: Loadable({
-                ...lazyloadDefault,
-                loader: () => import('root/components/views/components/AceExampleView')
-            })
+            component: lazyload('components/views/components/AceExampleView.js')
         },
         bootstrap: {
             path: '/app/component/bootstrap',
-            component: Loadable({
-                ...lazyloadDefault,
-                loader: () => import('root/components/views/components/BootstrapReactView')
-            })
+            component: lazyload('components/views/components/BootstrapReactView.js')
         },
         validator: {
             path: '/app/component/validator',
-            component: Loadable({
-                ...lazyloadDefault,
-                loader: () => import('root/components/views/components/ValidatorView')
-            })
+            component: lazyload('components/views/components/ValidatorView.js')
         },
         antd: {
             path: '/app/component/antd',
-            component: Loadable({
-                ...lazyloadDefault,
-                loader: () => import('root/components/views/components/AntdView')
-            })
+            component: lazyload('components/views/components/AntdView.js')
         }
     },
-    notFind: Loadable({
-        ...lazyloadDefault,
-        loader: () => import('common/views/Main404View')
-    })
+    notFind: lazyload('common/views/Main404View.js')
 }
 
 export default url
