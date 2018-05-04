@@ -130,7 +130,7 @@ gulp.task('webpack_build', () => {
     myWebpackConfig.devtool = 'cheap-module-source-map'
     myWebpackConfig.entry.app = newApp
 
-    myWebpackConfig.plugins.shift()
+    // myWebpackConfig.plugins.shift()
     myWebpackConfig.plugins.shift()
     myWebpackConfig.plugins.shift()
     myWebpackConfig.plugins.shift()
