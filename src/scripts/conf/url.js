@@ -1,46 +1,49 @@
-import { lazyload } from 'common/Util'
+import {
+    LoginView, MainAppView, TodoMainView, ComponentMainView, TableMainView,
+    CodeEditorView, BootstrapView, ValidateView, AntdView, NotFindView 
+} from './lazycomponents'
 
 const url = {
     root: '/',
     login: {
         path: '/login',
-        component: lazyload('login/views/container/index.js')
+        component: LoginView
     },
     app: {
         root: {
             path: '/app',
-            component: lazyload('common/views/MainAppView.js')
+            component: MainAppView
         },
         todos: {
             path: '/app/todos',
-            component: lazyload('todos/views/components/index.js')
+            component: TodoMainView
         },
         component: {
             path: '/app/component',
-            component: lazyload('components/views/components/index.js')
+            component: ComponentMainView
         },
         table: {
             path: '/app/component/table',
-            component: lazyload('components/views/components/TableExampleView.js')
+            component: TableMainView
         },
         codeeditor: {
             path: '/app/component/codeeditor',
-            component: lazyload('components/views/components/AceExampleView.js')
+            component: CodeEditorView
         },
         bootstrap: {
             path: '/app/component/bootstrap',
-            component: lazyload('components/views/components/BootstrapReactView.js')
+            component: BootstrapView
         },
         validator: {
             path: '/app/component/validator',
-            component: lazyload('components/views/components/ValidatorView.js')
+            component: ValidateView
         },
         antd: {
             path: '/app/component/antd',
-            component: lazyload('components/views/components/AntdView.js')
+            component: AntdView
         }
     },
-    notFind: lazyload('common/views/Main404View.js')
+    notFind: NotFindView
 }
 
 export default url

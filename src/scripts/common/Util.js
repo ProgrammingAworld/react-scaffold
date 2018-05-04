@@ -29,14 +29,7 @@ import {
 import { createSelector } from 'reselect'
 import { AppContainer, hot } from 'react-hot-loader'
 import qs from 'qs'
-import Loadable from 'react-loadable'
-import ComLoading from 'common/views/ComponentLoading'
 import Tools from './Tools'
-
-const lazyload = url => Loadable({
-    loading: ComLoading,
-    loader: () => import(`root/${url}`)
-})
 
 // ajax 统一配置
 const instance = axios.create({
@@ -53,7 +46,7 @@ const handleWithParameter = function (url, {
 }) {
     const { headers } = instance.defaults
     instance.defaults.headers = { ...headers, 'Content-Type': contentType }
-    
+
     // url替换参数
     let urlNew = url
     const paramsNew = { ...params }
@@ -65,7 +58,7 @@ const handleWithParameter = function (url, {
             delete paramsNew[key]
         }
     }
-    
+
     switch (method.toLowerCase()) {
         case 'get':
             return instance.get(urlNew, { params: paramsNew })
@@ -98,7 +91,7 @@ const createActions = function (actionMap) {
             fnsMap[eventName] = (settings = {}) => (dispatch) => {
                 const loading = require('loading').default
                 const dialog = require('dialog').default
-                
+
                 if ((configOrFn.hasLoading || configOrFn.hasLoading === undefined) && !loading.getLoadingStatus()) loading.show()
                 dispatch(createAction(`${configOrFn.actionType}_PRE`)())
                 return handleWithParameter(
@@ -109,7 +102,7 @@ const createActions = function (actionMap) {
                     }
                 ).then((res) => {
                     loading.hide()
-                    
+
                     const { statusCode, msg } = res.data
                     if (statusCode === 200) {
                         const data = res.data.data === undefined ? { data: 'data缺失' } : res.data.data
@@ -117,7 +110,7 @@ const createActions = function (actionMap) {
                         dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
                         return res.data
                     }
-                    
+
                     dispatch(createAction(`${configOrFn.actionType}_ERROR`)(msg))
                     dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
                     return msg
@@ -145,7 +138,7 @@ const createActions = function (actionMap) {
             fnsMap[eventName] = configOrFn
         }
     })
-    
+
     return fnsMap
 }
 
@@ -160,7 +153,7 @@ const handleActions = function (reducerMap, defaultState) {
             })
         }
     })
-    
+
     return originalHandleActions(result, defaultState)
 }
 
@@ -197,6 +190,5 @@ export {
     AppContainer,
     hot,
     noop,
-    EmptyComponent,
-    lazyload
+    EmptyComponent
 }
