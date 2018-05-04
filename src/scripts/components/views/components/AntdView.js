@@ -6,6 +6,7 @@
 import diaglog from 'dialog'
 import loading from 'loading'
 import { React } from 'common/Util'
+import dayjs from 'dayjs'
 import ReactComponentBase from 'base/ReactComponentBase'
 
 class AntdView extends ReactComponentBase {
@@ -37,6 +38,7 @@ class AntdView extends ReactComponentBase {
     render() {
         return (
             <div>测试{this.state.name}
+                {dayjs().format('YYYY-MM-DD HH:mm:ss')}
                 <button onClick={this.btnClick}>dialog</button>
                 <button onClick={this.btnLoadingClick}>loading</button>
             </div>

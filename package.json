@@ -105,6 +105,7 @@
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "compass-mixins": "^0.12.10",
+    "dayjs": "^1.5.19",
     "fixed-data-table-2": "^0.8.12",
     "history": "^4.7.2",
     "immutable": "^3.8.2",

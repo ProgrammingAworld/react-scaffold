@@ -19,6 +19,7 @@ module.exports = {
         'antd',
         'axios',
         'classnames',
+        'dayjs',
         'fixed-data-table-2',
         'history',
         'immutable',
