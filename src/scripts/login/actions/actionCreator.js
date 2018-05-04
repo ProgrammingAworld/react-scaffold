@@ -7,6 +7,7 @@ import * as actionTypes from './actionTypes'
 const actionCreator = createActions({
     login: {
         url: '/api/login',
+        method: 'post',
         actionType: actionTypes.LOGIN
     },
     KPIlogin: {

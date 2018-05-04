@@ -1,6 +1,5 @@
 const router = {
-    '/api/login': '/login',
-    '/api/todos': '/todos'
+    '/api/test': '/test'
 }
 
 module.exports = router

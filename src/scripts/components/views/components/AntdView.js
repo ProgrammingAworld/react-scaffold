@@ -3,44 +3,76 @@
  * 作者：安超
  * 日期： 2018/3/19
  */
-import diaglog from 'dialog'
-import loading from 'loading'
+// import diaglog from 'dialog'
+// import loading from 'loading'
 import { React } from 'common/Util'
 import dayjs from 'dayjs'
 import ReactComponentBase from 'base/ReactComponentBase'
+import { Table } from 'antd'
 
 class AntdView extends ReactComponentBase {
     state = {
-        name: ''
-    }
-    
-    btnClick = () => {
-        const Content = function () {
-            console.log('永远重新渲染')
-            return <div>aaaa</div>
-        }
-        
-        diaglog.confirm({
-            title: '测试',
-            infoType: 'info',
-            content: <Content />
-        })
-    }
-    
-    btnLoadingClick = () => {
-        loading.show()
-        
-        setTimeout(() => {
-            loading.hide()
-        }, 2000)
+        name: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        selectedRowKeys: []
     }
     
     render() {
+        const dataSource = [{
+            key: '1',
+            name: '胡彦斌',
+            age: 32,
+            address: '西湖区湖底公园1号'
+        }, {
+            key: '2',
+            name: '胡彦祖',
+            age: 42,
+            address: '西湖区湖底公园1号'
+        }]
+
+        const columns = [{
+            title: '姓名',
+            dataIndex: 'name',
+            key: 'name',
+        }, {
+            title: '年龄',
+            dataIndex: 'age',
+            key: 'age',
+        }, {
+            title: '住址',
+            dataIndex: 'address',
+            key: 'address',
+        }]
+
+        const { selectedRowKeys } = this.state;
+
         return (
-            <div>测试{this.state.name}
-                {dayjs().format('YYYY-MM-DD HH:mm:ss')}
-                <button onClick={this.btnClick}>dialog</button>
-                <button onClick={this.btnLoadingClick}>loading</button>
+            <div>
+                <Table
+                    onRow={record => ({
+                        onClick: () => {
+                            const { key } = record
+
+                            if (selectedRowKeys.includes(key)) {
+                                this.setState(prevState => ({
+                                    selectedRowKeys: prevState.selectedRowKeys.filter(item => item !== key)
+                                }))
+                            } else {
+                                this.setState(prevState => ({
+                                    selectedRowKeys: prevState.selectedRowKeys.concat([key])
+                                }))
+                            }
+                        }
+                    })}
+                    rowClassName={(record) => {
+                        if (selectedRowKeys.includes(record.key)) {
+                            return 'bg-primary'
+                        }
+
+                        return 'others'
+                    }}
+                    dataSource={dataSource}
+                    columns={columns}
+                />
             </div>
         )
     }

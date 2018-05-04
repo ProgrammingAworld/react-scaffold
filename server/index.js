@@ -14,9 +14,12 @@ const middlewares = jsonServer.defaults()
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares)
 server.use(jsonServer.bodyParser)
-
 server.use(jsonServer.rewriter(rewriterJSON))
-config.proxy.paths.forEach(item => server.use(item, router))
+config.proxy.paths.forEach((item) => {
+    server.use(item, (req, res, next) => {
+        router({ ...req, method: 'get' }, res, next)
+    })
+})
 server.listen({
     host: ip,
     port
