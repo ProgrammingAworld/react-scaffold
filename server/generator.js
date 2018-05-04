@@ -4,10 +4,8 @@
  * 日期： 2018/1/31
  */
 
-const faker = require('faker')
+const Mock = require('mockjs')
 const _ = require('lodash')
-
-faker.locale = 'zh_CN';
 
 module.exports = function () {
     return {
@@ -17,16 +15,16 @@ module.exports = function () {
         },
         getTodos: {
             statusCode: 200,
-            data: _.times(5, n => ({
+            data: _.times(6, n => ({
                 id: n,
-                text: faker.name.findName(),
-                completed: faker.random.boolean()
+                text: Mock.Random.cname(),
+                completed: Mock.Random.boolean()
             }))
         },
         addTodo: _.times(10, n => ({
             id: n,
-            text: faker.name.findName(),
-            completed: faker.random.boolean()
+            text: Mock.Random.cname(),
+            completed: Mock.Random.boolean()
         }))
     }
 }
