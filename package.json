@@ -85,8 +85,8 @@
     "jest": "^22.4.3",
     "json-server": "^0.12.2",
     "mockjs": "^1.0.1-beta3",
-    "nodemon": "^1.17.3",
-    "postcss-loader": "^2.1.4",
+    "nodemon": "^1.17.4",
+    "postcss-loader": "^2.1.5",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "stylelint": "^9.2.0",
@@ -100,7 +100,7 @@
     "webpack-stream": "^4.0.3"
   },
   "dependencies": {
-    "antd": "^3.4.5",
+    "antd": "^3.5.0",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "compass-mixins": "^0.12.10",
@@ -111,7 +111,7 @@
     "moment": "^2.22.1",
     "path-to-regexp": "^2.2.1",
     "prop-types": "^15.6.1",
-    "qs": "^6.5.1",
+    "qs": "^6.5.2",
     "react": "^16.3.2",
     "react-ace": "^6.1.0",
     "react-bootstrap": "^0.32.1",
@@ -128,8 +128,7 @@
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1",
-    "validator": "^10.0.0"
+    "reselect": "^3.0.1"
   },
   "stylelint": {},
   "engines": {
