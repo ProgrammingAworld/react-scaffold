@@ -6,13 +6,11 @@
 // import diaglog from 'dialog'
 // import loading from 'loading'
 import { React } from 'common/Util'
-import dayjs from 'dayjs'
 import ReactComponentBase from 'base/ReactComponentBase'
 import { Table } from 'antd'
 
 class AntdView extends ReactComponentBase {
     state = {
-        name: dayjs().format('YYYY-MM-DD HH:mm:ss'),
         selectedRowKeys: []
     }
     
