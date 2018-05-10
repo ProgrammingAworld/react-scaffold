@@ -19,7 +19,7 @@ const MainAppView = function (props) {
             <HeaderView />
             <Switch>
                 <Route path={config.url.app.todos.path} component={config.url.app.todos.component} />
-                <Route path={config.url.app.component.path} component={config.url.app.component.component} />
+                <Route path={config.url.app.others.path} component={config.url.app.others.component} />
                 <Route path={url} exact render={() => <Redirect to={config.url.app.todos.path} />} />
             </Switch>
         </div>

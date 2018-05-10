@@ -37,7 +37,6 @@ module.exports = {
             loading: path.resolve(__dirname, './src/scripts/common/loading'),
             plugins: path.resolve(__dirname, './src/scripts/plugins'),
             particles: path.resolve(__dirname, './src/scripts/plugins/particles.js'),
-            echarts: path.resolve(__dirname, './src/scripts/plugins/echarts.min.js')
         },
         extensions: ['.js', '.jsx']
     },

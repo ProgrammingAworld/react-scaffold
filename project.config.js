@@ -18,6 +18,7 @@ module.exports = {
     vendor: [
         'antd',
         'axios',
+        'bizcharts',
         'classnames',
         'fixed-data-table-2',
         'history',
@@ -41,7 +42,6 @@ module.exports = {
         'particles',
         'path-to-regexp',
         'prop-types',
-        'echarts',
         'qs'
     ],
     defaultPath: {

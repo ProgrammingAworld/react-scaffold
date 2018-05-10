@@ -2,6 +2,7 @@
  * Created by anchao on 2016/6/29.
  */
 import { React, NavLink } from 'common/Util'
+import config from 'conf'
 
 const HeaderView = function () {
     return (
@@ -9,14 +10,14 @@ const HeaderView = function () {
             <div className="pull-left" id="logo" />
             <div className="pull-left navigation">
                 <ul className="list-unstyled list-inline">
-                    <li><NavLink replace to="/login" activeClassName="active">登录</NavLink></li>
+                    <li><NavLink replace to={config.url.login.path} activeClassName="active">登录</NavLink></li>
                     <li>
-                        <NavLink replace to="/app/todos" activeClassName="active">示例</NavLink>
+                        <NavLink replace to={config.url.app.todos.path} activeClassName="active">示例</NavLink>
                     </li>
                     <li>
                         <NavLink
                             replace
-                            to="/app/component"
+                            to={config.url.app.others.path}
                             activeClassName="active"
                         >组件
                         </NavLink>

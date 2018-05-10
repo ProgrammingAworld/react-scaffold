@@ -3,7 +3,7 @@
  */
 
 import { connect, createSelector } from 'common/Util'
-import actionCreator from '../../../actions/actionCreator'
+import actionCreator from '../../actions/actionCreator'
 import Footer from '../../components/footer'
 
 const todosSelector = state => state.todos

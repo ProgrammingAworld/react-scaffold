@@ -18,28 +18,28 @@ const url = {
             path: '/app/todos',
             component: TodoMainView
         },
-        component: {
-            path: '/app/component',
+        others: {
+            path: '/app/others',
             component: ComponentMainView
         },
         table: {
-            path: '/app/component/table',
+            path: '/app/others/table',
             component: TableMainView
         },
         codeeditor: {
-            path: '/app/component/codeeditor',
+            path: '/app/others/codeeditor',
             component: CodeEditorView
         },
         bootstrap: {
-            path: '/app/component/bootstrap',
+            path: '/app/others/bootstrap',
             component: BootstrapView
         },
         validator: {
-            path: '/app/component/validator',
+            path: '/app/others/validator',
             component: ValidateView
         },
         antd: {
-            path: '/app/component/antd',
+            path: '/app/others/antd',
             component: AntdView
         }
     },

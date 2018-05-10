@@ -102,6 +102,7 @@
   "dependencies": {
     "antd": "^3.5.0",
     "axios": "^0.18.0",
+    "bizcharts": "^3.1.7",
     "classnames": "^2.2.5",
     "compass-mixins": "^0.12.10",
     "fixed-data-table-2": "^0.8.12",

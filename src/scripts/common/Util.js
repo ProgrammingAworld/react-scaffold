@@ -104,16 +104,16 @@ const createActions = function (actionMap) {
                     loading.hide()
 
                     const { statusCode, msg } = res.data
+                    const data = res.data.data === undefined ? res.data : res.data.data
                     if (statusCode === 200) {
-                        const data = res.data.data === undefined ? { data: 'data缺失' } : res.data.data
                         dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data))
                         dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
                         return res.data
                     }
 
-                    dispatch(createAction(`${configOrFn.actionType}_ERROR`)(msg))
+                    dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data))
                     dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
-                    return msg
+                    return data
                 }).catch((error) => {
                     loading.hide()
 
