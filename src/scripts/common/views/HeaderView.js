@@ -12,14 +12,14 @@ const HeaderView = function () {
                 <ul className="list-unstyled list-inline">
                     <li><NavLink replace to={config.url.login.path} activeClassName="active">登录</NavLink></li>
                     <li>
-                        <NavLink replace to={config.url.app.todos.path} activeClassName="active">示例</NavLink>
+                        <NavLink replace to={config.url.app.todos.path} activeClassName="active">todos示例</NavLink>
                     </li>
                     <li>
                         <NavLink
                             replace
                             to={config.url.app.others.path}
                             activeClassName="active"
-                        >组件
+                        >其它
                         </NavLink>
                     </li>
                 </ul>
