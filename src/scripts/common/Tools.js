@@ -2,7 +2,7 @@
  * Created by Anchao on 2015/8/3.
  */
 
-// 公共工具类
+// 业务工具类
 class Tools {
     static getHash() {
         return window.location.hash

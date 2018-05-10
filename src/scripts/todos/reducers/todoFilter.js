@@ -4,7 +4,7 @@
  * 日期： 2018/3/26
  */
 
-import { handleActions } from 'common/Util'
+import { handleActions } from 'common'
 import config from 'conf'
 import * as actionTypes from '../actions/actionTypes'
 
