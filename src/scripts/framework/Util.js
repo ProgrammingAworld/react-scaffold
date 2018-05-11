@@ -11,8 +11,7 @@ import PropTypes from 'prop-types'
 import Immutable from 'immutable'
 import pathToRegExp from 'path-to-regexp'
 import { combineReducers } from 'redux'
-import { Provider, connect } from 'react-redux'
-import createHistory from 'history/createHashHistory'
+import { connect } from 'react-redux'
 import {
     NavLink,
     Link,
@@ -39,7 +38,6 @@ export {
     Immutable,
     pathToRegExp,
     combineReducers,
-    Provider,
     connect,
     createSelector,
     Router,
@@ -49,7 +47,6 @@ export {
     Link,
     Redirect,
     Switch,
-    createHistory,
     AppContainer,
     hot,
     noop,

@@ -2,27 +2,10 @@
  * Created by anchao on 2015/12/7.
  */
 import 'babel-polyfill'
-import {
-    React,
-    ReactDOM,
-    Provider,
-    Router,
-    createHistory
-} from 'framework/Util'
-import store from 'framework/store'
-import RootRoutesView from './components/root'
+import projectInit from 'framework/projectInit'
 
-const history = createHistory()
-const oContainer = document.querySelector('#container')
-
-ReactDOM.render(
-    <Provider store={store}>
-        <Router hashHistory={history}>
-            <RootRoutesView />
-        </Router>
-    </Provider>,
-    oContainer
-)
+// 工程初始化
+projectInit(document.querySelector('#container'))
 
 if (process.env.NODE_ENV === 'production') {
     window.addEventListener('beforeunload', (e) => {

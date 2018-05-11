@@ -8,10 +8,12 @@ import {
     handleAction, handleActions as originalHandleActions,
     combineActions
 } from 'redux-actions'
+import Loadable from 'react-loadable'
 import qs from 'qs'
 import axios from 'axios'
 import dialog from 'dialog'
 import loading from 'loading'
+import ComLoading from './components/ComponentLoading'
 
 // ajax 统一配置
 const instance = axios.create({
@@ -139,6 +141,12 @@ const handleActions = function (reducerMap, defaultState) {
     return originalHandleActions(result, defaultState)
 }
 
+// 懒加载组件
+const lazyload = importUrl => Loadable({
+    loading: ComLoading,
+    loader: () => importUrl
+})
+
 export {
     createAction,
     createActions,
@@ -146,5 +154,6 @@ export {
     originalHandleActions,
     handleActions,
     combineActions,
+    lazyload,
     dialog
 }

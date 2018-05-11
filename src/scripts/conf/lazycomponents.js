@@ -4,13 +4,7 @@
  * 日期： 2018/5/4
  */
 
-import Loadable from 'react-loadable'
-import ComLoading from 'framework/components/ComponentLoading'
-
-const lazyload = importUrl => Loadable({
-    loading: ComLoading,
-    loader: () => importUrl
-})
+import { lazyload } from 'framework'
 
 export const LoginView = lazyload(import('root/login/container'))
 export const MainAppView = lazyload(import('root/components/app'))
