@@ -7,10 +7,9 @@ import Immutable from 'immutable'
 import { routerReducer } from 'react-router-redux'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import dialog from 'common/dialog/reducers/index'
-import loading from 'common/loading/reducers/index'
-import login from '../../login/reducers/index'
-import todos from '../../todos/reducers/index'
+import dialog from 'common/dialog/reducers'
+import loading from 'common/loading/reducers'
+import reducers from 'conf/reducers'
 
 // state日志
 const logger = createLogger({
@@ -33,8 +32,7 @@ const store = createStore(
     combineReducers({
         dialog,
         loading,
-        login,
-        todos,
+        ...reducers,
         routing: routerReducer
     }),
     process.env.NODE_ENV === 'production' ? applyMiddleware(thunkMiddleware) : applyMiddleware(thunkMiddleware, logger)
