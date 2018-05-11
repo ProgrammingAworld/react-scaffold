@@ -14,7 +14,7 @@ module.exports = {
     images: 'src/images/{,*/}*.{gif,jpeg,jpg,png,ico}',
     distImg: 'dist/images',
     distScript: 'dist/scripts',
-    mainJs: 'app.js',
+    mainJs: 'index.js',
     vendor: [
         'antd',
         'axios',
