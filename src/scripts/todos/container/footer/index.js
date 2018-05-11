@@ -2,7 +2,7 @@
  * Created by anchao on 2016/6/30.
  */
 
-import { connect, createSelector } from 'common/Util'
+import { connect, createSelector } from 'framework/Util'
 import actionCreator from '../../actions/actionCreator'
 import Footer from '../../components/footer'
 

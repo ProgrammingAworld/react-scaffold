@@ -1,13 +1,13 @@
 /**
  * Created by anchao on 2016/7/26.
  */
-import { React } from 'common/Util'
-import HeaderView from './HeaderView'
+import { React } from 'framework/Util'
+import Header from '../header'
 
-function Main404View() {
+function Error() {
     return (
         <div id="chief">
-            <HeaderView />
+            <Header />
             <div className="main404">
                 <h1>not found</h1>
                 <h2>does not exist. time to go outside.</h2>
@@ -17,4 +17,4 @@ function Main404View() {
     )
 }
 
-export default Main404View
+export default Error

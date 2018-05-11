@@ -7,16 +7,16 @@ import {
     Route,
     Redirect,
     Switch
-} from 'common/Util'
+} from 'framework/Util'
 import config from 'conf'
-import HeaderView from './HeaderView'
+import Header from '../header'
 
-const MainAppView = function (props) {
+const App = function (props) {
     const { url } = props.match
     
     return (
         <div id="chief">
-            <HeaderView />
+            <Header />
             <Switch>
                 <Route path={config.url.app.todos.path} component={config.url.app.todos.component} />
                 <Route path={config.url.app.others.path} component={config.url.app.others.component} />
@@ -26,8 +26,8 @@ const MainAppView = function (props) {
     )
 }
 
-MainAppView.propTypes = {
+App.propTypes = {
     match: PropTypes.object.isRequired
 }
 
-export default MainAppView
+export default App

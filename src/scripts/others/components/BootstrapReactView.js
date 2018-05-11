@@ -13,7 +13,7 @@ import {
     FormControl,
     Clearfix
 } from 'react-bootstrap'
-import { React, connect } from 'common/Util'
+import { React, connect } from 'framework/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 import dialog from 'dialog'
 

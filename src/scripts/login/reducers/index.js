@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/7/27.
  */
-import { handleActions } from 'common'
+import { handleActions } from 'framework'
 import * as actionTypes from '../actions/actionTypes'
 
 const inintialState = {

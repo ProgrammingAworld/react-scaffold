@@ -1,7 +1,7 @@
 /**
  * Created by anchao on 2016/7/26.
  */
-import { createAction, createActions } from 'common'
+import { createAction, createActions } from 'framework'
 import * as actionTypes from './actionTypes'
 
 const actionCreator = createActions({

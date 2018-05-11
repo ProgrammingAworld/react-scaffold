@@ -5,7 +5,7 @@
  */
 
 import Loadable from 'react-loadable'
-import ComLoading from 'common/views/ComponentLoading'
+import ComLoading from 'framework/components/ComponentLoading'
 
 const lazyload = importUrl => Loadable({
     loading: ComLoading,
@@ -13,7 +13,7 @@ const lazyload = importUrl => Loadable({
 })
 
 export const LoginView = lazyload(import('root/login/container'))
-export const MainAppView = lazyload(import('common/views/MainAppView'))
+export const MainAppView = lazyload(import('root/components/app'))
 export const TodoMainView = lazyload(import('root/todos/components'))
 export const ComponentMainView = lazyload(import('root/others/components'))
 export const TableMainView = lazyload(import('root/others/components/TableExampleView'))
@@ -21,4 +21,4 @@ export const CodeEditorView = lazyload(import('root/others/components/AceExample
 export const BootstrapView = lazyload(import('root/others/components/BootstrapReactView'))
 export const ValidateView = lazyload(import('root/others/components/ValidatorView'))
 export const AntdView = lazyload(import('root/others/components/AntdView'))
-export const NotFindView = lazyload(import('common/views/Main404View'))
+export const NotFindView = lazyload(import('root/components/error'))

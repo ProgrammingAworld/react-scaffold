@@ -1,4 +1,4 @@
-import { React, connect, axios } from 'common/Util'
+import { React, connect, axios } from 'framework/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 
 class ValidatorView extends ReactComponentBase {

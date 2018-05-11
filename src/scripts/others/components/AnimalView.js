@@ -1,4 +1,4 @@
-import { React, PropTypes } from 'common/Util'
+import { React, PropTypes } from 'framework/Util'
 
 function Animal(props) {
     return (

@@ -1,5 +1,5 @@
 import { Table, Column, Cell } from 'fixed-data-table-2'
-import { React, connect, withRouter } from 'common/Util'
+import { React, connect, withRouter } from 'framework/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 
 class TableExampleView extends ReactComponentBase {

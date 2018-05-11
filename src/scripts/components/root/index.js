@@ -7,10 +7,10 @@ import {
     Redirect,
     Switch,
     hot
-} from 'common/Util'
+} from 'framework/Util'
 import config from 'conf'
-import Dialog from 'common/dialog/container'
-import Loading from 'common/loading/container'
+import Dialog from 'framework/dialog/container'
+import Loading from 'framework/loading/container'
 
 const { url } = config
 const RootRoutesView = function () {

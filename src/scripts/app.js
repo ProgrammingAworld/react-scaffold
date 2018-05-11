@@ -8,9 +8,9 @@ import {
     Provider,
     Router,
     createHistory
-} from 'common/Util'
-import RootRoutesView from 'common/views/RootRoutesView'
-import store from './common/store'
+} from 'framework/Util'
+import store from 'framework/store'
+import RootRoutesView from './components/root'
 
 const history = createHistory()
 const oContainer = document.querySelector('#container')

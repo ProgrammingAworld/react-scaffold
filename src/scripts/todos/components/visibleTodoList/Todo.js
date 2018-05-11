@@ -2,7 +2,7 @@
  * Created by anchao on 2016/6/30.
  */
 
-import { React, PropTypes } from 'common/Util'
+import { React, PropTypes } from 'framework/Util'
 import enhanceWithClickOutside from 'react-click-outside'
 import ReactComponentBase from 'base/ReactComponentBase'
 import classNames from 'classnames/bind'

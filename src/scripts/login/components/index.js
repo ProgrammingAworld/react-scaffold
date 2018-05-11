@@ -1,5 +1,5 @@
 import config from 'conf'
-import { React, PropTypes, noop } from 'common/Util'
+import { React, PropTypes, noop } from 'framework/Util'
 import classNames from 'classnames/bind'
 import ReactComponentBase from 'base/ReactComponentBase'
 import particlesJS from 'plugins/particles'

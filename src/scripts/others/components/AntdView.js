@@ -5,7 +5,7 @@
  */
 // import diaglog from 'dialog'
 // import loading from 'loading'
-import { React } from 'common/Util'
+import { React } from 'framework/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 import { Table } from 'antd'
 

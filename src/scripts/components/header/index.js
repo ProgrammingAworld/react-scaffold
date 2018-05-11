@@ -1,10 +1,10 @@
 /**
  * Created by anchao on 2016/6/29.
  */
-import { React, NavLink } from 'common/Util'
+import { React, NavLink } from 'framework/Util'
 import config from 'conf'
 
-const HeaderView = function () {
+const Header = function () {
     return (
         <div id="header" className="clearfix">
             <div className="pull-left" id="logo" />
@@ -29,4 +29,4 @@ const HeaderView = function () {
     )
 }
 
-export default HeaderView
+export default Header

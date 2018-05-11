@@ -5,7 +5,7 @@ import {
     Redirect,
     Switch,
     PropTypes
-} from 'common/Util'
+} from 'framework/Util'
 import config from 'conf'
 
 const ComponentMain = function (props) {

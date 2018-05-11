@@ -4,7 +4,7 @@
  * 日期： 2018/4/24
  */
 
-import { React, PropTypes } from 'common/Util'
+import { React, PropTypes } from 'framework/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 import Todo from './Todo'
 

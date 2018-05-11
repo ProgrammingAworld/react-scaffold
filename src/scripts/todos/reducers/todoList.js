@@ -3,8 +3,8 @@
  * 作者：安超
  * 日期： 2018/3/26
  */
-import { handleActions } from 'common'
-import { Immutable } from 'common/Util'
+import { handleActions } from 'framework'
+import { Immutable } from 'framework/Util'
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = {
