@@ -10,7 +10,7 @@ import {
     createHistory
 } from 'common/Util'
 import RootRoutesView from 'common/views/RootRoutesView'
-import store from './store'
+import store from './common/store'
 
 const history = createHistory()
 const oContainer = document.querySelector('#container')

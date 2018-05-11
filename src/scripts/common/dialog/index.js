@@ -2,7 +2,7 @@
  * Created by anchao on 2016/6/29.
  */
 import * as actionCreator from './actions/actionCreator'
-import store from '../../store'
+import store from '../store'
 
 const dialogWidth = 500
 const dialog = {

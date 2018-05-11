@@ -30,7 +30,7 @@ module.exports = {
         ],
         alias: {
             root: path.resolve(__dirname, './src/scripts'),
-            base: path.resolve(__dirname, './src/scripts/base'),
+            base: path.resolve(__dirname, './src/scripts/common/base'),
             common: path.resolve(__dirname, './src/scripts/common'),
             conf: path.resolve(__dirname, './src/scripts/conf'),
             dialog: path.resolve(__dirname, './src/scripts/common/dialog'),
