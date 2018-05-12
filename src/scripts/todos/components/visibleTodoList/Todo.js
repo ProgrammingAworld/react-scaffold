@@ -33,14 +33,6 @@ class TodoSingle extends ReactComponentBase {
 
         if (!hideEditInput) {
             this.props.onUpdateTodo({ data: { id: data.get('id'), text: data.get('text') } })
-                .then((res) => {
-                    if (res.statusCode !== 200) {
-                        dialog.alert({
-                            infoType: 'error',
-                            content: <div>{res.message}</div>
-                        })
-                    }
-                })
         }
     }
     
@@ -74,14 +66,6 @@ class TodoSingle extends ReactComponentBase {
     todoRemove = () => {
         const { data } = this.state
         this.props.removeTodo({ params: { id: data.get('id') } })
-            .then((res) => {
-                if (res.statusCode !== 200) {
-                    dialog.alert({
-                        infoType: 'error',
-                        content: <div>{res.message}</div>
-                    })
-                }
-            })
     }
     
     finishNameEdit = (e) => {

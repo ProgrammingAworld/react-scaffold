@@ -11,15 +11,15 @@ module.exports = function () {
     return {
         login: {
             statusCode: 200,
-            message: '登录成功'
+            msg: '登录成功'
         },
         logout: {
             statusCode: 2001,
-            message: '注销成功'
+            msg: '注销成功'
         },
         getUserInfo: {
             statusCode: 200,
-            message: '成功',
+            msg: '获得用户信息成功',
             data: {
                 username: 'alex',
                 userType: '0'
@@ -31,30 +31,31 @@ module.exports = function () {
                 id: n,
                 text: Mock.Random.cname(),
                 completed: Mock.Random.boolean()
-            }))
+            })),
+            msg: '获取列表成功'
         },
         addTodo: {
-            statusCode: 200,
+            statusCode: 2001,
             data: {
                 'id|+1': 1,
                 text: Mock.Random.cname(),
                 completed: Mock.Random.boolean()
             },
-            message: '成功'
+            msg: '添加成功'
         },
         removeTodo: {
             statusCode: 200,
             data: {
                 id: 1
             },
-            message: '成功'
+            msg: '删除成功'
         },
         updateTodo: {
             statusCode: 200,
             data: {
                 id: 1
             },
-            message: '成功'
+            msg: '修改成功'
         }
     }
 }

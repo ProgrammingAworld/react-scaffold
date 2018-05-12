@@ -15,14 +15,6 @@ function AddTodo({ addTodo }) {
                 addTodo({
                     data: { id: Date.now(), text: sTxt, completed: false }
                 })
-                    .then((res) => {
-                        if (res.statusCode !== 200) {
-                            dialog.alert({
-                                infoType: 'error',
-                                content: <div>{res.message}</div>
-                            })
-                        }
-                    })
                 e.currentTarget.value = ''
             } else {
                 dialog.alert({

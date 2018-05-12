@@ -2,7 +2,7 @@
  * Created by Anchao on 2017/6/29.
  * 非业务底层扩展封装
  */
-
+import React from 'react'
 import {
     createAction,
     handleAction, handleActions as originalHandleActions,
@@ -95,6 +95,14 @@ const createActions = function (actionMap) {
                         return res.data
                     }
 
+                    if (configOrFn.handleError || configOrFn.handleError === undefined) {
+                        dialog.alert({
+                            title: '错误',
+                            infoType: 'error',
+                            content: <div>{msg}</div>
+                        })
+                    }
+
                     dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data))
                     dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
                     return data
@@ -106,14 +114,14 @@ const createActions = function (actionMap) {
                         dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
                         dialog.alert({
                             title: '错误',
-                            content: <div>服务器端错误<span role="img" aria-label="cry">😂</span>！</div>,
                             infoType: 'error',
+                            content: <div>服务器端错误<span role="img" aria-label="cry">😂</span>！</div>
                         })
                     } else {
                         dialog.alert({
                             title: '错误',
-                            content: <div>{error.message}！<br />{error.stack}</div>,
                             infoType: 'error',
+                            content: <div>{error.message}！<br />{error.stack}</div>
                         })
                     }
                 })

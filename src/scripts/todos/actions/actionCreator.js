@@ -14,16 +14,19 @@ const actionCreator = createActions({
     addTodo: {
         url: '/api/addTodo',
         method: 'POST',
+        handleError: true,
         actionType: actionTypes.ADD_TODO
     },
     removeTodo: {
         url: '/api/removeTodo',
         method: 'DELETE',
+        handleError: true,
         actionType: actionTypes.REMOVE_TODO
     },
     updateTodo: {
         url: '/api/updateTodo',
         method: 'PUT',
+        handleError: true,
         actionType: actionTypes.UPDATE_TODO
     },
     checkedAllTodo: createAction(actionTypes.CHECKED_ALL_TODO),
