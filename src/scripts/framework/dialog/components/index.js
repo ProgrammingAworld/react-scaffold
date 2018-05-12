@@ -10,7 +10,7 @@ const noop = function () {}
 
 function Dialog(props) {
     const {
-        dialogType, infoType, title, content, mousePosition, width, footer, show,
+        dialogType, infoType, title, content, width, footer, show,
         ok, cancel
     } = props
     let footerNew = footer
@@ -86,7 +86,6 @@ function Dialog(props) {
             className={classNames({ 'dialog-common': true, [infoTypeCls]: dialogType === 'alert' })}
             title={title}
             footer={footerNew}
-            mousePosition={mousePosition}
             visible={show}
             wrapClassName="dialogwapper"
             width={width}
@@ -106,7 +105,6 @@ function Dialog(props) {
   @width: 弹窗的宽度
   @title：弹窗标题
   @content：弹窗内容
-  @mousePosition：动画起始原始点
   @show: 是否显示弹窗
   @ok: 确定按钮回调函数
   @cancel: 取消按钮回调函数
@@ -119,10 +117,6 @@ Dialog.propTypes = {
     content: PropTypes.element,
     width: PropTypes.number,
     footer: PropTypes.array,
-    mousePosition: PropTypes.shape({
-        x: PropTypes.number,
-        y: PropTypes.number,
-    }),
     show: PropTypes.bool,
     ok: PropTypes.func,
     cancel: PropTypes.func
@@ -134,7 +128,6 @@ Dialog.defaultProps = {
     content: null,
     infoType: 'info',
     footer: [],
-    mousePosition: { x: 0, y: 0 },
     width: 500,
     show: false,
     ok: noop,

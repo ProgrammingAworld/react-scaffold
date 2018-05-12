@@ -35,7 +35,7 @@ module.exports = function () {
             msg: '获取列表成功'
         },
         addTodo: {
-            statusCode: 2001,
+            statusCode: 200,
             data: {
                 'id|+1': 1,
                 text: Mock.Random.cname(),
