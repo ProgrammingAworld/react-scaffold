@@ -33,10 +33,28 @@ module.exports = function () {
                 completed: Mock.Random.boolean()
             }))
         },
-        addTodo: _.times(10, n => ({
-            id: n,
-            text: Mock.Random.cname(),
-            completed: Mock.Random.boolean()
-        }))
+        addTodo: {
+            statusCode: 200,
+            data: {
+                'id|+1': 1,
+                text: Mock.Random.cname(),
+                completed: Mock.Random.boolean()
+            },
+            message: '成功'
+        },
+        removeTodo: {
+            statusCode: 200,
+            data: {
+                id: 1
+            },
+            message: '成功'
+        },
+        updateTodo: {
+            statusCode: 200,
+            data: {
+                id: 1
+            },
+            message: '成功'
+        }
     }
 }

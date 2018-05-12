@@ -11,9 +11,21 @@ const actionCreator = createActions({
         hasLoading: true,
         actionType: actionTypes.GET_ALL_TODO
     },
-    addTodo: createAction(actionTypes.ADD_TODO),
-    removeTodo: createAction(actionTypes.REMOVE_TODO),
-    updateTodo: createAction(actionTypes.UPDATE_TODO),
+    addTodo: {
+        url: '/api/addTodo',
+        method: 'POST',
+        actionType: actionTypes.ADD_TODO
+    },
+    removeTodo: {
+        url: '/api/removeTodo',
+        method: 'DELETE',
+        actionType: actionTypes.REMOVE_TODO
+    },
+    updateTodo: {
+        url: '/api/updateTodo',
+        method: 'PUT',
+        actionType: actionTypes.UPDATE_TODO
+    },
     checkedAllTodo: createAction(actionTypes.CHECKED_ALL_TODO),
     setFilter: createAction(actionTypes.SET_VISIBILITY_FILTER),
     clearCompletedTodo: createAction(actionTypes.CLEAR_COMPLETED_TODO)

@@ -12,10 +12,23 @@ function AddTodo({ addTodo }) {
         if (e.which === 13) {
             const sTxt = e.currentTarget.value.trim()
             if (sTxt.length > 0) {
-                addTodo({ id: Date.now(), text: sTxt, completed: false })
+                addTodo({
+                    data: { id: Date.now(), text: sTxt, completed: false }
+                })
+                    .then((res) => {
+                        if (res.statusCode !== 200) {
+                            dialog.alert({
+                                infoType: 'error',
+                                content: <div>{res.message}</div>
+                            })
+                        }
+                    })
                 e.currentTarget.value = ''
             } else {
-                dialog.alert('内容不能为空')
+                dialog.alert({
+                    infoType: 'error',
+                    content: <div>内容不能为空</div>
+                })
             }
         }
     }

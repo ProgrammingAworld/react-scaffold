@@ -6,6 +6,7 @@ import { React, PropTypes } from 'framework/Util'
 import enhanceWithClickOutside from 'react-click-outside'
 import ReactComponentBase from 'base/ReactComponentBase'
 import classNames from 'classnames/bind'
+import dialog from 'dialog'
 
 class TodoSingle extends ReactComponentBase {
     constructor(props) {
@@ -27,7 +28,20 @@ class TodoSingle extends ReactComponentBase {
     }
     
     handleClickOutside() {
+        const { data, hideEditInput } = this.state
         this.toggleHideEditInput(true)
+
+        if (!hideEditInput) {
+            this.props.onUpdateTodo({ data: { id: data.get('id'), text: data.get('text') } })
+                .then((res) => {
+                    if (res.statusCode !== 200) {
+                        dialog.alert({
+                            infoType: 'error',
+                            content: <div>{res.message}</div>
+                        })
+                    }
+                })
+        }
     }
     
     todoUpdate(e, todoKey){
@@ -39,15 +53,35 @@ class TodoSingle extends ReactComponentBase {
             const completed = data.get('completed')
             switch (todoKey) {
             case 'completed':
-                onUpdateTodo({ id, completed: !completed })
+                onUpdateTodo({ data: { id, completed: !completed } })
+                    .then((res) => {
+                        if (res.statusCode !== 200) {
+                            dialog.alert({
+                                infoType: 'error',
+                                content: <div>{res.message}</div>
+                            })
+                        }
+                    })
                 return { data: prevState.data.set('completed', !completed) }
             case 'text':
-                onUpdateTodo({ id, text })
                 return { data: prevState.data.set('text', text) }
             default:
                 return { data }
             }
         })
+    }
+
+    todoRemove = () => {
+        const { data } = this.state
+        this.props.removeTodo({ params: { id: data.get('id') } })
+            .then((res) => {
+                if (res.statusCode !== 200) {
+                    dialog.alert({
+                        infoType: 'error',
+                        content: <div>{res.message}</div>
+                    })
+                }
+            })
     }
     
     finishNameEdit = (e) => {
@@ -58,10 +92,6 @@ class TodoSingle extends ReactComponentBase {
     }
 
     render() {
-        const {
-            removeTodo
-        } = this.props
-      
         const { data, hideDelIcon, hideEditInput } = this.state
       
         return (
@@ -78,7 +108,7 @@ class TodoSingle extends ReactComponentBase {
                         onChange={e => this.todoUpdate(e, 'completed')}
                     />
                     <div className={classNames('normal', { completed: data.get('completed') })}>{data.get('text')}</div>
-                    <button className={classNames('destroy', { hide: hideDelIcon })} onClick={() => removeTodo(data.get('id'))} />
+                    <button className={classNames('destroy', { hide: hideDelIcon })} onClick={this.todoRemove} />
                 </div>
                 <input
                     className={classNames('edit', { hide: hideEditInput })}

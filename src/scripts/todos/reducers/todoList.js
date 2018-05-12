@@ -24,18 +24,18 @@ const todoList = handleActions({
         ),
         always: state => ({ ...state, isLoading: false })
     },
-    [actionTypes.ADD_TODO](state, action) {
-        return {
+    [actionTypes.ADD_TODO]: {
+        success: (state, action) => ({
             ...state,
             list: state.list
                 .unshift(Immutable.fromJS(action.payload))
-        }
+        })
     },
-    [actionTypes.REMOVE_TODO](state, action) {
-        return {
+    [actionTypes.REMOVE_TODO]: {
+        success: (state, action) => ({
             ...state,
-            list: state.list.filter(item => item.get('id') !== action.payload)
-        }
+            list: state.list.filter(item => item.get('id') !== action.payload.id)
+        })
     },
     [actionTypes.UPDATE_TODO](state, action) {
         const { id, completed, text } = action.payload
