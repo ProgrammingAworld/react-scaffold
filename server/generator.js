@@ -13,6 +13,18 @@ module.exports = function () {
             statusCode: 200,
             message: '登录成功'
         },
+        logout: {
+            statusCode: 2001,
+            message: '注销成功'
+        },
+        getUserInfo: {
+            statusCode: 200,
+            message: '成功',
+            data: {
+                username: 'alex',
+                userType: '0'
+            }
+        },
         getTodos: {
             statusCode: 200,
             data: _.times(6, n => ({

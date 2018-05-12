@@ -7,20 +7,16 @@ import * as actionTypes from './actionTypes'
 const actionCreator = createActions({
     login: {
         url: '/api/login',
-        method: 'post',
-        actionType: actionTypes.LOGIN
-    },
-    KPIlogin: {
-        url: '/api/loginPKI',
-        actionType: actionTypes.KPI_LOGIN
+        method: 'post'
     },
     logout: {
-        url: '/api/logout',
-        actionType: actionTypes.LOGOUT
+        url: '/api/logout'
     },
-    setUserType: createAction(actionTypes.SET_USER_TYPE),
-    setUserName: createAction(actionTypes.SET_USERNAME),
-    setError: createAction(actionTypes.SET_ERROR)
+    getUserInfo: {
+        url: '/api/getUserInfo',
+        actionType: actionTypes.SET_USER_INFO
+    },
+    setUserInfo: createAction(actionTypes.SET_USER_INFO)
 })
 
 export default actionCreator

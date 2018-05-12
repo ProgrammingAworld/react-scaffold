@@ -7,7 +7,7 @@
 import { lazyload } from 'framework'
 
 export const LoginView = lazyload(import('root/login/container'))
-export const MainAppView = lazyload(import('root/components/app'))
+export const MainAppView = lazyload(import('root/container/app'))
 export const TodoMainView = lazyload(import('root/todos/components'))
 export const ComponentMainView = lazyload(import('root/others/components'))
 export const TableMainView = lazyload(import('root/others/components/TableExampleView'))

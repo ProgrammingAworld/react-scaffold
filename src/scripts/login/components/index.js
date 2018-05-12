@@ -1,54 +1,62 @@
 import config from 'conf'
-import { React, PropTypes, noop } from 'framework/Util'
+import { React, PropTypes } from 'framework/Util'
 import classNames from 'classnames/bind'
 import ReactComponentBase from 'base/ReactComponentBase'
 import particlesJS from 'plugins/particles'
+import * as actionTypes from '../actions/actionTypes';
 
 const { constant } = config
 
 class Login extends ReactComponentBase {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            errorMsg: '',
+            userType: actionTypes.USER_TYPE[0]
+        }
+    }
+
     componentDidMount() {
         // 用户名获得焦点11
         this.username.focus()
         particlesJS('particles-js', constant.particles)
     }
     
-    checkedChange = (e) => {
-        const value = e.currentTarget.getAttribute('value')
-        this.props.setUserType(value)
+    checkedChange = (userType) => {
+        this.setState({ userType })
     }
-    
-    PKIlogin = () => {
-        this.props.PKIlogin()
+
+    setError = (errorMsg) => {
+        this.setState({ errorMsg })
     }
-    
+
     login = () => {
-        const {
-            type, setError, setUserName, login
-        } = this.props
         const username = this.username.value.trim()
         const pwd = this.pwd.value.trim()
+        const type = this.state.userType
         
         if (username.length === 0) {
             this.username.focus()
-            setError('请输入用户名!')
+            this.setError('请输入用户名!')
             return
         }
         
         if (pwd.length === 0) {
             this.pwd.focus()
-            setError('请输入密码!')
+            this.setError('请输入密码!')
             return
         }
         
         // 清空错误信息
-        setError('')
+        this.setError('')
         
         // 登录检验
-        login({ params: { username, pwd, type } }).then((res) => {
+        this.props.login({ data: { username, pwd, type } }).then((res) => {
             if (res.statusCode === 200) {
-                this.gotoUrl('/app')
-                setUserName(username)
+                this.gotoUrl(config.url.app.root.path)
+            } else {
+                this.setError(res.message)
             }
         })
     }
@@ -58,8 +66,8 @@ class Login extends ReactComponentBase {
     }
     
     render() {
-        const { type, error } = this.props
-        const errorCls = classNames('errors', 'pull-right', { invisible: error.length <= 0 })
+        const { userType, errorMsg } = this.state
+        const errorCls = classNames('errors', 'pull-right', { invisible: errorMsg.length <= 0 })
         
         return (
             <div id="chief">
@@ -88,14 +96,9 @@ class Login extends ReactComponentBase {
                         <div className="login-btn">
                             <div className={errorCls}><i
                                 className="fa fa-exclamation-circle fa-lg"
-                            />{error}
+                            />{errorMsg}
                             </div>
                             <div className="clearfix" />
-                            <button
-                                className="login_button pull-left hide"
-                                onClick={this.PKIlogin}
-                            >PKI登录
-                            </button>
                             <button className="login_button pull-right" onClick={this.login}>
                                 登录
                             </button>
@@ -105,24 +108,17 @@ class Login extends ReactComponentBase {
                                     <div className="pull-left role"><span
                                         role="presentation"
                                         value="0"
-                                        onClick={this.checkedChange}
-                                        className={type === '0'
-                                            ? 'checked'
-                                            : ''}
+                                        onClick={() => this.checkedChange('0')}
+                                        className={classNames({ checked: userType === '0' })}
                                     />用户
                                     </div>
                                     <div className="pull-left role"><span
                                         role="presentation"
                                         value="1"
-                                        onClick={this.checkedChange}
-                                        className={type === '1'
-                                            ? 'checked'
-                                            : ''}
+                                        onClick={() => this.checkedChange('1')}
+                                        className={classNames({ checked: userType === '1' })}
                                     />管理员
                                     </div>
-                                </div>
-                                <div className="pull-right hide">
-                                    <span>下载证书</span>
                                 </div>
                             </div>
                         </div>
@@ -134,18 +130,8 @@ class Login extends ReactComponentBase {
 }
 
 Login.propTypes = {
-    type: PropTypes.string.isRequired,
-    error: PropTypes.string.isRequired,
     history: PropTypes.object.isRequired,
-    setUserType: PropTypes.func.isRequired,
-    setError: PropTypes.func.isRequired,
-    setUserName: PropTypes.func.isRequired,
-    login: PropTypes.func.isRequired,
-    PKIlogin: PropTypes.func,
-}
-
-Login.defaultProps = {
-    PKIlogin: noop
+    login: PropTypes.func.isRequired
 }
 
 export default Login

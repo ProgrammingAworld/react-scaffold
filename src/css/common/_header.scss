@@ -30,114 +30,33 @@
 
         &:hover,&.active {
           color: $header-active-color;
-
-          &.active {
-            background-color: $header-active-bgcolor;
-          }
-
-          & > .icon{
-            &.graph{
-              background-position: -221px 3px;
-            }
-            &.origintable{
-              background-position: -226px -44px;
-            }
-            &.targettable{
-              background-position: -226px -90px;
-            }
-            &.mapping{
-              background-position: -226px -136px;
-            }
-            &.ruleconfigorigin{
-              background-position: -226px -182px;
-            }
-            &.rulemanage{
-              background-position: -226px -228px;
-            }
-            &.verify{
-              background-position: -226px -274px;
-            }
-          }
         }
-
-        & > .icon {
-          @include size(30px, 30px);
-          display: inline-block;
-          background: url("../images/icon.png") right top no-repeat;
-          position: absolute;
-          left: 0;
-          top: 16px;
-
-          &.graph{
-            background-position: -471px 3px;
-          }
-          &.origintable{
-            background-position: -476px -44px;
-          }
-          &.targettable{
-            background-position: -476px -90px;
-          }
-          &.mapping{
-            background-position: -476px -136px;
-          }
-          &.ruleconfigorigin{
-            background-position: -476px -182px;
-          }
-          &.rulemanage{
-            background-position: -476px -228px;
-          }
-          &.verify{
-            background-position: -476px -274px;
-          }
-        }
-
-        & > .badge{
-          color: $white;
-          margin-left: 5px;
-          background-color: $red;
-          @include transition;
-
-          &:hover{
-            background-color: $green;
-          }
-        }
-      }
-    }
-
-    li.userheadernav {
-      width: 170px;
-      .vline {
-        @include size(1px, 20px);
-        margin-top: 20px;
-        background: $main-nav-vline-bgcolor;
-      }
-      a {
-        width: 168px;
-      }
-      a.active {
-        border-bottom: 2px solid $main-active-color;
-        background: none;
       }
     }
   }
   .headrright {
-    @include size(155px, 60px);
+    height: 60px;
     color: $header-font-color;
     margin-right: 20px;
     overflow: hidden;
-    & > div:nth-child(2) {
+    & > div {
+      float: left;
+    }
+    & > div:nth-child(1) {
       padding-right: 5px;
       @include text-overflow();
       text-align: center;
       line-height: 60px;
     }
-    & > div:nth-child(1) {
-      @include size(20px, 60px);
+    & > div:nth-child(2) {
+      @include size(40px, 60px);
+      line-height: 60px;
+      text-align: center;
+      cursor: pointer;
       .fa-power-off {
-        margin-top: 22px;
         cursor: pointer;
         &:hover {
-          color: $header-active-color;
+          color: $white;
         }
       }
     }
