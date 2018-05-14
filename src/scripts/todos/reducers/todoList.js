@@ -28,34 +28,40 @@ const todoList = handleActions({
         success: (state, action) => ({
             ...state,
             list: state.list
-                .unshift(Immutable.fromJS(action.payload))
+                .unshift(Immutable.fromJS({
+                    id: Number(action.payload.id),
+                    text: action.payload.text,
+                    completed: Boolean(action.payload.completed)
+                }))
         })
     },
     [actionTypes.REMOVE_TODO]: {
         success: (state, action) => ({
             ...state,
-            list: state.list.filter(item => item.get('id') !== action.payload.id)
+            list: state.list.filter(item => item.get('id') !== Number(action.payload.id))
         })
     },
-    [actionTypes.UPDATE_TODO](state, action) {
-        const { id, completed, text } = action.payload
-        const index = state.list.findIndex(item => item.get('id') === id)
-        
-        if (completed !== undefined) {
-            return {
-                ...state,
-                list: state.list.setIn([index, 'completed'], completed)
+    [actionTypes.UPDATE_TODO]: {
+        success: (state, action) => {
+            const { id, completed, text } = action.payload
+            const index = state.list.findIndex(item => item.get('id') === Number(id))
+
+            if (completed !== undefined) {
+                return {
+                    ...state,
+                    list: state.list.setIn([index, 'completed'], Boolean(completed))
+                }
             }
-        }
-        
-        if (text !== undefined) {
-            return {
-                ...state,
-                list: state.list.setIn([index, 'text'], text)
+
+            if (text !== undefined) {
+                return {
+                    ...state,
+                    list: state.list.setIn([index, 'text'], text)
+                }
             }
+
+            return state
         }
-        
-        return state
     },
     [actionTypes.CHECKED_ALL_TODO](state, action) {
         return {

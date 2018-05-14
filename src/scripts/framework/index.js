@@ -2,7 +2,6 @@
  * Created by Anchao on 2017/6/29.
  * 非业务底层扩展封装
  */
-import React from 'react'
 import {
     createAction,
     handleAction, handleActions as originalHandleActions,
@@ -11,7 +10,7 @@ import {
 import Loadable from 'react-loadable'
 import qs from 'qs'
 import axios from 'axios'
-import dialog from 'dialog'
+import { message } from 'antd'
 import loading from 'loading'
 import ComLoading from './components/ComponentLoading'
 
@@ -88,22 +87,21 @@ const createActions = function (actionMap) {
                     loading.hide()
 
                     const { statusCode, msg } = res.data
-                    const data = res.data.data === undefined ? res.data : res.data.data
+                    const params = res.config.params === undefined ? res.config.data : res.config.params
+                    const dt = qs.parse(params)
+
+                    const data = res.data.data === undefined ? {...res.data, data: dt } : res.data
                     if (statusCode === 200) {
-                        dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data))
+                        dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data.data))
                         dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
-                        return res.data
+                        return data
                     }
 
                     if (configOrFn.handleError || configOrFn.handleError === undefined) {
-                        dialog.alert({
-                            title: '错误',
-                            infoType: 'error',
-                            content: <div>{msg}</div>
-                        })
+                        message.error(msg)
                     }
 
-                    dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data))
+                    dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data.data))
                     dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
                     return data
                 }).catch((error) => {
@@ -112,17 +110,9 @@ const createActions = function (actionMap) {
                     if(error.response){
                         dispatch(createAction(`${configOrFn.actionType}_FAIL`)())
                         dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
-                        dialog.alert({
-                            title: '错误',
-                            infoType: 'error',
-                            content: <div>服务器端错误<span role="img" aria-label="cry">😂</span>！</div>
-                        })
+                        message.error('服务器端错误😂!')
                     } else {
-                        dialog.alert({
-                            title: '错误',
-                            infoType: 'error',
-                            content: <div>{error.message}！<br />{error.stack}</div>
-                        })
+                        message.error(`${error.message}!${error.stack}!`)
                     }
                 })
             }
@@ -162,6 +152,5 @@ export {
     originalHandleActions,
     handleActions,
     combineActions,
-    lazyload,
-    dialog
+    lazyload
 }

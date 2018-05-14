@@ -36,25 +36,14 @@ module.exports = function () {
         },
         addTodo: {
             statusCode: 200,
-            data: {
-                'id|+1': 1,
-                text: Mock.Random.cname(),
-                completed: Mock.Random.boolean()
-            },
             msg: '添加成功'
         },
         removeTodo: {
             statusCode: 200,
-            data: {
-                id: 1
-            },
             msg: '删除成功'
         },
         updateTodo: {
             statusCode: 200,
-            data: {
-                id: 1
-            },
             msg: '修改成功'
         }
     }
