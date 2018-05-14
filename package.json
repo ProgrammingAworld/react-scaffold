@@ -135,5 +135,32 @@
   "engines": {
     "node": ">=9.0.0",
     "npm": ">=5"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules",
+      "server/**/*.*",
+      "src/**/*.*",
+      "dist/**/*.*"
+    ],
+    "delay": "3000",
+    "verbose": true,
+    "execMap": {
+      "": "node",
+      "js": "node --harmony"
+    },
+    "events": {
+      "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+    },
+    "watch": [
+    ],
+    "env": {
+      "NODE_ENV": "development",
+      "PORT": "3003"
+    },
+    "ext": "js json",
+    "legacy-watch": false
   }
 }
