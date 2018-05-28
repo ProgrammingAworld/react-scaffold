@@ -154,8 +154,7 @@
     "events": {
       "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
     },
-    "watch": [
-    ],
+    "watch": [],
     "env": {
       "NODE_ENV": "development",
       "PORT": "3003"
