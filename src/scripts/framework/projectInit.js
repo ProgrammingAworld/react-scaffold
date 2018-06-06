@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { HashRouter as Router } from 'react-router-dom'
 import createHistory from 'history/createHashHistory'
-import store from 'root/framework/store'
+import store from 'framework/store'
 import RootRoutesView from 'root/components/root'
 
 // 初始化工程

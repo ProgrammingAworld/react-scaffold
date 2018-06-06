@@ -91,28 +91,53 @@ const createActions = function (actionMap) {
                     const dt = qs.parse(params)
 
                     const data = res.data.data === undefined ? {...res.data, data: dt } : res.data
+                    // 带发送参数的data
+                    const dataExt = {data: data.data, config: res.config}
+
+                    // always只有在成功时才返回数据，非200或异常都不返回数据
                     if (statusCode === 200) {
-                        dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data.data))
-                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
-                        return data
+                        // 是否需要接口传递的参数
+                        if (configOrFn.needFormData) {
+                            dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(dataExt))
+                            dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)(dataExt))
+
+                            return dataExt
+                        } else {
+                            dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data.data))
+                            dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)(data.data))
+
+                            return data
+                        }
                     }
 
                     if (configOrFn.handleError || configOrFn.handleError === undefined) {
-                        message.error(msg)
+                        // 无权限自动跳转到登录页
+                        if (statusCode === 401) {
+                            location.replace(location.origin)
+                        } else {
+                            message.error(msg)
+                        }
                     }
 
-                    dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data.data))
-                    dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
-                    return data
+                    if(configOrFn.needFormData) {
+                        dispatch(createAction(`${configOrFn.actionType}_ERROR`)(dataExt))
+                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
+
+                        return dataExt
+                    } else {
+                        dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data.data))
+                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
+
+                        return data
+                    }
                 }).catch((error) => {
                     loading.hide()
-
                     if(error.response){
                         dispatch(createAction(`${configOrFn.actionType}_FAIL`)())
                         dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
-                        message.error('服务器端错误😂!')
+                        message.error('服务器端错误😂！')
                     } else {
-                        message.error(`${error.message}!${error.stack}!`)
+                        message.error(`${error.message}！${error.stack}!`)
                     }
                 })
             }

@@ -14,7 +14,7 @@ module.exports = function () {
             msg: '登录成功!'
         },
         logout: {
-            statusCode: 2001,
+            statusCode: 200,
             msg: '注销成功!'
         },
         getUserInfo: {
