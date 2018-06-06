@@ -43,14 +43,14 @@ gulp watch
        method: 'GET', // ajax请求方式（必写）
        hasLoading: true, // ajax请求时是否出现loading画面，默认是true,非必写
        handleError: true, // ajax出现错误时默认提醒，非必写
-       needFormData: false, // ajax执行成功后是否需要把请求参数返回给成功function
+       needFormData: false, // ajax执行成功后是否需要把请求参数传给action.payload
        actionType: actionTypes.GET_ALL_TODO // ajax成功之后执行的action动作
    },
    非ajax示例：
    checkedAllTodo: createAction(actionTypes.CHECKED_ALL_TODO)
 2. reducer内可配置ajax的发送前pre，成功success， 失败error，无论如何always的配置
    ajax示例说明：
-   // 只有需要放到store里的state才需要这里设置，每一项都不一定是必需写的！！！
+   // 只有需要放到store里的state才需要在这里设置，每一项都不一定是必需写的！！！
    [actionTypes.GET_ALL_TODO]: {
            pre: state => ({ ...state, isLoading: true }), // 发送前的state的修改变化
            success: (state, action) => ({
