@@ -41,10 +41,10 @@ gulp watch
    getAllTodo: {
        url: '/api/getTodos', // ajax请求地址（必写）
        method: 'GET', // ajax请求方式（必写）
-       hasLoading: true, // ajax请求时是否出现loading画面，默认是true,非必写
-       handleError: true, // ajax出现错误时默认提醒，非必写
-       needFormData: false, // ajax执行成功后是否需要把请求参数传给action.payload
-       actionType: actionTypes.GET_ALL_TODO // ajax成功之后执行的action动作
+       hasLoading: true, // ajax请求时是否出现loading画面，默认是true,（非必写）
+       handleError: true, // ajax出现错误时是否自动提醒，默认true，（非必写）
+       needFormData: false, // ajax执行成功后是否把请求参数传给action.payload，默认false，（非必写）
+       actionType: actionTypes.GET_ALL_TODO // ajax成功之后执行的action动作，（非必写）
    },
    非ajax示例：
    checkedAllTodo: createAction(actionTypes.CHECKED_ALL_TODO)
