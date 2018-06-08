@@ -90,46 +90,34 @@ const createActions = function (actionMap) {
                     const params = res.config.params === undefined ? res.config.data : res.config.params
                     const dt = qs.parse(params)
 
-                    const data = res.data.data === undefined ? {...res.data, data: dt } : res.data
-                    // 带发送参数的data
-                    const dataExt = {data: data.data, config: res.config}
+                    let data = {}
+                    // 是否需要接口传递的参数
+                    if (configOrFn.needFormData) {
+                        data = {data: res}
+                    } else {
+                        data = res.data.data === undefined ? {...res.data, data: dt } : res.data
+                    }
 
                     // always只有在成功时才返回数据，非200或异常都不返回数据
                     if (statusCode === 200) {
-                        // 是否需要接口传递的参数
-                        if (configOrFn.needFormData) {
-                            dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(dataExt))
-                            dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)(dataExt))
+                        dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data.data))
+                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)(data.data))
 
-                            return dataExt
-                        } else {
-                            dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data.data))
-                            dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)(data.data))
-
-                            return data
-                        }
+                        return data
                     }
 
                     if (configOrFn.handleError || configOrFn.handleError === undefined) {
-                        // 无权限自动跳转到登录页
-                        if (statusCode === 401) {
+                        if (statusCode === 401 && !isScopaPlugin) {
                             location.replace(location.origin)
                         } else {
                             message.error(msg)
                         }
                     }
 
-                    if(configOrFn.needFormData) {
-                        dispatch(createAction(`${configOrFn.actionType}_ERROR`)(dataExt))
-                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
+                    dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data.data))
+                    dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
 
-                        return dataExt
-                    } else {
-                        dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data.data))
-                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
-
-                        return data
-                    }
+                    return data
                 }).catch((error) => {
                     loading.hide()
                     if(error.response){
