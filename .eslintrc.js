@@ -20,7 +20,9 @@ module.exports = {
     },
     'settings': {
         'import/resolver': {
-            'webpack': 'webpack.config.js'
+            'webpack': {
+                config: 'webpack.config.js'
+            },
         }
     },
     'plugins': [
@@ -82,7 +84,7 @@ module.exports = {
         // NodeJs rules， 9.0之后全部使用import
         // 关闭require()强制在模块顶部调用
         'global-require': 'off',
-        
+
         // ES6 rules
         // 箭头函数的箭头前后都要有空格
         'arrow-spacing': 'error',
@@ -92,7 +94,7 @@ module.exports = {
         'no-var': 'error',
         // 如果一个变量不会被重新赋值，则使用const声明
         'prefer-const': 'error',
-        
+
         // React 参考eslint-config-airbnb下的rules/react.js
         // jsx代码使用4个空格的缩进风格
         'react/jsx-indent': ['error', 4],

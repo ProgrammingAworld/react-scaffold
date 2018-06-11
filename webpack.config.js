@@ -12,7 +12,7 @@ module.exports = {
             'react-hot-loader/patch',
             `webpack-dev-server/client?http://${config.ip}:${config.port}`,
             'webpack/hot/only-dev-server',
-            './src/scripts/index.js'
+            './src/index.js'
         ],
         vendor: config.vendor
     },
@@ -29,14 +29,14 @@ module.exports = {
             'node_modules'
         ],
         alias: {
-            root: path.resolve(__dirname, './src/scripts'),
-            base: path.resolve(__dirname, './src/scripts/framework/base'),
-            framework: path.resolve(__dirname, './src/scripts/framework'),
-            conf: path.resolve(__dirname, './src/scripts/conf'),
-            dialog: path.resolve(__dirname, './src/scripts/framework/dialog'),
-            loading: path.resolve(__dirname, './src/scripts/framework/loading'),
-            plugins: path.resolve(__dirname, './src/scripts/plugins'),
-            particles: path.resolve(__dirname, './src/scripts/plugins/particles.js'),
+            root: path.resolve(__dirname, './src'),
+            base: path.resolve(__dirname, './src/framework/base'),
+            framework: path.resolve(__dirname, './src/framework'),
+            conf: path.resolve(__dirname, './src/conf'),
+            dialog: path.resolve(__dirname, './src/framework/dialog'),
+            loading: path.resolve(__dirname, './src/framework/loading'),
+            plugins: path.resolve(__dirname, './src/plugins'),
+            particles: path.resolve(__dirname, './src/plugins/particles.js'),
         },
         extensions: ['.js', '.jsx']
     },
@@ -44,7 +44,7 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                include: path.resolve(__dirname, './src/scripts'),
+                include: path.resolve(__dirname, './src'),
                 loader: 'eslint-loader',
                 enforce: 'pre',
                 options: {
@@ -67,7 +67,7 @@ module.exports = {
                 }
             },
             {
-                test: path.resolve(__dirname, './src/scripts/conf/injection.js'),
+                test: path.resolve(__dirname, './src/conf/injection.js'),
                 loader: `imports-loader?domain=>
                 ${JSON.stringify(config.development.domain)}`
             }
