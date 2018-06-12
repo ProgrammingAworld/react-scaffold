@@ -31,9 +31,23 @@ npm install package_name --dev-save
 ## 启动调试环境
 
 ```bash
-gulp watch
-```
+gulp watch 监听js,scss等文件修改，但是不支持热更新
 
+npm run server启动mock服务
+npm run dev启动js热更新服务，仅实时编译js文件
+```
+## 目录说明
+```
+本工程采用css、images、js独立管理的方式，未使用webpack管理一切的思想
+每个模块独立一个文件夹，分别包含
+actions: 包含actionTypes与actionCreator
+         actionType命名规范：动作名_模块名
+         actionCreator在使用说明中有具体示例
+components: 包含此模块下的所有渲染组件
+container：包含此模块下所有连接store的组件
+reducers: 包含此模块下定义的所有state管理
+具体完整示例可以参考todos
+```
 ## 使用说明
 ```
 1. actionCreator内可配置ajax请求和静态的action设置
