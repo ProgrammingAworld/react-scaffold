@@ -8,7 +8,7 @@
     "prepush": "npm run lintall",
     "server": "nodemon server/index.js",
     "predev": "npm run precommit",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --devtool eval --progress",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --devtool eval --progress --config webpack.config.js",
     "lint": "cross-env sh build/pre-commit || true",
     "prelintallJs": "gulp copyPrecommit",
     "lintall": "sh build/pre-commit lintall || true",
@@ -40,6 +40,7 @@
   },
   "homepage": "https://github.com/pvfhv/react-redux-router",
   "devDependencies": {
+    "autoprefixer": "^8.6.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",

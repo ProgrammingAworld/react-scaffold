@@ -1,12 +1,14 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const config = require('./project.config')
 
 module.exports = {
+    context: path.resolve(__dirname, './'),
     watch: true,
+    cache: true,
     entry: {
         app: [
             'react-hot-loader/patch',
@@ -17,7 +19,10 @@ module.exports = {
         vendor: config.vendor
     },
     output: {
+        path: path.resolve(__dirname, './dev'),
+        publicPath: '/',
         filename: 'scripts/[name].js',
+        chunkFilename: 'scripts/[name].js',
         sourceMapFilename: '[file].map',
         hotUpdateChunkFilename: 'hot/hot-update.js',
         hotUpdateMainFilename: 'hot/hot-update.json'
@@ -38,7 +43,7 @@ module.exports = {
             plugins: path.resolve(__dirname, './src/plugins'),
             particles: path.resolve(__dirname, './src/plugins/particles.js'),
         },
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.json', '.css']
     },
     module: {
         rules: [
@@ -54,7 +59,7 @@ module.exports = {
             },
             {
                 test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
                     cacheDirectory: true,
@@ -67,6 +72,62 @@ module.exports = {
                 }
             },
             {
+                test: /\.(scss|sass|css)$/,
+                include: path.resolve(__dirname, './src'),
+                use: [
+                    {
+                        loader: 'style-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            outputStyle: 'expanded',
+                            sourceMapContents: true,
+                            sourceMap: true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: 'static/images/[name].[ext]'
+                }
+            },
+            {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: 'static/media/[name].[ext]',
+                }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: 'static/fonts/[name].[ext]'
+                }
+            },
+            {
                 test: path.resolve(__dirname, './src/conf/injection.js'),
                 loader: `imports-loader?domain=>
                 ${JSON.stringify(config.development.domain)}`
@@ -74,9 +135,9 @@ module.exports = {
         ]
     },
     plugins: [
-        // new CleanWebpackPlugin(['dist']),
-        new webpack.HotModuleReplacementPlugin(),
+        new CleanWebpackPlugin(['dev'], { root: path.resolve(__dirname, './') }),
         new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development')
         }),
@@ -104,7 +165,7 @@ module.exports = {
         })
     ],
     devServer: {
-        contentBase: './dist',
+        contentBase: path.resolve(__dirname, './dev'),
         publicPath: '/',
         historyApiFallback: true,
         clientLogLevel: 'none',
