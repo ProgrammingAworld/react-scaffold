@@ -4,6 +4,7 @@
   "description": "ac frontEnd solution",
   "main": "app.js",
   "scripts": {
+    "fixcode": "eslint --fix ./src",
     "precommit": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit",
     "prepush": "npm run lintall",
     "server": "nodemon server/index.js",
