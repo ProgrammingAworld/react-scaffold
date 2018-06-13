@@ -3,23 +3,29 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
-const config = require('./project.config')
+const config = require('../project.config')
+
+const {
+    ip, port, vendor, resolve,
+    defaultPath: { ROOT_PATH, APP_PATH },
+    proxy: { target, proxyPort }
+} = config
 
 module.exports = {
-    context: path.resolve(__dirname, './'),
+    context: ROOT_PATH,
     watch: true,
     cache: true,
     entry: {
         app: [
             'react-hot-loader/patch',
-            `webpack-dev-server/client?http://${config.ip}:${config.port}`,
+            `webpack-dev-server/client?http://${ip}:${port}`,
             'webpack/hot/only-dev-server',
             './src/index.js'
         ],
-        vendor: config.vendor
+        vendor
     },
     output: {
-        path: path.resolve(__dirname, './dev'),
+        path: path.join(ROOT_PATH, 'dev'),
         publicPath: '/',
         filename: 'scripts/[name].js',
         chunkFilename: 'scripts/[name].js',
@@ -28,28 +34,12 @@ module.exports = {
         hotUpdateMainFilename: 'hot/hot-update.json'
     },
     devtool: 'cheap-module-eval-source-map',
-    resolve: {
-        modules: [
-            config.defaultPath.APP_PATH,
-            'node_modules'
-        ],
-        alias: {
-            root: path.resolve(__dirname, './src'),
-            base: path.resolve(__dirname, './src/framework/base'),
-            framework: path.resolve(__dirname, './src/framework'),
-            conf: path.resolve(__dirname, './src/conf'),
-            dialog: path.resolve(__dirname, './src/framework/dialog'),
-            loading: path.resolve(__dirname, './src/framework/loading'),
-            plugins: path.resolve(__dirname, './src/plugins'),
-            particles: path.resolve(__dirname, './src/plugins/particles.js'),
-        },
-        extensions: ['.js', '.jsx', '.json', '.css']
-    },
+    resolve,
     module: {
         rules: [
             {
                 test: /\.jsx?$/,
-                include: path.resolve(__dirname, './src'),
+                include: APP_PATH,
                 loader: 'eslint-loader',
                 enforce: 'pre',
                 options: {
@@ -73,7 +63,7 @@ module.exports = {
             },
             {
                 test: /\.(scss|sass|css)$/,
-                include: path.resolve(__dirname, './src'),
+                include: APP_PATH,
                 use: [
                     {
                         loader: 'style-loader',
@@ -108,7 +98,8 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: 'static/images/[name].[ext]'
+                    name: 'static/images/[name].[ext]',
+                    mimetype: 'image/[ext]'
                 }
             },
             {
@@ -120,7 +111,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
@@ -128,14 +119,14 @@ module.exports = {
                 }
             },
             {
-                test: path.resolve(__dirname, './src/conf/injection.js'),
+                test: path.join(APP_PATH, 'conf/injection.js'),
                 loader: `imports-loader?domain=>
                 ${JSON.stringify(config.development.domain)}`
             }
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['dev'], { root: path.resolve(__dirname, './') }),
+        new CleanWebpackPlugin(['dev'], { root: ROOT_PATH }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
@@ -151,7 +142,7 @@ module.exports = {
         new webpack.NoEmitOnErrorsPlugin(),
         new FriendlyErrorsPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: path.join(APP_PATH, 'index.html'),
             title: '示例工程',
             description: '这是一个示例产品工程',
             filename: 'index.html',
@@ -165,7 +156,7 @@ module.exports = {
         })
     ],
     devServer: {
-        contentBase: path.resolve(__dirname, './dev'),
+        contentBase: path.join(ROOT_PATH, 'dev'),
         publicPath: '/',
         historyApiFallback: true,
         clientLogLevel: 'none',
@@ -185,9 +176,9 @@ module.exports = {
         },
         proxy: (function () {
             const obj = {}
-            const target = `${config.proxy.target}:${config.proxy.proxyPort}`
+            const origin = `${target}:${proxyPort}`
             config.proxy.paths.forEach((apiPath) => {
-                obj[apiPath] = target
+                obj[apiPath] = origin
             })
             
             return obj

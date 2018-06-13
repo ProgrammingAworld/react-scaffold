@@ -2,6 +2,7 @@ const ip = require('ip').address()
 const path = require('path')
 
 const ROOT_PATH = path.resolve(__dirname, './')
+const APP_PATH = path.resolve(ROOT_PATH, 'src')
 
 module.exports = {
     ip: ip.toString(),
@@ -46,7 +47,24 @@ module.exports = {
     ],
     defaultPath: {
         ROOT_PATH,
-        APP_PATH: path.resolve(ROOT_PATH, 'src')
+        APP_PATH
+    },
+    resolve: {
+        modules: [
+            APP_PATH,
+            'node_modules'
+        ],
+        alias: {
+            root: APP_PATH,
+            base: path.join(APP_PATH, 'framework/base'),
+            framework: path.join(APP_PATH, 'framework'),
+            conf: path.join(APP_PATH, 'conf'),
+            dialog: path.join(APP_PATH, 'framework/dialog'),
+            loading: path.join(APP_PATH, 'framework/loading'),
+            plugins: path.join(APP_PATH, 'plugins'),
+            particles: path.join(APP_PATH, 'plugins/particles.js'),
+        },
+        extensions: ['.js', '.jsx', '.json', '.css']
     },
     uglifyJsConfig: {
         beautify: false,

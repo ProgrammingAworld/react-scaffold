@@ -14,7 +14,7 @@ const makeUrlVer = require('gulp-make-css-url-version')
 const minimage = require('gulp-imagemin')
 // js
 const webpack = require('webpack')
-const webpackConfig = require('./webpack.config.js')
+const webpackConfig = require('./build/webpack.dev.config.js')
 const webpackstream = require('webpack-stream')
 const chmod = require('gulp-chmod')
 
