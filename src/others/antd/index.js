@@ -3,13 +3,12 @@
  * 作者：安超
  * 日期： 2018/3/19
  */
-// import diaglog from 'dialog'
-// import loading from 'loading'
 import { React } from 'framework/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 import { Table } from 'antd'
+import './scss/index.scss'
 
-class AntdView extends ReactComponentBase {
+class Index extends ReactComponentBase {
     state = {
         selectedRowKeys: []
     }
@@ -44,7 +43,7 @@ class AntdView extends ReactComponentBase {
         const { selectedRowKeys } = this.state;
 
         return (
-            <div>
+            <div className="antd-main">
                 <Table
                     onRow={record => ({
                         onClick: () => {
@@ -76,4 +75,4 @@ class AntdView extends ReactComponentBase {
     }
 }
 
-export default AntdView
+export default Index

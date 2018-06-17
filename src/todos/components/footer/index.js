@@ -7,6 +7,7 @@
 import { React, PropTypes } from 'framework/Util'
 import config from 'conf'
 import classNames from 'classnames/bind'
+import './scss/index.scss'
 
 const { constant } = config
 

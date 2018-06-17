@@ -1,7 +1,8 @@
 import { React, connect, axios } from 'framework/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
+import './scss/index.scss'
 
-class ValidatorView extends ReactComponentBase {
+class Index extends ReactComponentBase {
     componentDidMount() {
     
     }
@@ -375,7 +376,7 @@ class VaTest extends ReactComponentBase {
     
     render() {
         return (
-            <div className="row">
+            <div className="validatormain row">
                 <fieldset style={{ border: '1px solid gray', margin: 10, padding: 10 }}>
                     <div className="col-md-3">
                         <input
@@ -594,4 +595,4 @@ class VaTest extends ReactComponentBase {
     }
 }
 
-export default connect()(ValidatorView)
+export default connect()(Index)

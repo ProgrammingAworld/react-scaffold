@@ -7,6 +7,7 @@ import {
     PropTypes
 } from 'framework/Util'
 import config from 'conf'
+import './scss/index.scss'
 
 const ComponentMain = function (props) {
     const { url } = props.match
@@ -17,34 +18,10 @@ const ComponentMain = function (props) {
                 <ul className="list-unstyled">
                     <li>
                         <NavLink
-                            to={config.url.app.table.path}
-                            activeClassName="active"
-                        >
-                            表格
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={config.url.app.codeeditor.path}
-                            activeClassName="active"
-                        >
-                            代码编辑器
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to={config.url.app.bootstrap.path}
-                            activeClassName="active"
-                        >
-                            react-bootstrap
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
                             to={config.url.app.validator.path}
                             activeClassName="active"
                         >
-                            validator
+                            测试接口
                         </NavLink>
                     </li>
                     <li>
@@ -60,18 +37,6 @@ const ComponentMain = function (props) {
             <div className="pull-right">
                 <Switch>
                     <Route
-                        path={config.url.app.table.path}
-                        component={config.url.app.table.component}
-                    />
-                    <Route
-                        path={config.url.app.codeeditor.path}
-                        component={config.url.app.codeeditor.component}
-                    />
-                    <Route
-                        path={config.url.app.bootstrap.path}
-                        component={config.url.app.bootstrap.component}
-                    />
-                    <Route
                         path={config.url.app.validator.path}
                         component={config.url.app.validator.component}
                     />
@@ -81,7 +46,7 @@ const ComponentMain = function (props) {
                     />
                     <Route
                         path={url}
-                        render={() => <Redirect to={config.url.app.table.path} />}
+                        render={() => <Redirect to={config.url.app.validator.path} />}
                     />
                 </Switch>
             </div>

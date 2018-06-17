@@ -32,9 +32,5 @@
   & > div:last-child{
     @include size(calc(100% - 200px), 100%);
     overflow: auto;
-
-    @import "tableSec";
-    @import "aceSec";
-    @import "bootstrapsec";
   }
 }

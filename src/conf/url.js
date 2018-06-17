@@ -1,6 +1,6 @@
 import {
-    LoginView, MainAppView, TodoMainView, ComponentMainView, TableMainView,
-    CodeEditorView, BootstrapView, ValidateView, AntdView, NotFindView 
+    LoginView, MainAppView, TodoMainView, ComponentMainView,
+    ValidateView, AntdView, NotFindView
 } from './lazycomponents'
 
 const url = {
@@ -21,18 +21,6 @@ const url = {
         others: {
             path: '/app/others',
             component: ComponentMainView
-        },
-        table: {
-            path: '/app/others/table',
-            component: TableMainView
-        },
-        codeeditor: {
-            path: '/app/others/codeeditor',
-            component: CodeEditorView
-        },
-        bootstrap: {
-            path: '/app/others/bootstrap',
-            component: BootstrapView
         },
         validator: {
             path: '/app/others/validator',

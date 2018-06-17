@@ -7,6 +7,7 @@
 import { React, PropTypes } from 'framework/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
 import Todo from './Todo'
+import './scss/index.scss'
 
 class VisibleTodoList extends ReactComponentBase {
     componentDidMount() {
