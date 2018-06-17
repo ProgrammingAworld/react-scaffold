@@ -15,11 +15,11 @@
 //公共
 @import "common/mixins/common";
 @import "common/public";
-@import "common/header";
+@import "../components/header/scss/header";
 @import "common/container";
 @import "common/plugins/antd.min";
 
 //各模块
-@import "login/login";
+@import "../login/components/login/scss/index";
 @import "todos/todos";
 @import "components/components";

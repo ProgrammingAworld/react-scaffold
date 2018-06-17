@@ -6,6 +6,7 @@
 
 import { React, PropTypes } from 'framework/Util'
 import dialog from 'dialog'
+import './scss/index.scss'
 
 function AddTodo({ addTodo }) {
     function addTodoEv(e) {

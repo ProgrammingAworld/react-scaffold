@@ -3,7 +3,8 @@ import { React, PropTypes } from 'framework/Util'
 import classNames from 'classnames/bind'
 import ReactComponentBase from 'base/ReactComponentBase'
 import particlesJS from 'plugins/particles'
-import * as actionTypes from '../actions/actionTypes';
+import * as actionTypes from '../../actions/actionTypes'
+import './scss/index.scss'
 
 const { constant } = config
 

@@ -1,23 +1,16 @@
 @charset "utf-8";
 
-//compass
-@import "../../node_modules/compass-mixins/lib/compass";
-@import "../../node_modules/compass-mixins/lib/animate";
-@import "../../node_modules/compass-mixins/lib/lemonade";
-@import "common/variables";
+@import "common/normalize";
 
 //组件
 @import "common/plugins/font-awesome/font-awesome";
 @import "common/plugins/animate.min";
 
 //公共
-@import "common/mixins/common";
 @import "common/public";
-@import "common/header";
 @import "common/container";
 @import "common/plugins/antd.min";
 
 //各模块
-@import "login/login";
 //@import "todos/todos";
 //@import "components/components";

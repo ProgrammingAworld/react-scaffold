@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const config = require('../project.config')
 
+// 字体配置参考：https://github.com/shakacode/bootstrap-sass-loader
 const {
     ip, port, vendor, resolve,
     defaultPath: { ROOT_PATH, APP_PATH },
@@ -90,6 +91,18 @@ module.exports = {
                             sourceMapContents: true,
                             sourceMap: true
                         }
+                    },
+                    {
+                        loader: 'sass-resources-loader',
+                        options: {
+                            resources: [
+                                path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_compass.scss'),
+                                path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_animate.scss'),
+                                path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_lemonade.scss'),
+                                path.join(APP_PATH, 'css/common/variables.scss'),
+                                path.join(APP_PATH, 'css/common/mixins/common.scss')
+                            ]
+                        }
                     }
                 ]
             },
@@ -115,7 +128,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: 'static/fonts/[name].[ext]'
+                    name: 'static/fonts/[name].[ext]',
                 }
             },
             {

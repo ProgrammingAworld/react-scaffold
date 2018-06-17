@@ -1,9 +1,10 @@
-/**
+/*
  * Created by anchao on 2016/6/29.
  */
 import { React, PropTypes, NavLink, withRouter } from 'framework/Util'
 import config from 'conf'
 import dialog from 'dialog'
+import './scss/header.scss'
 
 const Header = function ({ username, logout, history }) {
     const logoutFn = () => {

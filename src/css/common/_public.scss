@@ -10,10 +10,11 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Roboto-Regular';
   src: url('fonts/Roboto-Regular.eot') format('embedded-opentype');
-  src: url('fonts/Roboto-Regular.woff') format('woff'), url('fonts/Roboto-Regular.ttf')  format('truetype'), url('fonts/Roboto-Regular.svg#Roboto-Regular') format('svg');
+  src: url('fonts/Roboto-Regular.woff') format('woff'), url('fonts/Roboto-Regular.ttf') format('truetype'), url('fonts/Roboto-Regular.svg#Roboto-Regular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -33,7 +34,234 @@ html, body {
   overflow: hidden;
 }
 
-.loadingdiv{
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto
+}
+
+.pull-right {
+  float: right !important
+}
+
+.pull-left {
+  float: left !important
+}
+
+.hide {
+  display: none !important
+}
+
+.show {
+  display: block !important
+}
+
+.invisible {
+  visibility: hidden
+}
+
+.text-hide {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0
+}
+
+.hidden {
+  display: none !important
+}
+
+.affix {
+  position: fixed
+}
+
+.clearfix:after, .clearfix:before {
+  display: table;
+  content: " "
+}
+
+.lead {
+  font-size: 21px
+}
+
+.small, small {
+  font-size: 85%
+}
+
+.mark, mark {
+  padding: .2em;
+  background-color: #fcf8e3
+}
+
+.text-left {
+  text-align: left
+}
+
+.text-right {
+  text-align: right
+}
+
+.text-center {
+  text-align: center
+}
+
+.text-justify {
+  text-align: justify
+}
+
+.text-nowrap {
+  white-space: nowrap
+}
+
+.text-lowercase {
+  text-transform: lowercase
+}
+
+.text-uppercase {
+  text-transform: uppercase
+}
+
+.text-capitalize {
+  text-transform: capitalize
+}
+
+.text-muted {
+  color: #777
+}
+
+.text-primary {
+  color: #337ab7
+}
+
+a.text-primary:focus, a.text-primary:hover {
+  color: #286090
+}
+
+.text-success {
+  color: #3c763d
+}
+
+a.text-success:focus, a.text-success:hover {
+  color: #2b542c
+}
+
+.text-info {
+  color: #31708f
+}
+
+a.text-info:focus, a.text-info:hover {
+  color: #245269
+}
+
+.text-warning {
+  color: #8a6d3b
+}
+
+a.text-warning:focus, a.text-warning:hover {
+  color: #66512c
+}
+
+.text-danger {
+  color: #a94442
+}
+
+a.text-danger:focus, a.text-danger:hover {
+  color: #843534
+}
+
+.bg-primary {
+  color: #fff;
+  background-color: #337ab7
+}
+
+a.bg-primary:focus, a.bg-primary:hover {
+  background-color: #286090
+}
+
+.bg-success {
+  background-color: #dff0d8
+}
+
+a.bg-success:focus, a.bg-success:hover {
+  background-color: #c1e2b3
+}
+
+.bg-info {
+  background-color: #d9edf7
+}
+
+a.bg-info:focus, a.bg-info:hover {
+  background-color: #afd9ee
+}
+
+.bg-warning {
+  background-color: #fcf8e3
+}
+
+a.bg-warning:focus, a.bg-warning:hover {
+  background-color: #f7ecb5
+}
+
+.bg-danger {
+  background-color: #f2dede
+}
+
+a.bg-danger:focus, a.bg-danger:hover {
+  background-color: #e4b9b9
+}
+
+.page-header {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 1px solid #eee
+}
+
+ol, ul {
+  margin-top: 0;
+  margin-bottom: 10px
+}
+
+ol ol, ol ul, ul ol, ul ul {
+  margin-bottom: 0
+}
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none
+}
+
+.list-inline {
+  padding-left: 0;
+  margin-left: -5px;
+  list-style: none
+}
+
+.list-inline > li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px
+}
+
+dl {
+  margin-top: 0;
+  margin-bottom: 20px
+}
+
+dd, dt {
+  line-height: 1.42857143
+}
+
+dt {
+  font-weight: 700
+}
+
+dd {
+  margin-left: 0
+}
+
+/* loading 样式*/
+.loadingdiv {
   color: $main-blue-color;
   position: absolute;
   width: 100%;
@@ -51,102 +279,6 @@ html, body {
     top: 50%;
     margin-left: -40px;
     margin-top: -40px;
-  }
-}
-.text-bold{
-  font-weight: bold;
-}
-.textnormal{
-  border:1px solid $main-btn-border-color;
-  &:focus{
-    border:1px solid $main-btn-border-color!important;
-  }
-}
-.btnfilter {
-  background-color: $main-btn-border-color;
-  border:1px solid $main-btn-border-color;
-  color: $white;
-  cursor: pointer;
-}
-
-.pagesecnav {
-  @include size(100%, 70px);
-  padding: 0 20px;
-  text-align: center;
-  overflow: hidden;
-  > div:first-child {
-    line-height: 70px;
-  }
-  > div:last-child {
-    nav {
-      height: 70px;
-      li {
-        a {
-          background-color: $main-nav-bgcolor;
-          border-color: $main-nav-bgcolor;
-        }
-      }
-      li.active {
-        span {
-          background-color: $main-active-color;
-          border-color: $main-active-color;
-        }
-      }
-    }
-  }
-}
-
-.navtab{
-  height: 48px;
-  line-height: 32px;
-  background-color: $main-nav-bgcolor;
-  border-bottom: 1px solid $gray-dd;
-  margin: 0;
-  color: $black;
-}
-
-.tableeditsec{
-  @include fieldset;
-}
-
-.drag-vertical-line-dag{
-  @include size(4px,100%);
-  position: absolute;
-  left: calc(100% - 360px);
-  top:0;
-  cursor: e-resize;
-
-  &:hover{
-    background-color: $blue-d3;
-  }
-}
-
-.drag-horizontal-line-extend{
-  @include size(100%,4px);
-  position: absolute;
-  left: 0;
-  top: calc(100% - 334px);
-  cursor: n-resize;
-  z-index:20;
-
-  &:hover{
-    background-color: $blue-d3;
-  }
-}
-
-.context-menu {
-  margin: 0;
-  @include box-shadow(2px 2px 5px 3px $main-border-color);
-  @include transition;
-  z-index: 1000;
-  position: fixed;
-  left: 0;
-  top: 0;
-
-  a {
-    color: $main-left-fontcolor!important;
-    border-width: 0;
-    padding: 5px 10px;
   }
 }
 
