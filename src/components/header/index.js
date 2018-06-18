@@ -4,7 +4,7 @@
 import { React, PropTypes, NavLink, withRouter } from 'framework/Util'
 import config from 'conf'
 import dialog from 'dialog'
-import './scss/header.scss'
+import './scss/index.scss'
 
 const Header = function ({ username, logout, history }) {
     const logoutFn = () => {
