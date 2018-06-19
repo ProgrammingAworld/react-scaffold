@@ -3,39 +3,35 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const config = require('../project.config')
 
 // 字体配置参考：https://github.com/shakacode/bootstrap-sass-loader
 const {
-    ip, port, vendor, resolve,
-    defaultPath: { ROOT_PATH, APP_PATH },
-    proxy: { target, proxyPort }
+    uglifyJsConfig, vendor, resolve,
+    defaultPath: { ROOT_PATH, APP_PATH }
 } = config
 
 module.exports = {
     context: ROOT_PATH,
-    watch: true,
+    watch: false,
     cache: true,
     entry: {
         app: [
-            'react-hot-loader/patch',
-            `webpack-dev-server/client?http://${ip}:${port}`,
-            'webpack/hot/only-dev-server',
             './src/index.js'
         ],
         vendor
     },
     output: {
-        path: path.join(ROOT_PATH, 'dev'),
+        path: path.join(ROOT_PATH, 'dist'),
         publicPath: '/',
-        filename: 'static/scripts/[name].js',
-        chunkFilename: 'static/scripts/[name].js',
-        sourceMapFilename: '[file].map',
-        hotUpdateChunkFilename: 'hot/hot-update.js',
-        hotUpdateMainFilename: 'hot/hot-update.json'
+        filename: 'static/scripts/[name].[chunkhash:10].js',
+        chunkFilename: 'static/scripts/[name].[chunkhash:10].js'
     },
-    devtool: 'cheap-module-eval-source-map',
+    devtool: false,
     resolve,
     module: {
         rules: [
@@ -66,53 +62,42 @@ module.exports = {
             {
                 test: /\.(scss|sass|css)$/,
                 include: APP_PATH,
-                use: [
-                    {
-                        loader: 'style-loader',
-                        options: {
-                            sourceMap: true
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader'
+                        },
+                        {
+                            loader: 'postcss-loader'
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                outputStyle: 'expanded'
+                            }
+                        },
+                        {
+                            loader: 'sass-resources-loader',
+                            options: {
+                                resources: [
+                                    path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_compass.scss'),
+                                    path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_animate.scss'),
+                                    path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_lemonade.scss'),
+                                    path.join(APP_PATH, 'css/common/variables.scss'),
+                                    path.join(APP_PATH, 'css/common/mixins/common.scss')
+                                ]
+                            }
                         }
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            outputStyle: 'expanded',
-                            sourceMapContents: true,
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: 'sass-resources-loader',
-                        options: {
-                            resources: [
-                                path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_compass.scss'),
-                                path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_animate.scss'),
-                                path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_lemonade.scss'),
-                                path.join(APP_PATH, 'css/common/variables.scss'),
-                                path.join(APP_PATH, 'css/common/mixins/common.scss')
-                            ]
-                        }
-                    }
-                ]
+                    ]
+                })
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: 'static/images/[name].[ext]',
+                    name: 'static/images/[name].[hash:10].[ext]',
                     mimetype: 'image/[ext]'
                 }
             },
@@ -121,7 +106,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: 'static/media/[name].[ext]',
+                    name: 'static/media/[name].[hash:10].[ext]',
                 }
             },
             {
@@ -129,7 +114,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: 'static/fonts/[name].[ext]',
+                    name: 'static/fonts/[name].[hash:10].[ext]',
                 }
             },
             {
@@ -140,21 +125,34 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['dev'], { root: ROOT_PATH }),
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+        new CleanWebpackPlugin(['dist'], { root: ROOT_PATH }),
+        new webpack.HashedModuleIdsPlugin(),
+        new webpack.optimize.ModuleConcatenationPlugin(),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
+            'process.env.NODE_ENV': JSON.stringify('production')
         }),
+        new ExtractTextPlugin({
+            filename: 'static/css/[name].[contenthash:10].css',
+            disable: false,
+            allChunks: true
+        }),
+        new OptimizeCSSPlugin({ cssProcessorOptions: { safe: true } }),
+        new webpack.optimize.UglifyJsPlugin(uglifyJsConfig),
         new webpack.optimize.CommonsChunkPlugin({
             names: [
                 'vendor', 'runtime'
             ],
-            filename: 'static/scripts/[name].js',
+            filename: 'static/scripts/[name].[chunkhash:10].js',
             minChunks: Infinity
         }),
         new webpack.NoEmitOnErrorsPlugin(),
         new FriendlyErrorsPlugin(),
+        new CopyWebpackPlugin([
+            {
+                from: 'src/manifest.json',
+                to: 'manifest.json'
+            }
+        ]),
         new StyleLintPlugin({
             files: ['src/**/*.scss'],
             failOnError: false,
@@ -174,34 +172,5 @@ module.exports = {
             },
             cache: false
         })
-    ],
-    devServer: {
-        contentBase: path.join(ROOT_PATH, 'dev'),
-        publicPath: '/',
-        historyApiFallback: true,
-        clientLogLevel: 'none',
-        host: config.ip,
-        port: config.port,
-        open: false,
-        openPage: '',
-        hot: true,
-        inline: false,
-        compress: true,
-        stats: {
-            colors: true,
-            errors: true,
-            warnings: true,
-            modules: false,
-            chunks: false
-        },
-        proxy: (function () {
-            const obj = {}
-            const origin = `${target}:${proxyPort}`
-            config.proxy.paths.forEach((apiPath) => {
-                obj[apiPath] = origin
-            })
-            
-            return obj
-        }())
-    }
+    ]
 }
