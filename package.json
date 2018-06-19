@@ -4,7 +4,6 @@
   "description": "ac frontEnd solution",
   "main": "app.js",
   "scripts": {
-    "fixcode": "eslint --fix ./src",
     "precommit": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit",
     "prepush": "npm run lintall",
     "server": "nodemon server/index.js",
@@ -20,7 +19,10 @@
     "test": "jest",
     "test:watch": "npm test -- --watch"
   },
-  "author": "anchao",
+  "author": {
+    "name": "anchao",
+    "email": "pvfhv@qq.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/pvfhv/react-redux-router.git"
@@ -87,7 +89,6 @@
     "json-server": "^0.12.2",
     "mockjs": "^1.0.1-beta3",
     "nodemon": "^1.17.4",
-    "postcss-loader": "^2.1.5",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "stylelint": "^9.2.0",
@@ -132,7 +133,6 @@
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1"
   },
-  "stylelint": {},
   "engines": {
     "node": ">=9.0.0",
     "npm": ">=5"
@@ -155,7 +155,9 @@
     "events": {
       "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
     },
-    "watch": [],
+    "watch": [
+      "server/"
+    ],
     "env": {
       "NODE_ENV": "development",
       "PORT": "3003"

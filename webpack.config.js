@@ -2,7 +2,8 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // const CleanWebpackPlugin = require('clean-webpack-plugin')
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const StyleLintPlugin = require('stylelint-webpack-plugin')
 const config = require('./project.config')
 
 module.exports = {
@@ -89,6 +90,12 @@ module.exports = {
         }),
         new webpack.NoEmitOnErrorsPlugin(),
         new FriendlyErrorsPlugin(),
+        new StyleLintPlugin({
+            files: ['src/**/*.scss'],
+            failOnError: false,
+            emitErrors: true,
+            syntax: 'scss',
+        }),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             title: '示例工程',
