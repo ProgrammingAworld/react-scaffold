@@ -49,7 +49,7 @@ if ! $PASS; then
 else
   for FILE in $STAGED_FILES_SCSS
     do
-      node_modules/.bin/stylelint "$FILE" --syntax scss
+      node_modules/.bin/stylelint "$FILE" --syntax scss --fix
       if [[ "$?" == 0 ]]; then
         echo "\t\033[32mstyleLint Passed: $FILE\033[0m"
       else

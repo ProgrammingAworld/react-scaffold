@@ -1,43 +1,43 @@
-#particles-js{
-  @include size(100%,100%);
+#particles-js {
+  @include size(100%, 100%);
 }
 
 .login {
-  height: 100% !important;
-  background: $login-bg-color !important;
+  background: $login-bg-color;
+  height: 100%;
 
   .loginmain {
-    @include size(500px,316px);
-    background: url("../images/logo.png") no-repeat center 28px $login-main-bg-color;
+    @include size(500px, 316px);
+    background: url('../images/logo.png') no-repeat center 28px $login-main-bg-color;
     border: 1px solid $login-main-border-color;
-    position: absolute;
     left: 50%;
-    top: 50%;
     margin-left: -250px;
     margin-top: -158px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
     @include opacity(.8);
-    overflow:hidden;
 
     .input-group {
-      @include size(280px, 52px);
+      @include size(280px, 72px);
       margin: 82px auto 0;
       position: relative;
       input {
         @include size(100%, 32px);
         border: 1px solid $gray-dd;
         border-radius: 2px;
-        padding-left: 40px;
         line-height: 34px;
+        padding-left: 40px;
         &.login-user {
-          margin-bottom: 13px;
           background-color: $white;
+          margin-bottom: 13px;
         }
         &.login-pwd {
           background-color: $white;
         }
       }
       input:-webkit-autofill {
-        @include box-shadow(0 0 0px 1000px $white inset);
+        @include box-shadow(0 0 0 1000px $white inset);
       }
       input:focus {
         border: 1px solid $login-box-input-focus;
@@ -49,8 +49,8 @@
       }
       & > i {
         color: $login-btn-bg-color;
-        position: absolute;
         left: 10px;
+        position: absolute;
         top: 9px;
       }
       .pwdico {
@@ -58,12 +58,12 @@
       }
     }
     .errors {
+      color: $errorred;
       font-size: 12px;
-      text-align:right;
       height: 22px;
       line-height: 22px;
-      color: $errorred;
       padding-left: 26px;
+      text-align: right;
 
       >i{
         margin-right: 5px;
@@ -111,7 +111,7 @@
             display: inline-block;
             cursor: pointer;
             margin-right: 5px;
-            overflow:hidden;
+            overflow: hidden;
 
             &.checked{
               border-width: 0;
