@@ -9,7 +9,6 @@
     "server": "nodemon server/index.js",
     "predev": "npm run precommit",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --devtool eval --progress --config ./build/webpack.dev.config.js",
-    "dev2": "cross-env NODE_ENV=development node build/dev.js",
     "lint": "cross-env sh build/pre-commit || true",
     "lintall": "sh build/pre-commit lintall || true",
     "postlintall": "echo 'lintallall complete'",
@@ -53,8 +52,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "browser-sync": "^2.24.2",
     "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.1",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
@@ -100,7 +99,6 @@
     "bizcharts": "^3.1.7",
     "classnames": "^2.2.5",
     "compass-mixins": "^0.12.10",
-    "fixed-data-table-2": "^0.8.12",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",
@@ -109,8 +107,6 @@
     "prop-types": "^15.6.1",
     "qs": "^6.5.2",
     "react": "^16.3.2",
-    "react-ace": "^6.1.0",
-    "react-bootstrap": "^0.32.1",
     "react-click-outside": "^3.0.1",
     "react-dnd": "^2.6.0",
     "react-dom": "^16.3.2",
@@ -128,33 +124,5 @@
   "engines": {
     "node": ">=9.0.0",
     "npm": ">=5"
-  },
-  "nodemonConfig": {
-    "restartable": "rs",
-    "ignore": [
-      ".git",
-      "node_modules/**/node_modules",
-      "server/**/*.*",
-      "src/**/*.*",
-      "dist/**/*.*"
-    ],
-    "delay": "3000",
-    "verbose": true,
-    "execMap": {
-      "": "node",
-      "js": "node --harmony"
-    },
-    "events": {
-      "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
-    },
-    "watch": [
-      "server/"
-    ],
-    "env": {
-      "NODE_ENV": "development",
-      "PORT": "3003"
-    },
-    "ext": "js json",
-    "legacy-watch": false
   }
 }

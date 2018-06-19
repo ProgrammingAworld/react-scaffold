@@ -1,10 +1,8 @@
 /**
  * Created by anchao on 2015/12/7.
  */
-/* eslint-disable */
-import './css/index.scss'
-
 import 'babel-polyfill'
+import './css/index.scss'
 import projectInit from './framework/projectInit'
 
 projectInit(document.querySelector('#container'))
