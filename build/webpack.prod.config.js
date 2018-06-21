@@ -14,7 +14,7 @@ module.exports = {
     plugins,
     context: ROOT_PATH,
     watch: false,
-    cache: true,
+    cache: false,
     devtool: false,
     module: {
         rules: [

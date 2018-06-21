@@ -40,6 +40,7 @@ const uglifyJsConfig = {
 
 // 开发环境|生产环境
 const isProd = process.env.NODE_ENV === 'production'
+
 const entry = (function () {
     let app = [
         'react-hot-loader/patch',
@@ -215,6 +216,7 @@ const injectionLoader = {
 let plugins = [
     new CleanWebpackPlugin([isProd ? 'dist' : 'dev'], { root: ROOT_PATH }),
     new webpack.DefinePlugin({
+        __DEBUG__: !isProd,
         'process.env.NODE_ENV': isProd ? production.env.NODE_ENV : development.env.NODE_ENV
     }),
     new webpack.optimize.CommonsChunkPlugin({
