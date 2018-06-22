@@ -2,19 +2,19 @@
 
 @font-face {
   font-family: "siyuan";
-  src: url("fonts/siyuan.woff2") format("woff2"),
-  url("fonts/siyuan.woff") format("woff"),
-  url("fonts/siyuan.ttf") format("truetype"),
-  url("fonts/siyuan.eot") format("embedded-opentype"),
-  url("fonts/siyuan.svg") format("svg");
+  src: url("#{$font-path}/siyuan.woff2") format("woff2"),
+  url("#{$font-path}/siyuan.woff") format("woff"),
+  url("#{$font-path}/siyuan.ttf") format("truetype"),
+  url("#{$font-path}/siyuan.eot") format("embedded-opentype"),
+  url("#{$font-path}/siyuan.svg") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Roboto-Regular';
-  src: url('fonts/Roboto-Regular.eot') format('embedded-opentype');
-  src: url('fonts/Roboto-Regular.woff') format('woff'), url('fonts/Roboto-Regular.ttf') format('truetype'), url('fonts/Roboto-Regular.svg#Roboto-Regular') format('svg');
+  src: url('#{$font-path}/Roboto-Regular.eot') format('embedded-opentype');
+  src: url('#{$font-path}/Roboto-Regular.woff') format('woff'), url('#{$font-path}/Roboto-Regular.ttf') format('truetype'), url('#{$font-path}/Roboto-Regular.svg#Roboto-Regular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
