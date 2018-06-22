@@ -1,24 +1,5 @@
 @charset "utf-8";
 
-@font-face {
-  font-family: "siyuan";
-  src: url("#{$font-path}/siyuan.woff2") format("woff2"),
-  url("#{$font-path}/siyuan.woff") format("woff"),
-  url("#{$font-path}/siyuan.ttf") format("truetype"),
-  url("#{$font-path}/siyuan.eot") format("embedded-opentype"),
-  url("#{$font-path}/siyuan.svg") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Roboto-Regular';
-  src: url('#{$font-path}/Roboto-Regular.eot') format('embedded-opentype');
-  src: url('#{$font-path}/Roboto-Regular.woff') format('woff'), url('#{$font-path}/Roboto-Regular.ttf') format('truetype'), url('#{$font-path}/Roboto-Regular.svg#Roboto-Regular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
 //浏览器ie版本小于10提示框样式
 .browsehappy {
   margin: 0.2em 0;
