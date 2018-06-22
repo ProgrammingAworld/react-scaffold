@@ -278,6 +278,7 @@ if (isProd) {
 module.exports = {
     ip,
     port,
+    isProd,
     entry,
     output,
     jsxLoader,

@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const opn = require('opn')
 const chalk = require('chalk')
-const config = require('./webpack.dev.config')
+const config = require('./webpack.config')
 const projectConf = require('../project.config')
 
 const {

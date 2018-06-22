@@ -2,8 +2,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const config = require('../project.config')
 
 const {
-    entry, output, resolve, jsxLoader, imgLoader, cssLoaderUse,
-    mediaLoader, fontLoader, injectionLoader, plugins,
+    isProd, entry, output, resolve, plugins,
+    jsxLoader, imgLoader, fontLoader, cssLoaderUse, mediaLoader, injectionLoader,
     defaultPath: { ROOT_PATH, APP_PATH }
 } = config
 
@@ -13,9 +13,9 @@ module.exports = {
     resolve,
     plugins,
     context: ROOT_PATH,
-    watch: false,
-    cache: false,
-    devtool: false,
+    watch: !isProd,
+    cache: !isProd,
+    devtool: !isProd ? 'cheap-module-eval-source-map' : false,
     module: {
         rules: [
             ...jsxLoader,
@@ -26,7 +26,8 @@ module.exports = {
             {
                 test: /\.(scss|sass|css)$/,
                 include: APP_PATH,
-                use: ExtractTextPlugin.extract({
+                use: !isProd ? cssLoaderUse([
+                    'style-loader', 'css-loader', 'postcss-loader', 'sass-loader', 'sass-resources-loader']) : ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: cssLoaderUse(['css-loader', 'postcss-loader', 'sass-loader', 'sass-resources-loader'])
                 })

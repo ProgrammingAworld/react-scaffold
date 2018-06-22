@@ -1,14 +1,8 @@
 const webpack = require('webpack')
-const ora = require('ora')
 const chalk = require('chalk')
-const config = require('./webpack.prod.config')
-
-// loading
-const spinner = ora('正在生成压缩文件...')
-spinner.start()
+const config = require('./webpack.config')
 
 webpack(config, (err, stats) => {
-    spinner.stop()
     if (err) throw err
 
     process.stdout.write(`${stats.toString({
