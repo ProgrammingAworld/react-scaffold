@@ -15,11 +15,14 @@ const middlewares = jsonServer.defaults()
 server.use(middlewares)
 server.use(jsonServer.bodyParser)
 server.use(jsonServer.rewriter(rewriterJSON))
-config.proxy.paths.forEach((item) => {
-    server.use(item, (req, res, next) => {
-        router({ ...req, method: 'get' }, res, next)
+config.proxies.forEach((proxyConf) => {
+    proxyConf.paths.forEach((item) => {
+        server.use(item, (req, res, next) => {
+            router({ ...req, method: 'get' }, res, next)
+        })
     })
 })
+
 server.listen({
     host: ip,
     port

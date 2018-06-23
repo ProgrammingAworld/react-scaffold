@@ -4,10 +4,11 @@ const config = require('../project.config')
 const {
     isProd, entry, output, resolve, plugins,
     jsxLoader, imgLoader, fontLoader, cssLoaderUse, mediaLoader, injectionLoader,
-    defaultPath: { ROOT_PATH, APP_PATH }
+    defaultPath: { ROOT_PATH, APP_PATH },
+    devServer
 } = config
 
-module.exports = {
+const baseconfig = {
     entry,
     output,
     resolve,
@@ -33,5 +34,10 @@ module.exports = {
                 })
             }
         ]
-    }
+    },
+    devServer
 }
+
+if (isProd) delete baseconfig.devServer
+
+module.exports = baseconfig

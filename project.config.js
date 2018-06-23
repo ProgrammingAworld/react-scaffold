@@ -1,3 +1,4 @@
+const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -10,8 +11,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ip = require('ip').address().toString()
 
 const port = 3333
-const path = require('path')
-
 const ROOT_PATH = path.resolve(__dirname, './')
 const APP_PATH = path.resolve(ROOT_PATH, 'src')
 
@@ -275,6 +274,48 @@ if (isProd) {
     ])
 }
 
+const proxies = [{
+    target: `http://${ip}`,
+    proxyPort: 3003,
+    headers: {
+        host: '',
+    },
+    paths: ['/api']
+}]
+
+const devServer = {
+    contentBase: path.join(ROOT_PATH, 'dev'),
+    publicPath: '/',
+    historyApiFallback: true,
+    clientLogLevel: 'none',
+    host: ip,
+    port,
+    open: false,
+    openPage: '',
+    hot: true,
+    inline: false,
+    compress: true,
+    stats: {
+        colors: true,
+        errors: true,
+        warnings: true,
+        modules: false,
+        chunks: false
+    },
+    proxy: (function () {
+        const obj = {}
+        proxies.forEach((proxyConf) => {
+            const { target, proxyPort, paths } = proxyConf
+            const origin = `${target}:${proxyPort}`
+            paths.forEach((apiPath) => {
+                obj[apiPath] = origin
+            })
+        })
+
+        return obj
+    }())
+}
+
 module.exports = {
     ip,
     port,
@@ -312,12 +353,6 @@ module.exports = {
         },
         extensions: ['.js', '.jsx', '.json', '.css']
     },
-    proxy: {
-        target: `http://${ip}`,
-        proxyPort: 3003,
-        headers: {
-            host: '',
-        },
-        paths: ['/api']
-    }
+    devServer,
+    proxies
 }

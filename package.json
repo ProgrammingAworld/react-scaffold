@@ -9,7 +9,7 @@
     "server": "nodemon server/index.js",
     "predev": "npm run precommit",
     "prestart": "npm run precommit",
-    "start": "cross-env NODE_ENV=development node --max_old_space_size=4096 ./node_modules/.bin/webpack-dev-server --devtool eval --progress --config ./build/webpack.dev.config.js",
+    "start": "cross-env NODE_ENV=development node --max_old_space_size=4096 ./node_modules/.bin/webpack-dev-server --devtool eval --progress --config ./build/webpack.config.js",
     "dev": "cross-env NODE_ENV=development node --max_old_space_size=4096 build/dev.js",
     "build": "cross-env NODE_ENV=production node --max_old_space_size=4096 build/build.js",
     "deploy": "cross-env NODE_ENV=production node --max_old_space_size=4096 ./node_modules/.bin/webpack --hide-modules --progress --config ./build/webpack.config.js",
@@ -95,8 +95,7 @@
     "url-loader": "^1.0.1",
     "webpack": "^3.11.0",
     "webpack-chunk-hash": "^0.6.0",
-    "webpack-dev-server": "^2.11.2",
-    "webpack-merge": "^4.1.2"
+    "webpack-dev-server": "^2.11.2"
   },
   "dependencies": {
     "antd": "^3.5.0",
