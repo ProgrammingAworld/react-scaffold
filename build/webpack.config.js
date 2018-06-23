@@ -8,6 +8,10 @@ const {
     devServer
 } = config
 
+const cssLoaders = [
+    'style-loader', 'css-loader', 'postcss-loader', 'sass-loader', 'sass-resources-loader'
+]
+
 const baseconfig = {
     entry,
     output,
@@ -27,10 +31,9 @@ const baseconfig = {
             {
                 test: /\.(scss|sass|css)$/,
                 include: APP_PATH,
-                use: !isProd ? cssLoaderUse([
-                    'style-loader', 'css-loader', 'postcss-loader', 'sass-loader', 'sass-resources-loader']) : ExtractTextPlugin.extract({
+                use: !isProd ? cssLoaderUse(cssLoaders) : ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: cssLoaderUse(['css-loader', 'postcss-loader', 'sass-loader', 'sass-resources-loader'])
+                    use: cssLoaderUse(cssLoaders)
                 })
             }
         ]
