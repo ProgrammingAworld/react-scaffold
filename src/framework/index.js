@@ -76,7 +76,9 @@ const createActions = function (actionMap) {
                 // const dialog = require('dialog').default
 
                 if ((configOrFn.hasLoading || configOrFn.hasLoading === undefined) && !loading.getLoadingStatus()) loading.show()
-                dispatch(createAction(`${configOrFn.actionType}_PRE`)())
+                const hasActionType = !!config.actionType
+
+                hasActionType && dispatch(createAction(`${configOrFn.actionType}_PRE`)())
                 return handleWithParameter(
                     config.url,
                     {
@@ -100,29 +102,29 @@ const createActions = function (actionMap) {
 
                     // always只有在成功时才返回数据，非200或异常都不返回数据
                     if (statusCode === 200) {
-                        dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data.data))
-                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)(data.data))
+                        hasActionType && dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data.data))
+                        hasActionType && dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)(data.data))
 
                         return data
                     }
 
                     if (configOrFn.handleError || configOrFn.handleError === undefined) {
-                        if (statusCode === 401 && !isScopaPlugin) {
+                        if (statusCode === 401) {
                             location.replace(location.origin)
                         } else {
                             message.error(msg)
                         }
                     }
 
-                    dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data.data))
-                    dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
+                    hasActionType && dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data.data))
+                    hasActionType && dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
 
                     return data
                 }).catch((error) => {
                     loading.hide()
                     if(error.response){
-                        dispatch(createAction(`${configOrFn.actionType}_FAIL`)())
-                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
+                        hasActionType && dispatch(createAction(`${configOrFn.actionType}_FAIL`)())
+                        hasActionType && dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
                         message.error('服务器端错误😂！')
                     } else {
                         message.error(`${error.message}！${error.stack}!`)
