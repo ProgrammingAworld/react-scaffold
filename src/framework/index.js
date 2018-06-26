@@ -70,15 +70,14 @@ const createActions = function (actionMap) {
     eventNames.forEach((eventName) => {
         const configOrFn = actionMap[eventName]
         if (typeof configOrFn !== 'function') {
-            const config = { method: 'GET', ...configOrFn }
+            const config = { method: 'GET', actionType:'hasNotConfigActionType', ...configOrFn }
             fnsMap[eventName] = (settings = {}) => (dispatch) => {
                 // const loading = require('loading').default
                 // const dialog = require('dialog').default
 
                 if ((configOrFn.hasLoading || configOrFn.hasLoading === undefined) && !loading.getLoadingStatus()) loading.show()
-                const hasActionType = !!config.actionType
 
-                hasActionType && dispatch(createAction(`${configOrFn.actionType}_PRE`)())
+                dispatch(createAction(`${configOrFn.actionType}_PRE`)())
                 return handleWithParameter(
                     config.url,
                     {
@@ -102,8 +101,8 @@ const createActions = function (actionMap) {
 
                     // always只有在成功时才返回数据，非200或异常都不返回数据
                     if (statusCode === 200) {
-                        hasActionType && dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data.data))
-                        hasActionType && dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)(data.data))
+                        dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data.data))
+                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)(data.data))
 
                         return data
                     }
@@ -116,15 +115,15 @@ const createActions = function (actionMap) {
                         }
                     }
 
-                    hasActionType && dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data.data))
-                    hasActionType && dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
+                    dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data.data))
+                    dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
 
                     return data
                 }).catch((error) => {
                     loading.hide()
                     if(error.response){
-                        hasActionType && dispatch(createAction(`${configOrFn.actionType}_FAIL`)())
-                        hasActionType && dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
+                        dispatch(createAction(`${configOrFn.actionType}_FAIL`)())
+                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
                         message.error('服务器端错误😂！')
                     } else {
                         message.error(`${error.message}！${error.stack}!`)
@@ -145,6 +144,7 @@ const handleActions = function (reducerMap, defaultState) {
     Object.keys(result).forEach((actionType) => {
         const fnOrObject = result[actionType]
         if (fnOrObject && typeof fnOrObject !== 'function') {
+            delete result[actionType]
             Object.keys(fnOrObject).forEach((suffixAction) => {
                 result[`${actionType}_${suffixAction.toUpperCase()}`] = fnOrObject[suffixAction]
             })
