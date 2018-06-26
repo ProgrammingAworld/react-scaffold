@@ -63,6 +63,15 @@ const handleWithParameter = function (url, {
     }
 }
 
+/*
+* pre: ajax提交前
+* success: ajax连接成功返回正确结果后
+* error: ajax连接成功返回错误结果后
+* fail: ajax连接失败（网络错误）
+* always: ajax无论成功与失败都要执行
+ */
+const suffix = ['pre', 'success', 'error', 'fail', 'always']
+
 // 增强createActions, 可以配置{}
 const createActions = function (actionMap) {
     const eventNames = Object.keys(actionMap)
@@ -145,7 +154,16 @@ const handleActions = function (reducerMap, defaultState) {
         const fnOrObject = result[actionType]
         if (fnOrObject && typeof fnOrObject !== 'function') {
             delete result[actionType]
-            Object.keys(fnOrObject).forEach((suffixAction) => {
+            const keys = Object.keys(fnOrObject)
+            // 补充没有的默认配置
+            suffix.forEach(str => {
+                if (!keys.includes(str)) {
+                    keys.push(str)
+                    fnOrObject[str] = ()=>{}
+                }
+            })
+
+            keys.forEach((suffixAction) => {
                 result[`${actionType}_${suffixAction.toUpperCase()}`] = fnOrObject[suffixAction]
             })
         }
