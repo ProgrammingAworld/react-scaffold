@@ -113,7 +113,7 @@ const createActions = function (actionMap) {
                         dispatch(createAction(`${config.actionType}_SUCCESS`)(data.data))
                         dispatch(createAction(`${config.actionType}_ALWAYS`)(data.data))
 
-                        return data
+                        return res.data
                     }
 
                     if (config.handleError || config.handleError === undefined) {
