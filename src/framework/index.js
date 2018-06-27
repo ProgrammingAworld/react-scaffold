@@ -124,7 +124,7 @@ const createActions = function (actionMap) {
                         }
                     }
 
-                    dispatch(createAction(`${config.actionType}_ERROR`)(data.data))
+                    dispatch(createAction(`${config.actionType}_ERROR`)(msg))
                     dispatch(createAction(`${config.actionType}_ALWAYS`)())
 
                     return res.data
