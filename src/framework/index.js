@@ -127,7 +127,7 @@ const createActions = function (actionMap) {
                     dispatch(createAction(`${config.actionType}_ERROR`)(data.data))
                     dispatch(createAction(`${config.actionType}_ALWAYS`)())
 
-                    return data
+                    return res.data
                 }).catch((error) => {
                     loading.hide()
                     if(error.response){
