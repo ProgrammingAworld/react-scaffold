@@ -84,9 +84,9 @@ const createActions = function (actionMap) {
                 // const loading = require('loading').default
                 // const dialog = require('dialog').default
 
-                if ((configOrFn.hasLoading || configOrFn.hasLoading === undefined) && !loading.getLoadingStatus()) loading.show()
+                if ((config.hasLoading || config.hasLoading === undefined) && !loading.getLoadingStatus()) loading.show()
 
-                dispatch(createAction(`${configOrFn.actionType}_PRE`)())
+                dispatch(createAction(`${config.actionType}_PRE`)())
                 return handleWithParameter(
                     config.url,
                     {
@@ -102,7 +102,7 @@ const createActions = function (actionMap) {
 
                     let data = {}
                     // 是否需要接口传递的参数
-                    if (configOrFn.needFormData) {
+                    if (config.needFormData) {
                         data = {data: res}
                     } else {
                         data = res.data.data === undefined ? {...res.data, data: dt } : res.data
@@ -110,13 +110,13 @@ const createActions = function (actionMap) {
 
                     // always只有在成功时才返回数据，非200或异常都不返回数据
                     if (statusCode === 200) {
-                        dispatch(createAction(`${configOrFn.actionType}_SUCCESS`)(data.data))
-                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)(data.data))
+                        dispatch(createAction(`${config.actionType}_SUCCESS`)(data.data))
+                        dispatch(createAction(`${config.actionType}_ALWAYS`)(data.data))
 
                         return data
                     }
 
-                    if (configOrFn.handleError || configOrFn.handleError === undefined) {
+                    if (config.handleError || config.handleError === undefined) {
                         if (statusCode === 401) {
                             location.replace(location.origin)
                         } else {
@@ -124,15 +124,15 @@ const createActions = function (actionMap) {
                         }
                     }
 
-                    dispatch(createAction(`${configOrFn.actionType}_ERROR`)(data.data))
-                    dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
+                    dispatch(createAction(`${config.actionType}_ERROR`)(data.data))
+                    dispatch(createAction(`${config.actionType}_ALWAYS`)())
 
                     return data
                 }).catch((error) => {
                     loading.hide()
                     if(error.response){
-                        dispatch(createAction(`${configOrFn.actionType}_FAIL`)())
-                        dispatch(createAction(`${configOrFn.actionType}_ALWAYS`)())
+                        dispatch(createAction(`${config.actionType}_FAIL`)())
+                        dispatch(createAction(`${config.actionType}_ALWAYS`)())
                         message.error('服务器端错误😂！')
                     } else {
                         message.error(`${error.message}！${error.stack}!`)
