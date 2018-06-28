@@ -159,7 +159,7 @@ const handleActions = function (reducerMap, defaultState) {
             suffix.forEach(str => {
                 if (!keys.includes(str)) {
                     keys.push(str)
-                    fnOrObject[str] = ()=>{}
+                    fnOrObject[str] = (state)=>(state)
                 }
             })
 

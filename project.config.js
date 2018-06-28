@@ -69,6 +69,8 @@ const entry = (function () {
             'react-router-redux',
             'react-loadable',
             'react-click-outside',
+            'react-dnd',
+            'react-dnd-html5-backend',
             'react-hot-loader',
             'redux',
             'redux-logger',

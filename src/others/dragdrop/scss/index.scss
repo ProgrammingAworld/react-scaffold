@@ -1,0 +1,10 @@
+.drag-drop{
+  @include size(100%, 100%);
+  background: #8cc8ff;
+  & > div{
+    @include size(100px, 100px);
+    background: yellow;
+    margin: 0 0 10px 10px;
+    border: 1px solid gray;
+  }
+}
