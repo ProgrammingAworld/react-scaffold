@@ -3,35 +3,28 @@
  * 作者：安超
  * 日期： 2018/3/19
  */
+import { DragDropContextProvider } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 import { React } from 'framework/Util'
-import { DragSource } from 'react-dnd'
-import ReactComponentBase from 'base/ReactComponentBase'
+import Dustbin from './dustbin'
+import Box from './box'
 import './scss/index.scss'
 
-const cardSource = {
-    beginDrag(props){
-        return props.text
-    }
-}
-
-@DragSource('card', cardSource, (connect, monitor) => ({
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging
-}))
-
-class Card extends ReactComponentBase {
-    renderHTML(){
-        const { connectDragSource, isDragging, text } = this.props
-        return connectDragSource(<div style={{ opacity: isDragging ? 0.5 : 1 }}>{text}ddd</div>)
-    }
-
-    render() {
-        return (
+const DragDrop = function () {
+    return (
+        <DragDropContextProvider backend={HTML5Backend}>
             <div className="drag-drop">
-                {this.renderHTML()}
+                <div className="clearfix">
+                    <Dustbin />
+                </div>
+                <div className="clearfix">
+                    <Box name="andy" />
+                    <Box name="jerry" />
+                    <Box name="tom" />
+                </div>
             </div>
-        )
-    }
+        </DragDropContextProvider>
+    )
 }
 
-export default Card
+export default DragDrop
