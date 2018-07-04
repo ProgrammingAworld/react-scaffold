@@ -31,7 +31,8 @@ npm install package_name --dev-save
 ## 启动调试环境
 
 ```bash
-gulp watch
+npm run start
+npm run server
 ```
 
 ## 使用说明
