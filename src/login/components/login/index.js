@@ -1,3 +1,10 @@
+/**
+ * 功能：登录组件
+ * 作者：安超
+ * 日期：2018/7/4
+ */
+
+import { hot } from 'react-hot-loader'
 import config from 'conf'
 import { React, PropTypes } from 'framework/Util'
 import classNames from 'classnames/bind'
@@ -135,4 +142,4 @@ Login.propTypes = {
     login: PropTypes.func.isRequired
 }
 
-export default Login
+export default hot(module)(Login)
