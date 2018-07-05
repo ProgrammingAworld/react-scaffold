@@ -150,7 +150,6 @@ const cssLoaderUse = function (loaders) {
         if (loader === 'sass-resources-loader') {
             options = {
                 resources: [
-                    path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_compass.scss'),
                     path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_animate.scss'),
                     path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_lemonade.scss'),
                     path.join(APP_PATH, 'css/common/variables.scss'),
