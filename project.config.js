@@ -152,8 +152,8 @@ const cssLoaderUse = function (loaders) {
                 resources: [
                     path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_animate.scss'),
                     path.join(ROOT_PATH, 'node_modules/compass-mixins/lib/_lemonade.scss'),
-                    path.join(APP_PATH, 'css/common/variables.scss'),
-                    path.join(APP_PATH, 'css/common/mixins/common.scss')
+                    path.join(APP_PATH, 'css/common/_variables.scss'),
+                    path.join(APP_PATH, 'css/common/mixins/_mixins.scss')
                 ]
             }
         }
