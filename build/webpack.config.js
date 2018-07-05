@@ -9,7 +9,7 @@ const {
 } = config
 
 const cssLoaders = [
-    'style-loader', 'css-loader', 'postcss-loader', 'sass-loader', 'sass-resources-loader'
+    'css-loader', 'postcss-loader', 'sass-loader', 'sass-resources-loader'
 ]
 
 const baseconfig = {
@@ -31,7 +31,7 @@ const baseconfig = {
             {
                 test: /\.(scss|sass|css)$/,
                 include: APP_PATH,
-                use: !isProd ? cssLoaderUse(cssLoaders) : ExtractTextPlugin.extract({
+                use: !isProd ? cssLoaderUse(['style-loader'].concat(cssLoaders)) : ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: cssLoaderUse(cssLoaders)
                 })
