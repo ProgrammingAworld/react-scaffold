@@ -3,7 +3,7 @@
  * 作者：安超
  * 日期： 2018/4/24
  */
-import { hot } from 'react-hot-loader'
+
 import { React, PropTypes } from 'framework/Util'
 import config from 'conf'
 import classNames from 'classnames/bind'
@@ -72,4 +72,4 @@ Footer.propTypes = {
     setFilter: PropTypes.func.isRequired
 }
 
-export default hot(module)(Footer)
+export default Footer

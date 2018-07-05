@@ -1,7 +1,6 @@
 /**
  * Created by anchao on 2016/6/30.
  */
-import { hot } from 'react-hot-loader'
 import { React, PropTypes } from 'framework/Util'
 import enhanceWithClickOutside from 'react-click-outside'
 import ReactComponentBase from 'base/ReactComponentBase'
@@ -111,4 +110,4 @@ TodoSingle.propTypes = {
     onUpdateTodo: PropTypes.func.isRequired
 }
 
-export default hot(module)(enhanceWithClickOutside(TodoSingle))
+export default enhanceWithClickOutside(TodoSingle)

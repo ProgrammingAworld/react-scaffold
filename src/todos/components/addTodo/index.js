@@ -4,7 +4,6 @@
  * 日期： 2018/4/24
  */
 
-import { hot } from 'react-hot-loader'
 import { React, PropTypes } from 'framework/Util'
 import dialog from 'dialog'
 import './scss/index.scss'
@@ -43,4 +42,4 @@ AddTodo.propTypes = {
     addTodo: PropTypes.func.isRequired
 }
 
-export default hot(module)(AddTodo)
+export default AddTodo

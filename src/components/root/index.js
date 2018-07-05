@@ -5,8 +5,7 @@ import {
     React,
     Route,
     Redirect,
-    Switch,
-    hot
+    Switch
 } from 'framework/Util'
 import config from 'conf'
 import Dialog from 'framework/dialog/container'
@@ -29,4 +28,4 @@ const RootRoutesView = function (){
     )
 }
 
-export default hot(module)(RootRoutesView)
+export default RootRoutesView

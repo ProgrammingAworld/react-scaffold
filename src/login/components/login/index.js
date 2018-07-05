@@ -4,9 +4,8 @@
  * 日期：2018/7/4
  */
 
-import { hot } from 'react-hot-loader'
 import config from 'conf'
-import { React, PropTypes } from 'framework/Util'
+import { React, PropTypes, hot } from 'framework/Util'
 import classNames from 'classnames/bind'
 import ReactComponentBase from 'base/ReactComponentBase'
 import particlesJS from 'plugins/particles'
