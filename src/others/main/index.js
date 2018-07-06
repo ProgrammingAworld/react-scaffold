@@ -32,6 +32,14 @@ const ComponentMain = function (props) {
                             antd
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink
+                            to={config.url.app.drag.path}
+                            activeClassName="active"
+                        >
+                            拖拽
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
             <div className="pull-right">
@@ -43,6 +51,10 @@ const ComponentMain = function (props) {
                     <Route
                         path={config.url.app.antd.path}
                         component={config.url.app.antd.component}
+                    />
+                    <Route
+                        path={config.url.app.drag.path}
+                        component={config.url.app.drag.component}
                     />
                     <Route
                         path={url}

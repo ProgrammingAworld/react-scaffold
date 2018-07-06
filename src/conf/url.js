@@ -1,6 +1,6 @@
 import {
     LoginView, MainAppView, TodoMainView, ComponentMainView,
-    ValidateView, AntdView, NotFindView
+    ValidateView, AntdView, DragView, NotFindView
 } from './lazycomponents'
 
 const url = {
@@ -29,7 +29,11 @@ const url = {
         antd: {
             path: '/app/others/antd',
             component: AntdView
-        }
+        },
+        drag: {
+            path: '/app/others/drag',
+            component: DragView
+        },
     },
     notFind: NotFindView
 }
