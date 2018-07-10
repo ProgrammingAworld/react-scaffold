@@ -106,7 +106,7 @@ class Login extends ReactComponentBase {
                             />{errorMsg}
                             </div>
                             <div className="clearfix" />
-                            <button className="login_button pull-right" onClick={this.login}>
+                            <button type="button" className="login_button pull-right" onClick={this.login}>
                                 登录
                             </button>
                             <div className="clearfix" />

@@ -56,6 +56,7 @@ const Footer = function ({
             </ul>
             <button
                 id="clear-completed"
+                type="button"
                 className={completedCls}
                 onClick={clearCompletedTodo}
             >Clear completed

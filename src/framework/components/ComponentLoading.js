@@ -14,11 +14,14 @@ export default function Loading(props) {
     if (isLoading) {
         if (timedOut) {
             return <div>Loader timed out!</div>
-        } else if (pastDelay) {
+        }
+
+        if (pastDelay) {
             return <div className="loadingdiv"><div><i className="fa fa-spinner fa-pulse fa-3x fa-fw" /></div></div>
-        } 
+        }
+
         return null
-    } else if (error) {
+    } if (error) {
         console.log(error)
         return <div>Error! Component failed to load</div>
     } 
@@ -34,4 +37,3 @@ Loading.propTypes = {
     timedOut: PropTypes.bool.isRequired,
     error: PropTypes.object
 }
-

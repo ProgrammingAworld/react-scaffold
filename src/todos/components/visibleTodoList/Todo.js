@@ -10,9 +10,10 @@ import dialog from 'dialog'
 class TodoSingle extends ReactComponentBase {
     constructor(props) {
         super(props)
-        
+        const { data } = props
+
         this.state = {
-            data: props.data,
+            data,
             hideDelIcon: true,
             hideEditInput: true
         }
@@ -91,7 +92,7 @@ class TodoSingle extends ReactComponentBase {
                         onChange={e => this.todoUpdate(e, 'completed')}
                     />
                     <div className={classNames('normal', { completed: data.get('completed') })}>{data.get('text')}</div>
-                    <button className={classNames('destroy', { hide: hideDelIcon })} onClick={this.todoRemove} />
+                    <button type="button" className={classNames('destroy', { hide: hideDelIcon })} onClick={this.todoRemove} />
                 </div>
                 <input
                     className={classNames('edit', { hide: hideEditInput })}

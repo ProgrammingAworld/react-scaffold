@@ -9,9 +9,7 @@ import {
 import config from 'conf'
 import './scss/index.scss'
 
-const ComponentMain = function (props) {
-    const { url } = props.match
-    
+const ComponentMain = function ({ match: { url } }) {
     return (
         <div className="componentmain clearfix">
             <div className="pull-left">

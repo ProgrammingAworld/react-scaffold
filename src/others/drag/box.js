@@ -29,8 +29,8 @@ class Box extends ReactComponentBase{
             top, left, connectDragSource, isDragging 
         } = this.props
         if (isDragging) return null
-        return connectDragSource &&
-            connectDragSource(<div className="box-drag" style={{ top, left }} />)
+        return connectDragSource
+            && connectDragSource(<div className="box-drag" style={{ top, left }} />)
     }
 }
 

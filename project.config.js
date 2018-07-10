@@ -291,7 +291,7 @@ const devServer = {
     clientLogLevel: 'none',
     host: ip,
     port,
-    open: false,
+    open: true,
     openPage: '',
     hot: true,
     inline: false,

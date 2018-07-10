@@ -94,6 +94,8 @@ module.exports = {
         'no-var': 'error',
         // 如果一个变量不会被重新赋值，则使用const声明
         'prefer-const': 'error',
+        // 关闭强制在花括号内使用一致的换行符
+        'object-curly-newline': 'off',
 
         // React 参考eslint-config-airbnb下的rules/react.js
         // jsx代码使用4个空格的缩进风格
@@ -106,12 +108,16 @@ module.exports = {
         'react/no-array-index-key': 'off',
         // 组件属性可以传any,array,object
         'react/forbid-prop-types': 'off',
+        // 组件内部换行
+        'react/jsx-one-expression-per-line': 'off',
         // 链接地址中可以使用 javascript:
         'no-script-url': 'off',
         // 关闭点击元素上强制增加onKey**事件
         'click-events-have-key-events': 'off',
         // 关闭引用依赖检查
         'import/no-extraneous-dependencies': 'off',
+        // 关闭路径处理依赖
+        'import/no-cycle': 'off',
         // 扩展名处理
         'import/extensions': ['error', {
             'js': 'never',

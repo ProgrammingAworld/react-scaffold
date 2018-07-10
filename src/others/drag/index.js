@@ -58,8 +58,8 @@ class DragView extends ReactComponentBase{
             </div>
         )
 
-        return connectDropTarget &&
-            connectDropTarget(HTML)
+        return connectDropTarget
+            && connectDropTarget(HTML)
     }
 }
 
