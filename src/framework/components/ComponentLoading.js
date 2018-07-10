@@ -21,10 +21,13 @@ export default function Loading(props) {
         }
 
         return null
-    } if (error) {
+    }
+
+    if (error) {
         console.log(error)
         return <div>Error! Component failed to load</div>
-    } 
+    }
+
     return null
 }
 Loading.defaultProps = {

@@ -241,7 +241,7 @@ let plugins = [
     new HtmlWebpackPlugin({
         template: path.join(APP_PATH, 'index.html'),
         title: '示例工程',
-        description: '这是一个示例产品工程',
+        description: '这是一个示例工程',
         filename: 'index.html',
         favicon: 'src/images/favicon.ico',
         inject: 'body',

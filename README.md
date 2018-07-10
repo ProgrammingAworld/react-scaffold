@@ -34,6 +34,19 @@ npm install package_name --dev-save
 npm run start
 npm run server
 ```
+## js规范
+```
+采用国际通用规范airbnb,
+采用eslint对js代码自动校验纠错
+规范参考文档：https://github.com/airbnb/javascript
+```
+## scss规范
+```
+采用国际通用规范recommended-scss
+采用stylelint对scss代码自动校验纠错
+规范参考文档：https://stylelint.io/user-guide/rules/
+```
+
 ## 提交规范
 ```
 格式：<type>(<scope>): <subject>

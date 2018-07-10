@@ -5,7 +5,7 @@
  */
 
 import config from 'conf'
-import { React, PropTypes, hot } from 'framework/Util'
+import { React, PropTypes } from 'framework/Util'
 import classNames from 'classnames/bind'
 import ReactComponentBase from 'base/ReactComponentBase'
 import particlesJS from 'plugins/particles'
@@ -141,4 +141,4 @@ Login.propTypes = {
     login: PropTypes.func.isRequired
 }
 
-export default hot(module)(Login)
+export default Login
