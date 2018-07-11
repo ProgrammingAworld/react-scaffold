@@ -39,12 +39,32 @@ npm run server
 采用国际通用规范airbnb,
 采用eslint对js代码自动校验纠错
 规范参考文档：https://github.com/airbnb/javascript
+
+actionType规范：
+1. 动作名_模块名（例如：SET_USER_INFO_LOGIN）
+2. 每个模块独立声明自己的action名称
 ```
 ## scss规范
 ```
 采用国际通用规范recommended-scss
 采用stylelint对scss代码自动校验纠错
 规范参考文档：https://stylelint.io/user-guide/rules/
+
+模块内scss规范：
+1. 组件根样式命名：功能_模块名（例如：.footer-todos）
+2. 所有组件内部不能使用id，只能使用class
+3. 基于react组件单根的特点，所以组件内样式也采用单根形式
+.footer-todos {
+  height: 20px;
+  display: block;
+  
+  .filters{
+     font-size: 14px;
+  }  
+  .clear-completed{
+    overflow: hidden;
+  }
+}
 ```
 
 ## 提交规范

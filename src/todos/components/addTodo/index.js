@@ -30,7 +30,7 @@ function AddTodo({ addTodo }) {
         <header className="header">
             <h1>todos</h1>
             <input
-                className="newtodo"
+                className="newtodo-todos"
                 placeholder="What needs to be done?"
                 onKeyDown={addTodoEv}
             />

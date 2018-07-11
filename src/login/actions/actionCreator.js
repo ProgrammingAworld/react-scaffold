@@ -14,9 +14,9 @@ const actionCreator = createActions({
     },
     getUserInfo: {
         url: '/api/getUserInfo',
-        actionType: actionTypes.SET_USER_INFO
+        actionType: actionTypes.SET_USER_INFO_LOGIN
     },
-    setUserInfo: createAction(actionTypes.SET_USER_INFO)
+    setUserInfo: createAction(actionTypes.SET_USER_INFO_LOGIN)
 })
 
 export default actionCreator

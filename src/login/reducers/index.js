@@ -10,7 +10,7 @@ const inintialState = {
 }
 
 const loginReducer = handleActions({
-    [actionTypes.SET_USER_INFO]: {
+    [actionTypes.SET_USER_INFO_LOGIN]: {
         success: (state, action) => {
             const { username, userType } = action.payload
             return {

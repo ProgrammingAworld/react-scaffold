@@ -1,10 +1,10 @@
-#particles-js {
-  @include size(100%, 100%);
-}
-
-.login {
+.login-login {
   background: $login-bg-color;
   height: 100%;
+
+  #particles-js-login {
+    @include size(100%, 100%);
+  }
 
   .loginmain {
     @include size(500px, 316px);

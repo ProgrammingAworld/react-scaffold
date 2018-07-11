@@ -11,7 +11,7 @@ import './scss/index.scss'
 
 const ComponentMain = function ({ match: { url } }) {
     return (
-        <div className="componentmain clearfix">
+        <div className="componentmain-others clearfix">
             <div className="pull-left">
                 <ul className="list-unstyled">
                     <li>

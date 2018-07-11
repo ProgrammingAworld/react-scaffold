@@ -22,14 +22,14 @@ class VisibleTodoList extends ReactComponentBase {
         const bCheckedAll = todos.filter(item => item.get('completed')).size === todos.size
         
         return (
-            <section className="main">
+            <section className="main-todos">
                 <input
-                    id="toggle-all"
+                    className="toggle-all"
                     type="checkbox"
                     checked={bCheckedAll}
                     onChange={() => checkedAllTodo(!bCheckedAll)}
                 />
-                <ul id="todo-list" className="list-unstyled">
+                <ul className="todo-list list-unstyled">
                     {
                         todos.size === 0 && <li><div className="view text-center">没有数据！</div></li>
                     }

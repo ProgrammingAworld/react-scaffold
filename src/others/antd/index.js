@@ -43,7 +43,7 @@ class Index extends ReactComponentBase {
         const { selectedRowKeys } = this.state;
 
         return (
-            <div className="antd-main">
+            <div className="antd-main-others">
                 <Table
                     onRow={record => ({
                         onClick: () => {

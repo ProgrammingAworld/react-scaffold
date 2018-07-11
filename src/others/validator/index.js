@@ -3,7 +3,7 @@ import './scss/index.scss'
 
 function Validator() {
     return (
-        <div>
+        <div className="validatormain-others">
             验证组件
         </div>
     )

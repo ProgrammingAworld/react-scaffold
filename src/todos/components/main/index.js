@@ -9,7 +9,7 @@ import './scss/index.scss'
 
 const TodoMain = function () {
     return (
-        <div className="todomain">
+        <div className="todomain-todos">
             <AddTodoView />
             <TodoListView />
             <FooterView />

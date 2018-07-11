@@ -39,23 +39,22 @@ const Footer = function ({
     }
     
     const nCompletedCount = todos.filter(oTodo => !oTodo.get('completed')).size
-    const completedCls = classNames('pull-right', { hide: todos.size - nCompletedCount <= 0 })
+    const completedCls = classNames('pull-right', 'clear-completed', { hide: todos.size - nCompletedCount <= 0 })
     
     return (
-        <footer id="footer" className={classNames({ hide: todos.size === 0 })}>
+        <footer className={classNames('footer-todos', { hide: todos.size === 0 })}>
             <div
                 id="todo-count"
                 className="pull-left"
             >
                 <strong>{nCompletedCount}</strong> items left
             </div>
-            <ul id="filters" className="list-unstyled list-inline">
+            <ul className="filters list-unstyled list-inline">
                 {onRenderLi(constant.VisibilityFilters.SHOW_ALL, 'All')}
                 {onRenderLi(constant.VisibilityFilters.SHOW_ACTIVE, 'Active')}
                 {onRenderLi(constant.VisibilityFilters.SHOW_COMPLETED, 'Completed')}
             </ul>
             <button
-                id="clear-completed"
                 type="button"
                 className={completedCls}
                 onClick={clearCompletedTodo}

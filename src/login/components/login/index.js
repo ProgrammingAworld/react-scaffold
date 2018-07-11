@@ -59,13 +59,14 @@ class Login extends ReactComponentBase {
         this.setError('')
         
         // 登录检验
-        this.props.login({ data: { username, pwd, type } }).then((res) => {
-            if (res.statusCode === 200) {
-                this.gotoUrl(config.url.app.root.path)
-            } else {
-                this.setError(res.message)
-            }
-        })
+        this.props.login({ data: { username, pwd, type } })
+            .then((res) => {
+                if (res.statusCode === 200) {
+                    this.gotoUrl(config.url.app.root.path)
+                } else {
+                    this.setError(res.message)
+                }
+            })
     }
     
     gotoUrl = (url) => {
@@ -78,7 +79,7 @@ class Login extends ReactComponentBase {
         
         return (
             <div id="chief">
-                <div className="login">
+                <div className="login-login">
                     <div id="particles-js" />
                     <div className="loginmain">
                         <div className="input-group">
