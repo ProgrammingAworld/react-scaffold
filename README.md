@@ -51,9 +51,10 @@ actionType规范：
 规范参考文档：https://stylelint.io/user-guide/rules/
 
 模块内scss规范：
-1. 组件根样式命名：功能_模块名（例如：.footer-todos）
+1. 组件根样式命名：功能-模块名（例如：.footer-todos）
 2. 所有组件内部不能使用id，只能使用class
-3. 基于react组件单根的特点，所以组件内样式也采用单根形式
+3. 工程集成了compass，充分使用compass提供的所有功能！！
+4. 基于react组件单根的特点，所以组件内样式也采用单根形式
 .footer-todos {
   height: 20px;
   display: block;
