@@ -294,7 +294,7 @@ const devServer = {
     open: true,
     openPage: '',
     hot: true,
-    inline: false,
+    inline: true,
     compress: true,
     stats: {
         colors: true,
