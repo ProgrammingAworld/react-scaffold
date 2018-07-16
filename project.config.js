@@ -219,6 +219,8 @@ let plugins = [
         __DEBUG__: !isProd,
         'process.env.NODE_ENV': isProd ? production.env.NODE_ENV : development.env.NODE_ENV
     }),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NamedModulesPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
         names: [
             'vendor', 'runtime'
@@ -257,9 +259,7 @@ let plugins = [
 if (isProd) {
     plugins = plugins.concat([
         new webpack.HashedModuleIdsPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.optimize.ModuleConcatenationPlugin(),
-        new webpack.NamedModulesPlugin(),
         new ExtractTextPlugin({
             filename: 'static/css/[name].[contenthash:10].css',
             disable: false,
