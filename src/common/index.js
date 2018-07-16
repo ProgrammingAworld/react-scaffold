@@ -1,9 +1,10 @@
 /**
- * Created by Anchao on 2015/8/3.
+ * 功能： 业务工具类
+ * 作者： 安超
+ * 日期： 2018/7/11
  */
 
-// 业务工具类
-class Tools {
+class Helper {
     static getHash() {
         return window.location.hash
     }
@@ -193,4 +194,4 @@ class Tools {
     }
 }
 
-export default Tools
+export default Helper

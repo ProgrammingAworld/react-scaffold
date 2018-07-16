@@ -12,7 +12,7 @@ import store from 'framework/store'
 import RootRoutesView from 'root/components/root'
 
 // 初始化工程
-const projectInit = function (oContainer) {
+const projectInit = function (oContainer, callback = () => {}) {
     const history = createHistory()
 
     ReactDOM.render(
@@ -21,7 +21,8 @@ const projectInit = function (oContainer) {
                 <RootRoutesView />
             </Router>
         </Provider>,
-        oContainer
+        oContainer,
+        callback
     )
 }
 

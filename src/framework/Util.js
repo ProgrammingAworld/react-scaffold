@@ -23,7 +23,7 @@ import {
 } from 'react-router-dom'
 import { createSelector } from 'reselect'
 import { AppContainer, hot } from 'react-hot-loader'
-import Tools from './Tools'
+import Helper from 'root/common'
 
 const noop = function () {}
 
@@ -31,7 +31,7 @@ const EmptyComponent = () => null
 
 export {
     axios,
-    Tools,
+    Helper,
     React,
     ReactDOM,
     PropTypes,
