@@ -229,8 +229,8 @@ let plugins = [
     }),
     new CopyWebpackPlugin([
         {
-            from: 'src/manifest.json',
-            to: 'manifest.json'
+            from: 'src/project-init.js',
+            to: 'static/scripts/project-init.js'
         }
     ]),
     new StyleLintPlugin({
