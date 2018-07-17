@@ -1,6 +1,6 @@
 ## 配置须知
 
-环境依赖：
+#### 环境依赖：
 
 - `node`
 - `ruby`
@@ -34,6 +34,15 @@ npm install package_name --dev-save
 npm run start
 npm run server
 ```
+## 规定
+```bash
+1. reducer中initialState各项含义必须注释说明
+2. 工具类中各方法的使用必须注释清楚
+3. 弹窗的交互数据全部写在组件内部，禁止保存在store内
+4. 公共弹窗dialog.open的content中写入弹窗的操作的按钮（如：确定、取消）
+5. 公共弹窗dialog支持open/confirm/alert/hide等方法，具体用法参考：framework/dialog/index.js
+```
+
 ## js规范
 ```
 采用国际通用规范airbnb,
