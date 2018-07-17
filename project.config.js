@@ -89,10 +89,10 @@ const output = (function () {
         path: path.join(ROOT_PATH, 'dev'),
         publicPath: '/',
         filename: 'static/scripts/[name].js',
-        chunkFilename: 'static/scripts/[name].js',
-        sourceMapFilename: '[file].map',
-        hotUpdateChunkFilename: 'hot/hot-update.js',
-        hotUpdateMainFilename: 'hot/hot-update.json'
+        // chunkFilename: 'static/scripts/[name].js',
+        // sourceMapFilename: '[file].map',
+        // hotUpdateChunkFilename: 'hot/hot-update.js',
+        // hotUpdateMainFilename: 'hot/hot-update.json'
     }
 
     if (isProd) {
@@ -295,7 +295,7 @@ const devServer = {
     openPage: '',
     hot: true,
     inline: true,
-    compress: true,
+    compress: false,
     stats: {
         colors: true,
         errors: true,
