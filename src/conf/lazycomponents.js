@@ -6,11 +6,11 @@
 
 import { lazyload } from 'framework'
 
-export const LoginView = lazyload(import('root/login/container'))
-export const MainAppView = lazyload(import('root/container/app'))
-export const TodoMainView = lazyload(import('root/todos/components/main'))
-export const ComponentMainView = lazyload(import('root/others/main'))
-export const ValidateView = lazyload(import('root/others/validator'))
-export const AntdView = lazyload(import('root/others/antd'))
-export const DragView = lazyload(import('root/others/drag'))
-export const NotFindView = lazyload(import('root/components/error'))
+export const LoginView = lazyload(import('@/login/container'))
+export const MainAppView = lazyload(import('@/container/app'))
+export const TodoMainView = lazyload(import('@/todos/components/main'))
+export const ComponentMainView = lazyload(import('@/others/main'))
+export const ValidateView = lazyload(import('@/others/validator'))
+export const AntdView = lazyload(import('@/others/antd'))
+export const DragView = lazyload(import('@/others/drag'))
+export const NotFindView = lazyload(import('@/components/error'))

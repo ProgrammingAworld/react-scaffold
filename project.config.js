@@ -343,7 +343,7 @@ module.exports = {
             'node_modules'
         ],
         alias: {
-            root: APP_PATH,
+            '@': APP_PATH,
             base: path.join(APP_PATH, 'framework/base'),
             framework: path.join(APP_PATH, 'framework'),
             conf: path.join(APP_PATH, 'conf'),

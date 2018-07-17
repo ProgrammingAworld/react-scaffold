@@ -5,7 +5,7 @@ import {
     createSelector,
     connect
 } from 'framework/Util'
-import actionCreator from 'root/login/actions/actionCreator'
+import actionCreator from '@/login/actions/actionCreator'
 import App from '../../components/app'
 
 const userInfo = state => state.login

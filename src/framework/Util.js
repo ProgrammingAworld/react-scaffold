@@ -23,7 +23,7 @@ import {
 } from 'react-router-dom'
 import { createSelector } from 'reselect'
 import { AppContainer, hot } from 'react-hot-loader'
-import Helper from 'root/common'
+import Helper from '@/common'
 
 const noop = function () {}
 
