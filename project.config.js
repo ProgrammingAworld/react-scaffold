@@ -42,7 +42,6 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const entry = (function () {
     let app = [
-        'react-hot-loader/patch',
         `webpack-dev-server/client?http://${ip}:${port}`,
         'webpack/hot/only-dev-server',
         './src/index.js'
