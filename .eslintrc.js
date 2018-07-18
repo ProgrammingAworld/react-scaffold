@@ -1,38 +1,38 @@
 /*eslint-disable*/
 module.exports = {
-    'root': true,
-    'extends': 'airbnb',
-    'parser': 'babel-eslint',
-    'parserOptions': {
-        'sourceType': 'module',
-        'allowImportExportEverywhere': true,
-        'ecmaVersion': 9,
-        'ecmaFeatures': {
-            'jsx': true,
-            'experimentalObjectRestSpread': true
+    root: true,
+    extends: 'airbnb',
+    parserOptions: {
+        parser: 'babel-eslint',
+        sourceType: 'module',
+        allowImportExportEverywhere: true,
+        ecmaVersion: 9,
+        ecmaFeatures: {
+            jsx: true,
+            experimentalObjectRestSpread: true
         }
     },
-    'env': {
-        'browser': true,
-        'node': true,
-        'es6': true,
-        'embertest': true
+    env: {
+        browser: true,
+        node: true,
+        es6: true,
+        embertest: true
     },
-    'settings': {
+    settings: {
         'import/resolver': {
-            'webpack': {
+            webpack: {
                 config: './build/webpack.config.js'
             },
         }
     },
-    'plugins': [
+    plugins: [
         'react',
         'jsdoc'
     ],
-    'globals': {
-        'domain': true
+    globals: {
+        domain: true
     },
-    'rules': {
+    rules: {
         // 句尾分号可以省略
         'semi': 'off',
         // 代码中console/debugger处理
