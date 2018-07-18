@@ -13,19 +13,7 @@ import reducers from 'conf/reducers'
 
 // state日志
 const logger = createLogger({
-    stateTransformer: (state) => {
-        const newState = {}
-        
-        for (const i of Object.keys(state)) {
-            if (Immutable.Iterable.isIterable(state[i])) {
-                newState[i] = state[i].toJS()
-            } else {
-                newState[i] = state[i]
-            }
-        }
-        
-        return newState
-    }
+    stateTransformer: state => Immutable.fromJS(state).toJS()
 })
 
 const store = createStore(
