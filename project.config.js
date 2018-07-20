@@ -113,7 +113,7 @@ const jsxLoader = [
         loader: 'eslint-loader',
         enforce: 'pre',
         options: {
-            cache: true,
+            // cache: true,
             formatter: require('eslint-friendly-formatter')
         }
     },
@@ -122,7 +122,7 @@ const jsxLoader = [
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-            cacheDirectory: true,
+            // cacheDirectory: true,
             presets: ['env', 'stage-0', 'react'],
             plugins: [
                 'react-hot-loader/babel',
