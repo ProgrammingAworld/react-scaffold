@@ -13,6 +13,7 @@ const ip = require('ip').address().toString()
 const port = 3333
 const ROOT_PATH = path.resolve(__dirname, './')
 const APP_PATH = path.resolve(ROOT_PATH, 'src')
+const projectEnName = 'example'
 
 const development = {
     env: { NODE_ENV: JSON.stringify('development') },
@@ -46,11 +47,11 @@ const entry = (function () {
         'webpack/hot/only-dev-server',
         './src/index.js'
     ]
-
+    
     if (isProd) {
         app = './src/index.js'
     }
-
+    
     return {
         app,
         vendor: [
@@ -87,22 +88,22 @@ const output = (function () {
     let obj = {
         path: path.join(ROOT_PATH, 'dev'),
         publicPath: '/',
-        filename: 'static/scripts/[name].js',
+        filename: `static/scripts/${projectEnName}-[name].js`,
         // chunkFilename: 'static/scripts/[name].js',
         // sourceMapFilename: '[file].map',
         // hotUpdateChunkFilename: 'hot/hot-update.js',
         // hotUpdateMainFilename: 'hot/hot-update.json'
     }
-
+    
     if (isProd) {
         obj = {
             path: path.join(ROOT_PATH, 'dist'),
             publicPath: '/',
-            filename: 'static/scripts/[name].[chunkhash:10].js',
-            chunkFilename: 'static/scripts/[name].[chunkhash:10].js'
+            filename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
+            chunkFilename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`
         }
     }
-
+    
     return obj
 }())
 const jsxLoader = [
@@ -135,7 +136,7 @@ const cssLoaderUse = function (loaders) {
     const defaultOpt = { sourceMap: !isProd }
     return loaders.map((loader) => {
         let options = defaultOpt
-
+        
         if (loader === 'sass-loader') {
             options = isProd ? {
                 outputStyle: 'expanded'
@@ -145,7 +146,7 @@ const cssLoaderUse = function (loaders) {
                 sourceMap: true
             }
         }
-
+        
         if (loader === 'sass-resources-loader') {
             options = {
                 resources: [
@@ -156,7 +157,7 @@ const cssLoaderUse = function (loaders) {
                 ]
             }
         }
-
+        
         return {
             loader,
             options
@@ -175,7 +176,7 @@ const imgLoader = (function () {
         loader: 'url-loader',
         options: {
             limit: 10000,
-            name: `static/images/[name]${isProd ? '.[hash:10]' : ''}.[ext]`,
+            name: 'static/images/[name].[ext]',
             mimetype: item.mimetype
         }
     }))
@@ -194,7 +195,7 @@ const fontLoader = (function () {
         loader: 'url-loader',
         options: {
             limit: 10000,
-            name: `static/fonts/[name]${isProd ? '.[hash:10]' : ''}.[ext]`,
+            name: 'static/fonts/[name].[ext]',
             mimetype: item.mimetype
         }
     }))
@@ -204,7 +205,7 @@ const mediaLoader = {
     loader: 'url-loader',
     options: {
         limit: 10000,
-        name: `static/media/[name]${isProd ? '.[hash:10]' : ''}.[ext]`,
+        name: 'static/media/[name].[ext]'
     }
 }
 const injectionLoader = {
@@ -218,19 +219,17 @@ let plugins = [
         __DEBUG__: !isProd,
         'process.env.NODE_ENV': isProd ? production.env.NODE_ENV : development.env.NODE_ENV
     }),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
         names: [
             'vendor', 'runtime'
         ],
-        filename: `static/scripts/[name]${isProd ? '.[chunkhash:10]' : ''}.js`,
+        filename: `static/scripts/${projectEnName}-[name]${isProd ? '-[chunkhash:10]' : ''}.js`,
         minChunks: Infinity
     }),
     new CopyWebpackPlugin([
         {
-            from: 'src/project-init.js',
-            to: 'static/scripts/project-init.js'
+            from: 'src/project-conf.js',
+            to: 'static/scripts/project-conf.js'
         }
     ]),
     new StyleLintPlugin({
@@ -241,13 +240,11 @@ let plugins = [
     }),
     new HtmlWebpackPlugin({
         template: path.join(APP_PATH, 'index.html'),
-        title: '示例工程',
+        title: 'example',
         description: '这是一个示例工程',
         filename: 'index.html',
         favicon: 'src/images/favicon.ico',
-        inject: 'body',
-        chunks: ['runtime', 'vendor', 'app'],
-        chunksSortMode: 'manual',
+        inject: true,
         minify: {
             removeComments: true
         },
@@ -258,9 +255,11 @@ let plugins = [
 if (isProd) {
     plugins = plugins.concat([
         new webpack.HashedModuleIdsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.optimize.ModuleConcatenationPlugin(),
+        new webpack.NamedModulesPlugin(),
         new ExtractTextPlugin({
-            filename: 'static/css/[name].[contenthash:10].css',
+            filename: `static/css/${projectEnName}-[name]-[contenthash:10].css`,
             disable: false,
             allChunks: true
         }),
@@ -275,12 +274,12 @@ if (isProd) {
 }
 
 const proxies = [{
-    target: `http://${ip}`,
-    proxyPort: 3003,
+    target: 'http://172.17.1.220',
+    proxyPort: 80,
     headers: {
         host: '',
     },
-    paths: ['/api']
+    paths: ['/tuning', '/litemind']
 }]
 
 const devServer = {
@@ -294,7 +293,7 @@ const devServer = {
     // openPage: 'index.html',
     hot: true,
     inline: true,
-    compress: false,
+    compress: true,
     stats: {
         colors: true,
         errors: true,
@@ -311,7 +310,7 @@ const devServer = {
                 obj[apiPath] = origin
             })
         })
-
+        
         return obj
     }())
 }
