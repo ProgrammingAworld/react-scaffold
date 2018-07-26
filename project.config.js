@@ -274,12 +274,12 @@ if (isProd) {
 }
 
 const proxies = [{
-    target: 'http://172.17.1.220',
-    proxyPort: 80,
+    target: `http://${ip}`,
+    proxyPort: 3003,
     headers: {
         host: '',
     },
-    paths: ['/tuning', '/litemind']
+    paths: ['/api']
 }]
 
 const devServer = {

@@ -16,7 +16,7 @@ class App extends ReactComponentBase {
     constructor(props){
         super(props)
         this.state = {
-            loadedUseInfo: false
+            loadedUserInfo: false
         }
     }
 
@@ -24,16 +24,16 @@ class App extends ReactComponentBase {
         this.props.getUserInfo()
             .then(() => {
                 this.setState({
-                    loadedUseInfo: true
+                    loadedUserInfo: true
                 })
             })
     }
 
     render() {
         const { match: { url }, username, logout } = this.props
-        const { loadedUseInfo } = this.state
+        const { loadedUserInfo } = this.state
 
-        if (loadedUseInfo) {
+        if (loadedUserInfo) {
             if (username.length === 0) {
                 return <Redirect to={config.url.login.path} />
             }

@@ -15,6 +15,10 @@ html, body {
   overflow: hidden;
 }
 
+input, button{
+  box-sizing: border-box;
+}
+
 .center-block {
   display: block;
   margin-right: auto;
@@ -57,9 +61,16 @@ html, body {
   position: fixed
 }
 
-.clearfix:after, .clearfix:before {
+.clearfix {
+  zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  content: "";
   display: table;
-  content: " "
+}
+.clearfix:after {
+  clear: both;
 }
 
 .lead {
