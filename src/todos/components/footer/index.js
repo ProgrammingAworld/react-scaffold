@@ -47,7 +47,7 @@ const Footer = function ({
                 id="todo-count"
                 className="pull-left"
             >
-                <strong>{nCompletedCount}</strong> items left
+                <strong>{todos.size}</strong> items left
             </div>
             <ul className="filters list-unstyled list-inline">
                 {onRenderLi(constant.VisibilityFilters.SHOW_ALL, 'All')}

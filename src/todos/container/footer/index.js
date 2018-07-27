@@ -5,10 +5,11 @@
 import { connect, createSelector } from 'framework/Util'
 import actionCreator from '../../actions/actionCreator'
 import Footer from '../../components/footer'
+import Utils from '../../utils'
 
 const todosSelector = state => state.todos
 const todosByFilterSelector = createSelector([todosSelector], oTodos => ({
-    todos: oTodos.todoList.list,
+    todos: Utils.selectByFilter(oTodos.todoList.list, oTodos.todoFilter),
     todoFilter: oTodos.todoFilter
 }))
 
