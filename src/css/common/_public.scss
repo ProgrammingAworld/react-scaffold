@@ -15,7 +15,10 @@ html, body {
   overflow: hidden;
 }
 
-input, button{
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
