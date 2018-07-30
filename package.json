@@ -2,7 +2,7 @@
   "name": "acFrontEnd",
   "version": "3.1.0",
   "description": "ac frontEnd solution",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "commitmsg": "commitlint -E GIT_PARAMS",
     "precommit": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit",

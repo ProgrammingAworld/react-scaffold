@@ -10,6 +10,7 @@
 
 html, body {
   font-family: $font-family;
+  font-size: 14px;
   background-color: $white;
   height: 100%;
   overflow: hidden;
@@ -254,7 +255,14 @@ dt {
 dd {
   margin-left: 0
 }
-
+::-moz-selection {
+  background: #1890ff;
+  color: #fff;
+}
+::selection {
+  background: #1890ff;
+  color: #fff;
+}
 /* loading 样式*/
 .loadingdiv {
   color: $main-blue-color;
@@ -301,7 +309,7 @@ dd {
 #container {
   @include size(100%, 100%);
   min-width: 1000px;
-  background: repeating-linear-gradient(rgba(244, 244, 244, 0.1), rgba(244, 244, 244, 0.1) 5px, transparent 6px, transparent 73px, rgba(244, 244, 244,0.1) 74px);
+  background: repeating-linear-gradient(rgba(244, 244, 244, 0.1), rgba(244, 244, 244, 0.1) 5px, transparent 6px, transparent 73px, rgba(244, 244, 244, 0.1) 74px);
   .containerchild {
     @include size(100%, 100%);
     .hasmain {
@@ -312,7 +320,7 @@ dd {
 
 #chief {
   @include size(100%, 100%);
-  background: repeating-linear-gradient(90deg, rgba(244, 244, 244,0.1), rgba(244, 244, 244,0.1) 5px, transparent 6px, transparent 73px, rgba(244, 244, 244,0.1) 74px);
+  background: repeating-linear-gradient(90deg, rgba(244, 244, 244, 0.1), rgba(244, 244, 244, 0.1) 5px, transparent 6px, transparent 73px, rgba(244, 244, 244, 0.1) 74px);
   position: relative;
   overflow: hidden;
 }
