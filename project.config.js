@@ -213,8 +213,9 @@ const injectionLoader = {
     loader: `imports-loader?domain=>
                 ${isProd ? JSON.stringify(production.domain) : JSON.stringify(development.domain)}`
 }
+const destDir = isProd ? 'dist' : 'dev'
 let plugins = [
-    new CleanWebpackPlugin([isProd ? 'dist' : 'dev'], { root: ROOT_PATH }),
+    new CleanWebpackPlugin([destDir], { root: ROOT_PATH }),
     new webpack.DefinePlugin({
         __DEBUG__: !isProd,
         'process.env.NODE_ENV': isProd ? production.env.NODE_ENV : development.env.NODE_ENV
@@ -230,6 +231,10 @@ let plugins = [
         {
             from: 'src/project-conf.js',
             to: 'static/scripts/project-conf.js'
+        },
+        {
+            from: `${__dirname}/src/images`,
+            to: `${__dirname}/${destDir}/static/images`
         }
     ]),
     new StyleLintPlugin({
