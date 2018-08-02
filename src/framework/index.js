@@ -85,8 +85,7 @@ const createActions = function (actionMap) {
                 // const dialog = require('dialog').default
 
                 if ((config.hasLoading || config.hasLoading === undefined) && !loading.getLoadingStatus()) loading.show()
-
-                dispatch(createAction(`${config.actionType}_PRE`)())
+                dispatch(createAction(`${config.actionType}_PRE`)(settings))
                 return handleWithParameter(
                     config.url,
                     {

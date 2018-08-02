@@ -42,6 +42,10 @@ const todoList = handleActions({
         })
     },
     [actionTypes.UPDATE_TODO]: {
+        pre: (state, action) => {
+            debugger
+            console.log(action)
+        },
         success: (state, action) => {
             const { id, completed, text } = action.payload
             const index = state.list.findIndex(item => item.get('id') === Number(id))
