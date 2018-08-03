@@ -7,6 +7,15 @@ import projectInit from './framework/projectInit'
 
 projectInit(document.querySelector('#container'), () => {
     console.log('工程初始化完成！！')
+    
+    // 图片加载失败处理
+    document.addEventListener('error', (e) => {
+        const elem = e.target
+        if (elem.tagName.toLowerCase() === 'img') {
+            elem.src = '/static/images/404.png'
+            elem.className = 'img-responsive'
+        }
+    }, true)
 })
 
 if (process.env.NODE_ENV === 'production') {
