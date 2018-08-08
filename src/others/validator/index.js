@@ -1,14 +1,36 @@
 import { React } from 'framework/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
+import Collapse from './collapse'
 import './scss/index.scss'
 
-function Validator() {
-    return (
-        <div className="validatormain-others">
-            <Validator.TabTitle />
-            <Validator.TabContent />
-        </div>
-    )
+class Validator extends ReactComponentBase{
+    constructor(props){
+        super(props)
+        this.state = {
+            show: true
+        }
+    }
+    
+    onShowChange = (show) => {
+        this.setState({ show })
+    }
+    
+    showAndHide = () => {
+        this.setState(prevState => ({
+            show: !prevState.show
+        }))
+    }
+    
+    render(){
+        return (
+            <div className="validatormain-others">
+                <button type="button" onClick={this.showAndHide}>显示隐藏</button>
+                <Collapse show={this.state.show} onShowChange={this.onShowChange} />
+                <Validator.TabTitle />
+                <Validator.TabContent />
+            </div>
+        )
+    }
 }
 
 Validator.TabTitle = class TabTitle extends ReactComponentBase {
