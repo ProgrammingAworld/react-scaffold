@@ -20,7 +20,7 @@ class ReactComponentBase extends React.PureComponent {
     // componentDidMount()
 
     // 组件更新顺序
-    // componentWillReceiveProps()
+    // state getDerivedStateFromProps()
     // shouldComponentUpdate()
     // componentWillUpdate()
     // render()
@@ -52,10 +52,8 @@ class ReactComponentBase extends React.PureComponent {
     //  在组件 装载(mounting) 后被立即调用。 需要初始化 DOM 节点的应该放在这里。 如果需要从远程端点加载数据，这里是进行网络请求的好地方。 此方法中的设置 state(状态) 将触发重新渲染。
     // }
     //
-    // componentWillReceiveProps(nextProps){
-    //  在已装载组件接收新 props 之前被调用。 如果您需要更新 state 以响应 props 的更改（例如，重置它），则可以在此方法中比较this.props 和 nextProps 并使用 this.setState() 执行状态转换。调用 this.setState 一般不会触发 componentWillReceiveProps 。
-    //  在装载期间，React 不会用初始的 props 调用 componentWillReceiveProps 。如果某些组件的 props 可能更新，它只会调用此方法。
-    //  注意，即使 prop 没有改变，React 也可能调用这个方法，因此如果你只想处理变化，请确保比较当前值和下一个值。 当父组件导致你的组件重新渲染时，可能会发生这种情况。
+    // state getDerivedStateFromProps(props, state){
+    //  return { 新state的值 } 参考：http://react.css88.com/docs/react-component.html#static-getderivedstatefromprops
     // }
     //
     // shouldComponentUpdate(nextProps, nextState){
@@ -67,7 +65,7 @@ class ReactComponentBase extends React.PureComponent {
     //
     // componentWillUpdate(nextProps, nextState){
     //  当接收到新的 props 或 state 时，componentWillUpdate() 在渲染之前立即被调用。在更新发生之前，使用这个方法可以作为执行准备更新的一个好机会。这个方法在第一次渲染时不会被调用。
-    //  这里不能调用 this.setState() 。 如果你需要更新 state 以响应 props 更改，请改用 componentWillReceiveProps()。
+    //  这里不能调用 this.setState() 。 如果你需要更新 state 以响应 props 更改，请改用 state getDerivedStateFromProps()。
     // }
     //
     // componentDidUpdate(prevProps, prevState){
