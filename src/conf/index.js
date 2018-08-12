@@ -3,8 +3,8 @@
  */
 
 import errors from './errors'
-import * as constant from './constant'
 import url from './url'
+import * as constant from './constant'
 import * as injection from './injection'
 
 const config = {

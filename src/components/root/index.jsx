@@ -1,6 +1,10 @@
 /**
- * Created by anchao on 2016/7/27.
+ * 功能：根组件
+ * 作者：安超
+ * 日期： 2016/3/26
  */
+
+import { lazyload } from 'framework'
 import {
     React,
     Route,
@@ -19,9 +23,9 @@ const RootRoutesView = function (){
         <div className="containerchild">
             <Switch>
                 <Route path={url.root} exact render={() => <Redirect to={url.login.path} />} />
-                <Route path={url.login.path} component={url.login.component} />
-                <Route path={url.app.root.path} component={url.app.root.component} />
-                <Route component={url.notFind} />
+                <Route path={url.login.path} component={lazyload(import('@/login/container'))} />
+                <Route path={url.app.root.path} component={lazyload(import('@/container/app'))} />
+                <Route component={lazyload(import('@/components/error'))} />
             </Switch>
             <Dialog />
             <Loading />

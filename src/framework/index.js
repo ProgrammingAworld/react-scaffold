@@ -132,9 +132,18 @@ const createActions = function (actionMap) {
                     if(error.response){
                         dispatch(createAction(`${config.actionType}_FAIL`)())
                         dispatch(createAction(`${config.actionType}_ALWAYS`)())
-                        message.error('服务器端错误😂！')
+                        mesAntd.error(`${error.response.statusText}😂！`)
+                        return {
+                            statusCode: error.response.status,
+                            message: error.response.statusText
+                        }
                     } else {
                         message.error(`${error.message}！${error.stack}!`)
+                    }
+    
+                    return {
+                        statusCode: 500,
+                        message: error.message
                     }
                 })
             }

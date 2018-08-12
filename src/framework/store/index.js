@@ -7,9 +7,9 @@ import Immutable from 'immutable'
 import { routerReducer } from 'react-router-redux'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import dialog from 'framework/dialog/reducers'
-import loading from 'framework/loading/reducers'
-import reducers from 'conf/reducers'
+import dialog from '../dialog/reducers'
+import loading from '../loading/reducers'
+import reducers from '../../conf/reducers'
 
 // state日志
 const logger = createLogger({

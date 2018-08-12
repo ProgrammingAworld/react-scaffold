@@ -13,7 +13,7 @@ projectInit(document.querySelector('#container'), () => {
         const elem = e.target
         if (elem.tagName.toLowerCase() === 'img') {
             elem.src = '/static/images/404.png'
-            elem.className = 'img-responsive'
+            // elem.className = 'img-responsive'
         }
     }, true)
 })

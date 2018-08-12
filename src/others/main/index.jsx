@@ -1,3 +1,4 @@
+import { lazyload } from 'framework'
 import {
     React,
     NavLink,
@@ -44,15 +45,15 @@ const ComponentMain = function ({ match: { url } }) {
                 <Switch>
                     <Route
                         path={config.url.app.validator.path}
-                        component={config.url.app.validator.component}
+                        component={lazyload(import('@/others/validator'))}
                     />
                     <Route
                         path={config.url.app.antd.path}
-                        component={config.url.app.antd.component}
+                        component={lazyload(import('@/others/antd'))}
                     />
                     <Route
                         path={config.url.app.drag.path}
-                        component={config.url.app.drag.component}
+                        component={lazyload(import('@/others/drag'))}
                     />
                     <Route
                         path={url}

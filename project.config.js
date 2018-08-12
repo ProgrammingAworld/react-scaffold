@@ -2,9 +2,10 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -24,22 +25,9 @@ const production = {
     domain: '',
 }
 
-const uglifyJsConfig = {
-    beautify: false,
-    compress: {
-        warnings: false,
-        drop_debugger: true,
-        drop_console: true
-    },
-    mangle: {
-        except: ['$super', '$', 'exports', 'require']
-    },
-    space_colon: false,
-    comments: false
-}
-
 // 开发环境|生产环境
 const isProd = process.env.NODE_ENV === 'production'
+process.traceDeprecation = false
 
 const entry = (function () {
     let app = [
@@ -53,37 +41,31 @@ const entry = (function () {
     }
     
     return {
-        app,
-        vendor: [
-            'antd',
-            'axios',
-            'bizcharts',
-            'classnames',
-            'history',
-            'immutable',
-            'moment',
-            'react',
-            'react-dom',
-            'react-redux',
-            'react-router-dom',
-            'react-router-redux',
-            'react-loadable',
-            'react-click-outside',
-            'react-dnd',
-            'react-dnd-html5-backend',
-            'react-hot-loader',
-            'redux',
-            'redux-logger',
-            'redux-thunk',
-            'redux-actions',
-            'reselect',
-            'particles',
-            'path-to-regexp',
-            'prop-types',
-            'qs'
-        ]
+        app
     }
 }())
+
+const optimization = {
+    splitChunks: {
+        cacheGroups: {
+            commons: {
+                chunks: 'initial',
+                minChunks: 2,
+                maxInitialRequests: 5,
+                minSize: 0
+            },
+            vendor: {
+                test: /node_modules/,
+                chunks: 'initial',
+                name: 'vendor',
+                priority: 10,
+                enforce: true
+            }
+        }
+    },
+    minimizer: []
+}
+
 const output = (function () {
     let obj = {
         path: path.join(ROOT_PATH, 'dev'),
@@ -106,6 +88,7 @@ const output = (function () {
     
     return obj
 }())
+
 const jsxLoader = [
     {
         test: /\.jsx?$/,
@@ -113,29 +96,30 @@ const jsxLoader = [
         loader: 'eslint-loader',
         enforce: 'pre',
         options: {
-            // cache: true,
+            emitWarning: true,
             formatter: require('eslint-friendly-formatter')
         }
     },
     {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-            // cacheDirectory: true,
-            presets: ['env', 'stage-0', 'react'],
-            plugins: [
-                'react-hot-loader/babel',
-                'transform-decorators-legacy',
-                'syntax-dynamic-import'
-            ]
-        }
+        loader: 'babel-loader'
     }
 ]
+
 const cssLoaderUse = function (loaders) {
     const defaultOpt = { sourceMap: !isProd }
     return loaders.map((loader) => {
         let options = defaultOpt
+        
+        if (loader === 'postcss-loader') {
+            options = {
+                ...defaultOpt,
+                config: {
+                    path: './'
+                }
+            }
+        }
         
         if (loader === 'sass-loader') {
             options = isProd ? {
@@ -164,6 +148,7 @@ const cssLoaderUse = function (loaders) {
         }
     })
 }
+
 const imgLoader = (function () {
     return [
         { type: 'png', mimetype: 'image/png' },
@@ -181,6 +166,7 @@ const imgLoader = (function () {
         }
     }))
 }())
+
 // 字体配置参考：https://github.com/shakacode/bootstrap-sass-loader
 const fontLoader = (function () {
     return [
@@ -200,6 +186,7 @@ const fontLoader = (function () {
         }
     }))
 }())
+
 const mediaLoader = {
     test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
     loader: 'url-loader',
@@ -208,25 +195,16 @@ const mediaLoader = {
         name: 'static/media/[name].[ext]'
     }
 }
+
 const injectionLoader = {
     test: path.join(APP_PATH, 'conf/injection.js'),
     loader: `imports-loader?domain=>
                 ${isProd ? JSON.stringify(production.domain) : JSON.stringify(development.domain)}`
 }
+
 const destDir = isProd ? 'dist' : 'dev'
 let plugins = [
     new CleanWebpackPlugin([destDir], { root: ROOT_PATH }),
-    new webpack.DefinePlugin({
-        __DEBUG__: !isProd,
-        'process.env.NODE_ENV': isProd ? production.env.NODE_ENV : development.env.NODE_ENV
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-        names: [
-            'vendor', 'runtime'
-        ],
-        filename: `static/scripts/${projectEnName}-[name]${isProd ? '-[chunkhash:10]' : ''}.js`,
-        minChunks: Infinity
-    }),
     new CopyWebpackPlugin([
         {
             from: 'src/project-conf.js',
@@ -259,17 +237,19 @@ let plugins = [
 
 if (isProd) {
     plugins = plugins.concat([
-        new webpack.HashedModuleIdsPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.optimize.ModuleConcatenationPlugin(),
-        new webpack.NamedModulesPlugin(),
-        new ExtractTextPlugin({
-            filename: `static/css/${projectEnName}-[name]-[contenthash:10].css`,
-            disable: false,
-            allChunks: true
+        new MiniCssExtractPlugin({
+            filename: 'static/css/[name]-[chunkhash:10].css',
+            chunkFilename: 'static/css/[id]-[chunkhash:10].css'
+        })
+    ])
+    
+    optimization.minimizer = optimization.minimizer.concat([
+        new UglifyJsPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: true
         }),
-        new OptimizeCSSPlugin({ cssProcessorOptions: { safe: true } }),
-        new webpack.optimize.UglifyJsPlugin(uglifyJsConfig)
+        new OptimizeCSSPlugin({ discardComments: { removeAll: true } })
     ])
 } else {
     plugins = plugins.concat([
@@ -334,7 +314,7 @@ module.exports = {
     injectionLoader,
     development,
     production,
-    uglifyJsConfig,
+    optimization,
     plugins,
     defaultPath: {
         ROOT_PATH,
@@ -355,7 +335,7 @@ module.exports = {
             plugins: path.join(APP_PATH, 'plugins'),
             particles: path.join(APP_PATH, 'plugins/particles.js'),
         },
-        extensions: ['.js', '.jsx', '.json', '.css']
+        extensions: ['.js', '.jsx', '.json', '.css', '.json']
     },
     devServer,
     proxies

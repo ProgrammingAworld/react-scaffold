@@ -1,18 +1,19 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const config = require('../project.config')
 
 const {
-    isProd, entry, output, resolve, plugins,
+    isProd, entry, output, resolve, plugins, optimization,
     jsxLoader, imgLoader, fontLoader, cssLoaderUse, mediaLoader, injectionLoader,
     defaultPath: { ROOT_PATH, APP_PATH },
     devServer
 } = config
-
+const firstloader = isProd ? MiniCssExtractPlugin.loader : 'style-loader'
 const cssLoaders = [
-    'css-loader', 'postcss-loader', 'sass-loader', 'sass-resources-loader'
+    firstloader, 'css-loader', 'postcss-loader', 'sass-loader', 'sass-resources-loader'
 ]
 
 const baseconfig = {
+    mode: isProd ? 'production' : 'development',
     entry,
     output,
     resolve,
@@ -29,15 +30,21 @@ const baseconfig = {
             mediaLoader,
             injectionLoader,
             {
-                test: /\.(scss|sass|css)$/,
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: [
+                    firstloader,
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.scss$/,
                 include: APP_PATH,
-                use: !isProd ? cssLoaderUse(['style-loader'].concat(cssLoaders)) : ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: cssLoaderUse(cssLoaders)
-                })
+                use: cssLoaderUse(cssLoaders)
             }
         ]
     },
+    optimization,
     devServer
 }
 

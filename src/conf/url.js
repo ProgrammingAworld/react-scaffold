@@ -1,41 +1,28 @@
-import {
-    LoginView, MainAppView, TodoMainView, ComponentMainView,
-    ValidateView, AntdView, DragView, NotFindView
-} from './lazycomponents'
-
 const url = {
     root: '/',
     login: {
-        path: '/login',
-        component: LoginView
+        path: '/login'
     },
     app: {
         root: {
-            path: '/app',
-            component: MainAppView
+            path: '/app'
         },
         todos: {
-            path: '/app/todos',
-            component: TodoMainView
+            path: '/app/todos'
         },
         others: {
-            path: '/app/others',
-            component: ComponentMainView
+            path: '/app/others'
         },
         validator: {
-            path: '/app/others/validator',
-            component: ValidateView
+            path: '/app/others/validator'
         },
         antd: {
-            path: '/app/others/antd',
-            component: AntdView
+            path: '/app/others/antd'
         },
         drag: {
-            path: '/app/others/drag',
-            component: DragView
+            path: '/app/others/drag'
         },
-    },
-    notFind: NotFindView
+    }
 }
 
 export default url

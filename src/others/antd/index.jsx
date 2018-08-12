@@ -8,7 +8,7 @@ import ReactComponentBase from 'base/ReactComponentBase'
 import { Table } from 'antd'
 import './scss/index.scss'
 
-class Index extends ReactComponentBase {
+class AntdView extends ReactComponentBase {
     state = {
         selectedRowKeys: []
     }
@@ -75,4 +75,4 @@ class Index extends ReactComponentBase {
     }
 }
 
-export default Index
+export default AntdView

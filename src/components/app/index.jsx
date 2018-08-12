@@ -1,6 +1,9 @@
 /**
- * Created by anchao on 2016/7/26.
+ * 功能：受限组件入口
+ * 作者：安超
+ * 日期： 2018/3/19
  */
+import { lazyload } from 'framework'
 import {
     React,
     PropTypes,
@@ -45,8 +48,8 @@ class App extends ReactComponentBase {
                         logout={logout}
                     />
                     <Switch>
-                        <Route path={config.url.app.todos.path} component={config.url.app.todos.component} />
-                        <Route path={config.url.app.others.path} component={config.url.app.others.component} />
+                        <Route path={config.url.app.todos.path} component={lazyload(import('@/todos/components/main'))} />
+                        <Route path={config.url.app.others.path} component={lazyload(import('@/others/main'))} />
                         <Route path={url} exact render={() => <Redirect to={config.url.app.todos.path} />} />
                     </Switch>
                 </div>
