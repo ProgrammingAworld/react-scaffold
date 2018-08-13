@@ -36,11 +36,12 @@ npm run server
 ```
 ## 规定
 ```bash
-1. reducer中initialState各项含义必须注释说明
-2. 工具类中各方法的使用必须注释清楚
-3. 弹窗的交互数据全部写在组件内部，禁止保存在store内
-4. 公共弹窗dialog.open的content中写入弹窗的操作的按钮（如：确定、取消）
-5. 公共弹窗dialog支持open/confirm/alert/hide等方法，具体用法参考：framework/dialog/index.js
+1. reducer中initialState各项含义必须注释说明，同时使用Immutable对象进行声明
+2. 所有的component组件使用.jsx扩展名
+3. 工具类中各方法的使用必须注释清楚
+4. 弹窗的交互数据全部写在组件内部，禁止保存在store内
+5. 公共弹窗dialog.open的content中写入弹窗的操作的按钮（如：确定、取消）
+6. 公共弹窗dialog支持open/confirm/alert/hide等方法，具体用法参考：framework/dialog/index.jsx
 ```
 
 ## js规范
