@@ -17,6 +17,8 @@ import Dialog from 'framework/dialog/container'
 import Loading from 'framework/loading/container'
 
 const { url } = config
+const MainAppView = lazyload(import('@/container/app'))
+const NotFindView = lazyload(import('@/components/error'))
 
 const RootRoutesView = function (){
     return (
@@ -24,8 +26,8 @@ const RootRoutesView = function (){
             <Switch>
                 <Route path={url.root} exact render={() => <Redirect to={url.login.path} />} />
                 <Route path={url.login.path} component={lazyload(import('@/login/container'))} />
-                <Route path={url.app.root.path} component={lazyload(import('@/container/app'))} />
-                <Route component={lazyload(import('@/components/error'))} />
+                <Route path={url.app.root.path} component={MainAppView} />
+                <Route component={NotFindView} />
             </Switch>
             <Dialog />
             <Loading />
