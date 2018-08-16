@@ -115,6 +115,7 @@
     "path-to-regexp": "^2.2.1",
     "prop-types": "^15.6.2",
     "qs": "^6.5.2",
+    "rc-bmap": "^0.1.8",
     "react": "^16.4.2",
     "react-click-outside": "^3.0.1",
     "react-dnd": "^5.0.0",

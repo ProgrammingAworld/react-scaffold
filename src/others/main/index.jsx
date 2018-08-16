@@ -17,6 +17,7 @@ const ComponentMain = function ({ match: { url } }) {
                 <ul className="list-unstyled">
                     <li>
                         <NavLink
+                            replace
                             to={config.url.app.validator.path}
                             activeClassName="active"
                         >
@@ -25,6 +26,7 @@ const ComponentMain = function ({ match: { url } }) {
                     </li>
                     <li>
                         <NavLink
+                            replace
                             to={config.url.app.antd.path}
                             activeClassName="active"
                         >
@@ -33,10 +35,20 @@ const ComponentMain = function ({ match: { url } }) {
                     </li>
                     <li>
                         <NavLink
+                            replace
                             to={config.url.app.drag.path}
                             activeClassName="active"
                         >
                             拖拽
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            replace
+                            to={config.url.app.map.path}
+                            activeClassName="active"
+                        >
+                            地图
                         </NavLink>
                     </li>
                 </ul>
@@ -54,6 +66,10 @@ const ComponentMain = function ({ match: { url } }) {
                     <Route
                         path={config.url.app.drag.path}
                         component={lazyload(import('@/others/drag'))}
+                    />
+                    <Route
+                        path={config.url.app.map.path}
+                        component={lazyload(import('@/others/map'))}
                     />
                     <Route
                         path={url}

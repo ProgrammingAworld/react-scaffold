@@ -22,6 +22,9 @@ const url = {
         drag: {
             path: '/app/others/drag'
         },
+        map: {
+            path: '/app/others/map'
+        },
     }
 }
 
