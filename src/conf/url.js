@@ -14,7 +14,7 @@ const url = {
             path: '/app/others'
         },
         validator: {
-            path: '/app/others/validator'
+            path: '/app/others/validator/components'
         },
         antd: {
             path: '/app/others/antd'
@@ -25,6 +25,9 @@ const url = {
         map: {
             path: '/app/others/map'
         },
+        broadcast: {
+            path: '/app/others/broadcast/components'
+        }
     }
 }
 

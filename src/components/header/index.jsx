@@ -6,7 +6,7 @@ import config from 'conf'
 import dialog from 'dialog'
 import './scss/index.scss'
 
-const Header = function ({ username, logout, history }) {
+const Header = function ({ username, timestamp, logout, history }) {
     const logoutFn = () => {
         logout()
             .then((res) => {
@@ -53,7 +53,7 @@ const Header = function ({ username, logout, history }) {
                 </ul>
             </div>
             <div className="pull-right headrright">
-                <div>{username}</div>
+                <div>{timestamp.length > 0 ? `${username}-${timestamp}` : username}</div>
                 <div role="presentation" onClick={logoutFn}><i className="fa fa-power-off" /></div>
             </div>
         </div>
@@ -62,6 +62,7 @@ const Header = function ({ username, logout, history }) {
 
 Header.propTypes = {
     username: PropTypes.string.isRequired,
+    timestamp: PropTypes.string.isRequired,
     logout: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired
 }

@@ -1,5 +1,7 @@
 /**
- * Created by anchao on 2016/7/26.
+ * 功能：动作名称
+ * 作者：安超
+ * 日期： 2018/3/19
  */
 
 export const SET_USER_INFO_LOGIN = 'SET_USER_INFO_LOGIN'

@@ -33,9 +33,9 @@ class App extends ReactComponentBase {
     }
 
     render() {
-        const { match: { url }, username, logout } = this.props
+        const { match: { url }, username, timestamp, logout } = this.props
         const { loadedUserInfo } = this.state
-
+        
         if (loadedUserInfo) {
             if (username.length === 0) {
                 return <Redirect to={config.url.login.path} />
@@ -45,6 +45,7 @@ class App extends ReactComponentBase {
                 <div id="chief">
                     <Header
                         username={username}
+                        timestamp={timestamp}
                         logout={logout}
                     />
                     <Switch>

@@ -1,6 +1,9 @@
 /**
- * Created by anchao on 2016/7/26.
+ * 功能：所有动作配置
+ * 作者：安超
+ * 日期： 2018/3/19
  */
+
 import { createAction, createActions } from 'framework'
 import * as actionTypes from './actionTypes'
 

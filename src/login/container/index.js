@@ -1,5 +1,7 @@
 /**
- * Created by anchao on 2016/7/26.
+ * 功能：登录容器
+ * 作者：安超
+ * 日期：2018/7/4
  */
 
 import { connect, hot } from 'framework/Util'

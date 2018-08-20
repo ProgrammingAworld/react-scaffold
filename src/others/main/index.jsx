@@ -21,7 +21,7 @@ const ComponentMain = function ({ match: { url } }) {
                             to={config.url.app.validator.path}
                             activeClassName="active"
                         >
-                            测试接口
+                            内外控制组件内state
                         </NavLink>
                     </li>
                     <li>
@@ -51,13 +51,22 @@ const ComponentMain = function ({ match: { url } }) {
                             地图
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink
+                            replace
+                            to={config.url.app.broadcast.path}
+                            activeClassName="active"
+                        >
+                            广播
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
             <div className="pull-right">
                 <Switch>
                     <Route
                         path={config.url.app.validator.path}
-                        component={lazyload(import('@/others/validator'))}
+                        component={lazyload(import('@/others/validator/container'))}
                     />
                     <Route
                         path={config.url.app.antd.path}
@@ -70,6 +79,10 @@ const ComponentMain = function ({ match: { url } }) {
                     <Route
                         path={config.url.app.map.path}
                         component={lazyload(import('@/others/map'))}
+                    />
+                    <Route
+                        path={config.url.app.broadcast.path}
+                        component={lazyload(import('@/others/broadcast/container'))}
                     />
                     <Route
                         path={url}

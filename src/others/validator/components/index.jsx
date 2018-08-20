@@ -7,7 +7,8 @@ class Validator extends ReactComponentBase{
     constructor(props){
         super(props)
         this.state = {
-            show: true
+            show: true,
+            status: ''
         }
     }
     
@@ -21,6 +22,10 @@ class Validator extends ReactComponentBase{
         }))
     }
     
+    appendUserTimestamp = () => {
+        this.props.setUserTimestamp(Date.now().toString())
+    }
+    
     render(){
         return (
             <div className="validatormain-others">
@@ -28,10 +33,19 @@ class Validator extends ReactComponentBase{
                 <Collapse show={this.state.show} onShowChange={this.onShowChange} />
                 <Validator.TabTitle />
                 <Validator.TabContent />
+                <div>
+                    <button type="button" onClick={this.appendUserTimestamp}>在当前用户名的后面追加时间戳</button>
+                    <div>{this.state.status}</div>
+                </div>
             </div>
         )
     }
 }
+
+Validator.getDerivedStateFromProps = ({ timestamp }, state) => ({
+    ...state,
+    status: timestamp.length === 0 ? '' : `时间戳改变了,同时倒数第二位数是${timestamp.slice(-2, -1)}`
+})
 
 Validator.TabTitle = class TabTitle extends ReactComponentBase {
     constructor(props){
