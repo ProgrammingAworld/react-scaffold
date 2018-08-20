@@ -10,7 +10,7 @@ import {
 import Loadable from 'react-loadable'
 import qs from 'qs'
 import axios from 'axios'
-import { message } from 'antd'
+import { message as mesAntd } from 'antd'
 import loading from 'loading'
 import ComLoading from './components/ComponentLoading'
 
@@ -21,6 +21,7 @@ const instance = axios.create({
     timeout: 0,
     responseType: 'json'
 })
+
 const handleWithParameter = function (url, {
     method = 'GET',
     contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -55,7 +56,7 @@ const handleWithParameter = function (url, {
             const res = {
                 then: resolve => resolve({
                     statusCode: 300,
-                    msg: 'method方式错误'
+                    message: 'method方式错误'
                 })
             }
             return Promise.resolve(res)
@@ -85,6 +86,7 @@ const createActions = function (actionMap) {
                 // const dialog = require('dialog').default
 
                 if ((config.hasLoading || config.hasLoading === undefined) && !loading.getLoadingStatus()) loading.show()
+
                 dispatch(createAction(`${config.actionType}_PRE`)(settings))
                 return handleWithParameter(
                     config.url,
@@ -94,8 +96,7 @@ const createActions = function (actionMap) {
                     }
                 ).then((res) => {
                     loading.hide()
-
-                    const { statusCode, msg } = res.data
+                    const { statusCode, message } = res.data
                     const params = res.config.params === undefined ? res.config.data : res.config.params
                     const dt = qs.parse(params)
 
@@ -116,14 +117,14 @@ const createActions = function (actionMap) {
                     }
 
                     if (config.handleError || config.handleError === undefined) {
-                        if (statusCode === 401) {
+                        if (statusCode === 301) {
                             location.replace(location.origin)
                         } else {
-                            message.error(msg)
+                            mesAntd.error(message)
                         }
                     }
 
-                    dispatch(createAction(`${config.actionType}_ERROR`)(msg))
+                    dispatch(createAction(`${config.actionType}_ERROR`)(message))
                     dispatch(createAction(`${config.actionType}_ALWAYS`)())
 
                     return res.data
@@ -138,9 +139,9 @@ const createActions = function (actionMap) {
                             message: error.response.statusText
                         }
                     } else {
-                        message.error(`${error.message}！${error.stack}!`)
+                        mesAntd.error(`${error.message}！${error.stack}!`)
                     }
-    
+                    
                     return {
                         statusCode: 500,
                         message: error.message
