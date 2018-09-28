@@ -5,12 +5,34 @@
  */
 import { React } from 'framework/Util'
 import ReactComponentBase from 'base/ReactComponentBase'
-import { Table } from 'antd'
+import dialog from 'dialog'
+import { Table, Button } from 'antd'
 import './scss/index.scss'
 
 class AntdView extends ReactComponentBase {
     state = {
-        selectedRowKeys: []
+        selectedRowKeys: [],
+        loading: false
+    }
+    
+    okClick = () => {
+        this.setState({
+            loading: true
+        }, () => {
+            dialog.setFooter([
+                <Button key="ok" type="primary" loading={this.state.loading}>ok</Button>
+            ])
+        })
+    }
+    
+    showModal = () => {
+        dialog.open({
+            title: 'hehe',
+            content: <div>一些数据</div>,
+            footer: [
+                <Button key="ok" type="primary" onClick={this.okClick} loading={false}>ok</Button>
+            ]
+        })
     }
     
     render() {
@@ -44,6 +66,7 @@ class AntdView extends ReactComponentBase {
 
         return (
             <div className="antd-main-others">
+                <Button type="primary" onClick={this.showModal}>弹窗</Button>
                 <Table
                     onRow={record => ({
                         onClick: () => {

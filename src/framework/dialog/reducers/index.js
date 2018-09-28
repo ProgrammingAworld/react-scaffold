@@ -8,6 +8,7 @@ import { handleActions } from 'redux-actions'
 import {
     SHOWDIALOG_COMMON,
     HIDEDIALOG_COMMON,
+    SETFOOTER_COMMON
 } from '../actions/actionTypes'
 
 const initialState = {
@@ -34,6 +35,13 @@ export default handleActions({
             title: '',
             content: null,
             show: false,
+        }
+    },
+    
+    [SETFOOTER_COMMON](state, action) {
+        return {
+            ...state,
+            ...action.payload
         }
     }
 }, initialState)
