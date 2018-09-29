@@ -2,16 +2,14 @@
 
 #### 环境依赖：
 
-- `node`
-- `ruby`
+- `node v9.9`
 - `python2.7`
+- `ruby`
 
-#### 镜像配置
+#### 使用npm本地仓库
 
 ```bash
-#ruby
-gem sources --remove https://rubygems.org/
-gem sources -a https://ruby.taobao.org/
+npm set registry http://fe.mlamp.cn:2018
 ```
 
 #### 安装依赖包
