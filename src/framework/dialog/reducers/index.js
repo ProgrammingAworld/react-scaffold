@@ -17,7 +17,7 @@ const initialState = {
     width: 500,
     dialogType: 'confirm',
     show: false,
-    footer: []
+    footer: null
 }
 
 export default handleActions({

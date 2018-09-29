@@ -7,7 +7,7 @@ import store from '../store'
 const dialogWidth = 500
 const dialog = {
     open({
-        title = '确认', content, footer = [], width = dialogWidth, ok = dialog.hide, cancel = dialog.hide
+        title = '确认', content, footer = null, width = dialogWidth, ok = dialog.hide, cancel = dialog.hide
     }) {
         const onOK = () => {
             if (typeof ok === 'function' && ok()) {
