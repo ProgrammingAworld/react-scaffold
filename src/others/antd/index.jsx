@@ -11,18 +11,13 @@ import './scss/index.scss'
 
 class AntdView extends ReactComponentBase {
     state = {
-        selectedRowKeys: [],
-        loading: false
+        selectedRowKeys: []
     }
     
     okClick = () => {
-        this.setState({
-            loading: true
-        }, () => {
-            dialog.setFooter([
-                <Button key="ok" type="primary" loading={this.state.loading}>ok</Button>
-            ])
-        })
+        dialog.setFooter([
+            <Button key="ok" type="primary" loading>ok</Button>
+        ])
     }
     
     showModal = () => {
