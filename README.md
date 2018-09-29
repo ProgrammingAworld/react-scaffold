@@ -41,7 +41,7 @@ npm run server
 3. 工具类中各方法的使用必须注释清楚
 4. 弹窗的交互数据全部写在组件内部，禁止保存在store内
 5. 公共弹窗dialog.open的content中写入弹窗的操作的按钮（如：确定、取消）
-6. 公共弹窗dialog支持open/confirm/alert/hide/setFooter等方法，具体用法参考：framework/dialog/index.jsx
+6. 公共弹窗dialog支持open/confirm/alert/hide/setFooter等方法，具体用法参考：framework/dialog/index.js
 ```
 
 ## js规范
