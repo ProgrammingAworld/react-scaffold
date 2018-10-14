@@ -10,7 +10,7 @@ import Utils from '../../utils'
 const todosSelector = state => state.todos
 
 const todosByFilterSelector = createSelector([todosSelector], oTodos => ({
-    todos: Utils.selectByFilter(oTodos.todoList.list, oTodos.todoFilter)
+    todos: Utils.selectByFilter(oTodos.todoList.get('list'), oTodos.todoFilter)
 }))
 
 export default connect(todosByFilterSelector, actionCreator)(VisibleTodoList)

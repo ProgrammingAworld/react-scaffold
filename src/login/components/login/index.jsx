@@ -78,55 +78,53 @@ class Login extends ReactComponentBase {
         const errorCls = classNames('errors', 'pull-right', { invisible: errorMsg.length <= 0 })
         
         return (
-            <div id="chief">
-                <div className="login-login">
-                    <div id="particles-js" />
-                    <div className="loginmain">
-                        <div className="input-group">
-                            <input
-                                type="text"
-                                ref={(username) => {
-                                    this.username = username
-                                }}
-                                className="login-user"
-                                onKeyDown={this.forbitBlackSpace}
-                            />
-                            <input
-                                type="password"
-                                ref={(pwd) => {
-                                    this.pwd = pwd
-                                }}
-                                className="login-pwd"
-                            />
-                            <i className="fa fa-user-o fa-lg" />
-                            <i className="fa fa-bell-o fa-lg pwdico" />
+            <div className="login-login">
+                <div id="particles-js" />
+                <div className="loginmain">
+                    <div className="input-group">
+                        <input
+                            type="text"
+                            ref={(username) => {
+                                this.username = username
+                            }}
+                            className="login-user"
+                            onKeyDown={this.forbitBlackSpace}
+                        />
+                        <input
+                            type="password"
+                            ref={(pwd) => {
+                                this.pwd = pwd
+                            }}
+                            className="login-pwd"
+                        />
+                        <i className="fa fa-user-o fa-lg" />
+                        <i className="fa fa-bell-o fa-lg pwdico" />
+                    </div>
+                    <div className="login-btn">
+                        <div className={errorCls}><i
+                            className="fa fa-exclamation-circle fa-lg"
+                        />{errorMsg}
                         </div>
-                        <div className="login-btn">
-                            <div className={errorCls}><i
-                                className="fa fa-exclamation-circle fa-lg"
-                            />{errorMsg}
-                            </div>
-                            <div className="clearfix" />
-                            <button type="button" className="login_button pull-right" onClick={this.login}>
+                        <div className="clearfix" />
+                        <button type="button" className="login_button pull-right" onClick={this.login}>
                                 登录
-                            </button>
-                            <div className="clearfix" />
-                            <div className="rolerow">
-                                <div className="pull-left">
-                                    <div className="pull-left role"><span
-                                        role="presentation"
-                                        value="0"
-                                        onClick={() => this.checkedChange('0')}
-                                        className={classNames({ checked: userType === '0' })}
-                                    />用户
-                                    </div>
-                                    <div className="pull-left role"><span
-                                        role="presentation"
-                                        value="1"
-                                        onClick={() => this.checkedChange('1')}
-                                        className={classNames({ checked: userType === '1' })}
-                                    />管理员
-                                    </div>
+                        </button>
+                        <div className="clearfix" />
+                        <div className="rolerow">
+                            <div className="pull-left">
+                                <div className="pull-left role"><span
+                                    role="presentation"
+                                    value="0"
+                                    onClick={() => this.checkedChange('0')}
+                                    className={classNames({ checked: userType === '0' })}
+                                />用户
+                                </div>
+                                <div className="pull-left role"><span
+                                    role="presentation"
+                                    value="1"
+                                    onClick={() => this.checkedChange('1')}
+                                    className={classNames({ checked: userType === '1' })}
+                                />管理员
                                 </div>
                             </div>
                         </div>

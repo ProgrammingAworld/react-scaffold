@@ -10,7 +10,7 @@ import BroadcastView from '../components'
 
 const loginState = state => state.login
 const loginSelector = createSelector([loginState], login => ({
-    timestamp: login.timestamp
+    timestamp: login.get('timestamp')
 }))
 
 export default connect(loginSelector, actionCreator)(hot(module)(BroadcastView))
