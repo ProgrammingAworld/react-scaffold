@@ -5,13 +5,14 @@
  */
 
 import { React, PropTypes } from 'framework/Util'
-import ReactComponentBase from 'base/ReactComponentBase'
+import PureComponent from 'base/ReactComponentBase'
 import Todo from './Todo'
 import './scss/index.scss'
 
-class VisibleTodoList extends ReactComponentBase {
+class VisibleTodoList extends PureComponent {
     componentDidMount() {
-        this.props.getAllTodo()
+        const { getAllTodo } = this.props
+        getAllTodo()
     }
     
     render() {

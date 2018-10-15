@@ -3,11 +3,11 @@
  */
 import { React, PropTypes } from 'framework/Util'
 import enhanceWithClickOutside from 'react-click-outside'
-import ReactComponentBase from 'base/ReactComponentBase'
+import PureComponent from 'base/ReactComponentBase'
 import classNames from 'classnames/bind'
 import dialog from 'dialog'
 
-class TodoSingle extends ReactComponentBase {
+class TodoSingle extends PureComponent {
     constructor(props) {
         super(props)
         const { data } = props
@@ -18,21 +18,17 @@ class TodoSingle extends ReactComponentBase {
             hideEditInput: true
         }
     }
-    
-    toggleHideDelIcon(hideDelIcon) {
-        this.setState({ hideDelIcon })
-    }
-    
-    toggleHideEditInput(hideEditInput) {
-        this.setState({ hideEditInput })
-    }
-    
-    handleClickOutside() {
-        const { data, hideEditInput } = this.state
-        this.toggleHideEditInput(true)
 
-        if (!hideEditInput) {
-            this.props.onUpdateTodo({ data: { id: data.get('id'), text: data.get('text') } })
+    todoRemove = () => {
+        const { data } = this.state
+        const { removeTodo } = this.props
+        removeTodo({ params: { id: data.get('id') } })
+    }
+    
+    finishNameEdit = (e) => {
+        if (e.which === 13) {
+            this.toggleHideEditInput(true)
+            e.preventDefault()
         }
     }
     
@@ -62,17 +58,23 @@ class TodoSingle extends ReactComponentBase {
             }
         })
     }
-
-    todoRemove = () => {
-        const { data } = this.state
-        this.props.removeTodo({ params: { id: data.get('id') } })
+    
+    handleClickOutside() {
+        const { data, hideEditInput } = this.state
+        const { onUpdateTodo } = this.props
+        this.toggleHideEditInput(true)
+        
+        if (!hideEditInput) {
+            onUpdateTodo({ data: { id: data.get('id'), text: data.get('text') } })
+        }
     }
     
-    finishNameEdit = (e) => {
-        if (e.which === 13) {
-            this.toggleHideEditInput(true)
-            e.preventDefault()
-        }
+    toggleHideEditInput(hideEditInput) {
+        this.setState({ hideEditInput })
+    }
+    
+    toggleHideDelIcon(hideDelIcon) {
+        this.setState({ hideDelIcon })
     }
 
     render() {

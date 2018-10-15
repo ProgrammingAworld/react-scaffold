@@ -3,31 +3,37 @@
  * 作者：安超
  * 日期： 2018/3/19
  */
-import { React } from 'framework/Util'
-import ReactComponentBase from 'base/ReactComponentBase'
+import { React, PropTypes } from 'framework/Util'
+import PureComponent from 'base/ReactComponentBase'
 import './scss/index.scss'
 
-class BroadCastView extends ReactComponentBase {
+class BroadCastView extends PureComponent {
     state = {
         status: '时间戳为空'
     }
     
     appendUserTimestamp = () => {
-        this.props.setUserInfoTimestamp(Date.now().toString())
+        const { setUserInfoTimestamp } = this.props
+        setUserInfoTimestamp(Date.now().toString())
     }
     
     render() {
+        const { status } = this.state
         return (
             <div className="broadcast-main-others">
                 <div>
                     <button type="button" onClick={this.appendUserTimestamp}>在当前用户名的后面追加时间戳</button>
                 </div>
                 <div>
-                    当前状态：{this.state.status}
+                    当前状态：{status}
                 </div>
             </div>
         )
     }
+}
+
+BroadCastView.propTypes = {
+    setUserInfoTimestamp: PropTypes.func.isRequired
 }
 
 BroadCastView.getDerivedStateFromProps = ({ timestamp }) => ({

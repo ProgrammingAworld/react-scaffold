@@ -4,8 +4,8 @@
  * 日期：2018/7/6
  */
 
-import { React } from 'framework/Util'
-import ReactComponentBase from 'base/ReactComponentBase'
+import { React, PropTypes, noop } from 'framework/Util'
+import PureComponent from 'base/ReactComponentBase'
 import { DragSource } from 'react-dnd'
 import './scss/box.scss'
 
@@ -23,7 +23,7 @@ const dragSecTarget = {
     isDragging: monitor.isDragging()
 }))
 
-class Box extends ReactComponentBase{
+class Box extends PureComponent{
     render(){
         const {
             top, left, connectDragSource, isDragging 
@@ -32,6 +32,18 @@ class Box extends ReactComponentBase{
         return connectDragSource
             && connectDragSource(<div className="box-drag-others" style={{ top, left }} />)
     }
+}
+
+Box.propTypes = {
+    top: PropTypes.number.isRequired,
+    left: PropTypes.number.isRequired,
+    connectDragSource: PropTypes.func,
+    isDragging: PropTypes.bool
+}
+
+Box.defaultProps = {
+    connectDragSource: noop,
+    isDragging: true
 }
 
 export default Box

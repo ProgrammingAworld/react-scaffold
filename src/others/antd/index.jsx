@@ -4,12 +4,12 @@
  * 日期： 2018/3/19
  */
 import { React } from 'framework/Util'
-import ReactComponentBase from 'base/ReactComponentBase'
+import PureComponent from 'base/ReactComponentBase'
 import dialog from 'dialog'
 import { Table, Button } from 'antd'
 import './scss/index.scss'
 
-class AntdView extends ReactComponentBase {
+class AntdView extends PureComponent {
     state = {
         selectedRowKeys: []
     }

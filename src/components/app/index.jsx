@@ -12,10 +12,10 @@ import {
     Switch
 } from 'framework/Util'
 import config from 'conf'
-import ReactComponentBase from 'base/ReactComponentBase'
+import PureComponent from 'base/ReactComponentBase'
 import Header from '../header'
 
-class App extends ReactComponentBase {
+class App extends PureComponent {
     constructor(props){
         super(props)
         this.state = {
@@ -24,7 +24,8 @@ class App extends ReactComponentBase {
     }
 
     componentDidMount() {
-        this.props.getUserInfo()
+        const { getUserInfo } = this.props
+        getUserInfo()
             .then(() => {
                 this.setState({
                     loadedUserInfo: true
@@ -64,7 +65,9 @@ class App extends ReactComponentBase {
 App.propTypes = {
     match: PropTypes.object.isRequired,
     getUserInfo: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    username: PropTypes.string.isRequired,
+    timestamp: PropTypes.string.isRequired
 }
 
 export default App

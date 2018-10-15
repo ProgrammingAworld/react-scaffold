@@ -4,8 +4,8 @@
  * 日期：2018/7/6
  */
 
-import { React } from 'framework/Util'
-import ReactComponentBase from 'base/ReactComponentBase'
+import { React, PropTypes, noop } from 'framework/Util'
+import PureComponent from 'base/ReactComponentBase'
 import { DragDropContext, DropTarget } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import Box from './box'
@@ -29,7 +29,7 @@ const dragSecTarget = {
     connectDropTarget: connect.dropTarget()
 }))
 
-class DragView extends ReactComponentBase{
+class DragView extends PureComponent{
     constructor(props){
         super(props)
 
@@ -61,6 +61,14 @@ class DragView extends ReactComponentBase{
         return connectDropTarget
             && connectDropTarget(HTML)
     }
+}
+
+DragView.propTypes = {
+    connectDropTarget: PropTypes.func
+}
+
+DragView.defaultProps = {
+    connectDropTarget: noop
 }
 
 export default DragView

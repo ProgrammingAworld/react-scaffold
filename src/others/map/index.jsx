@@ -4,7 +4,7 @@
  * 日期： 2018/3/19
  */
 import { React } from 'framework/Util'
-import ReactComponentBase from 'base/ReactComponentBase'
+import PureComponent from 'base/ReactComponentBase'
 import { ReactComponent, DrawingManager, DrawingMode, Map, Navigation, Marker, Control } from 'rc-bmap'
 import './scss/index.scss'
 
@@ -26,22 +26,11 @@ class CustomControl extends Control{
     }
 }
 
-class MapSimple extends ReactComponentBase{
+class MapSimple extends PureComponent{
     constructor(props){
         super(props)
         
         this.instance = null
-    }
-    
-    handleMapMounted = (map) => {
-        console.log(map)
-        // map.enableScrollWheelZoom(true)
-        // const point = new window.BMap.Point(116.404, 39.915)
-        // map.centerAndZoom(point, 15)
-    
-    
-        // map.addControl(new window.BMap.NavigationControl())
-        // map.setCurrentCity("北京")
     }
     
     getInst = (instance) => {
@@ -50,6 +39,17 @@ class MapSimple extends ReactComponentBase{
         setTimeout(() => {
             instance.setDrawingMode(DrawingMode.CIRCLE)
         }, 3000)
+    }
+    
+    handleMapMounted = (map) => {
+        console.log(map)
+        // map.enableScrollWheelZoom(true)
+        // const point = new window.BMap.Point(116.404, 39.915)
+        // map.centerAndZoom(point, 15)
+        
+        
+        // map.addControl(new window.BMap.NavigationControl())
+        // map.setCurrentCity("北京")
     }
     
     render(){

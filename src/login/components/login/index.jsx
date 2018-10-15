@@ -7,14 +7,14 @@
 import config from 'conf'
 import { React, PropTypes } from 'framework/Util'
 import classNames from 'classnames'
-import ReactComponentBase from 'base/ReactComponentBase'
+import PureComponent from 'base/ReactComponentBase'
 import particlesJS from 'particles'
 import * as actionTypes from '../../actions/actionTypes'
 import './scss/index.scss'
 
 const { constant } = config
 
-class Login extends ReactComponentBase {
+class Login extends PureComponent {
     constructor(props){
         super(props)
 
@@ -29,19 +29,20 @@ class Login extends ReactComponentBase {
         this.username.focus()
         particlesJS('particles-js', constant.particles)
     }
+
+    setError = (errorMsg) => {
+        this.setState({ errorMsg })
+    }
     
     checkedChange = (userType) => {
         this.setState({ userType })
     }
 
-    setError = (errorMsg) => {
-        this.setState({ errorMsg })
-    }
-
     login = () => {
         const username = this.username.value.trim()
         const pwd = this.pwd.value.trim()
-        const type = this.state.userType
+        const { userType } = this.state
+        const { login } = this.props
         
         if (username.length === 0) {
             this.username.focus()
@@ -59,7 +60,7 @@ class Login extends ReactComponentBase {
         this.setError('')
         
         // 登录检验
-        this.props.login({ data: { username, pwd, type } })
+        login({ data: { username, pwd, type: userType } })
             .then((res) => {
                 if (res.statusCode === 200) {
                     this.gotoUrl(config.url.app.root.path)
@@ -70,7 +71,8 @@ class Login extends ReactComponentBase {
     }
     
     gotoUrl = (url) => {
-        this.props.history.replace(url)
+        const { history } = this.props
+        history.replace(url)
     }
     
     render() {
