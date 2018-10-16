@@ -20,14 +20,14 @@ const todoList = handleActions({
         always: state => state.set('isLoading', false)
     },
     [actionTypes.ADD_TODO]: {
-        success: (state, action) => state.set('list', state.get('list').unshift(Immutable.fromJS({
+        success: (state, action) => state.update('list', list => list.unshift(Immutable.fromJS({
             id: Number(action.payload.id),
             text: action.payload.text,
             completed: Boolean(action.payload.completed)
         })))
     },
     [actionTypes.REMOVE_TODO]: {
-        success: (state, action) => state.set('list', state.get('list').filter(item => item.get('id') !== Number(action.payload.id)))
+        success: (state, action) => state.update('list', list => list.filter(item => item.get('id') !== Number(action.payload.id)))
     },
     [actionTypes.UPDATE_TODO]: {
         success: (state, action) => {
@@ -46,10 +46,10 @@ const todoList = handleActions({
         }
     },
     [actionTypes.CHECKED_ALL_TODO](state, action) {
-        return state.set('list', state.get('list').map(oTodo => oTodo.set('completed', action.payload)))
+        return state.update('list', list => list.map(oTodo => oTodo.set('completed', action.payload)))
     },
     [actionTypes.CLEAR_COMPLETED_TODO](state) {
-        return state.set('list', state.get('list').filter(oTodo => (!oTodo.get('completed'))))
+        return state.update('list', list => list.filter(oTodo => (!oTodo.get('completed'))))
     }
 }, initialState)
 
