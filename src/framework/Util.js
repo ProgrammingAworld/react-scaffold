@@ -24,6 +24,7 @@ import {
 import { createSelector } from 'reselect'
 import { AppContainer, hot } from 'react-hot-loader'
 import Helper from '@/common'
+import PureComponent from './base/ReactComponentBase'
 
 const noop = function () {}
 
@@ -35,6 +36,7 @@ export {
     React,
     ReactDOM,
     PropTypes,
+    PureComponent,
     Immutable,
     pathToRegExp,
     combineReducers,

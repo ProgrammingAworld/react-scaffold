@@ -4,8 +4,7 @@
  * 日期：2018/7/6
  */
 
-import { React, PropTypes, noop } from 'framework/Util'
-import PureComponent from 'base/ReactComponentBase'
+import { React, PropTypes, PureComponent, noop } from 'framework/Util'
 import { DragDropContext, DropTarget } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import Box from './box'

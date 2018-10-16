@@ -5,9 +5,8 @@
  */
 
 import config from 'conf'
-import { React, PropTypes } from 'framework/Util'
+import { React, PropTypes, PureComponent } from 'framework/Util'
 import classNames from 'classnames'
-import PureComponent from 'base/ReactComponentBase'
 import particlesJS from 'particles'
 import * as actionTypes from '../../actions/actionTypes'
 import './scss/index.scss'

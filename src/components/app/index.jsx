@@ -6,13 +6,13 @@
 import { lazyload } from 'framework'
 import {
     React,
+    PureComponent,
     PropTypes,
     Route,
     Redirect,
     Switch
 } from 'framework/Util'
 import config from 'conf'
-import PureComponent from 'base/ReactComponentBase'
 import Header from '../header'
 
 class App extends PureComponent {

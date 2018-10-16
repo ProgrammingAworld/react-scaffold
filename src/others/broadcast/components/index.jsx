@@ -3,8 +3,7 @@
  * 作者：安超
  * 日期： 2018/3/19
  */
-import { React, PropTypes } from 'framework/Util'
-import PureComponent from 'base/ReactComponentBase'
+import { React, PropTypes, PureComponent } from 'framework/Util'
 import './scss/index.scss'
 
 class BroadCastView extends PureComponent {

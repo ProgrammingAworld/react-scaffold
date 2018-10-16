@@ -1,5 +1,4 @@
-import { React, PropTypes } from 'framework/Util'
-import PureComponent from 'base/ReactComponentBase'
+import { React, PropTypes, PureComponent } from 'framework/Util'
 import Collapse from './collapse'
 import './scss/index.scss'
 

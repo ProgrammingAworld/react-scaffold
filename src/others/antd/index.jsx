@@ -3,8 +3,7 @@
  * 作者：安超
  * 日期： 2018/3/19
  */
-import { React } from 'framework/Util'
-import PureComponent from 'base/ReactComponentBase'
+import { React, PureComponent } from 'framework/Util'
 import dialog from 'dialog'
 import { Table, Button } from 'antd'
 import './scss/index.scss'

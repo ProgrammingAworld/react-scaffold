@@ -4,8 +4,7 @@
  * 日期：2018/7/6
  */
 
-import { React, PropTypes, noop } from 'framework/Util'
-import PureComponent from 'base/ReactComponentBase'
+import { React, PureComponent, PropTypes, noop } from 'framework/Util'
 import { DragSource } from 'react-dnd'
 import './scss/box.scss'
 

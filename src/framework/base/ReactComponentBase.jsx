@@ -1,34 +1,37 @@
 /**
- * Created by anchao on 15-7-6.
+ * 功能： 所有组件的基类
+ * 作者： 安超
+ * 日期： 2016/7/30
  */
 
-import { React, PropTypes } from 'framework/Util'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 class ReactComponentBase extends React.PureComponent {
     constructor(props) {
         super(props)
-
+        
         this.forbitBlackSpace = this.forbitBlackSpace.bind(this)
         this.forbitDefaultEvent = this.forbitDefaultEvent.bind(this)
         this.stateChange = this.stateChange.bind(this)
     }
-
+    
     // 组件装载顺序
     // constructor()
     // componentWillMount()
     // render()
     // componentDidMount()
-
+    
     // 组件更新顺序
     // state getDerivedStateFromProps()
     // shouldComponentUpdate()
     // componentWillUpdate()
     // render()
     // componentDidUpdate()
-
+    
     // 组件卸载
     // componentWillUnmount()
-
+    
     // setState的特性
     // setState() 并不总是立即更新组件。它可能会批量或延迟到后面更新。这使得在调用 setState() 之后立即读取 this.state 存在一个潜在的陷阱。 而使用 componentDidUpdate 或 setState 回调（setState(updater, callback)），在应用更新后，都将被保证触发。
     // setState()第一个参数可以传递一个对象，而不是一个函数，将执行stateChange的浅合并到新的state，这种形式的 setState() 是异步的，并且在同一周期内的多个调用可以被合并在一起执行批处理。类似：
@@ -39,11 +42,11 @@ class ReactComponentBase extends React.PureComponent {
     // ...
     // )
     // 同一周期中，后续调用将覆盖先前调用的值，所以数量只会增加一次。如果下一个 state 取决于以前的 state ，推荐使用回调函数。
-
+    
     // forceUpdate()
     // 调用 forceUpdate() 会导致组件跳过 shouldComponentUpdate() ，直接调用 render()。 这将触发子组件的正常生命周期方法，包括每个子组件的 shouldComponentUpdate() 方法。
     // 通常你应该尽量避免使用 forceUpdate() ，并且 render() 中的 this.props 和 this.state 应该是只读的。
-
+    
     // componentWillMount(){
     // 在组件 装载(mounting) 发生之前立即被调用。 它在 render() 之前调用，因此在此方法中的设置 state(状态) 不会触发重新渲染。 避免在此方法中进行任何其它修改（side－effects）或订阅（subscriptions）。 这是在服务器渲染上调用的唯一的生命周期钩子。 一般来说，建议使用 constructor()。
     // }
@@ -76,22 +79,22 @@ class ReactComponentBase extends React.PureComponent {
     // componentWillUnmount(){
     //  在一个组件被卸载(unmounted) 和销毁(destroyed) 之前立即被调用。 在此方法中执行任何必要的清理，例如使计时器无效，取消网络请求，或清理在 componentDidMount 中创建的任何 DOM 元素。
     // }
-
+    
     forbitBlackSpace(e) {
         if (e.which === 32) {
             e.preventDefault()
         }
-
+        
         return this
     }
-
+    
     forbitDefaultEvent(e) {
         e.preventDefault()
         e.stopPropagation()
-
+        
         return this
     }
-
+    
     stateChange(key, value, fnCb = () => {}) {
         if (typeof key === 'string') {
             this.setState({
@@ -103,7 +106,7 @@ class ReactComponentBase extends React.PureComponent {
             this.setState(key, value)
         }
     }
-
+    
     render() {
         return null
     }

@@ -4,8 +4,7 @@
  * 日期： 2018/4/24
  */
 
-import { React, PropTypes } from 'framework/Util'
-import PureComponent from 'base/ReactComponentBase'
+import { React, PropTypes, PureComponent } from 'framework/Util'
 import Todo from './Todo'
 import './scss/index.scss'
 
