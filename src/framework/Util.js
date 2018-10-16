@@ -12,6 +12,7 @@ import Immutable from 'immutable'
 import pathToRegExp from 'path-to-regexp'
 import { combineReducers } from 'redux'
 import { connect } from 'react-redux'
+import classNames from 'classnames'
 import {
     NavLink,
     Link,
@@ -32,6 +33,7 @@ const EmptyComponent = () => null
 
 export {
     axios,
+    classNames,
     Helper,
     React,
     ReactDOM,

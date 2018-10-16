@@ -3,8 +3,7 @@
  * 作者：安超
  * 日期：2018/8/8
  */
-import { React, PropTypes, noop, PureComponent } from 'framework/Util'
-import classNames from 'classnames'
+import { React, PropTypes, noop, PureComponent, classNames } from 'framework/Util'
 
 class Collapse extends PureComponent{
     constructor(props){
