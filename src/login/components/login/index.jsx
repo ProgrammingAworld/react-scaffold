@@ -84,6 +84,7 @@ class Login extends PureComponent {
                     <div className="input-group">
                         <input
                             type="text"
+                            data-id="1"
                             ref={(username) => {
                                 this.username = username
                             }}
@@ -122,6 +123,7 @@ class Login extends PureComponent {
                                 <div className="pull-left role"><span
                                     role="presentation"
                                     value="1"
+                                    data-id="2"
                                     onClick={() => this.checkedChange('1')}
                                     className={classNames({ checked: userType === '1' })}
                                 />管理员
