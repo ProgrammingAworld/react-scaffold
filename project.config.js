@@ -152,7 +152,7 @@ const cssLoaderUse = function (loaders) {
 const imgLoader = (function () {
     return [
         { type: 'png', mimetype: 'image/png' },
-        { type: 'jpe', mimetype: 'image/jpe' },
+        { type: 'jpg', mimetype: 'image/jpg' },
         { type: 'jpeg', mimetype: 'image/jpeg' },
         { type: 'gif', mimetype: 'image/gif' },
         { type: 'svg', mimetype: 'image/svg' }

@@ -76,9 +76,9 @@ function Dialog(props) {
         }
 
         infoTypeCls = `dialog-${infoType}`
-        break;
+        break
     default:
-        break;
+        break
     }
 
     return (

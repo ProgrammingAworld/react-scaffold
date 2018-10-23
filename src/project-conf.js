@@ -5,5 +5,5 @@
  */
 
 window.onload = function () {
-    console.log('工程初始化完成');
+    console.log('工程初始化完成')
 }

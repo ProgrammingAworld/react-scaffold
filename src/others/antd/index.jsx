@@ -56,7 +56,7 @@ class AntdView extends PureComponent {
             key: 'address',
         }]
 
-        const { selectedRowKeys } = this.state;
+        const { selectedRowKeys } = this.state
 
         return (
             <div className="antd-main-others">

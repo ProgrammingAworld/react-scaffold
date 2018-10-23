@@ -4,8 +4,8 @@
  * 日期：2018/7/11
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 class Bundle extends React.Component {
     state = {
@@ -50,6 +50,6 @@ class Bundle extends React.Component {
 Bundle.propTypes = {
     load: PropTypes.func.isRequired,
     children: PropTypes.func.isRequired
-};
+}
 
 export default Bundle

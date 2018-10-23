@@ -102,7 +102,7 @@ module.exports = {
         'react/jsx-indent': ['error', 4],
         // jsx属性使用4个空格的缩进风格
         'react/jsx-indent-props': ['error', 4],
-        // 使用了jsx语法的js代码文件其扩展名可以使用js或js
+        // 使用了jsx语法的js代码文件其扩展名可以使用js或jsx
         'react/jsx-filename-extension': ['error', {extensions: ['.js', '.jsx']}],
         // 数组索引可以用作key
         'react/no-array-index-key': 'off',
