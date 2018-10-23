@@ -33,6 +33,7 @@ const handleWithParameter = function (url, {
 
     // url替换参数
     let urlNew = url
+    const strParams = []
     const paramsNew = { ...params }
     /*eslint-disable*/
     for (const key in params) {
@@ -40,18 +41,20 @@ const handleWithParameter = function (url, {
         if ({}.hasOwnProperty.call(params, key) && reg.test(urlNew)) {
             urlNew = urlNew.replace(reg, params[key])
             delete paramsNew[key]
+        } else {
+            strParams.push(`${key}=${params[key]}`)
         }
     }
-
+    
     switch (method.toLowerCase()) {
         case 'get':
             return instance.get(urlNew, { params: paramsNew })
         case 'delete':
             return instance.delete(urlNew, { params: paramsNew })
         case 'post':
-            return instance.post(urlNew, qs.stringify(data))
+            return instance.post(urlNew, qs.stringify(data), {params: strParams.length > 0 ? paramsNew : {} })
         case 'put':
-            return instance.put(urlNew, qs.stringify(data))
+            return instance.put(urlNew, qs.stringify(data), {params: strParams.length > 0 ? paramsNew : {} })
         default: {
             const res = {
                 then: resolve => resolve({
