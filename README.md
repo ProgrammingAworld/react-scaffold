@@ -114,22 +114,14 @@ subject: 是commit的简短描述，不超过50个字符。
    ajax示例说明：
    // 只有需要放到store里的state才需要在这里设置，每一项都不一定是必需写的！！！
    [actionTypes.GET_ALL_TODO]: {
-           pre: state => ({ ...state, isLoading: true }), // 发送前的state的修改变化
-           success: (state, action) => ({
-               ...state,
-               list: Immutable.fromJS(action.payload)
-           }), // 成功后state的修改变化
-           error: state => (
-               { ...state, isLoading: false }
-           ), // 失败后state的修改变化
-           always: state => ({ ...state, isLoading: false }) // 无论成功或失败都要执行的action
+           pre: state => state.set('isLoading', true), // 发送前的state的修改变化
+           success: (state, action) => state.set('list', Immutable.fromJS(action.payload)), // 成功后state的修改变化
+           error: state => state.set('isLoading', false), // 失败后state的修改变化
+           always: state => state.set('isLoading', false) // 无论成功或失败都要执行的action
        },  
    非ajax示例说明    
    [actionTypes.CLEAR_COMPLETED_TODO](state) {
-           return {
-               ...state,
-               list: state.list.filter(oTodo => (!oTodo.get('completed')))
-           }
+           return state.update('list', list => list.filter(oTodo => (!oTodo.get('completed'))))
        }     
 3. reducers汇总
    3.1 每个模块reducers文件夹里都必须有一个index.js作为本模块内所有state的汇总
