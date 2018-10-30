@@ -16,9 +16,6 @@ class Validator extends PureComponent{
     }
     
     showAndHide = () => {
-        const { projectInit } = this.props
-        projectInit()
-        
         this.setState(prevState => ({
             show: !prevState.show
         }))
@@ -45,8 +42,7 @@ class Validator extends PureComponent{
 }
 
 Validator.propTypes = {
-    setUserTimestamp: PropTypes.func.isRequired,
-    projectInit: PropTypes.func.isRequired
+    setUserTimestamp: PropTypes.func.isRequired
 }
 
 Validator.getDerivedStateFromProps = ({ timestamp }, state) => ({
