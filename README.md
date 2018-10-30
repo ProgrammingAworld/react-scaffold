@@ -127,3 +127,8 @@ subject: 是commit的简短描述，不超过50个字符。
    3.1 每个模块reducers文件夹里都必须有一个index.js作为本模块内所有state的汇总
    3.2 在conf/reducers里把每个模块reducers/index.js汇总在一起，store即可管理所有的state        
 ```
+
+##特殊处理
+```
+1. 在每个actionCreator里默认注入了projectInit方法，在每个渲染组件里都可以直接初始化store中的state
+```
