@@ -76,10 +76,15 @@ const handleWithParameter = function (url, {
  */
 const suffix = ['pre', 'success', 'error', 'fail', 'always']
 
+// 初始化工程中的所有state
+const projectInitState = 'PROJECT_INIT_STATE_PUBLIC'
+
 // 增强createActions, 可以配置{}
 const createActions = function (actionMap) {
     const eventNames = Object.keys(actionMap)
-    const fnsMap = {}
+    const fnsMap = {
+        projectInit: createAction(projectInitState)
+    }
     eventNames.forEach((eventName) => {
         const configOrFn = actionMap[eventName]
         if (typeof configOrFn !== 'function') {
@@ -155,7 +160,6 @@ const createActions = function (actionMap) {
             fnsMap[eventName] = configOrFn
         }
     })
-
     return fnsMap
 }
 
@@ -181,6 +185,10 @@ const handleActions = function (reducerMap, defaultState) {
         }
     })
 
+    result[projectInitState] = function () {
+        return defaultState
+    }
+    
     return originalHandleActions(result, defaultState)
 }
 

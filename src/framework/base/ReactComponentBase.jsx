@@ -5,7 +5,7 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 class ReactComponentBase extends React.PureComponent {
     constructor(props) {
@@ -112,8 +112,8 @@ class ReactComponentBase extends React.PureComponent {
     }
 }
 
-ReactComponentBase.contextTypes = {
-    router: PropTypes.object
-}
+// ReactComponentBase.propTypes = {
+//     router: PropTypes.object.isRequired
+// }
 
 export default ReactComponentBase

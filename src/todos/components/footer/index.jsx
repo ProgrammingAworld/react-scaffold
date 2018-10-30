@@ -38,16 +38,16 @@ const Footer = function ({
         )
     }
     
-    const nCompletedCount = todos.filter(oTodo => !oTodo.get('completed')).size
-    const completedCls = classNames('pull-right', 'clear-completed', { hide: todos.size - nCompletedCount <= 0 })
+    const nCompletedCount = todos.filter(oTodo => !oTodo.completed).length
+    const completedCls = classNames('pull-right', 'clear-completed', { hide: todos.length - nCompletedCount <= 0 })
     
     return (
-        <footer className={classNames('footer-todos', { hide: todos.size === 0 })}>
+        <footer className={classNames('footer-todos', { hide: todos.length === 0 })}>
             <div
                 id="todo-count"
                 className="pull-left"
             >
-                <strong>{todos.size}</strong> items left
+                <strong>{todos.length}</strong> items left
             </div>
             <ul className="filters list-unstyled list-inline">
                 {onRenderLi(constant.VisibilityFilters.SHOW_ALL, 'All')}
@@ -66,7 +66,7 @@ const Footer = function ({
 
 
 Footer.propTypes = {
-    todos: PropTypes.object.isRequired,
+    todos: PropTypes.array.isRequired,
     todoFilter: PropTypes.string.isRequired,
     clearCompletedTodo: PropTypes.func.isRequired,
     setFilter: PropTypes.func.isRequired

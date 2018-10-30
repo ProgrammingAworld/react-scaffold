@@ -15,6 +15,7 @@ const actionCreator = createActions({
         url: '/api/addTodo',
         method: 'POST',
         handleError: true,
+        needFormData: true,
         actionType: actionTypes.ADD_TODO
     },
     removeTodo: {

@@ -21,7 +21,7 @@ class TodoSingle extends PureComponent {
     todoRemove = () => {
         const { data } = this.state
         const { removeTodo } = this.props
-        removeTodo({ params: { id: data.get('id') } })
+        removeTodo({ params: { id: data.id } })
     }
     
     finishNameEdit = (e) => {
@@ -36,8 +36,7 @@ class TodoSingle extends PureComponent {
         const { onUpdateTodo } = this.props
         this.setState((prevState) => {
             const { data } = prevState
-            const id = data.get('id')
-            const completed = data.get('completed')
+            const { id, completed } = data
             switch (todoKey) {
             case 'completed':
                 onUpdateTodo({ data: { id, completed: !completed } })
@@ -49,9 +48,9 @@ class TodoSingle extends PureComponent {
                             })
                         }
                     })
-                return { data: prevState.data.set('completed', !completed) }
+                return { data: { ...prevState.data, completed: !completed } }
             case 'text':
-                return { data: prevState.data.set('text', text) }
+                return { data: { ...prevState.data, text } }
             default:
                 return { data }
             }
@@ -64,7 +63,7 @@ class TodoSingle extends PureComponent {
         this.toggleHideEditInput(true)
         
         if (!hideEditInput) {
-            onUpdateTodo({ data: { id: data.get('id'), text: data.get('text') } })
+            onUpdateTodo({ data: { id: data.id, text: data.text } })
         }
     }
     
@@ -89,15 +88,15 @@ class TodoSingle extends PureComponent {
                     <input
                         className="toggle"
                         type="checkbox"
-                        checked={data.get('completed')}
+                        checked={data.completed}
                         onChange={e => this.todoUpdate(e, 'completed')}
                     />
-                    <div className={classNames('normal', { completed: data.get('completed') })}>{data.get('text')}</div>
+                    <div className={classNames('normal', { completed: data.completed })}>{data.text}</div>
                     <button type="button" className={classNames('destroy', { hide: hideDelIcon })} onClick={this.todoRemove} />
                 </div>
                 <input
                     className={classNames('edit', { hide: hideEditInput })}
-                    value={data.get('text')}
+                    value={data.text}
                     onChange={e => this.todoUpdate(e, 'text')}
                     onKeyDown={this.finishNameEdit}
                 />

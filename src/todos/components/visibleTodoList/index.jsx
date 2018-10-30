@@ -10,8 +10,9 @@ import './scss/index.scss'
 
 class VisibleTodoList extends PureComponent {
     componentDidMount() {
-        const { getAllTodo } = this.props
-        getAllTodo()
+        const { getAllTodo, todos } = this.props
+        
+        if (todos.length === 0) getAllTodo()
     }
     
     render() {
@@ -19,7 +20,7 @@ class VisibleTodoList extends PureComponent {
             todos,
             checkedAllTodo, removeTodo, updateTodo
         } = this.props
-        const bCheckedAll = todos.filter(item => item.get('completed')).size === todos.size
+        const bCheckedAll = todos.filter(item => item.completed).length === todos.length
         
         return (
             <section className="main-todos">
@@ -31,12 +32,12 @@ class VisibleTodoList extends PureComponent {
                 />
                 <ul className="todo-list list-unstyled">
                     {
-                        todos.size === 0 && <li><div className="view text-center">没有数据！</div></li>
+                        todos.length === 0 && <li><div className="view text-center">没有数据！</div></li>
                     }
                     {
-                        todos.size > 0 && todos.map(oTodo => (
+                        todos.length > 0 && todos.map(oTodo => (
                             <Todo
-                                key={oTodo.get('id')}
+                                key={oTodo.id}
                                 data={oTodo}
                                 onUpdateTodo={updateTodo}
                                 removeTodo={removeTodo}
@@ -50,7 +51,7 @@ class VisibleTodoList extends PureComponent {
 }
 
 VisibleTodoList.propTypes = {
-    todos: PropTypes.object.isRequired,
+    todos: PropTypes.array.isRequired,
     getAllTodo: PropTypes.func.isRequired,
     checkedAllTodo: PropTypes.func.isRequired,
     removeTodo: PropTypes.func.isRequired,
