@@ -104,6 +104,8 @@ module.exports = {
         'react/jsx-indent-props': ['error', 4],
         // 使用了jsx语法的js代码文件其扩展名可以使用js或jsx
         'react/jsx-filename-extension': ['error', {extensions: ['.js', '.jsx']}],
+        // 无状态和没有使用生命周期的组件使用函数组件声明
+        'react/prefer-stateless-function': ['error', { ignorePureComponents: false }],
         // 数组索引可以用作key
         'react/no-array-index-key': 'off',
         // 组件属性可以传any,array,object
