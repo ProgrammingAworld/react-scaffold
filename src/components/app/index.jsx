@@ -34,7 +34,7 @@ class App extends PureComponent {
     }
 
     render() {
-        const { match: { url }, username, timestamp, logout } = this.props
+        const { match: { url }, username, logout } = this.props
         const { loadedUserInfo } = this.state
         
         if (loadedUserInfo) {
@@ -46,7 +46,6 @@ class App extends PureComponent {
                 <div id="chief">
                     <Header
                         username={username}
-                        timestamp={timestamp}
                         logout={logout}
                     />
                     <Switch>
@@ -66,8 +65,7 @@ App.propTypes = {
     match: PropTypes.object.isRequired,
     getUserInfo: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
-    username: PropTypes.string.isRequired,
-    timestamp: PropTypes.string.isRequired
+    username: PropTypes.string.isRequired
 }
 
 export default App

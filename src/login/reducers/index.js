@@ -6,12 +6,10 @@
 import { handleActions } from 'framework'
 import { Immutable } from 'framework/Util'
 import * as actionTypes from '../actions/actionTypes'
-import * as actionTypesPublic from '@/actions/actionTypes'
 
 const inintialState = Immutable.fromJS({
     username: '',
-    userType: actionTypes.USER_TYPE[0],
-    timestamp: ''
+    userType: actionTypes.USER_TYPE[0]
 })
 
 const loginReducer = handleActions({
@@ -21,9 +19,6 @@ const loginReducer = handleActions({
             return state.set('username', username)
                 .set('userType', actionTypes.USER_TYPE[parseInt(userType, 10)])
         }
-    },
-    [actionTypesPublic.SET_USERTIMESTAMP_PUBLIC](state, action){
-        return state.set('timestamp', action.payload)
     }
 }, inintialState)
 

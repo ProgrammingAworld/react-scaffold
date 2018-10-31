@@ -4,7 +4,7 @@
  * 日期： 2018/3/19
  */
 
-import { createAction, createActions } from 'framework'
+import { createActions } from 'framework'
 import * as actionTypes from './actionTypes'
 
 const actionCreator = createActions({
@@ -18,8 +18,7 @@ const actionCreator = createActions({
     getUserInfo: {
         url: '/api/getUserInfo',
         actionType: actionTypes.SET_USER_INFO_LOGIN
-    },
-    setUserInfo: createAction(actionTypes.SET_USER_INFO_LOGIN)
+    }
 })
 
 export default actionCreator

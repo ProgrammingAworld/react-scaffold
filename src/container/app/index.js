@@ -11,8 +11,7 @@ import App from '../../components/app'
 const userInfo = state => state.login
 const selector = createSelector([userInfo], login => ({
     username: login.get('username'),
-    userType: login.get('userType'),
-    timestamp: login.get('timestamp')
+    userType: login.get('userType')
 }))
 
 export default connect(selector, actionCreator)(App)

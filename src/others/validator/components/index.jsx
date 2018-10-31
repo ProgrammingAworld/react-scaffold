@@ -1,4 +1,4 @@
-import { React, PropTypes, PureComponent } from 'framework/Util'
+import { React, PureComponent } from 'framework/Util'
 import Collapse from './collapse'
 import './scss/index.scss'
 
@@ -6,8 +6,7 @@ class Validator extends PureComponent{
     constructor(props){
         super(props)
         this.state = {
-            show: true,
-            status: ''
+            show: true
         }
     }
     
@@ -21,34 +20,21 @@ class Validator extends PureComponent{
         }))
     }
     
-    appendUserTimestamp = () => {
-        const { setUserTimestamp } = this.props
-        setUserTimestamp(Date.now().toString())
-    }
-    
     render(){
-        const { show, status } = this.state
+        const { show } = this.state
         return (
             <div className="validatormain-others">
                 <button type="button" onClick={this.showAndHide}>显示隐藏</button>
                 <Collapse show={show} onShowChange={this.onShowChange} />
-                <div>
-                    <button type="button" onClick={this.appendUserTimestamp}>在当前用户名的后面追加时间戳</button>
-                    <div>{status}</div>
-                </div>
             </div>
         )
     }
 }
 
-Validator.propTypes = {
-    setUserTimestamp: PropTypes.func.isRequired
-}
-
-Validator.getDerivedStateFromProps = ({ timestamp }, state) => ({
-    ...state,
-    status: timestamp.length === 0 ? '' : `时间戳改变了,同时倒数第二位数是${timestamp.slice(-2, -1)}`
-})
+// Validator.getDerivedStateFromProps = ({ timestamp = Date.now() }, state) => ({
+//     ...state,
+//     status: timestamp.length === 0 ? '' : `时间戳改变了,同时倒数第二位数是${timestamp.slice(-2, -1)}`
+// })
 
 
 export default Validator

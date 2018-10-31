@@ -26,6 +26,10 @@ class Login extends PureComponent {
         // 用户名获得焦点11
         this.username.focus()
         particlesJS('particles-js', constant.particles)
+    
+        const { projectInit } = this.props
+        projectInit()
+        localStorage.clear()
     }
 
     setError = (errorMsg) => {
@@ -139,7 +143,8 @@ class Login extends PureComponent {
 
 Login.propTypes = {
     history: PropTypes.object.isRequired,
-    login: PropTypes.func.isRequired
+    login: PropTypes.func.isRequired,
+    projectInit: PropTypes.func.isRequired
 }
 
 export default Login

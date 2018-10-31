@@ -35,8 +35,8 @@ BroadCastView.propTypes = {
     setUserInfoTimestamp: PropTypes.func.isRequired
 }
 
-BroadCastView.getDerivedStateFromProps = ({ timestamp }) => ({
-    status: timestamp.length === 0 ? '' : `时间戳改变了同时以${timestamp.slice(-1)}结尾`
-})
+// BroadCastView.getDerivedStateFromProps = ({ timestamp }) => ({
+//     status: timestamp.length === 0 ? '' : `时间戳改变了同时以${timestamp.slice(-1)}结尾`
+// })
 
 export default BroadCastView
