@@ -5,14 +5,18 @@
  */
 import { React, PureComponent } from 'framework/Util'
 import dialog from 'dialog'
-import { Row, Col, Table, Button, Select } from 'antd'
+import { Row, Col, Table, Button, Select, DatePicker } from 'antd'
+import moment from 'moment'
 import './scss/index.scss'
 
 const { Option } = Select
+const { RangePicker } = DatePicker
 
 class AntdView extends PureComponent {
     state = {
-        selectedRowKeys: []
+        selectedRowKeys: [],
+        value: [],
+        mode: ['month', 'month']
     }
     
     okClick = () => {
@@ -92,7 +96,31 @@ class AntdView extends PureComponent {
         )
     }
     
+    openChange = (open) => {
+        if (open) this.setState({ timeMode: 'time' })
+    }
+    
+    panelChange = (value, mode) => {
+        this.setState({
+            timeMode: mode
+        })
+    }
+    
+    handlePanelChange = (value, mode) => {
+        this.setState({
+            value,
+            timeMode: 'time',
+            mode: [
+                mode[0] === 'date' ? 'month' : mode[0],
+                mode[1] === 'date' ? 'month' : mode[1]
+            ]
+        })
+    }
+    
     render() {
+        const { value, mode, timeMode } = this.state
+        const dateFormat = 'YYYY/MM/DD'
+        
         return (
             <div className="antd-main-others">
                 <Button type="primary" onClick={this.showModal}>弹窗</Button>
@@ -106,7 +134,22 @@ class AntdView extends PureComponent {
                             <Option value="xuliang">xuliang</Option>
                         </Select>
                     </Col>
-                    <Col span={8}>col3</Col>
+                    <Col span={8}>
+                        <DatePicker defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} />
+                        <DatePicker
+                            showTime
+                            mode={timeMode}
+                            onOpenChange={this.openChange}
+                            onPanelChange={this.panelChange}
+                        />
+                        <RangePicker
+                            placeholder={['开始月份', '结束月份']}
+                            format="YYYY-MM"
+                            value={value}
+                            mode={mode}
+                            onPanelChange={this.handlePanelChange}
+                        />
+                    </Col>
                 </Row>
             </div>
         )
