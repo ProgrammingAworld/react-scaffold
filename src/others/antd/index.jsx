@@ -5,8 +5,10 @@
  */
 import { React, PureComponent } from 'framework/Util'
 import dialog from 'dialog'
-import { Table, Button } from 'antd'
+import { Row, Col, Table, Button, Select } from 'antd'
 import './scss/index.scss'
+
+const { Option } = Select
 
 class AntdView extends PureComponent {
     state = {
@@ -29,7 +31,7 @@ class AntdView extends PureComponent {
         })
     }
     
-    render() {
+    antdTableRender = () => {
         const dataSource = [{
             key: '1',
             name: '胡彦斌',
@@ -41,7 +43,7 @@ class AntdView extends PureComponent {
             age: 42,
             address: '西湖区湖底公园1号'
         }]
-
+    
         const columns = [{
             title: '姓名',
             dataIndex: 'name',
@@ -55,17 +57,16 @@ class AntdView extends PureComponent {
             dataIndex: 'address',
             key: 'address',
         }]
-
+    
         const { selectedRowKeys } = this.state
-
+        
         return (
-            <div className="antd-main-others">
-                <Button type="primary" onClick={this.showModal}>弹窗</Button>
+            <div className="antd-table-others">
                 <Table
                     onRow={record => ({
                         onClick: () => {
                             const { key } = record
-
+                    
                             if (selectedRowKeys.includes(key)) {
                                 this.setState(prevState => ({
                                     selectedRowKeys: prevState.selectedRowKeys.filter(item => item !== key)
@@ -81,12 +82,32 @@ class AntdView extends PureComponent {
                         if (selectedRowKeys.includes(record.key)) {
                             return 'bg-primary'
                         }
-
+                
                         return 'others'
                     }}
                     dataSource={dataSource}
                     columns={columns}
                 />
+            </div>
+        )
+    }
+    
+    render() {
+        return (
+            <div className="antd-main-others">
+                <Button type="primary" onClick={this.showModal}>弹窗</Button>
+                <Row gutter={16}>
+                    <Col span={8}>{this.antdTableRender()}</Col>
+                    <Col span={8}>
+                        <Select autoFocus className="person-names">
+                            <Option value="lucy">lucy</Option>
+                            <Option value="lili">lili</Option>
+                            <Option value="xiaoming">xiaoming</Option>
+                            <Option value="xuliang">xuliang</Option>
+                        </Select>
+                    </Col>
+                    <Col span={8}>col3</Col>
+                </Row>
             </div>
         )
     }

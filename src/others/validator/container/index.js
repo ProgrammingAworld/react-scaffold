@@ -6,7 +6,7 @@
 
 import { connect, hot } from 'framework/Util'
 import actionCreator from '../actions/actionCreator'
-import ValidatorView from '../components'
+import ValidatorView from '../components/main/index'
 
 
 export default connect(() => ({}), actionCreator)(hot(module)(ValidatorView))

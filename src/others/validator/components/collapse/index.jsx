@@ -5,7 +5,7 @@
  */
 import { React, PropTypes, noop, PureComponent, classNames } from 'framework/Util'
 
-class Collapse extends PureComponent{
+class Index extends PureComponent{
     constructor(props){
         super(props)
         const { show } = props
@@ -37,7 +37,7 @@ class Collapse extends PureComponent{
     }
 }
 
-Collapse.getDerivedStateFromProps = (props) => {
+Index.getDerivedStateFromProps = (props) => {
     const { show } = props
 
     return {
@@ -45,14 +45,14 @@ Collapse.getDerivedStateFromProps = (props) => {
     }
 }
 
-Collapse.defaultProps = {
+Index.defaultProps = {
     show: true,
     onShowChange: noop
 }
 
-Collapse.propTypes = {
+Index.propTypes = {
     show: PropTypes.bool,
     onShowChange: PropTypes.func
 }
 
-export default Collapse
+export default Index

@@ -12,6 +12,8 @@ import {
     Switch,
     hot
 } from 'framework/Util'
+import { LocaleProvider } from 'antd'
+import zhCN from 'antd/lib/locale-provider/zh_CN'
 import config from 'conf'
 import Dialog from 'framework/dialog/container'
 import Loading from 'framework/loading/container'
@@ -22,16 +24,18 @@ const NotFindView = lazyload(import('@/components/error'))
 
 const RootRoutesView = function (){
     return (
-        <div className="containerchild">
-            <Switch>
-                <Route path={url.root} exact render={() => <Redirect to={url.login.path} />} />
-                <Route path={url.login.path} component={lazyload(import('@/login/container'))} />
-                <Route path={url.app.root.path} component={MainAppView} />
-                <Route component={NotFindView} />
-            </Switch>
-            <Dialog />
-            <Loading />
-        </div>
+        <LocaleProvider locale={zhCN}>
+            <div className="containerchild">
+                <Switch>
+                    <Route path={url.root} exact render={() => <Redirect to={url.login.path} />} />
+                    <Route path={url.login.path} component={lazyload(import('@/login/container'))} />
+                    <Route path={url.app.root.path} component={MainAppView} />
+                    <Route component={NotFindView} />
+                </Switch>
+                <Dialog />
+                <Loading />
+            </div>
+        </LocaleProvider>
     )
 }
 
