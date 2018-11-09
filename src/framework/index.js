@@ -186,6 +186,7 @@ const handleActions = function (reducerMap, defaultState) {
     })
 
     result[projectInitState] = function () {
+        window.localStorage.clear()
         return defaultState
     }
     

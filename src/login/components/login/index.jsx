@@ -29,7 +29,6 @@ class Login extends PureComponent {
     
         const { projectInit } = this.props
         projectInit()
-        localStorage.clear()
     }
 
     setError = (errorMsg) => {
