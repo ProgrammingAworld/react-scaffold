@@ -124,6 +124,8 @@ module.exports = {
         'import/extensions': ['error', {
             'js': 'never',
             'jsx': 'never'
-        }]
+        }],
+        // 可以使用html，有一些场景，后端会发一些html到前端需要渲染
+        'react/no-danger': 'off'
     }
 }

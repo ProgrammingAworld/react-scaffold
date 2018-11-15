@@ -1,4 +1,5 @@
-import { React, PureComponent } from 'framework/Util'
+import { React, ReactDOM, PureComponent } from 'framework/Util'
+import Parser from 'html-react-parser'
 import Collapse from '../collapse'
 import './scss/index.scss'
 
@@ -8,6 +9,14 @@ class Validator extends PureComponent{
         this.state = {
             show: true
         }
+    }
+    
+    componentDidMount(){
+        const html = '<BR/><i className=\'highlight\'>王</i><i className=\'highlight\'>鹏</i>在给小朋友做推拿。<BR/>'
+        ReactDOM.render(
+            Parser(`<h1>${html}</h1>`),
+            this.containerDiv
+        )
     }
     
     onShowChange = (show) => {
@@ -26,6 +35,7 @@ class Validator extends PureComponent{
             <div className="validatormain-others">
                 <button type="button" onClick={this.showAndHide}>显示隐藏</button>
                 <Collapse show={show} onShowChange={this.onShowChange} />
+                <div ref={(containerDiv) => { this.containerDiv = containerDiv }}>测试html-to-react</div>
             </div>
         )
     }

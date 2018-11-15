@@ -109,6 +109,7 @@
     "classnames": "^2.2.6",
     "compass-mixins": "^0.12.10",
     "history": "^4.7.2",
+    "html-react-parser": "^0.4.7",
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
