@@ -83,7 +83,7 @@ class Login extends PureComponent {
         return (
             <div className="login-login">
                 <div id="particles-js" />
-                <div className="loginmain">
+                <div className="login-box-main">
                     <div className="input-group">
                         <input
                             type="text"
@@ -102,7 +102,7 @@ class Login extends PureComponent {
                             className="login-pwd"
                         />
                         <i className="fa fa-user-o fa-lg" />
-                        <i className="fa fa-bell-o fa-lg pwdico" />
+                        <i className="fa fa-lock fa-lg pwdico" />
                     </div>
                     <div className="login-btn">
                         <div className={errorCls}><i
@@ -110,7 +110,7 @@ class Login extends PureComponent {
                         />{errorMsg}
                         </div>
                         <div className="clearfix" />
-                        <button type="button" className="login_button pull-right" onClick={this.login}>
+                        <button type="button" className="login-button pull-right" onClick={this.login}>
                                 登录
                         </button>
                         <div className="clearfix" />
