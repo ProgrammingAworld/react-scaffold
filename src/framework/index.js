@@ -50,7 +50,7 @@ const handleWithParameter = function (url, {
         case 'get':
             return instance.get(urlNew, { params: paramsNew })
         case 'delete':
-            return instance.delete(urlNew, { params: paramsNew })
+            return instance.delete(urlNew, { params: paramsNew, data })
         case 'post':
             return instance.post(urlNew, qs.stringify(data), {params: strParams.length > 0 ? paramsNew : {} })
         case 'put':
