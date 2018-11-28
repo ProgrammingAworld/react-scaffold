@@ -211,8 +211,8 @@ let plugins = [
             to: 'static/scripts/project-conf.js'
         },
         {
-            from: `${__dirname}/src/images`,
-            to: `${__dirname}/${destDir}/static/images`
+            from: 'src/images',
+            to: 'static/images'
         }
     ]),
     new StyleLintPlugin({
