@@ -80,6 +80,10 @@ class ReactComponentBase extends React.PureComponent {
     //  在一个组件被卸载(unmounted) 和销毁(destroyed) 之前立即被调用。 在此方法中执行任何必要的清理，例如使计时器无效，取消网络请求，或清理在 componentDidMount 中创建的任何 DOM 元素。
     // }
     
+    componentWillUnmount(){
+        this.setState = function () {}
+    }
+    
     forbitBlackSpace(e) {
         if (e.which === 32) {
             e.preventDefault()

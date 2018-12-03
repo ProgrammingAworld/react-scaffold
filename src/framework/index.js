@@ -22,6 +22,11 @@ const instance = axios.create({
     responseType: 'json'
 })
 
+instance.interceptors.request.use(
+    config => ({ ...config, cancelToken: window.projectConf.source.token }),
+    err => (Promise.reject(err))
+)
+
 const handleWithParameter = function (url, {
     method = 'GET',
     contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -88,12 +93,18 @@ const createActions = function (actionMap) {
     eventNames.forEach((eventName) => {
         const configOrFn = actionMap[eventName]
         if (typeof configOrFn !== 'function') {
-            const config = { method: 'GET', actionType:'hasNotConfigActionType', ...configOrFn }
+            const config = {
+                method: 'GET',
+                actionType:'hasNotConfigActionType',
+                hasLoading: true,
+                handleError: true,
+                ...configOrFn
+            }
             fnsMap[eventName] = (settings = {}) => (dispatch) => {
                 // const loading = require('loading').default
                 // const dialog = require('dialog').default
 
-                if ((config.hasLoading || config.hasLoading === undefined) && !loading.getLoadingStatus()) loading.show()
+                if ((config.hasLoading) && !loading.getLoadingStatus()) loading.show()
 
                 dispatch(createAction(`${config.actionType}_PRE`)(settings))
                 return handleWithParameter(
@@ -124,7 +135,7 @@ const createActions = function (actionMap) {
                         return res.data
                     }
 
-                    if (config.handleError || config.handleError === undefined) {
+                    if (config.handleError) {
                         if (statusCode === 301) {
                             location.replace(location.origin)
                         } else {
@@ -136,23 +147,27 @@ const createActions = function (actionMap) {
                     dispatch(createAction(`${config.actionType}_ALWAYS`)())
 
                     return res.data
-                }).catch((error) => {
+                }).catch(({message, response}) => {
                     loading.hide()
-                    if(error.response){
+                    if(response){
                         dispatch(createAction(`${config.actionType}_FAIL`)())
                         dispatch(createAction(`${config.actionType}_ALWAYS`)())
-                        mesAntd.error(`${error.response.statusText}😂！`)
+                        mesAntd.error(`${response.statusText}😂！`)
                         return {
-                            statusCode: error.response.status,
-                            message: error.response.statusText
+                            statusCode: response.status,
+                            message: response.statusText
                         }
                     } else {
-                        mesAntd.error(`${error.message}！${error.stack}!`)
+                        if (message && config.handleError){
+                            mesAntd.error(`${message}！`)
+                        } else {
+                            console.log(`未知错误${message}😂！`)
+                        }
                     }
                     
                     return {
                         statusCode: 500,
-                        message: error.message
+                        message: message
                     }
                 })
             }
