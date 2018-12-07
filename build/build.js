@@ -1,9 +1,9 @@
 const webpack = require('webpack')
 const chalk = require('chalk')
 const path = require('path')
-const config = require('./webpack.config')
 const childProcess = require('child_process')
 const fs = require('fs')
+const config = require('./webpack.config')
 
 webpack(config, (err, stats) => {
     if (err) throw err
