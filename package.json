@@ -14,6 +14,7 @@
     "dev": "cross-env NODE_ENV=development node --max_old_space_size=4096 build/dev.js",
     "build": "cross-env NODE_ENV=production node --max_old_space_size=4096 build/build.js",
     "deploy": "cross-env NODE_ENV=production node ./node_modules/.bin/webpack --hide-modules --progress --config ./build/webpack.config.js",
+    "postdeploy": "node ./build/web-commit-log.js",
     "lintall": "sh build/pre-commit lintall || true",
     "postlintall": "echo 'lintallall complete'",
     "jsdoc": "jsdoc ./src/*.js --readme ./README.md -t ./node_modules/ink-docstrap/template -c ./conf.json",
