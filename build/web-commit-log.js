@@ -10,7 +10,7 @@ const fs = require('fs')
 
 // 生成提交日志
 // %H提交对象（commit）的完整哈希字串  %ad作者修订日期（可以用 --date= 选项定制格式）
-childProcess.exec('git log --pretty="%H - %ad" --date=iso-local --since="2018-12-05"', (error, stdout) => {
+childProcess.exec('git log --pretty="%H - %an, %ad : %s" --date=iso-local --since="2018-12-05"', (error, stdout) => {
     if (!error){
         const DIST_PATH = path.resolve(__dirname, '../dist')
         const webCommitLogPath = `${DIST_PATH}/web-commit.log`
