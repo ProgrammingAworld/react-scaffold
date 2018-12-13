@@ -223,7 +223,7 @@ let plugins = [
     }),
     new HtmlWebpackPlugin({
         template: path.join(APP_PATH, 'index.html'),
-        title: 'example',
+        title: 'example-%lastCommitId%',
         description: '这是一个示例工程',
         filename: 'index.html',
         favicon: 'src/images/favicon.ico',

@@ -29,13 +29,24 @@ class Login extends PureComponent {
     
         const { projectInit } = this.props
         projectInit()
+        
+        window.addEventListener('resize', () => {
+            console.log('log')
+        }, false)
     }
 
     setError = (errorMsg) => {
         this.setState({ errorMsg })
     }
     
+    triggerResize = () => {
+        // const customEvent = new Event('resize')
+        // window.dispatchEvent(customEvent)
+        
+    }
+    
     checkedChange = (userType) => {
+        this.triggerResize()
         this.setState({ userType })
     }
 
