@@ -327,7 +327,6 @@ module.exports = {
         ],
         alias: {
             '@': APP_PATH,
-            base: path.join(APP_PATH, 'framework/base'),
             framework: path.join(APP_PATH, 'framework'),
             conf: path.join(APP_PATH, 'conf'),
             dialog: path.join(APP_PATH, 'framework/dialog'),
