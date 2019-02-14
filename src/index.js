@@ -1,7 +1,6 @@
 /**
  * Created by anchao on 2015/12/7.
  */
-import '@babel/polyfill'
 import './css/index.scss'
 import projectInit from './framework/projectInit'
 

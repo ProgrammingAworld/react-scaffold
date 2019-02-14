@@ -54,25 +54,29 @@ function Dialog(props) {
                 <div>
                     <div className="pull-left"><i className="fa fa-check fa-lg text-success" />&nbsp;&nbsp;</div>
                     {content}
-                </div>)
+                </div>
+            )
         } else if (infoType === 'warning') {
             contentSec = (
                 <div>
                     <div className="pull-left"><i className="fa fa-exclamation-triangle fa-lg text-warning" />&nbsp;&nbsp;</div>
                     {content}
-                </div>)
+                </div>
+            )
         } else if (infoType === 'error') {
             contentSec = (
                 <div>
                     <div className="pull-left"><i className="fa fa-close fa-lg text-danger" />&nbsp;&nbsp;</div>
                     {content}
-                </div>)
+                </div>
+            )
         } else {
             contentSec = (
                 <div>
                     <div className="pull-left"><i className="fa fa-info fa-lg text-info" />&nbsp;&nbsp;</div>
                     {content}
-                </div>)
+                </div>
+            )
         }
 
         infoTypeCls = `dialog-${infoType}`

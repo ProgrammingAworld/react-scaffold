@@ -29,7 +29,7 @@ instance.interceptors.request.use(
 
 const handleWithParameter = function (url, {
     method = 'GET',
-    contentType = 'application/x-www-form-urlencoded; charset=UTF-8',
+    contentType = 'application/json; charset=UTF-8',
     params = {},
     data = {}
 }) {
@@ -57,9 +57,9 @@ const handleWithParameter = function (url, {
         case 'delete':
             return instance.delete(urlNew, { params: paramsNew, data })
         case 'post':
-            return instance.post(urlNew, qs.stringify(data), {params: strParams.length > 0 ? paramsNew : {} })
+            return instance.post(urlNew, data, {params: strParams.length > 0 ? paramsNew : {} })
         case 'put':
-            return instance.put(urlNew, qs.stringify(data), {params: strParams.length > 0 ? paramsNew : {} })
+            return instance.put(urlNew, data, {params: strParams.length > 0 ? paramsNew : {} })
         default: {
             const res = {
                 then: resolve => resolve({
