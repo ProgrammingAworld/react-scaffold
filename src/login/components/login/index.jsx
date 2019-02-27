@@ -16,7 +16,7 @@ class Login extends PureComponent {
         super(props)
         
         this.state = {
-            errorMsg: 'ddee',
+            errorMsg: '',
             userType: constant.userTypes[1]
         }
     }
