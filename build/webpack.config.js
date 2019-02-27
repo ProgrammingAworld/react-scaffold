@@ -31,7 +31,6 @@ const baseconfig = {
             injectionLoader,
             {
                 test: /\.css$/,
-                exclude: /node_modules/,
                 use: [
                     firstloader,
                     'css-loader'

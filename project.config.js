@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -103,7 +103,7 @@ const jsxLoader = [
     {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: ['thread-loader', 'babel-loader']
     }
 ]
 
@@ -111,6 +111,11 @@ const cssLoaderUse = function (loaders) {
     const defaultOpt = { sourceMap: !isProd }
     return loaders.map((loader) => {
         let options = defaultOpt
+        
+        if(loader === 'css-loader') {
+           // mini-css-extract-plugin能够处理
+            options = {}
+        }
         
         if (loader === 'postcss-loader') {
             options = {
@@ -244,12 +249,11 @@ if (isProd) {
     ])
     
     optimization.minimizer = optimization.minimizer.concat([
-        new UglifyJsPlugin({
-            cache: true,
+        new OptimizeCSSPlugin({ discardComments: { removeAll: true } }),
+        new TerserPlugin({
             parallel: true,
-            sourceMap: true
-        }),
-        new OptimizeCSSPlugin({ discardComments: { removeAll: true } })
+            cache: true
+        })
     ])
 } else {
     plugins = plugins.concat([

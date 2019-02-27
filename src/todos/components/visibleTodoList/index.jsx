@@ -37,7 +37,7 @@ class VisibleTodoList extends PureComponent {
                     {
                         todos.length > 0 && todos.map(oTodo => (
                             <Todo
-                                key={oTodo.id}
+                                key={`${oTodo.id}${oTodo.completed}`}
                                 data={oTodo}
                                 onUpdateTodo={updateTodo}
                                 removeTodo={removeTodo}

@@ -34,7 +34,7 @@ fi
 
 for FILE in $STAGED_FILES_JS
 do
-  node_modules/.bin/eslint --config .eslintrc.js --format node_modules/eslint-friendly-formatter "$FILE" --cache
+  node_modules/.bin/eslint --config .eslintrc.js --format node_modules/eslint-friendly-formatter "$FILE" --cache --quiet
   if [[ "$?" == 0 ]]; then
     echo "\t\033[32mesLint Passed: $FILE\033[0m"
   else

@@ -9,5 +9,6 @@
 
 //公共
 @import "common/public";
-@import "~antd/dist/antd.min.css";
+// 动态加载
+//@import "~antd/dist/antd.min.css";
 @import "common/plugins/antd-ext";

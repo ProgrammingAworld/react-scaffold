@@ -92,6 +92,7 @@ function Dialog(props) {
             footer={footerNew}
             visible={show}
             wrapClassName="dialogwapper"
+            maskClosable={false}
             width={width}
             onOk={ok}
             onCancel={cancel}

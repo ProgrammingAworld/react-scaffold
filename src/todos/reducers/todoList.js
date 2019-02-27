@@ -5,7 +5,6 @@
  */
 import { handleActions } from 'framework'
 import { Immutable } from 'framework/Util'
-import qs from 'qs'
 import * as actionTypes from '../actions/actionTypes'
 
 const initialState = Immutable.fromJS({
@@ -22,7 +21,7 @@ const todoList = handleActions({
     },
     [actionTypes.ADD_TODO]: {
         success: (state, action) => state.update('list', (list) => {
-            const { id, text, completed } = qs.parse(action.payload.config.data)
+            const { id, text, completed } = JSON.parse(action.payload.config.data)
             return list.unshift(Immutable.fromJS({
                 id: Number(id),
                 completed: Boolean(completed),
