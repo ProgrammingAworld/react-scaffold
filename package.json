@@ -4,7 +4,7 @@
   "description": "ac frontEnd solution",
   "main": "index.js",
   "scripts": {
-    "commitmsg": "commitlint -E GIT_PARAMS",
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
     "precommit": "cp build/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit",
     "prepush": "npm run lintall",
     "server": "nodemon server/index.js",
