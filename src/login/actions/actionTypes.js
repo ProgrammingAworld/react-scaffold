@@ -5,4 +5,4 @@
  */
 
 export const SET_USER_INFO_LOGIN = 'SET_USER_INFO_LOGIN'
-export const USER_TYPE = ['0', '1']
+export const LOGOUT_LOGIN = 'LOGOUT_LOGIN'

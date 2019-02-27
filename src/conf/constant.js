@@ -1,3 +1,5 @@
+export const userTypes = ['0', '1']
+
 export const VisibilityFilters = {
     SHOW_ALL: 'SHOW_ALL',
     SHOW_COMPLETED: 'SHOW_COMPLETED',

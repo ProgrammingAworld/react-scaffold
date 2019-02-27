@@ -7,7 +7,6 @@
 import config from 'conf'
 import { React, PropTypes, PureComponent, classNames } from 'framework/Util'
 import particlesJS from 'particles'
-import * as actionTypes from '../../actions/actionTypes'
 import './scss/index.scss'
 
 const { constant } = config
@@ -15,10 +14,10 @@ const { constant } = config
 class Login extends PureComponent {
     constructor(props){
         super(props)
-
+        
         this.state = {
-            errorMsg: '',
-            userType: actionTypes.USER_TYPE[0]
+            errorMsg: 'ddee',
+            userType: constant.userTypes[1]
         }
     }
 

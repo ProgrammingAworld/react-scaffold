@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pvfhv/react-redux-router.git"
+    "url": "https://github.com/pvfhv/react-scaff.git"
   },
   "keywords": [
     "webpack4",
@@ -40,9 +40,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pvfhv/react-redux-router/issues"
+    "url": "https://github.com/pvfhv/react-scaff/issues"
   },
-  "homepage": "https://github.com/pvfhv/react-redux-router",
+  "homepage": "https://github.com/pvfhv/react-scaff",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
@@ -133,11 +133,11 @@
     "prop-types": "^15.6.2",
     "qs": "^6.5.2",
     "rc-bmap": "^1.0.2",
-    "react": "^16.4.2",
+    "react": "^16.8.3",
     "react-click-outside": "^3.0.1",
     "react-dnd": "^7.0.2",
     "react-dnd-html5-backend": "^7.0.2",
-    "react-dom": "^16.4.2",
+    "react-dom": "^16.8.3",
     "react-hot-loader": "^4.7.1",
     "react-loadable": "^5.4.0",
     "react-redux": "^6.0.1",

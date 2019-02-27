@@ -5,11 +5,14 @@
  */
 import { handleActions } from 'framework'
 import { Immutable } from 'framework/Util'
+import config from 'conf'
 import * as actionTypes from '../actions/actionTypes'
+
+const { constant } = config
 
 const inintialState = Immutable.fromJS({
     username: '',
-    userType: actionTypes.USER_TYPE[0]
+    userType: constant.userTypes[1]
 })
 
 const loginReducer = handleActions({
@@ -17,7 +20,7 @@ const loginReducer = handleActions({
         success: (state, action) => {
             const { username, userType } = action.payload
             return state.set('username', username)
-                .set('userType', actionTypes.USER_TYPE[parseInt(userType, 10)])
+                .set('userType', constant.userTypes[parseInt(userType, 10)])
         }
     }
 }, inintialState)
