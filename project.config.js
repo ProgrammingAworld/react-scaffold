@@ -338,7 +338,7 @@ module.exports = {
             plugins: path.join(APP_PATH, 'plugins'),
             particles: path.join(APP_PATH, 'plugins/particles.js'),
         },
-        extensions: ['.js', '.jsx', '.json', '.css', '.json']
+        extensions: ['.js', '.jsx', '.json', '.css']
     },
     devServer,
     proxies
