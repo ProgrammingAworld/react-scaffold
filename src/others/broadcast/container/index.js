@@ -6,7 +6,7 @@
 
 import { connect, hot, createSelector } from 'framework/Util'
 import actionCreator from '../actions/actionCreator'
-import BroadcastView from '../components'
+import BroadcastView from '../components/main'
 
 const loginState = state => state.login
 const loginSelector = createSelector([loginState], login => ({

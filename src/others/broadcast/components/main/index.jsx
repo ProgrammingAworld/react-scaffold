@@ -4,11 +4,13 @@
  * 日期： 2018/3/19
  */
 import { React, PropTypes, PureComponent } from 'framework/Util'
+import ContextMenu from '../contextmenu'
 import './scss/index.scss'
 
 class BroadCastView extends PureComponent {
     state = {
-        status: '时间戳为空'
+        status: '时间戳为空',
+        showContextMenu: true
     }
     
     appendUserTimestamp = () => {
@@ -16,8 +18,14 @@ class BroadCastView extends PureComponent {
         setUserInfoTimestamp(Date.now().toString())
     }
     
+    updateCxMenuStatus = (isShow) => {
+        this.setState({
+            showContextMenu: isShow
+        })
+    }
+    
     render() {
-        const { status } = this.state
+        const { status, showContextMenu } = this.state
         return (
             <div className="broadcast-main-others">
                 <div>
@@ -26,6 +34,10 @@ class BroadCastView extends PureComponent {
                 <div>
                     当前状态：{status}
                 </div>
+                <div>
+                    <button type="button" onClick={() => this.updateCxMenuStatus(true)}>显示隐藏右键按钮</button>
+                </div>
+                <ContextMenu show={showContextMenu} updateCxMenuStatus={this.updateCxMenuStatus} />
             </div>
         )
     }

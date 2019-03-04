@@ -33,7 +33,7 @@
     "webpack4",
     "sass",
     "compass",
-    "react16.4.1",
+    "react16.x",
     "redux",
     "immutable",
     "babel"
