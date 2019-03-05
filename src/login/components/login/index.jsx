@@ -6,6 +6,7 @@
 
 import config from 'conf'
 import { React, PropTypes, PureComponent, classNames } from 'framework/Util'
+import { Button } from 'antd'
 import particlesJS from 'particles'
 import './scss/index.scss'
 
@@ -113,9 +114,9 @@ class Login extends PureComponent {
                         />{errorMsg}
                         </div>
                         <div className="clearfix" />
-                        <button type="button" className="login-button pull-right" onClick={this.login}>
+                        <Button type="primary" block onClick={this.login}>
                                 登录
-                        </button>
+                        </Button>
                         <div className="clearfix" />
                         <div className="rolerow">
                             <div className="pull-left">

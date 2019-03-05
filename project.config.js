@@ -117,6 +117,12 @@ const cssLoaderUse = function (loaders) {
             options = {}
         }
         
+        if(loader === 'less-loader') {
+            options = {
+                javascriptEnabled: true
+            }
+        }
+        
         if (loader === 'postcss-loader') {
             options = {
                 ...defaultOpt,

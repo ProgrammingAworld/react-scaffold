@@ -2,6 +2,7 @@
  * Created by anchao on 2015/12/7.
  */
 import './css/index.scss'
+import 'css/common/plugins/antd-ext.less'
 import projectInit from './framework/projectInit'
 
 projectInit(document.querySelector('#container'), () => {

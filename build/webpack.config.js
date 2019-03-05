@@ -40,6 +40,16 @@ const baseconfig = {
                 test: /\.scss$/,
                 include: APP_PATH,
                 use: cssLoaderUse(cssLoaders)
+            },
+            {
+                test: /\.less$/,
+                include: APP_PATH,
+                use: cssLoaderUse([
+                    firstloader,
+                    'css-loader',
+                    'postcss-loader',
+                    'less-loader'
+                ])
             }
         ]
     },

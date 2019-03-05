@@ -43,13 +43,6 @@
     "@babel/plugin-proposal-do-expressions",
     "@babel/plugin-proposal-function-bind",
     "react-hot-loader/babel",
-    "react-loadable/babel",
-    [
-      "import",
-      {
-        "libraryName": "antd",
-        "style": "css"
-      }
-    ]
+    "react-loadable/babel"
   ]
 }
