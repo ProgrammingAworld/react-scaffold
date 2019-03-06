@@ -45,27 +45,6 @@ const entry = (function () {
     }
 }())
 
-const optimization = {
-    splitChunks: {
-        cacheGroups: {
-            commons: {
-                chunks: 'initial',
-                minChunks: 2,
-                maxInitialRequests: 5,
-                minSize: 0
-            },
-            vendor: {
-                test: /node_modules/,
-                chunks: 'initial',
-                name: 'vendor',
-                priority: 10,
-                enforce: true
-            }
-        }
-    },
-    minimizer: []
-}
-
 const output = (function () {
     let obj = {
         path: path.join(ROOT_PATH, 'dev'),
@@ -214,18 +193,46 @@ const injectionLoader = {
 }
 
 const destDir = isProd ? 'dist' : 'dev'
+const optimization = {
+    splitChunks: {
+        cacheGroups: {
+            commons: {
+                chunks: 'initial',
+                minChunks: 2,
+                maxInitialRequests: 5,
+                minSize: 0
+            },
+            vendor: {
+                test: /node_modules/,
+                chunks: 'initial',
+                name: 'vendor',
+                priority: 10,
+                enforce: true
+            }
+        }
+    },
+    minimizer: []
+}
+
+const copyArgs = [
+    {
+        from: 'src/project-conf.js',
+        to: 'static/scripts/project-conf.js'
+    },
+    {
+        from: 'src/images',
+        to: 'static/images'
+    }
+]
+
 let plugins = [
     new CleanWebpackPlugin([destDir], { root: ROOT_PATH }),
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin(isProd ? copyArgs : copyArgs.concat([
         {
-            from: 'src/project-conf.js',
-            to: 'static/scripts/project-conf.js'
-        },
-        {
-            from: 'src/images',
-            to: 'static/images'
+            from: 'dll/vendor.dll.js',
+            to: 'static/scripts/vendor.dll.js'
         }
-    ]),
+    ])),
     new StyleLintPlugin({
         files: ['src/**/*.scss'],
         failOnError: false,
@@ -235,6 +242,7 @@ let plugins = [
     new HtmlWebpackPlugin({
         template: path.join(APP_PATH, 'index.html'),
         title: 'example-%lastCommitId%',
+        dll: isProd ? '' : '<script src="/static/scripts/vendor.dll.js"></script>',
         description: '这是一个示例工程',
         filename: 'index.html',
         favicon: 'src/images/favicon.ico',
@@ -263,6 +271,9 @@ if (isProd) {
     ])
 } else {
     plugins = plugins.concat([
+        new webpack.DllReferencePlugin({
+           manifest: path.resolve(__dirname, 'dll/vendor-manifest.json')
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new FriendlyErrorsPlugin()
     ])

@@ -29,8 +29,10 @@ npm install package_name --dev-save
 ## 启动调试环境
 
 ```bash
-npm run start
-npm run server
+预编译：npm run dll
+开发：npm run start
+模拟服务：npm run server
+打包：npm run deploy
 ```
 ## 规定
 ```bash
