@@ -27,7 +27,7 @@ class BroadCastView extends PureComponent {
     render() {
         const { status, showContextMenu } = this.state
         return (
-            <div className="broadcast-main-others">
+            <div styleName="broadcast-main-others">
                 <div>
                     <button type="button" onClick={this.appendUserTimestamp}>在当前用户名的后面追加时间戳</button>
                 </div>

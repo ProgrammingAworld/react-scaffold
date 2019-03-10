@@ -27,7 +27,7 @@ function AddTodo({ addTodo }) {
     }
     
     return (
-        <header className="header">
+        <header styleName="header">
             <h1>todos</h1>
             <input
                 className="newtodo-todos"

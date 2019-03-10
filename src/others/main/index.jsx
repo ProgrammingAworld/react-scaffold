@@ -12,8 +12,8 @@ import './scss/index.scss'
 
 const ComponentMain = function ({ match: { url } }) {
     return (
-        <div className="componentmain-others clearfix">
-            <div className="pull-left">
+        <div styleName="componentmain-others" className="clearfix">
+            <div className="pull-left left-nav">
                 <ul className="list-unstyled">
                     <li>
                         <NavLink
@@ -62,7 +62,7 @@ const ComponentMain = function ({ match: { url } }) {
                     </li>
                 </ul>
             </div>
-            <div className="pull-right">
+            <div className="pull-right right-content">
                 <Switch>
                     <Route
                         path={config.url.app.validator.path}

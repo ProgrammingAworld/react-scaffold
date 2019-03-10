@@ -4,7 +4,7 @@
 
 import { connect, createSelector } from 'framework/Util'
 import actionCreator from '../../actions/actionCreator'
-import VisibleTodoList from '../../components/visibleTodoList'
+import VisibleTodoList from '../../components/visible-todolist'
 import Utils from '../../utils'
 
 const todosSelector = state => state.todos

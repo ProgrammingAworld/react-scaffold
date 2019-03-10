@@ -11,7 +11,7 @@ const { Point } = Base
 
 const MapSimple = function () {
     return (
-        <div className="customcontrol-map">
+        <div styleName="customcontrol-map">
             <Map
                 ak="nvwlnIROmNKspQWn4IaR0g1OebViUF43"
                 scrollWheelZoom

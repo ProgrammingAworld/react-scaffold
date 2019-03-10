@@ -13,10 +13,13 @@ const { Option } = Select
 const { RangePicker } = DatePicker
 
 class AntdView extends PureComponent {
-    state = {
-        selectedRowKeys: [],
-        value: [],
-        mode: ['month', 'month']
+    constructor(props, context) {
+        super(props, context)
+        this.state = {
+            selectedRowKeys: [],
+            value: [],
+            mode: ['month', 'month']
+        }
     }
     
     okClick = () => {
@@ -122,7 +125,7 @@ class AntdView extends PureComponent {
         const dateFormat = 'YYYY/MM/DD'
         
         return (
-            <div className="antd-main-others">
+            <div styleName="antd-main-others">
                 <Button type="primary" onClick={this.showModal}>弹窗</Button>
                 <Row gutter={16}>
                     <Col span={8}>{this.antdTableRender()}</Col>

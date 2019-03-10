@@ -32,7 +32,7 @@ class Validator extends PureComponent{
     render(){
         const { show } = this.state
         return (
-            <div className="validatormain-others">
+            <div styleName="validatormain-others">
                 <button type="button" onClick={this.showAndHide}>显示隐藏</button>
                 <Collapse show={show} onShowChange={this.onShowChange} />
                 <div ref={(containerDiv) => { this.containerDiv = containerDiv }}>测试html-to-react</div>

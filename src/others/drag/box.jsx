@@ -29,7 +29,7 @@ class Box extends PureComponent{
         } = this.props
         if (isDragging) return null
         return connectDragSource
-            && connectDragSource(<div className="box-drag-others" style={{ top, left }} />)
+            && connectDragSource(<div styleName="box-drag-others" style={{ top, left }} />)
     }
 }
 

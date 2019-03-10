@@ -49,7 +49,7 @@ class DragView extends PureComponent{
         const { top, left } = this.state
         const { connectDropTarget } = this.props
         const HTML = (
-            <div className="dragging-sec-others">
+            <div styleName="dragging-sec-others">
                 <Box
                     top={top}
                     left={left}

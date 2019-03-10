@@ -22,8 +22,8 @@ const Header = function ({ username, logout, history }) {
     }
 
     return (
-        <div id="header" className="clearfix">
-            <div className="pull-left" id="logo" />
+        <div styleName="header" className="clearfix">
+            <div className="pull-left logo" />
             <div className="pull-left navigation">
                 <ul className="list-unstyled list-inline">
                     <li>

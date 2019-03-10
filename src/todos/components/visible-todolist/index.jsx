@@ -5,7 +5,7 @@
  */
 
 import { React, PropTypes, PureComponent } from 'framework/Util'
-import Todo from './Todo'
+import Todo from '../visible-todo'
 import './scss/index.scss'
 
 class VisibleTodoList extends PureComponent {
@@ -23,7 +23,7 @@ class VisibleTodoList extends PureComponent {
         const bCheckedAll = todos.filter(item => item.completed).length === todos.length
         
         return (
-            <section className="main-todos">
+            <section styleName="main-todos">
                 <input
                     className="toggle-all"
                     type="checkbox"

@@ -40,9 +40,9 @@ const Footer = function ({
     
     const nCompletedCount = todos.filter(oTodo => !oTodo.completed).length
     const completedCls = classNames('pull-right', 'clear-completed', { hide: todos.length - nCompletedCount <= 0 })
-    
+
     return (
-        <footer className={classNames('footer-todos', { hide: todos.length === 0 })}>
+        <footer styleName="footer-todos" className={classNames({ hide: todos.length === 0 })}>
             <div
                 id="todo-count"
                 className="pull-left"

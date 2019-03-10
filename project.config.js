@@ -86,14 +86,21 @@ const jsxLoader = [
     }
 ]
 
-const cssLoaderUse = function (loaders) {
+const cssLoaderUse = function (loaders, useCssModules = false) {
     const defaultOpt = { sourceMap: !isProd }
     return loaders.map((loader) => {
         let options = defaultOpt
         
         if(loader === 'css-loader') {
            // mini-css-extract-plugin能够处理
-            options = {}
+            if (useCssModules) {
+                options = {
+                    modules: true,
+                    localIdentName: '[local]__[path][name]_[hash:base64:5]'
+                }
+            } else {
+                options = {}
+            }
         }
         
         if(loader === 'less-loader') {

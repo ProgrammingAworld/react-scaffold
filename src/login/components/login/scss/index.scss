@@ -2,21 +2,22 @@
   background: $login-bg-color;
   height: 100%;
 
-  #particles-js {
-    @include size(100%, 100%);
-  }
+  :global{
+    #particles-js {
+      @include size(100%, 100%);
+    }
 
-  .login-box-main {
-    @include size(500px, 316px);
-    background: url('../images/logo.png') no-repeat center 28px $login-main-bg-color;
-    border: 1px solid $login-main-border-color;
-    left: 50%;
-    margin-left: -250px;
-    margin-top: -158px;
-    overflow: hidden;
-    position: absolute;
-    top: 50%;
-    @include opacity(.8);
+    .login-box-main {
+      @include size(500px, 316px);
+      background: url('../images/logo.png') no-repeat center 28px $login-main-bg-color;
+      border: 1px solid $login-main-border-color;
+      left: 50%;
+      margin-left: -250px;
+      margin-top: -158px;
+      overflow: hidden;
+      position: absolute;
+      top: 50%;
+      @include opacity(.8);
 
     .input-group {
       @include size(280px, 72px);
@@ -131,4 +132,5 @@
       }
     }
   }
+}
 }

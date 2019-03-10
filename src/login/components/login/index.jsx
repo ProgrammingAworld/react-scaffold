@@ -85,7 +85,7 @@ class Login extends PureComponent {
         const errorCls = classNames('errors', 'pull-right', { invisible: errorMsg.length <= 0 })
         
         return (
-            <div className="login-login">
+            <div styleName="login-login">
                 <div id="particles-js" />
                 <div className="login-box-main">
                     <div className="input-group">
