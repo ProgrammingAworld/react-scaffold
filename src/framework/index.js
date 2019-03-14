@@ -19,7 +19,9 @@ const instance = axios.create({
     method: 'get',
     baseURL: '',
     timeout: 0,
-    responseType: 'json'
+    responseType: 'json',
+    paramsSerializer: params => qs.stringify(params, { indices: false }),
+    auth: null
 })
 
 instance.interceptors.request.use(
@@ -31,11 +33,19 @@ const handleWithParameter = function (url, {
     method = 'GET',
     contentType = 'application/json; charset=UTF-8',
     params = {},
-    data = {}
+    data = {},
+    useAuth = true
 }) {
     const { headers } = instance.defaults
-    instance.defaults.headers = { ...headers, 'Content-Type': contentType }
-
+    instance.defaults.headers = {
+        ...headers,
+        'Content-Type': contentType
+    }
+    
+    if (useAuth) {
+        instance.defaults.auth = window.localStorage.getItem('auth')
+    }
+    
     // url替换参数
     let urlNew = url
     const strParams = []

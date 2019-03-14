@@ -68,6 +68,7 @@ class Login extends PureComponent {
         login({ data: { username, pwd, type: userType } })
             .then((res) => {
                 if (res.statusCode === 200) {
+                    window.localStorage.setItem('auth', username)
                     this.gotoUrl(config.url.app.root.path)
                 } else {
                     this.setError(res.message)
