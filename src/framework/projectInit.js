@@ -8,13 +8,13 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { HashRouter as Router } from 'react-router-dom'
 import axios from 'axios'
-import createHistory from 'history/createHashHistory'
+import { createHashHistory } from 'history'
 import store from 'framework/store'
 import RootRoutesView from '@/components/root'
 
 // 初始化工程
 const projectInit = function (oContainer, callback = () => {}) {
-    const history = createHistory()
+    const history = createHashHistory()
     
     history.listen(() => {
         const { CancelToken } = axios
