@@ -39,6 +39,7 @@ const handleWithParameter = function (url, {
     const { headers } = instance.defaults
     instance.defaults.headers = {
         ...headers,
+        'X-Requested-With': 'XMLHttpRequest',
         'Content-Type': contentType
     }
     
@@ -144,13 +145,13 @@ const createActions = function (actionMap) {
 
                         return res.data
                     }
+    
+                    if (statusCode === 302) {
+                        location.replace(res.data.data)
+                    }
 
                     if (config.handleError) {
-                        if (statusCode === 301) {
-                            location.replace(location.origin)
-                        } else {
-                            mesAntd.error(message)
-                        }
+                        mesAntd.error(message)
                     }
 
                     dispatch(createAction(`${config.actionType}_ERROR`)(message))
