@@ -48,7 +48,7 @@ const entry = (function () {
 const output = (function () {
     let obj = {
         path: path.join(ROOT_PATH, 'dev'),
-        publicPath: '/',
+        publicPath: './',
         filename: `static/scripts/${projectEnName}-[name].js`,
         // chunkFilename: 'static/scripts/[name].js',
         // sourceMapFilename: '[file].map',
@@ -59,7 +59,7 @@ const output = (function () {
     if (isProd) {
         obj = {
             path: path.join(ROOT_PATH, 'dist'),
-            publicPath: '/',
+            publicPath: './',
             filename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
             chunkFilename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`
         }
