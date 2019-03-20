@@ -151,7 +151,11 @@ const createActions = function (actionMap) {
                     }
 
                     if (config.handleError) {
-                        mesAntd.error(message)
+                        if (statusCode === 401 && !config.url.endsWith('/login')) {
+                            location.replace(location.origin)
+                        } else {
+                            mesAntd.error(message)
+                        }
                     }
 
                     dispatch(createAction(`${config.actionType}_ERROR`)(message))
