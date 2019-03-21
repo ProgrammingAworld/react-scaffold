@@ -40,11 +40,8 @@ const handleWithParameter = function (url, {
     instance.defaults.headers = {
         ...headers,
         'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type': contentType
-    }
-    
-    if (useAuth) {
-        instance.defaults.auth = window.localStorage.getItem('auth')
+        'Content-Type': contentType,
+        Authorization: useAuth ? localStorage.getItem('auth') : ''
     }
     
     // url替换参数
