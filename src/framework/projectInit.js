@@ -11,10 +11,24 @@ import axios from 'axios'
 import { createHashHistory } from 'history'
 import store from 'framework/store'
 import RootRoutesView from '@/components/root'
+import dialog from './dialog'
 
 // 初始化工程
 const projectInit = function (oContainer, callback = () => {}) {
     const history = createHashHistory()
+    const getConfirmation = (msg, cb) => {
+        dialog.confirm({
+            content: <div>{msg}</div>,
+            ok(){
+                cb(true)
+                dialog.hide()
+            },
+            cancel(){
+                cb(false)
+                dialog.hide()
+            }
+        })
+    }
     
     history.listen(() => {
         const { CancelToken } = axios
@@ -23,7 +37,7 @@ const projectInit = function (oContainer, callback = () => {}) {
 
     ReactDOM.render(
         <Provider store={store}>
-            <Router hashHistory={history}>
+            <Router hashHistory={history} getUserConfirmation={getConfirmation}>
                 <RootRoutesView />
             </Router>
         </Provider>,

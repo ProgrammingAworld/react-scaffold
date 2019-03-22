@@ -22,7 +22,8 @@ import {
     Route,
     Redirect,
     Switch,
-    withRouter
+    withRouter,
+    Prompt
 } from 'react-router-dom'
 import { createSelector } from 'reselect'
 import { AppContainer, hot } from 'react-hot-loader'
@@ -51,6 +52,7 @@ export {
     Router,
     Route,
     withRouter,
+    Prompt,
     NavLink,
     Link,
     Redirect,
