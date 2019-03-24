@@ -48,7 +48,7 @@ const entry = (function () {
 const output = (function () {
     let obj = {
         path: path.join(ROOT_PATH, 'dev'),
-        publicPath: './',
+        publicPath: '/',
         filename: `static/scripts/${projectEnName}-[name].js`,
         // chunkFilename: 'static/scripts/[name].js',
         // sourceMapFilename: '[file].map',
@@ -57,9 +57,10 @@ const output = (function () {
     }
     
     if (isProd) {
+        // publicPath使用./时，组件中图片路径会有问题
         obj = {
             path: path.join(ROOT_PATH, 'dist'),
-            publicPath: './',
+            publicPath: '/',
             filename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
             chunkFilename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`
         }
