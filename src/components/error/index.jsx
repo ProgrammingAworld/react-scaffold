@@ -3,6 +3,7 @@
  */
 import { React } from 'framework/Util'
 import Header from '../header'
+import './scss/index.scss'
 
 function Error() {
     return (

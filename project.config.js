@@ -15,6 +15,7 @@ const port = 4444
 const ROOT_PATH = path.resolve(__dirname, './')
 const APP_PATH = path.resolve(ROOT_PATH, 'src')
 const projectEnName = 'example'
+const staticFolderName = 'static'
 
 const development = {
     env: { NODE_ENV: JSON.stringify('development') },
@@ -49,8 +50,8 @@ const output = (function () {
     let obj = {
         path: path.join(ROOT_PATH, 'dev'),
         publicPath: '/',
-        filename: `static/scripts/${projectEnName}-[name].js`,
-        // chunkFilename: 'static/scripts/[name].js',
+        filename: `${staticFolderName}/scripts/${projectEnName}-[name].js`,
+        // chunkFilename: '${staticFolderName}/scripts/[name].js',
         // sourceMapFilename: '[file].map',
         // hotUpdateChunkFilename: 'hot/hot-update.js',
         // hotUpdateMainFilename: 'hot/hot-update.json'
@@ -60,8 +61,8 @@ const output = (function () {
         obj = {
             path: path.join(ROOT_PATH, 'dist'),
             publicPath: '/',
-            filename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
-            chunkFilename: `static/scripts/${projectEnName}-[name]-[chunkhash:10].js`
+            filename: `${staticFolderName}/scripts/${projectEnName}-[name]-[chunkhash:10].js`,
+            chunkFilename: `${staticFolderName}/scripts/${projectEnName}-[name]-[chunkhash:10].js`
         }
     }
     
@@ -151,7 +152,7 @@ const imgLoader = (function () {
         loader: 'url-loader',
         options: {
             limit: 10000,
-            name: 'static/images/[name].[ext]',
+            name: `${staticFolderName}/images/[name].[ext]`,
             mimetype: item.mimetype
         }
     }))
@@ -171,7 +172,7 @@ const fontLoader = (function () {
         loader: 'url-loader',
         options: {
             limit: 10000,
-            name: 'static/fonts/[name].[ext]',
+            name: `${staticFolderName}/fonts/[name].[ext]`,
             mimetype: item.mimetype
         }
     }))
@@ -182,7 +183,7 @@ const mediaLoader = {
     loader: 'url-loader',
     options: {
         limit: 10000,
-        name: 'static/media/[name].[ext]'
+        name: `${staticFolderName}/media/[name].[ext]`
     }
 }
 
@@ -217,11 +218,11 @@ const optimization = {
 const copyArgs = [
     {
         from: 'src/project-conf.js',
-        to: 'static/scripts/project-conf.js'
+        to: `${staticFolderName}/scripts/project-conf.js`
     },
     {
         from: 'src/images',
-        to: 'static/images'
+        to: `${staticFolderName}/images`
     }
 ]
 
@@ -230,7 +231,7 @@ let plugins = [
     new CopyWebpackPlugin(isProd ? copyArgs : copyArgs.concat([
         {
             from: 'dll/vendor.dll.js',
-            to: 'static/scripts/vendor.dll.js'
+            to: `${staticFolderName}/scripts/vendor.dll.js`
         }
     ])),
     new StyleLintPlugin({
@@ -242,7 +243,7 @@ let plugins = [
     new HtmlWebpackPlugin({
         template: path.join(APP_PATH, 'index.html'),
         title: 'example-%lastCommitId%',
-        dll: isProd ? '' : '<script src="/static/scripts/vendor.dll.js"></script>',
+        dll: isProd ? '' : '<script src="/'+staticFolderName+'/scripts/vendor.dll.js"></script>',
         description: '这是一个示例工程',
         filename: 'index.html',
         favicon: 'src/images/favicon.ico',
@@ -257,8 +258,8 @@ let plugins = [
 if (isProd) {
     plugins = plugins.concat([
         new MiniCssExtractPlugin({
-            filename: 'static/css/[name]-[chunkhash:10].css',
-            chunkFilename: 'static/css/[id]-[chunkhash:10].css'
+            filename: `${staticFolderName}/css/[name]-[chunkhash:10].css`,
+            chunkFilename: `${staticFolderName}/css/[id]-[chunkhash:10].css`
         })
     ])
     
