@@ -3,7 +3,8 @@
  */
 import {
     createSelector,
-    connect
+    connect,
+    hot
 } from 'framework/Util'
 import actionCreator from '@/login/actions/actionCreator'
 import App from '../../components/app'
@@ -14,4 +15,4 @@ const selector = createSelector([userInfo], login => ({
     userType: login.get('userType')
 }))
 
-export default connect(selector, actionCreator)(App)
+export default connect(selector, actionCreator)(hot(module)(App))
