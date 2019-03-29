@@ -272,9 +272,9 @@ if (isProd) {
     ])
 } else {
     plugins = plugins.concat([
-        new webpack.DllReferencePlugin({
-           manifest: path.resolve(__dirname, 'dll/vendor-manifest.json')
-        }),
+        // new webpack.DllReferencePlugin({
+        //    manifest: path.resolve(__dirname, 'dll/vendor-manifest.json')
+        // }),
         new webpack.HotModuleReplacementPlugin(),
         new FriendlyErrorsPlugin()
     ])
@@ -350,6 +350,7 @@ module.exports = {
         alias: {
             '@': APP_PATH,
             framework: path.join(APP_PATH, 'framework'),
+            'react-dom': '@hot-loader/react-dom',
             conf: path.join(APP_PATH, 'conf'),
             dialog: path.join(APP_PATH, 'framework/dialog'),
             loading: path.join(APP_PATH, 'framework/loading'),

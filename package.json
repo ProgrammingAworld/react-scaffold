@@ -122,6 +122,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "@hot-loader/react-dom": "^16.8.6",
     "antd": "^3.10.3",
     "axios": "^0.18.0",
     "bizcharts": "^3.1.10",
