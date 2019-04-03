@@ -152,7 +152,7 @@ const imgLoader = (function () {
         loader: 'url-loader',
         options: {
             limit: 10000,
-            name: `${staticFolderName}/images/[name].[ext]`,
+            name: `${staticFolderName}/images/[name]-${isProd ? '[hash]' : '[path]'}.[ext]`,
             mimetype: item.mimetype
         }
     }))
