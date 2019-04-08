@@ -242,7 +242,7 @@ let plugins = [
     }),
     new HtmlWebpackPlugin({
         template: path.join(APP_PATH, 'index.html'),
-        title: 'example-%lastCommitId%',
+        title: 'example-%lastDeployTime%',
         dll: isProd ? '' : '<script src="/'+staticFolderName+'/scripts/vendor.dll.js"></script>',
         description: '这是一个示例工程',
         filename: 'index.html',
