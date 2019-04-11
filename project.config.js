@@ -291,7 +291,6 @@ const proxies = [{
     target: `http://${ip}`,
     proxyPort: 3003,
     headers: {
-        host: '',
     },
     paths: ['/api']
 }]
@@ -318,10 +317,14 @@ const devServer = {
     proxy: (function () {
         const obj = {}
         proxies.forEach((proxyConf) => {
-            const { target, proxyPort, paths } = proxyConf
+            const { target, proxyPort, headers, paths } = proxyConf
             const origin = `${target}:${proxyPort}`
             paths.forEach((apiPath) => {
-                obj[apiPath] = origin
+                obj[apiPath] = {
+                    target: origin,
+                    changeOrigin: true,
+                    headers
+                }
             })
         })
         
