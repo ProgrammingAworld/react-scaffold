@@ -1,9 +1,8 @@
 /**
  * Created by anchao on 2016/6/30.
  */
-import { React, PropTypes, PureComponent } from 'framework/Util'
+import { React, PropTypes, PureComponent, classNames } from 'framework/Util'
 import enhanceWithClickOutside from 'react-click-outside'
-import classNames from 'classnames/bind'
 import dialog from 'dialog'
 
 class TodoSingle extends PureComponent {

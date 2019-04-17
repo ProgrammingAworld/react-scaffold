@@ -5,7 +5,7 @@
  */
 
 import { React, PropTypes, PureComponent } from 'framework/Util'
-import Todo from './Todo'
+import Todo from '../todo'
 import './scss/index.scss'
 
 class VisibleTodoList extends PureComponent {
