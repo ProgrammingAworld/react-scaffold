@@ -110,7 +110,7 @@ const createActions = function (actionMap) {
             }) => (dispatch) => {
                 // const loading = require('loading').default
                 // const dialog = require('dialog').default
-                dispatch = settings.extra.preventDefault ? noop : dispatch
+                dispatch = settings.extra && settings.extra.preventDefault ? noop : dispatch
                 if ((config.hasLoading) && !loading.getLoadingStatus()) loading.show()
                 
                 dispatch(createAction(`${config.actionType}_PRE`)(settings))
