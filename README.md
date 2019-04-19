@@ -134,3 +134,7 @@ subject: 是commit的简短描述，不超过50个字符。
 ```
 1. 在每个actionCreator里默认注入了projectInit方法，在每个渲染组件里都可以直接初始化store中的state
 ```
+
+# :star:捐赠
+如果这个库有帮助到您，请Star一下,你也可以选择使用支付宝给我捐赠：
+![](https://github.com/pvfhv/react-scaffold/blob/dev/src/images/wechart.jpeg)  ![](https://github.com/pvfhv/react-scaffold/blob/dev/src/images/zhifubao.jpeg)
