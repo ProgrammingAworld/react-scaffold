@@ -42,12 +42,12 @@ const baseconfig = {
                 test: /\.scss$/,
                 include: APP_PATH,
                 use: cssLoaderUse(cssLoaders, true),
-                exclude: /node_modules|src\/css/
+                exclude: /node_modules|src[\\\/]{1}css/
             },
             {
                 test: /\.scss$/,
                 use: cssLoaderUse(cssLoaders, false),
-                include: /node_modules|src\/css/
+                include: /node_modules|src[\\\/]{1}css/
             },
             {
                 test: /\.less$/,
