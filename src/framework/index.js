@@ -14,6 +14,8 @@ import { message as mesAntd } from 'antd'
 import loading from 'loading'
 import ComLoading from './components/ComponentLoading'
 
+const noop = () => {}
+
 // ajax 统一配置
 const instance = axios.create({
     method: 'get',
@@ -108,10 +110,12 @@ const createActions = function (actionMap) {
                 handleError: true,
                 ...configOrFn
             }
-            fnsMap[eventName] = (settings = {}) => (dispatch) => {
-                // const loading = require('loading').default
-                // const dialog = require('dialog').default
-
+            fnsMap[eventName] = (settings = {
+                extra: {
+                    preventDefault: false
+                }
+            }) => (dispatch) => {
+                dispatch = settings.extra && settings.extra.preventDefault ? noop : dispatch
                 if ((config.hasLoading) && !loading.getLoadingStatus()) loading.show()
 
                 dispatch(createAction(`${config.actionType}_PRE`)(settings))
